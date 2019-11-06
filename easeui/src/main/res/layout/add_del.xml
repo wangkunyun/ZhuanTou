@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/xc_xj"
+        android:text="拍照"
+        android:textSize="15sp"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#E5E5E5"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/xc_xc"
+        android:text="相册"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#E5E5E5"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/xc_quxiao"
+        android:text="取消"
+        android:textSize="15sp"
+        android:textColor="#007AFF"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
