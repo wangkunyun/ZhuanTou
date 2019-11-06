@@ -1,2 +1,2 @@
 include ':app', ':easeui'
-project(':easeui').projectDir = new File('../easeui/easeui')
+//project(':easeui').projectDir = new File('../easeui/easeui')
