@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".Activity.chat.group.SetGroupName">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="#F2F6F9" />
+
+    <EditText
+        android:id="@+id/etGroupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_marginTop="23dp"
+        android:background="@null"
+        android:hint="给你们的小组取个名字吧！"
+        android:maxLength="8"
+        android:singleLine="true"
+        android:textColorHint="#999999"
+        android:textCursorDrawable="@drawable/my_cursor"
+        android:textSize="18sp"
+        android:theme="@style/MyEditText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="#F8F8F8" />
+
+
+    <Button
+        android:id="@+id/btn_FinishCreate"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="155dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="511dp"
+        android:background="@drawable/yuanjiaobtn"
+        android:text="完成创建"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+</LinearLayout>

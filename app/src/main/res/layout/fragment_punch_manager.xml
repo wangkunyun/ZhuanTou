@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.punch.PunchManagerFragment">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="#F8F8F8" />
+
+    <RelativeLayout
+        android:id="@+id/clickCheckingPlace"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="考勤地点设置"
+            android:textColor="#ff333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_CheckingPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:ellipsize="end"
+            android:maxEms="10"
+            android:maxLines="1"
+            android:text="北京市通州区世界.."
+            android:textColor="#ff666666"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/clickCheckingPeople"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="免考勤人员设置"
+            android:textColor="#ff333333"
+            android:textSize="18sp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/clickCheckingTime"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="考勤时间设置"
+            android:textColor="#ff333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_CheckingTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="30dp"
+            android:text="早9:00至晚6:00"
+            android:textColor="#ff666666"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/clickCheckingRange"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="考勤范围设置"
+            android:textColor="#ff333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_CheckingRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="30dp"
+            android:text="100米"
+            android:textColor="#ff666666"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+    </RelativeLayout>
+
+</LinearLayout>

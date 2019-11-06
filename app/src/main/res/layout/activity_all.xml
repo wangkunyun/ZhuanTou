@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".homepage.AllActivity"
+    android:orientation="vertical"
+    android:background="@color/baise">
+
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="88px">-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<ImageView-->
+                <!--android:layout_marginLeft="12px"-->
+                <!--android:padding="10px"-->
+                <!--android:layout_width="64px"-->
+                <!--android:layout_height="64px"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:src="@drawable/goback2"-->
+                <!--android:id="@+id/all_goback"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="36px"-->
+                <!--android:textColor="@color/t5"-->
+                <!--android:text="企业服务"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:includeFontPadding="false"-->
+                <!--android:lineSpacingMultiplier="0.9"-->
+                <!--android:id="@+id/all_title"/>-->
+
+        <!--</RelativeLayout>-->
+    <!--</android.support.v7.widget.Toolbar>-->
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="2px"-->
+        <!--android:background="#F8F8F8"/>-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="48px"-->
+        <!--android:layout_marginLeft="32px">-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:textColor="@color/t5"-->
+            <!--android:textSize="32px"-->
+            <!--android:text="最近服务"-->
+            <!--android:id="@+id/all_servicetv"/>-->
+        <!--<ImageView-->
+            <!--android:layout_toRightOf="@+id/all_servicetv"-->
+            <!--android:layout_width="12px"-->
+            <!--android:layout_height="36px"-->
+            <!--android:src="@drawable/shutiao"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="16px"/>-->
+    <!--</RelativeLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_marginTop="64px">-->
+        <!---->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="0px"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:id="@+id/all_zuijin1">-->
+            <!--<ImageView-->
+                <!--android:layout_width="64px"-->
+                <!--android:layout_height="64px"-->
+                <!--android:id="@+id/all_zuijinimg1"-->
+                <!--android:layout_centerHorizontal="true"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/zuijintv1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=""-->
+                <!--android:textSize="28px"-->
+                <!--android:textColor="@color/t5"-->
+                <!--android:layout_below="@+id/all_zuijinimg1"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="16px"/>-->
+        <!--</RelativeLayout>-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="0px"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:id="@+id/all_zuijin2">-->
+            <!--<ImageView-->
+                <!--android:layout_width="64px"-->
+                <!--android:layout_height="64px"-->
+                <!--android:id="@+id/all_zuijinimg2"-->
+                <!--android:layout_centerHorizontal="true"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/zuijintv2"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=""-->
+                <!--android:textSize="28px"-->
+                <!--android:textColor="@color/t5"-->
+                <!--android:layout_below="@+id/all_zuijinimg2"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="16px"/>-->
+        <!--</RelativeLayout>-->
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/all_zuijin3"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/all_zuijinimg3"-->
+                <!--android:layout_width="64px"-->
+                <!--android:layout_height="64px"-->
+                <!--android:layout_centerHorizontal="true" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/zuijintv3"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/all_zuijinimg3"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="16px"-->
+                <!--android:text=""-->
+                <!--android:textColor="@color/t5"-->
+                <!--android:textSize="28px" />-->
+        <!--</RelativeLayout>-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="0px"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:id="@+id/all_zuijin4">-->
+            <!--<ImageView-->
+                <!--android:layout_width="64px"-->
+                <!--android:layout_height="64px"-->
+                <!--android:id="@+id/all_zuijinimg4"-->
+                <!--android:layout_centerHorizontal="true"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/zuijintv4"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=""-->
+                <!--android:textSize="28px"-->
+                <!--android:textColor="@color/t5"-->
+                <!--android:layout_below="@+id/all_zuijinimg4"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="16px"/>-->
+        <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
+
+    <!--<TextView-->
+        <!--android:layout_marginTop="64px"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="16px"-->
+        <!--android:background="#F8F8F8"/>-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="50px"-->
+        <!--android:layout_marginLeft="32px">-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:textColor="@color/t5"-->
+            <!--android:textSize="32px"-->
+            <!--android:text="全部服务"-->
+            <!--android:id="@+id/all_servicetv2"/>-->
+        <!--<ImageView-->
+            <!--android:layout_toRightOf="@+id/all_servicetv2"-->
+            <!--android:layout_width="12px"-->
+            <!--android:layout_height="36px"-->
+            <!--android:src="@drawable/shutiao"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="16px"/>-->
+    <!--</RelativeLayout>-->
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/all_rv">-->
+    <!--</android.support.v7.widget.RecyclerView>-->
+
+</LinearLayout>

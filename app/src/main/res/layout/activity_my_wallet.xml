@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.mine.MyWallet">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/layout_toolbar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="114dp"
+            android:layout_below="@id/include"
+            android:background="@color/t3" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="171dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/bg_my_wallet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tvMoney"
+            android:layout_marginTop="8dp"
+            android:layout_toLeftOf="@id/tvMoney"
+            android:text="￥"
+            android:textColor="@color/baise"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0.00"
+            android:textColor="@color/baise"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvMoney"
+            android:layout_centerHorizontal="true"
+            android:text="余额"
+            android:textColor="#ffffffff"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/click_charge"
+            android:layout_width="76dp"
+            android:layout_height="24dp"
+            android:layout_below="@id/tvMoney"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/h5yuanjiaoedt"
+            android:gravity="center"
+            android:text="充值"
+            android:textColor="@color/t3"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的银行卡"
+            android:textColor="#ff333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_idCardNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="0张" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/reBankCard"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/click_addBankCard"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/add_bank_card" />
+
+
+</LinearLayout>

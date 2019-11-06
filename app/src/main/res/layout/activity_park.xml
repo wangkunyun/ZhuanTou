@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f8"
+    android:orientation="vertical"
+    tools:context=".Activity.mine.ParkActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/click_BindingCarNum"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="18dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="绑定车牌号"
+            android:textColor="#ff666666"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/icon_oa_enter" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="18dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="自动缴费"
+            android:textColor="#ff666666"
+            android:textSize="16sp" />
+
+        <com.suke.widget.SwitchButton
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            app:sb_checked="true"
+            app:sb_checked_color="#65C9D2"
+            app:sb_show_indicator="false" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="自动缴费需保证APP内余额充足，如扣款失败则无法通行"
+        android:textColor="#ff999999"
+        android:textSize="14sp" />
+
+
+</LinearLayout>

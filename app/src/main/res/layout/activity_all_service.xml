@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".homepage.AllServiceActivity">
+
+    <ImageView
+        android:id="@+id/allser_img"
+        android:layout_width="match_parent"
+        android:layout_height="261dp"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/allser_goback"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="31dp"
+        android:padding="5dp"
+        android:src="@drawable/goback" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="221dp"
+        android:layout_marginRight="24dp"
+        android:background="@color/baise">
+
+        <TextView
+            android:id="@+id/allser_tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="53dp" />
+
+        <TextView
+            android:id="@+id/allser_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="53dp"
+            android:text="新华大街 北京one附近独栋700 平米 豪华装修"
+            android:textColor="@color/t5"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/allser_tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/allser_tv1"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="25dp"
+            android:text="两室一厅一卫      133m"
+            android:textColor="@color/t4"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/allser_phone"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/phone" />
+
+        <ImageView
+            android:id="@+id/allser_dingimg"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_below="@+id/allser_tv2"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/dingwei_icon" />
+
+        <TextView
+            android:id="@+id/allser_tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/allser_tv2"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginRight="25dp"
+            android:layout_toLeftOf="@+id/allser_phone"
+            android:layout_toRightOf="@+id/allser_dingimg"
+            android:text="通州八里桥通州八里桥通州八里桥 通州八里桥" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

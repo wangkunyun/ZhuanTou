@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/dakaitem_rl">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已打卡"
+        android:textColor="@color/t3"
+        android:layout_marginTop="17dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="16sp"
+        android:id="@+id/dakaitem_tv1"/>
+
+    <TextView
+        android:id="@+id/dakaitem_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="28日 08:00-18:30"
+        android:textSize="12sp"
+        android:textColor="@color/t1"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/dakaitem_tv1"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="7dp"/>
+
+    <TextView
+        android:id="@+id/dakaitem_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/t3"
+        android:text="10.5h"
+        android:textSize="18sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"/>
+
+</RelativeLayout>

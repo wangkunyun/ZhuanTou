@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f8"
+    android:orientation="vertical"
+    tools:context=".Activity.mine.BindingIdCard">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="持卡人"
+            android:textColor="#ff666666"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/idCardName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:text="王大云"
+            android:textColor="#ff999999"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/f8" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="银行卡号"
+            android:textColor="#ff666666"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_IdCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="请输入银行卡号"
+            android:imeOptions="actionNext"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textColor="#999999"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:text="请绑定持卡人本人银行卡"
+        android:textColor="#ff999999"
+        android:textSize="14sp" />
+
+
+    <Button
+        android:id="@+id/btnVerific"
+        android:layout_width="155dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="233dp"
+        android:background="@drawable/yuanjiaobtn"
+        android:text="验证"
+        android:textColor="@color/baise"
+        android:textSize="18sp" />
+
+</LinearLayout>

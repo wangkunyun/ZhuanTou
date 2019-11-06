@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF2F6F9"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.report.WriteMonReoprtActivity">
+
+    <!--toolbar-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/sz_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/t3">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/goback" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="月报"
+                android:textColor="@color/baise"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_writeReport_Realtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:text="未填完将在返回时保存"
+                android:textColor="@color/t6"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/circle_report_linear"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <!--本周完成工作-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="本周完成工作"
+                    android:textColor="#FF333333"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_writeReport_finishWork"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@null"
+                    android:hint="请输入本月完成内容"
+                    android:imeOptions="actionNext"
+                    android:textCursorDrawable="@drawable/edittext_color"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="14dp"
+                    android:background="#FFE5E5E5" />
+
+
+                <!--本周工作总结-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="本周工作总结"
+                    android:textColor="#FF333333"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_writeReportworkSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@null"
+                    android:hint="总结下这月的得失，不让时间白白流逝"
+                    android:imeOptions="actionNext"
+                    android:textCursorDrawable="@drawable/edittext_color"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="14dp"
+                    android:background="#FFE5E5E5" />
+
+                <!--下周工作计划-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="下周工作计划"
+                    android:textColor="#FF333333"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_WriteWrite_workPlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@null"
+                    android:hint="有目的工作，未来可期"
+                    android:imeOptions="actionNext"
+                    android:textCursorDrawable="@drawable/edittext_color"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="14dp"
+                    android:background="#FFE5E5E5" />
+            </LinearLayout>
+
+            <!--图片-->
+            <RelativeLayout
+                android:id="@+id/write_report_addImg"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/baise"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="图片"
+                    android:textColor="#FF333333"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:src="@mipmap/report_add_imgs" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/baise"
+                android:orientation="vertical"
+                android:paddingLeft="16dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/re_write_report_imgs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/baise"
+                    android:paddingRight="27dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_alignParentBottom="true"
+                    android:background="#FFE5E5E5" />
+            </LinearLayout>
+
+            <!--文件-->
+            <RelativeLayout
+                android:id="@+id/write_report_addFile"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:background="@color/baise"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="附件"
+                    android:textColor="#FF333333"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:src="@mipmap/report_add_files_blue" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/baise"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/re_write_report_files"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/baise"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="27dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_alignParentBottom="true"
+                    android:background="#FFE5E5E5" />
+            </LinearLayout>
+
+            <!--日志接收人-->
+            <RelativeLayout
+                android:id="@+id/write_report_approver"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/baise"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="日志接收人"
+                    android:textColor="#FF333333"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:src="@mipmap/report_add_address" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/baise"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/re_write_report_approver"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/baise"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="27dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_alignParentBottom="true"
+                    android:background="#FFE5E5E5" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btnSubmit_writeReport"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="68dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/yuanjiaobtn"
+                android:text="提交"
+                android:textColor="@color/baise"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

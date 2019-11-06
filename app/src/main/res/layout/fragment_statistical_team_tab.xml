@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baise"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="81dp"
+                android:background="#F8F8F8"
+                android:paddingTop="24dp"
+                android:paddingBottom="27dp">
+
+                <ImageView
+                    android:id="@+id/img_click_lase"
+                    android:layout_width="44dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="24dp"
+                    android:src="@drawable/left" />
+
+                <TextView
+                    android:id="@+id/tv_calDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="2019年7月11日"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/img_click_next"
+                    android:layout_width="44dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="24dp"
+                    android:src="@drawable/right" />
+
+            </RelativeLayout>
+
+
+            <!--平均工时-->
+            <RelativeLayout
+                android:id="@+id/rl_click_pj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="平均工时"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_pj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="20小时"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/img_pj"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/icon_arrows_down" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="50dp"
+                    android:background="#F8F8F8" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_pj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+
+            <!--迟到次数-->
+            <RelativeLayout
+                android:id="@+id/rl_click_cd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="迟到"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_cd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="0次"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/img_cd"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/icon_arrows_down" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="50dp"
+                    android:background="#F8F8F8" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_cd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+
+            <!--早退次数-->
+            <RelativeLayout
+                android:id="@+id/rl_click_zt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="早退"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_zt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="0次"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/img_zt"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/icon_arrows_down" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="50dp"
+                    android:background="#F8F8F8" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_zt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+
+            <!--缺卡次数-->
+            <RelativeLayout
+                android:id="@+id/rl_click_qk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="缺卡"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_qk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="0次"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/img_qk"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/icon_arrows_down" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="50dp"
+                    android:background="#F8F8F8" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_qk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+
+            <!--旷工次数-->
+            <RelativeLayout
+                android:id="@+id/rl_click_kg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="旷工"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_kg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="0次"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/img_kg"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/icon_arrows_down" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="50dp"
+                    android:background="#F8F8F8" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_kg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+
+            <!--外勤次数-->
+            <RelativeLayout
+                android:id="@+id/rl_click_wq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="外勤"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_wq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="20小时"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/img_wq"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/icon_arrows_down" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="50dp"
+                    android:background="#F8F8F8" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_wq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+
+            <!--加班次数-->
+            <RelativeLayout
+                android:id="@+id/rl_click_jb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="加班"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_jb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="20小时"
+                    android:textColor="#ff666666"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/img_jb"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/icon_arrows_down" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="50dp"
+                    android:background="#F8F8F8" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_jb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>

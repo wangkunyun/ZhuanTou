@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baise"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.punch.CheckingTimeActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="@color/f8" />
+    <!--开始时间-->
+    <RelativeLayout
+        android:id="@+id/click_rl_startTime"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="开始时间"
+            android:textColor="#FF333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_startTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:text="请选择"
+            android:textColor="#FF999999"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFE5E5E5" />
+
+    </RelativeLayout>
+
+    <!--结束时间-->
+    <RelativeLayout
+        android:id="@+id/click_rl_endTime"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="结束时间"
+            android:textColor="#FF333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_endTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:text="请选择"
+            android:textColor="#FF999999"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFE5E5E5" />
+
+    </RelativeLayout>
+
+</LinearLayout>

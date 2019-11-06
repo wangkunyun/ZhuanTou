@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".homepage.SearchNearActivity"
+    android:background="#F8F8F8"
+    android:id="@+id/searchn_bc">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/t3">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/searchn_back"
+                android:padding="5dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/goback"
+                android:layout_marginLeft="6dp"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="选择位置"
+                android:textColor="@color/baise"
+                android:textSize="18sp"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="#F8F8F8"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        <EditText
+            android:id="@+id/searchn_edt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:background="@drawable/fxedt2"
+            android:hint="搜索社区名称"
+            android:textSize="14sp"
+            android:textColor="@color/t1"
+            android:singleLine="true"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:theme="@style/MyEditText"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchn_rv1"
+        android:background="@color/baise">
+    </android.support.v7.widget.RecyclerView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".isMy.JiLuActivity"
+    android:orientation="vertical"
+    android:background="#F8F8F8">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#FFFFFF">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的砖头"
+                android:textColor="@color/t5"
+                android:textSize="18dp"
+                android:layout_centerInParent="true"/>
+            <ImageView
+                android:layout_marginLeft="6dp"
+                android:padding="5dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/goback2"
+                android:id="@+id/jilu_goback"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="@color/t5"
+                android:text="本月"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:id="@+id/jilu_month"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <!--<com.jwenfeng.library.pulltorefresh.PullToRefreshLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/jilu_cf"-->
+        <!--android:focusableInTouchMode="true"-->
+        <!--android:focusable="true">-->
+
+    <!--<ScrollView-->
+        <!--android:scrollbars="none"-->
+        <!--android:overScrollMode="never"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/yuanjiaobttn5">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/head_portrait"
+            android:id="@+id/jilu_headimg"/>
+
+        <TextView
+            android:textStyle="normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/jilu_headimg"
+            android:layout_marginLeft="8dp"
+            android:textColor="@color/t1"
+            android:textSize="14sp"
+            android:id="@+id/jilu_name"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="打卡天数"
+                android:textSize="14dp"
+                android:textColor="@color/t1"
+                android:layout_marginTop="16dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/jilu_wuyong1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="打卡时间"
+                android:textSize="14sp"
+                android:textColor="@color/t1"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="16dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/jilu_wuyong2"/>
+
+            <TextView
+                android:id="@+id/jilu_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/t5"
+                android:text="0"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_toLeftOf="@+id/jilu_wuyong1"
+                android:layout_marginRight="3dp"/>
+
+            <TextView
+                android:id="@+id/jilu_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/t5"
+                android:text="0"
+                android:textStyle="bold"
+                android:layout_toLeftOf="@+id/jilu_wuyong2"
+                android:layout_marginRight="3dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_toLeftOf="@+id/jilu_time"
+                android:layout_width="1dp"
+                android:layout_height="34dp"
+                android:layout_centerVertical="true"
+                android:background="#1A999999"
+                android:layout_marginRight="32dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:background="@color/baise"
+                android:id="@+id/jilu_rv">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+    <!--</ScrollView>-->
+    <!--</com.jwenfeng.library.pulltorefresh.PullToRefreshLayout>-->
+
+</LinearLayout>

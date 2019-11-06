@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F6F9"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.examineAndapprove.apply.ApplyReimbursement">
+
+    <include layout="@layout/layout_toolbar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF2F6F9"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--实时保存-->
+            <TextView
+                android:id="@+id/Real_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:text="未填完将在返回时保存"
+                android:textColor="@color/t6"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/circle_report_linear"
+                android:orientation="vertical">
+
+                <!--付款金额-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/baise"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="23dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="付款金额"
+                        android:textColor="#FF333333"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/reimbursementAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:hint="（人民币）"
+                        android:imeOptions="actionNext"
+                        android:maxLength="15"
+                        android:maxLines="1"
+                        android:textColor="@color/t5"
+                        android:textCursorDrawable="@drawable/edittext_color"
+                        android:textSize="18sp" />
+
+
+                    <!--分割线-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="#FFE5E5E5" />
+
+                </RelativeLayout>
+
+                <!--付款方式-->
+                <RelativeLayout
+                    android:id="@+id/click_rl_payForType"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/baise"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="付款方式"
+                        android:textColor="#FF333333"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/et_payForType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="22dp"
+                        android:text="请选择"
+                        android:textColor="#FF999999"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/enterStartTime"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_oa_enter" />
+
+                    <ImageView
+                        android:id="@+id/clearStartTime"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/oval"
+                        android:visibility="gone" />
+
+                    <!--分割线-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="#FFE5E5E5" />
+
+                </RelativeLayout>
+
+                <!--结束时间-->
+                <RelativeLayout
+                    android:id="@+id/click_rl_PatForDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/baise"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="付款日期"
+                        android:textColor="#FF333333"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_PayForDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="22dp"
+                        android:text="请选择"
+                        android:textColor="#FF999999"
+                        android:textSize="18dp" />
+
+                    <ImageView
+                        android:id="@+id/enterEndTime"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_oa_enter" />
+
+                    <ImageView
+                        android:id="@+id/clearEndTime"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/oval"
+                        android:visibility="gone" />
+
+                    <!--分割线-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="#FFE5E5E5" />
+
+                </RelativeLayout>
+
+                <!--开户行-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/baise"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="23dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="开户行"
+                        android:textColor="#FF333333"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_OpenBank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:hint="请输入开户行"
+                        android:imeOptions="actionNext"
+                        android:maxLength="15"
+                        android:maxLines="1"
+                        android:textColor="@color/t5"
+                        android:textCursorDrawable="@drawable/edittext_color"
+                        android:textSize="18sp" />
+
+
+                    <!--分割线-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="#FFE5E5E5" />
+
+                </RelativeLayout>
+
+                <!--银行账户-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/baise"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="23dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="银行账户"
+                        android:textColor="#FF333333"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_BankAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:hint="请输入银行账户"
+                        android:imeOptions="actionNext"
+                        android:maxLength="15"
+                        android:maxLines="1"
+                        android:textColor="@color/t5"
+                        android:textCursorDrawable="@drawable/edittext_color"
+                        android:textSize="18sp" />
+
+
+                    <!--分割线-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="#FFE5E5E5" />
+
+                </RelativeLayout>
+
+                <!--付款对象-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/baise"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="23dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="付款对象"
+                        android:textColor="#FF333333"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_PayForWho"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:hint="请输入付款对象"
+                        android:imeOptions="actionNext"
+                        android:maxLength="15"
+                        android:maxLines="1"
+                        android:textColor="@color/t5"
+                        android:textCursorDrawable="@drawable/edittext_color"
+                        android:textSize="18sp" />
+
+
+                    <!--分割线-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="#FFE5E5E5" />
+
+                </RelativeLayout>
+
+
+                <!--付款说明-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/baise"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="13dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="付款说明"
+                        android:textColor="#FF333333"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_PayForDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:background="@null"
+                        android:hint="请输入"
+                        android:imeOptions="actionNext"
+                        android:textCursorDrawable="@drawable/edittext_color"
+                        android:textSize="16sp" />
+
+
+                    <!--分割线-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="#FFE5E5E5" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="#F2F6F9">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="审批"
+                        android:textColor="#ff333333"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <!--日志接收人-->
+                <RelativeLayout
+                    android:id="@+id/click_rl_addApppover"
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:background="@color/baise"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="审批人"
+                        android:textColor="#FF333333"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:src="@mipmap/report_add_address" />
+
+                </RelativeLayout>
+                <!--日志接收人列表-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/baise"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/re_approver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/baise"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="27dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="#FFE5E5E5" />
+                </LinearLayout>
+
+                <!--日志接收人-->
+                <RelativeLayout
+                    android:id="@+id/click_rl_addApppover2"
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/baise"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="抄送人"
+                        android:textColor="#FF333333"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:src="@mipmap/report_add_address" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="#FFE5E5E5" />
+                </RelativeLayout>
+                <!--日志接收人列表-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/baise"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/re_approver2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/baise"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="27dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="#FFE5E5E5" />
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/btnSubmit_leave"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="69dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/yuanjiaobtn"
+                    android:text="提交"
+                    android:textColor="@color/baise"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

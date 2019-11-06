@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:hjm="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F6F9"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.punch.PunchInTab">
+
+    <com.hjm.bottomtabbar.BottomTabBar
+        android:id="@+id/bottom_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:tab_bar_background="#FFFFFF"
+        app:tab_divider_background="#FFE5E5E5"
+        app:tab_img_font_padding="0px"
+        app:tab_padding_top="10dp"
+        hjm:tab_selected_color="@color/lanse"
+        hjm:tab_unselected_color="#FF999999" />
+</LinearLayout>

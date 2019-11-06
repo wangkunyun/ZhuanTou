@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ztkj.wky.zhuantou"
+    android:versionCode="315"
+    android:versionName="3.1.5"
+    tools:ignore="GradleOverrides">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="com.ztkj.wky.zhuantou.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_OWNER_DATA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" /> <!-- 更新时需要安装的权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- 弹窗权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/log_zt"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@drawable/log_zt"
+        android:screenOrientation="portrait"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activity.oa.punch.StatisticalDetailsActivity"></activity>
+        <activity
+            android:name=".Activity.oa.punch.ApplyReissuePunchinActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.punch.FreeCheckingPeopleActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.punch.BaiduMapActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.punch.CheckingRangeActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.punch.CheckingTimeActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.punch.CheckingPeopleActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.enterpriseService.TakeOutCodeActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.enterpriseService.H5ParkingNavigation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.ForgetPayWordFingerPrint"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.ForgetSetPayWord2"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.ForgetSetPayWord"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.ForgetPayWord4Activity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.ForgetPayWord3Activity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.ForgetPayWord2Activity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.PayWord3Activity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.PayWord2Activity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.PayWordActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.BankCardVerificCode"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.BindingIdCard2"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.ForgetPayWordActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.RechargeActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.BillList"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.BindingIdCard"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.MyWallet"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.UpdateIcCard"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.NameRenZhengActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.BindingCarNum"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.mine.ParkActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.enterpriseService.ParkingNavigation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.AddMeeting"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.enterpriseService.SendWater"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.MeetingActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".H5.FDReadActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.punch.StatisticalManagerTab"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.punch.Statistical_Table"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.punch.PunchInTab"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.ScheduleList"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.AddSchedule"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.SetTongzhi"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.activity.NewFriendDetails"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.activity.NewFriendList"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.group.SetGroupName"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.group.CreateGroupChoosePeople"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.activity.CreateGroup"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.activity.SayHello"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.activity.SearchFriend"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.activity.PersonalDetails"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.AddressTab"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.EChatConversationList"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.chat.ECChatAcitivty"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".isMy.EwmApplyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.apply.Examine"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.applydetials.PayForDetials"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.applydetials.EvectionDetials"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.applydetials.OutWorkDetials"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.applydetials.GoOutDetials"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.applydetials.UseCarDetials"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.applydetials.OverTimeDetials"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.applydetials.ReimbursementDetails"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.applydetials.UseSealDetails"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.applydetials.LeaveDetials"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.apply.ApplyUseCar"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.apply.ApplySeal"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.apply.ApplyReimbursement"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.apply.ApplyPayFor"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.apply.ApplyGoOut"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.apply.ApplyOutWork"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.apply.ApplyEvection"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.apply.ApplyOverTime"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.apply.ApplyLeave"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.examineAndapprove.ApplyFor"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.WriteMonReoprtActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.WriteWidReportActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.ChooseAdressActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.WorkSummary"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.ReportWorkSummary"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.WriteReport"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.ReadReportDetails"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.ReadWidReportDetails"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.ReadReportMidDetails"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.ReadReportTidDetails"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.report.Report"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.WorkAddress"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.ChangeManager"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.EnterpriseName"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.BillingInformation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.ManageCompany"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.AddressBook"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.Enterprise"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.Team_Guide"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.Team_Scale"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.oa.Create_Team"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".isMy.FangkejilvActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".H5.H5Activity2"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".landing.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".landing.ZcActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".landing.PasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".landing.DxYzActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".H5.UserAgreementActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".H5.UserInstructionsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".H5.H5Activity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".landing.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".H5.H52Activity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".homepage.AllActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".homepage.AllServiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".isMy.GeRenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.oa.punch.SearchLoacaltionActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".isMy.JiFenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".isMy.JiLuActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".isMy.SzActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".homepage.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".homepage.NearActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".homepage.SearchNearActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".H5.H5EdittextActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent"
+            android:windowSoftInputMode="adjustPan|adjustUnspecified|stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wx12fc8b894d7cc630" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".isMy.FangKeActivity"
+            android:screenOrientation="portrait" /> <!-- ================百度定位==================== -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="rwE0debwZFGz2GPICfO8SW1DfzhbCydt" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" /> <!-- ================图片权限==================== -->
+        <!-- <provider -->
+        <!-- android:name="android.support.v4.content.FileProvider" -->
+        <!-- android:authorities="com.ztkj.wky.zhuantou.fileprovider" -->
+        <!-- android:exported="false" -->
+        <!-- android:grantUriPermissions="true" -->
+        <!-- tools:replace="android:authorities"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.support.FILE_PROVIDER_PATHS" -->
+        <!-- android:resource="@xml/file_paths" /> -->
+        <!-- </provider> -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.ztkj.wky.zhuantou.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+
+            <!-- 元数据 -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="ce4adff29fae90b887815e41" /> <!-- 通过768*1280适配 UI暂时没出 待定 -->
+        <!-- =========================万能适配===================== -->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="375" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="667" /> <!-- =========================万能适配===================== -->
+        <!-- =========================设置环信应用的AppKey===================== -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1102190716157778#aixiaozhuan" /> <!-- 声明SDK所需的service SDK核心功能 -->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true" />
+        <service
+            android:name="com.hyphenate.chat.EMJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" /> <!-- =========================设置环信应用的AppKey===================== -->
+        <!-- =========================环信界面=========================== -->
+        <activity android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity" />
+        <activity android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity" /> <!-- 华为 HMS Config -->
+        <!--
+接入HMSSDK PUSH模块需要注册，第三方相关 :接收Push消息（注册、Push消息、Push连接状态）广播，
+                此receiver类需要开发者自己创建并继承com.huawei.hms.support.api.push.PushReceiver类，
+                参考示例代码中的类：com.huawei.hmsagent.HuaweiPushRevicer
+        -->
+        <!-- <receiver android:name=".huanxin.receiver.HMSPushReceiver"> -->
+        <!-- <intent-filter> -->
+        <!-- &lt;!&ndash; 必须,用于接收 TOKEN &ndash;&gt; -->
+        <!-- <action android:name="com.huawei.android.push.intent.REGISTRATION"/> -->
+        <!-- &lt;!&ndash; 必须，用于接收消息 &ndash;&gt; -->
+        <!-- <action android:name="com.huawei.android.push.intent.RECEIVE"/> -->
+        <!-- &lt;!&ndash; 可选，用于点击通知栏或通知栏上的按钮后触发 onEvent 回调 &ndash;&gt; -->
+        <!-- <action android:name="com.huawei.android.push.intent.CLICK"/> -->
+        <!-- &lt;!&ndash; 可选，查看 PUSH 通道是否连接，不查看则不需要 &ndash;&gt; -->
+        <!-- <action android:name="com.huawei.intent.action.PUSH_STATE"/> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+        <!-- 开机自启动服务 -->
+        <receiver android:name=".huanxin.receiver.StartServiceReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

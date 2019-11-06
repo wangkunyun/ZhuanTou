@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".homepage.NearActivity">
+
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="88px"-->
+        <!--android:background="@color/t3">-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:id="@+id/near_backrl">-->
+                <!--<ImageView-->
+                    <!--android:id="@+id/near_back"-->
+                    <!--android:layout_width="44px"-->
+                    <!--android:layout_height="44px"-->
+                    <!--android:src="@drawable/goback"-->
+                    <!--android:layout_marginLeft="12px"-->
+                    <!--android:layout_centerVertical="true"/>-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="附近商家"-->
+                    <!--android:textSize="32px"-->
+                    <!--android:textColor="@color/baise"-->
+                    <!--android:layout_toRightOf="@+id/near_back"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="2px"/>-->
+            <!--</RelativeLayout>-->
+
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:id="@+id/near_rl"-->
+                <!--android:padding="5px">-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="44px"-->
+                    <!--android:layout_height="44px"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:src="@drawable/dingwei_icon2"-->
+                    <!--android:id="@+id/near_dingweiimg"/>-->
+
+                <!--<TextView-->
+                    <!--android:layout_marginLeft="2px"-->
+                    <!--android:id="@+id/near_title"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_toRightOf="@+id/near_dingweiimg"-->
+                    <!--android:text="通州北关"-->
+                    <!--android:maxLength="4"-->
+                    <!--android:ellipsize="end"-->
+                    <!--android:textColor="@color/baise"-->
+                    <!--android:textSize="36px"-->
+                    <!--android:layout_centerVertical="true"/>-->
+            <!--</RelativeLayout>-->
+
+        <!--</RelativeLayout>-->
+    <!--</android.support.v7.widget.Toolbar>-->
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/near_rv">-->
+
+    <!--</android.support.v7.widget.RecyclerView>-->
+
+</LinearLayout>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baise"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.punch.CheckingRangeActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <TextView
+        android:id="@+id/range_100"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="100米"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/f8" />
+
+    <TextView
+        android:id="@+id/range_200"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="200米"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/f8" />
+
+    <TextView
+        android:id="@+id/range_300"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="300米"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/f8" />
+
+    <TextView
+        android:id="@+id/range_400"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="400米"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/f8" />
+
+    <TextView
+        android:id="@+id/range_500"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="500米"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/f8" />
+
+    <TextView
+        android:id="@+id/range_1000"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="1000米"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/f8" />
+
+    <TextView
+        android:id="@+id/range_1500"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="1500米"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/f8" />
+
+    <TextView
+        android:id="@+id/range_2000"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="2000米"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/f8" />
+
+    <TextView
+        android:id="@+id/range_3000"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="3000米"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/f8" />
+
+</LinearLayout>

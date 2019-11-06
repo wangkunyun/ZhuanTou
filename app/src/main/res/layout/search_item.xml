@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/baise"
+    android:id="@+id/sea_item1_bg">
+
+    <TextView
+        android:layout_marginLeft="16dp"
+        android:id="@+id/sea_item1_zx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/t6"
+        android:textSize="16sp"
+        android:text="装修"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/sea_item1_gn"
+        android:layout_marginRight="16sp"
+        android:maxWidth="275dp"
+        android:ellipsize="end"
+        android:singleLine="true"/>
+
+    <TextView
+        android:layout_marginRight="16dp"
+        android:id="@+id/sea_item1_gn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="14sp"
+        android:textColor="@color/t1"
+        android:layout_alignParentRight="true"
+        android:text="功能"/>
+
+    <TextView
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#F8F8F8"
+        android:layout_marginTop="50dp"/>
+
+</RelativeLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/baise"
+    android:id="@+id/nearlsit_bc">
+
+    <ImageView
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_margin="16dp"
+        android:scaleType="fitXY"
+        android:id="@+id/nearlist_img"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/t5"
+        android:layout_toRightOf="@+id/nearlist_img"
+        android:layout_marginTop="14dp"
+        android:layout_marginRight="24dp"
+        android:text="新华大街 北 豪华装新华大街 北京one附近独栋700 平米 豪华装修"
+        android:maxLines="2"
+        android:maxWidth="221dp"
+        android:ellipsize="end"
+        android:id="@+id/nearlist_t1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="两室一厅一卫"
+        android:textColor="@color/t1"
+        android:textSize="12sp"
+        android:layout_below="@+id/nearlist_t1"
+        android:layout_toRightOf="@+id/nearlist_img"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="24dp"
+        android:id="@+id/nearlist_t2"/>
+    
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_below="@+id/nearlist_t2"
+        android:layout_toRightOf="@+id/nearlist_img"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/dingwei_icon"
+        android:id="@+id/nearlist_wuyongimg"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nearlist_t2"
+        android:layout_toRightOf="@+id/nearlist_wuyongimg"
+        android:layout_marginTop="15dp"
+        android:text="通州八里桥"
+        android:layout_marginLeft="1dp"
+        android:textSize="12sp"
+        android:textColor="@color/t6"
+        android:layout_marginRight="24dp"
+        android:id="@+id/nearlist_t3"/>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#F8F8F8"
+        android:layout_marginTop="130dp"/>
+    
+</RelativeLayout>

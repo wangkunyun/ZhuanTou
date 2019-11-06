@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF2F6F9"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.ManageCompany">
+
+    <!--toolbar-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/sz_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/t3">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/goback" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="团队管理"
+                android:textColor="@color/baise"
+                android:textSize="18sp" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <!--添加成员到团队-->
+    <RelativeLayout
+        android:id="@+id/rl_click_add_member"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="添加成员到团队"
+            android:textColor="@color/t5"
+            android:textSize="16dp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:textColor="#FFF8F8F8" />
+
+    </RelativeLayout>
+
+
+    <!--企业管理栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#FFF2F6F9">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:text="企业管理"
+            android:textColor="@color/t6"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+    <!--企业Logo上传-->
+    <RelativeLayout
+        android:id="@+id/rl_click_update_logo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="企业Logo上传"
+            android:textColor="@color/t5"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+    </RelativeLayout>
+    <!--企业认证-->
+    <RelativeLayout
+        android:id="@+id/rl_click_Enterprise"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="企业认证"
+            android:textColor="@color/t5"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:textColor="#FFF8F8F8" />
+
+    </RelativeLayout>
+
+
+    <!--常用设置栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFF2F6F9">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="24dp"
+            android:text="常用设置"
+            android:textColor="@color/t6"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+    <!--企业名称-->
+    <RelativeLayout
+        android:id="@+id/rl_click_enterprise_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="企业名称"
+            android:textColor="@color/t5"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+    </RelativeLayout>
+    <!--所在行业-->
+    <RelativeLayout
+        android:id="@+id/rl_click_scale"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="所在行业"
+            android:textColor="@color/t5"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+
+    </RelativeLayout>
+    <!--开票信息-->
+    <RelativeLayout
+        android:id="@+id/rl_click_billing_information"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="开票信息"
+            android:textColor="@color/t5"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+
+    </RelativeLayout>
+    <!--办公地址-->
+    <RelativeLayout
+        android:id="@+id/rl_click_work_address"
+
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="办公地址"
+            android:textColor="@color/t5"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+
+    </RelativeLayout>
+
+
+    <!--更换主管理员-->
+    <RelativeLayout
+        android:id="@+id/rl_click_change_manager"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="更换主管理员"
+            android:textColor="@color/t5"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:textColor="#FFF8F8F8" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/manage_break_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="35dp"
+            android:text="解散团队" />
+    </RelativeLayout>
+
+
+</LinearLayout>

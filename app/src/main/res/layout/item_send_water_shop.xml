@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginBottom="24dp"
+    android:background="#ffffff">
+
+    <ImageView
+        android:id="@+id/imgSendWaterPic"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@mipmap/img_baisuishan" />
+
+    <TextView
+        android:id="@+id/tv_water_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="98dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="百岁山桶装水"
+        android:textColor="#ff333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_water_SealNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="98dp"
+        android:layout_marginBottom="30dp"
+        android:text="月售 200"
+        android:textColor="#ff666666"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/yang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="98dp"
+        android:layout_marginBottom="7dp"
+        android:text="¥"
+        android:textColor="#ffff1b1b"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_water_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="3dp"
+        android:layout_toRightOf="@id/yang"
+        android:text="5"
+        android:textColor="#ffff1b1b"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/click_addWater"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="3dp"
+        android:src="@mipmap/icon_add_shop" />
+</RelativeLayout>

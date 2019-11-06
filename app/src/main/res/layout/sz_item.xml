@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/yuanjiaobtn4">
+
+    <EditText
+        android:id="@+id/ppsz_edt"
+        android:layout_width="268dp"
+        android:layout_height="50dp"
+        android:textSize="18sp"
+        android:singleLine="true"
+        android:textCursorDrawable="@drawable/my_cursor"
+        android:theme="@style/MyEditText"
+        android:background="@null"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true"
+        android:hint="请输入"/>
+
+    <!--<TextView-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_below="@+id/ppsz_edt"-->
+        <!--android:layout_width="536px"-->
+        <!--android:layout_height="2px"-->
+        <!--android:background="#F8F8F8"-->
+        <!--android:layout_marginTop="10px"-->
+        <!--android:id="@+id/login_xiahua2"/>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#C2C2C7"
+        android:text="昵称在2到8位之间"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:background="#1A999999"
+        android:layout_width="300dp"
+        android:layout_height="1px"
+        android:layout_marginTop="74dp"
+        android:id="@+id/ppsz_wy1"/>
+
+    <Button
+        android:layout_below="@+id/ppsz_wy1"
+        android:layout_marginTop="1px"
+        android:id="@+id/ppsz_btn1"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:text="取消"
+        android:textColor="@color/t1"
+        android:textSize="18sp"
+        android:layout_marginLeft="20dp"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <TextView
+        android:layout_below="@+id/ppsz_wy1"
+        android:layout_width="1px"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ppsz_btn1"
+        android:background="#1A999999"
+        android:layout_toRightOf="@+id/ppsz_btn1"
+        android:id="@+id/ppsz_wy2"/>
+
+    <Button
+        android:layout_below="@+id/ppsz_wy1"
+        android:layout_marginTop="1px"
+        android:layout_toRightOf="@+id/ppsz_wy2"
+        android:id="@+id/ppsz_btn2"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:text="确认"
+        android:textColor="@color/t3"
+        android:textSize="18sp"
+        style="?android:attr/borderlessButtonStyle"/>
+
+
+
+</RelativeLayout>

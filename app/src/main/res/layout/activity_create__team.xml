@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF2F6F9"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.Create_Team">
+
+    <!--toolbar-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/sz_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/t3">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/goback" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="创建团队"
+                android:textColor="@color/baise"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <!--分割阴影-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="#FFF2F6F9" />
+
+    <!--团队名称-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="团队名称"
+            android:textColor="@color/t6"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:gravity="right"
+            android:hint="请填写真实名称"
+            android:imeOptions="actionNext"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/t5"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+    </RelativeLayout>
+
+    <!--团队规模-->
+    <RelativeLayout
+        android:id="@+id/team_scale"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="团队规模"
+            android:textColor="@color/t6"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_team_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:text="请选择"
+            android:textColor="@color/t5"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+    </RelativeLayout>
+
+
+    <!--所属行业-->
+    <RelativeLayout
+        android:id="@+id/guide"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="所属行业"
+            android:textColor="@color/t6"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_team_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:text="请选择"
+            android:textColor="@color/t5"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+
+    </RelativeLayout>
+
+
+    <!--所属地区-->
+    <RelativeLayout
+        android:id="@+id/district"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="所属地区"
+            android:textColor="@color/t6"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="北京"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/t5"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter"
+            android:visibility="gone"/>
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/create"
+        android:layout_width="155dp"
+        android:layout_height="44dp"
+        android:background="@drawable/yuanjiaobtn"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="120dp"
+        android:text="立即创建"
+        android:textSize="18sp"
+        android:textColor="@color/baise"/>
+
+</LinearLayout>

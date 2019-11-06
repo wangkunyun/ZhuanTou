@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.punch.PunchRecordFragment">
+
+
+    <include layout="@layout/layout_toolbar" />
+
+    <!--月日历-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:paddingBottom="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="25dp">
+
+            <ImageView
+                android:id="@+id/img_click_lase"
+                android:layout_width="44dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="24dp"
+                android:src="@drawable/left" />
+
+            <TextView
+                android:id="@+id/tv_calDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="2019年7月11日"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/img_click_next"
+                android:layout_width="44dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/right" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="日"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="一"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="二"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="三"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="四"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="五"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="六"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <com.necer.calendar.MonthCalendar
+            android:id="@+id/calender"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="20dp"
+            app:hollowCircleColor="#65C9D2"
+            app:isShowHoliday="false"
+            app:isShowLunar="false"
+            app:pointColor="#65C9D2"
+            app:pointDistance="-10dp"
+            app:selectCircleColor="#65C9D2"
+            app:selectCircleRadius="14dp"
+            app:solarTextSize="14sp"
+            app:todaySolarSelectTextColor="#FFFFFF"
+            app:todaySolarTextColor="#65C9D2" />
+    </LinearLayout>
+
+    <TextView
+    android:id="@+id/tv_todayHours"
+    android:layout_width="match_parent"
+    android:layout_height="34dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="16dp"
+    android:text="今日工时：0小时" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_companyWorkOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="18dp"
+                    android:text="上班打卡 09:00"
+                    android:textColor="#ff999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_lateWorkOn"
+                    android:layout_width="35dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="17dp"
+                    android:background="@drawable/yuanjiao_daka"
+                    android:gravity="center"
+                    android:text="迟到"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_WorkOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#ff333333"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_ApplyWorkOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="申请补卡"
+                android:textColor="#ff65c9d2"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_CompanyWorkOff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="下班打卡 09:00"
+                    android:textColor="#ff999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_lateWorkOff"
+                    android:layout_width="35dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/yuanjiao_daka"
+                    android:gravity="center"
+                    android:text="迟到"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_WorkOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:text="上班打卡  09:06"
+                android:textColor="#ff333333"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_ApplyWorkOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="申请补卡"
+                android:textColor="#ff65c9d2"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

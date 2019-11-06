@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".isMy.JiFenActivity"
+    android:orientation="vertical"
+    android:background="#F8F8F8">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/t3">
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:padding="5dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/goback"
+                android:id="@+id/zc_goback"/>
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/baise"
+                android:text="我的砖头"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/baise"
+                android:text="关于砖头"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:id="@+id/jifen_gyzt"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <!--<com.jwenfeng.library.pulltorefresh.PullToRefreshLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/jifen_cf"-->
+        <!--android:focusableInTouchMode="true"-->
+        <!--android:focusable="true">-->
+
+    <ScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#F8F8F8">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/bg_img">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:includeFontPadding="false"
+            android:lineSpacingMultiplier="0.9"
+            android:text="244"
+            android:textSize="56sp"
+            android:textColor="@color/baise"
+            android:textStyle="bold"
+            android:id="@+id/jifen_ztsl"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="砖头"
+            android:textColor="@color/baise"
+            android:layout_alignBottom="@+id/jifen_ztsl"
+            android:layout_toRightOf="@+id/jifen_ztsl"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="8dp"/>
+
+        <Button
+            android:layout_width="92dp"
+            android:layout_height="32dp"
+            android:background="@drawable/btn_sign"
+            android:text=""
+            android:textColor="@color/baise"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/jifen_ztsl"
+            android:layout_marginTop="8dp"
+            android:id="@+id/jifen_qiandao"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品兑换"
+            android:textColor="@color/t5"
+            android:textSize="16sp"
+            android:id="@+id/jifen_tv1"/>
+
+        <ImageView
+            android:layout_toRightOf="@+id/jifen_tv1"
+            android:layout_width="6dp"
+            android:layout_height="18dp"
+            android:src="@drawable/shutiao"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/jifen_rv"
+        android:background="#F8F8F8">
+
+    </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+    </ScrollView>
+    <!--</com.jwenfeng.library.pulltorefresh.PullToRefreshLayout>-->
+
+</LinearLayout>

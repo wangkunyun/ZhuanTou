@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F6F9"
+    android:orientation="vertical"
+    tools:context=".Activity.chat.fragment.AddressFriend">
+
+    <!--群名称-->
+    <RelativeLayout
+        android:id="@+id/rl_click_NewFriends"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="新的朋友"
+            android:textColor="#333333"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:id="@+id/img_newMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="68dp"
+            android:layout_marginTop="19dp"
+            android:src="@mipmap/icon_new_meaage"
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--联系人列表-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/re"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/baise" />
+
+        <TextView
+            android:id="@+id/tv_connection"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="128dp"
+            android:layout_centerHorizontal="true"
+            android:text="您的人脉圈空空如也，快去添加好友吧！"
+            android:textColor="#ff999999"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+</LinearLayout>

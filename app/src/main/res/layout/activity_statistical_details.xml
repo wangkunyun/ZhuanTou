@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.punch.StatisticalDetailsActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <TextView
+        android:id="@+id/tv_todayHours"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_companyWorkOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="18dp"
+                    android:text="上班打卡 09:00"
+                    android:textColor="#ff999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_lateWorkOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="122dp"
+                    android:layout_marginTop="17dp"
+                    android:background="@drawable/yuanjiao_daka"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_ApplyWorkOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="14dp"
+                    android:text="恢复为正常"
+                    android:textColor="#ff65c9d2"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_WorkOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#ff333333"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_CompanyWorkOff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="下班打卡 09:00"
+                    android:textColor="#ff999999"
+                    android:textSize="14sp"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/tv_lateWorkOff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="122dp"
+                    android:background="@drawable/yuanjiao_daka"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_ApplyWorkOff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="14dp"
+                    android:text="恢复为正常"
+                    android:textColor="#ff65c9d2"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tv_WorkOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#ff333333"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

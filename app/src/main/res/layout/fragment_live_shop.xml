@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.live_shop.LiveShopFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--背景占位色块-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="@color/lanse" />
+            <!--搜索-->
+            <RelativeLayout
+                android:id="@+id/live_search"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/fxedt1">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/search" />
+            </RelativeLayout>
+
+
+            <!--四个按钮-->
+            <LinearLayout
+                android:id="@+id/lin_4Btn"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_below="@id/live_search"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/yuanjiaotop"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:id="@+id/tv_click1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_live_lingshi"
+                        android:gravity="center_horizontal"
+                        android:text="零食" />
+
+                    <TextView
+                        android:id="@+id/tv_click2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_live_wenjv"
+                        android:gravity="center_horizontal"
+                        android:text="文具" />
+
+                    <TextView
+                        android:id="@+id/tv_click3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_live_books"
+                        android:gravity="center_horizontal"
+                        android:text="书籍" />
+
+                    <TextView
+                        android:id="@+id/tv_click4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_live_skin"
+                        android:gravity="center_horizontal"
+                        android:text="ins新品" />
+
+                    <TextView
+                        android:id="@+id/tv_click5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_live_shuma"
+                        android:gravity="center_horizontal"
+                        android:text="数码" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginRight="19dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/yuanjiaotop_orange" />
+
+            </LinearLayout>
+
+
+            <!--轮播图-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/lin_4Btn"
+                android:background="#FFFFFF" />
+
+            <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cardview_banner"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_below="@id/lin_4Btn"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:cardCornerRadius="8dp">
+
+                <com.youth.banner.Banner
+                    android:id="@+id/n5_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    app:indicator_drawable_selected="@drawable/rectangle2"
+                    app:indicator_drawable_unselected="@drawable/rectangle2copy"
+                    app:indicator_height="3dp"
+                    app:indicator_margin="8dp"
+                    app:indicator_width="18dp" />
+            </android.support.v7.widget.CardView>
+
+
+            <!--附近商家-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/cardview_banner"
+                android:orientation="vertical">
+                <!--活动专区-->
+                <TextView
+                    android:id="@+id/n5_tv_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="活动专区"
+                    android:textColor="@color/lanse"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp">
+
+                    <ImageView
+                        android:layout_width="145dp"
+                        android:layout_height="230dp"
+                        android:src="@mipmap/img_live_shop1" />
+
+                    <ImageView
+                        android:layout_width="186dp"
+                        android:layout_height="111dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@mipmap/img_live_shop2" />
+
+                    <ImageView
+                        android:layout_width="186dp"
+                        android:layout_height="111dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:src="@mipmap/img_live_shop3" />
+
+                </RelativeLayout>
+
+                <!--推荐商品-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="推荐商品"
+                    android:textColor="@color/lanse"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/re_shop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="16dp"
+                    android:paddingBottom="30dp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

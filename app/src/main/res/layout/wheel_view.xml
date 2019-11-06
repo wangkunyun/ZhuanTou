@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="28dp"
+    android:layout_marginRight="28dp">
+
+    <com.ztkj.wky.zhuantou.MyUtils.WheelView
+        android:layout_width="match_parent"
+        android:layout_height="211dp"
+        android:id="@+id/wheelview1"
+        app:itemNumber="5"
+        app:lineColor="#EBEDF3"
+        app:maskHeight="32dp"
+        app:noEmpty="true"
+        app:normalTextColor="@color/t1"
+        app:normalTextSize="14sp"
+        app:selectedTextColor="@color/t3"
+        app:selectedTextSize="14sp"
+        app:unitHeight="40dp"
+        android:background="@drawable/yuanjiaobtn4"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_below="@+id/wheelview1"
+        android:background="@drawable/yuanjiaobtn4"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:text="确认"
+        android:textColor="@color/t3"
+        android:textStyle="bold"
+        android:id="@+id/wheelview_button"/>
+
+</RelativeLayout>

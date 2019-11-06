@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".H5.H52Activity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:id="@+id/h52rv1"
+        android:background="@color/baise">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_marginLeft="6dp"
+                android:padding="5dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/goback2"
+                android:id="@+id/h5_goback"/>
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_share_black2"
+                android:id="@+id/h5_share"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_below="@+id/h52rv1"
+        android:id="@+id/h52xiahua"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000E6"/>
+
+    <com.ztkj.wky.zhuantou.MyUtils.ScrollWebView
+        android:layout_below="@+id/h52xiahua"
+        android:id="@+id/h52_web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.ztkj.wky.zhuantou.MyUtils.ScrollWebView>
+    <ImageView
+        android:layout_marginLeft="6dp"
+        android:padding="5dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/goback"
+        android:id="@+id/h5_goback2"/>
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/icon_share_black"
+        android:id="@+id/h5_share2"/>
+</RelativeLayout>

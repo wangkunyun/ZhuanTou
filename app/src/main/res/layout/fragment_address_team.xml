@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:overScrollMode="never"
+    android:scrollbars="none"
+    tools:context=".Activity.chat.fragment.AddressTeam">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--我的团队栏-->
+        <RelativeLayout
+            android:id="@+id/xy_1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FFF2F6F9">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="24dp"
+                android:text="我的团队"
+                android:textColor="@color/t6"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <!--管理公司-->
+        <LinearLayout
+            android:id="@+id/manage_company"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_below="@id/xy_1"
+            android:background="@color/baise"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:id="@+id/company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="北京砖头智能科技有限公司"
+                android:textColor="#FF333333"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btn_manage_company"
+                android:layout_width="54dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/yuanjiaobtn21"
+                android:gravity="center"
+                android:text="管理"
+                android:textColor="@color/lanse"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+        <!--团队成员-->
+        <RelativeLayout
+            android:id="@+id/xy_2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/manage_company"
+            android:background="#FFF2F6F9">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:text="我的群组"
+                android:textColor="@color/t6"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+        <!--联系人列表-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/re_qun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xy_2"
+            android:background="@color/baise" />
+
+
+        <!--团队成员-->
+        <RelativeLayout
+            android:id="@+id/xy_3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/re_qun"
+            android:background="#FFF2F6F9">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:text="团队成员"
+                android:textColor="@color/t6"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+        <!--联系人列表-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/re"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xy_3"
+            android:background="@color/baise" />
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.WorkAddress">
+
+    <!--toolbar-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/sz_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/t3">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/goback" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="企业地址"
+                android:textColor="@color/baise"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:text="完成"
+                android:textColor="@color/baise"
+                android:textSize="16sp" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+
+    <!--企业名称-->
+    <RelativeLayout
+        android:id="@+id/team_scale"
+        android:layout_marginTop="16dp"
+        android:background="@color/baise"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="北京通州世界侨商"
+            android:textColor="#FF333333"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/oval"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

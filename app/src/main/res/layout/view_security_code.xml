@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="32dp"
+            android:layout_height="44dp"
+            android:id="@+id/item_code_iv1"
+            style="@style/text_editStyle"
+            android:textStyle="bold"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_width="32dp"
+            android:layout_height="44dp"
+            android:id="@+id/item_code_iv2"
+            style="@style/text_editStyle"
+            android:textStyle="bold"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_width="32dp"
+            android:layout_height="44dp"
+            android:id="@+id/item_code_iv3"
+            style="@style/text_editStyle"
+            android:textStyle="bold"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_width="32dp"
+            android:layout_height="44dp"
+            android:id="@+id/item_code_iv4"
+            style="@style/text_editStyle"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et"
+        android:textColor="@color/t5"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:inputType="number"
+        android:background="@android:color/transparent"/>
+
+</RelativeLayout>

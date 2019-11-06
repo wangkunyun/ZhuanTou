@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/yuanjiaobtn4"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+
+    <TextView
+        android:id="@+id/ppt_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="5338-9498"
+        android:textColor="@color/t2"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/ppt_tv2"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/t2"
+        android:textSize="14sp" />
+
+    <!--分割线-->
+    <TextView
+        android:id="@+id/ppt_wy1"
+        android:layout_width="300dp"
+        android:layout_height="1px"
+        android:layout_marginTop="86dp"
+        android:background="#1A999999" />
+
+    <Button
+        android:id="@+id/ppt_btn1"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="135dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/ppt_wy1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="1px"
+        android:background="#FFFFFF"
+        android:paddingRight="10dp"
+        android:text="取消"
+        android:textColor="@color/t1"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/ppt_wy2"
+        android:layout_width="1px"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ppt_wy1"
+        android:layout_alignBottom="@+id/ppt_btn1"
+        android:layout_toRightOf="@+id/ppt_btn1"
+        android:background="#1A999999" />
+
+    <Button
+        android:id="@+id/ppt_btn2"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="135dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/ppt_wy1"
+        android:layout_marginTop="1px"
+        android:layout_toRightOf="@+id/ppt_wy2"
+        android:background="#FFFFFF"
+        android:paddingLeft="10dp"
+        android:text="立即呼叫"
+        android:textColor="@color/t3"
+        android:textSize="18sp" />
+
+</RelativeLayout>

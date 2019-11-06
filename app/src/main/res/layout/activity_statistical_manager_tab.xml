@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activity.oa.punch.StatisticalManagerTab">
+
+
+    <!--toolbar-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/sz_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/t3">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="11dp"
+                android:src="@drawable/goback" />
+
+            <LinearLayout
+                android:layout_width="123dp"
+                android:layout_height="28dp"
+                android:layout_centerInParent="true">
+
+                <com.flyco.tablayout.SegmentTabLayout
+                    android:id="@+id/tl"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tl:tl_bar_color="#65C9D2"
+                    tl:tl_indicator_anim_enable="true"
+                    tl:tl_indicator_color="#FFFFFF"
+                    tl:tl_textBold="SELECT"
+                    tl:tl_textSelectColor="#65C9D2"
+                    tl:tl_textUnselectColor="#FFFFFF"
+                    tl:tl_textsize="16sp" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

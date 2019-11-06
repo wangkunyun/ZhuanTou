@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical"
+    tools:context=".isMy.FangKeActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/t3">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/t3">
+
+            <ImageView
+                android:id="@+id/geren_goback"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:padding="5dp"
+                android:src="@drawable/goback" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="访客录入"
+                android:textColor="@color/baise"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/fangke_jilv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="来访记录"
+                android:textColor="@color/baise"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <!--来访人手机号-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="来访人手机号"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/fangke_phone"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="37dp"
+        android:background="@drawable/radio_while_et"
+        android:clickable="true"
+        android:cursorVisible="false"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:hint="请输入您的手机号码"
+        android:maxLength="11"
+        android:textColor="#979797"
+        android:textSize="18sp" />
+
+
+    <!--来访日期-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="38dp"
+        android:text="来访日期"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/fangke_date"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="37dp"
+        android:background="@drawable/radio_while_et"
+        android:gravity="center"
+        android:text="请选择日期"
+        android:textColor="#979797"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/login_tijiao"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/yuanjiaobtn"
+        android:text="提交"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="16dp"
+        android:text="将来访人员录入访客系统后，可通知来访人前往微信小程序「小砖授权」进行信息填写。填写成功即可获得通行二维码。"
+        android:textSize="12sp" />
+
+
+</LinearLayout>

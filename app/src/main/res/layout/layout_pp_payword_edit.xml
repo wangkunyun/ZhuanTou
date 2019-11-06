@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/yuanjiaotop"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp">
+
+
+        <ImageView
+            android:id="@+id/pp_payWordFinish"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="11dp"
+            android:src="@mipmap/icon_back_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="49dp"
+            android:text="请输入支付密码"
+            android:textColor="#ff333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/f8" />
+    </RelativeLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.ztkj.wky.zhuantou.landing.SecurityCodeView3
+            android:id="@+id/pp_edit_payWord"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginRight="27dp"
+            android:imeOptions="actionNext" />
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/pp_forgetPayWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="忘记密码？前往重置"
+        android:textColor="#ff65c9d2"
+        android:textSize="14sp" />
+
+</LinearLayout>

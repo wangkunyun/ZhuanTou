@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.chat.activity.PersonalDetails">
+
+    <!--顶部模糊背景图-->
+    <ImageView
+        android:id="@+id/imgPersonDetailsBg"
+        android:layout_width="match_parent"
+        android:layout_height="218dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_img" />
+
+    <!--底部linearlayout-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="161dp"
+        android:background="@drawable/circle_report_linear"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvPersonDetailsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:text="王大云"
+            android:textColor="#ff333333"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="25dp"
+            android:background="#F8F8F8" />
+
+        <!--手机号-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@mipmap/icon_person_phone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="57dp"
+                android:layout_marginTop="15dp"
+                android:text="手机号"
+                android:textColor="#ff999999"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvPersonDetailsPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="57dp"
+                android:layout_marginTop="37dp"
+                android:text="13444343434"
+                android:textColor="#ff333333"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8F8" />
+
+        <!--手机号-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@mipmap/icon_person_company" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="57dp"
+                android:layout_marginTop="15dp"
+                android:text="所属企业"
+                android:textColor="#ff999999"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvPersonDetailsCompanyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="57dp"
+                android:layout_marginTop="37dp"
+                android:text="北京砖头智能科技有限公司"
+                android:textColor="#ff333333"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8F8" />
+
+        <!--手机号-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@mipmap/icon_person_job" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="57dp"
+                android:layout_marginTop="15dp"
+                android:text="职位"
+                android:textColor="#ff999999"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvPersonDetailsJob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="57dp"
+                android:layout_marginTop="37dp"
+                android:text="暂无"
+                android:textColor="#ff333333"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F8F8F8">
+
+            <Button
+                android:id="@+id/btn_PersonDetailsAddFriend"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="155dp"
+                android:layout_height="44dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="130dp"
+                android:background="@drawable/yuanjiaobtn2"
+                android:text="加为好友"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_PersonDetailsSendMessage"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="155dp"
+                android:layout_height="44dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="130dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/yuanjiaobtn"
+                android:text="发消息"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_PersonDetailsSendMessage2"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="155dp"
+                android:layout_height="44dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="130dp"
+                android:background="@drawable/yuanjiaobtn"
+                android:text="发消息"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <!--用户圆形头像-->
+    <ImageView
+        android:id="@+id/imgPersonDetailsHead"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="261dp"
+        android:layout_marginTop="122dp"
+        android:src="@drawable/head_portrait" />
+    
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/goback"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="31dp"/>
+
+    <ImageView
+        android:id="@+id/imgPersonDetailsSangedain"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@mipmap/icon_person_sangedian"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="31dp"/>
+
+
+</RelativeLayout>

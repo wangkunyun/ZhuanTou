@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f8"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.punch.ApplyReissuePunchinActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <!--开始时间-->
+    <RelativeLayout
+        android:id="@+id/click_rl_Reissue"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="开始时间"
+            android:textColor="#FF333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_ReissueHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="22dp"
+            android:text="9:00"
+            android:textColor="#FF999999"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_ReissueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/tv_ReissueHour"
+            android:text="2019-07-02"
+            android:textColor="#FF999999"
+            android:textSize="18sp" />
+
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+
+        <!--分割线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFE5E5E5" />
+
+    </RelativeLayout>
+
+
+    <!--补卡原因-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/baise"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="补卡原因"
+            android:textColor="#ff333333"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_ReissueReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:hint="请输入"
+            android:imeOptions="actionNext"
+            android:maxLength="150"
+            android:maxLines="1"
+            android:textColor="@color/t5"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="审批"
+        android:textColor="#ff333333"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/click_rl_addApppover"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="审批人"
+            android:textColor="#FF333333"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:src="@mipmap/report_add_address" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_appvoer"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/Reissue_img_showPicture"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/head_portrait" />
+
+        <ImageView
+            android:id="@+id/Reissue_del_picture"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/oval" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="155dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/yuanjiaobtn"
+        android:text="提交"
+        android:textColor="@color/baise"
+        android:textSize="18sp" />
+
+
+</LinearLayout>

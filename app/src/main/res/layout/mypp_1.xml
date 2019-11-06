@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="111dp"
+    android:background="@drawable/yuanjiaobaise">
+
+    <TextView
+        android:id="@+id/mypp1_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text=""
+        android:textColor="@color/t2"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_below="@+id/mypp1_tv1"
+        android:background="@color/t1"
+        android:layout_width="300dp"
+        android:layout_height="1px"
+        android:layout_marginTop="24dp"
+        android:id="@+id/mypp1_wy1"/>
+
+    <Button
+        android:layout_below="@+id/mypp1_wy1"
+        android:layout_marginTop="1px"
+        android:id="@+id/mypp1_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:text="确认"
+        android:textColor="@color/t3"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

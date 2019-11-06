@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f8"
+    android:orientation="vertical"
+    tools:context=".Activity.mine.NameRenZhengActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/baise">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="姓名"
+            android:textColor="#ff666666"
+            android:textSize="16sp" />
+
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="请输入"
+            android:imeOptions="actionNext"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="#999999"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/f8" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="身份证号"
+            android:textColor="#ff666666"
+            android:textSize="16sp" />
+
+
+        <EditText
+            android:id="@+id/et_IdCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="请输入"
+            android:imeOptions="actionNext"
+            android:maxLength="18"
+            android:maxLines="1"
+            android:textColor="#999999"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/f8" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/click_updateIdCardPic"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baise"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="身份证照片"
+            android:textColor="#ff666666"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="42dp"
+            android:text="上传身份证照"
+            android:textColor="#ff999999"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/icon_oa_enter" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/f8" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="155dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/yuanjiaobtn"
+        android:text="下一步"
+        android:textColor="@color/baise"
+        android:textSize="18sp" />
+
+
+</LinearLayout>

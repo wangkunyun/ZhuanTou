@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_apply_relative"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp"
+    android:background="@drawable/yuanjiao_pearls_of_wisdom"
+    android:paddingLeft="16dp">
+
+    <TextView
+        android:id="@+id/item_apply_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="我的请假申请"
+        android:textColor="#FF333333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/item_apply_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_apply_name"
+        android:layout_marginTop="6dp"
+        android:text="07-02 17:00"
+        android:textColor="#FF999999"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/item_apply_img_head"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/head_portrait" />
+
+    <TextView
+        android:id="@+id/item_apply_why"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_apply_time"
+        android:layout_marginTop="19dp"
+        android:text="申请请假"
+        android:maxEms="15"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="#FF666666"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/item_apply_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_apply_time"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="16dp"
+        android:text="已审批"
+        android:textColor="@color/t6"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/item_apply_isState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/item_apply_time"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="17dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:visibility="gone"
+        android:background="@drawable/bg_is_state_blue"
+        android:layout_marginBottom="16dp"
+        android:text="通过"
+        android:textColor="@color/t6"
+        android:textSize="14sp" />
+
+
+</RelativeLayout>

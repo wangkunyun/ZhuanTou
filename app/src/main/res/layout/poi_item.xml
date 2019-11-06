@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="37dp"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp"
+    android:paddingRight="15dp"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/poi_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff333333"
+        android:textSize="16sp"
+        android:text=""
+        />
+
+    <TextView
+        android:id="@+id/poi_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff999999"
+        android:textSize="14sp"
+        android:text=""
+        />
+
+
+
+</LinearLayout>

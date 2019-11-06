@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:background="@drawable/yuanjiaobtn4">
+
+    <TextView
+        android:id="@+id/ppt_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="已成功创建【砖头科技】是否前往企业认证,获得更优质服务?"
+        android:textColor="@color/t2"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/ppt_tv2"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text=""
+        android:textColor="@color/t2"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!--分割线-->
+    <TextView
+        android:background="#1A999999"
+        android:layout_width="300dp"
+        android:layout_height="1px"
+        android:layout_marginTop="76dp"
+        android:id="@+id/ppt_wy1"/>
+
+    <Button
+        android:paddingRight="10dp"
+        android:layout_below="@+id/ppt_wy1"
+        android:layout_marginTop="1px"
+        android:id="@+id/ppt_btn1"
+        android:layout_width="135dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:text="取消"
+        android:textColor="@color/t1"
+        android:textSize="18sp"
+        android:layout_marginLeft="15dp"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <TextView
+        android:layout_below="@+id/ppt_wy1"
+        android:layout_width="1px"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ppt_btn1"
+        android:background="#1A999999"
+        android:layout_toRightOf="@+id/ppt_btn1"
+        android:id="@+id/ppt_wy2"/>
+
+    <Button
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/ppt_wy1"
+        android:layout_marginTop="1px"
+        android:layout_toRightOf="@+id/ppt_wy2"
+        android:id="@+id/ppt_btn2"
+        android:layout_width="135dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:text="立即呼叫"
+        android:textColor="@color/t3"
+        android:textSize="18sp"
+        style="?android:attr/borderlessButtonStyle"/>
+
+</RelativeLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="158dp"
+    android:background="@drawable/yuanjiaotop">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:id="@+id/pp1_r1">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/pp1_zuijin1">
+            <ImageView
+                android:src="@drawable/icon_weixin"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:id="@+id/pp1img1"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:id="@+id/pp1tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信好友"
+                android:textSize="12sp"
+                android:textColor="@color/t1"
+                android:layout_below="@+id/pp1img1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="9dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/pp1_zuijin2">
+            <ImageView
+                android:src="@drawable/icon_weixin2"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:id="@+id/pp1img2"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:id="@+id/pp1tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信朋友圈"
+                android:textSize="12dp"
+                android:textColor="@color/t1"
+                android:layout_below="@+id/pp1img2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="9dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pp1_xiahua"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#F8F8F8"
+        android:layout_below="@+id/pp1_r1"
+        android:layout_marginTop="24dp"/>
+
+    <Button
+        android:id="@+id/pp1_btn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:layout_below="@+id/pp1_xiahua"
+        android:text="取消"
+        android:textSize="18sp"
+        android:textColor="@color/t2"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

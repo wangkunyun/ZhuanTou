@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.examineAndapprove.applydetials.UseSealDetails">
+
+    <!--toolbar-->
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/t3">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/goback" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text=""
+                android:textColor="@color/baise"
+                android:textSize="18sp" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/circle_report_linear"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+            <!--ScrollView内嵌套的rela-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/circle_report_linear"
+                android:orientation="vertical">
+
+                <!--信息-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="16dp"
+                    android:paddingBottom="22dp">
+
+                    <ImageView
+                        android:id="@+id/img_state_pass"
+                        android:layout_width="107dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="47dp"
+                        android:src="@mipmap/img_pass"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/img_state_refuse"
+                        android:layout_width="107dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="47dp"
+                        android:src="@mipmap/img_refuse"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/details_report_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:text="小小云的用车申请"
+                        android:textColor="#FF333333"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/details_report_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/details_report_name"
+                        android:layout_marginTop="6dp"
+                        android:text="07-02 17:00"
+                        android:textColor="#FF999999"
+                        android:textSize="12sp" />
+
+                    <ImageView
+                        android:id="@+id/details_report_img_head"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/head_portrait" />
+
+                </RelativeLayout>
+
+                <!--用车开始时间-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="16dp">
+                    <!--用车开始时间-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="用印类型"
+                        android:textColor="#FF333333"
+                        android:textSize="16sp" />
+                    <!--用车开始时间-->
+                    <TextView
+                        android:id="@+id/detials_seal_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginRight="17dp"
+                        android:text=""
+                        android:textColor="#FF333333"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!--用车结束时间-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="16dp">
+                    <!--用车开始时间-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:text="用印日期"
+                        android:textColor="#FF333333"
+                        android:textSize="16sp" />
+                    <!--用车开始时间-->
+                    <TextView
+                        android:id="@+id/detials_seal_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginRight="17dp"
+                        android:text=""
+                        android:textColor="#FF333333"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!--用车目地时间-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="16dp">
+                    <!--用车开始时间-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:text="用印文件名称"
+                        android:textColor="#FF333333"
+                        android:textSize="16sp" />
+                    <!--用车开始时间-->
+                    <TextView
+                        android:id="@+id/detials_files_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginRight="17dp"
+                        android:text=""
+                        android:textColor="#FF333333"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!--用车目地时间-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="16dp">
+                    <!--用车开始时间-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:text="文件份数"
+                        android:textColor="#FF333333"
+                        android:textSize="16sp" />
+                    <!--用车开始时间-->
+                    <TextView
+                        android:id="@+id/detials_files_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginRight="17dp"
+                        android:text=""
+                        android:textColor="#FF333333"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+
+                <!--审批-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/circle_report_linear"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:background="#FFF2F6F9"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="24dp"
+                        android:text="审批人" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="64dp"
+                        android:background="@color/baise">
+
+                        <ImageView
+                            android:id="@+id/details_img_appover"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="16dp"
+                            android:src="@drawable/head_portrait" />
+
+                        <TextView
+                            android:id="@+id/details_tv_appover"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="8dp"
+                            android:textColor="#333333"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--抄送-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details_relative"
+                    android:background="@drawable/circle_report_linear"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:background="#FFF2F6F9"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="24dp"
+                        android:text="抄送人" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="64dp"
+                        android:background="@color/baise">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/re_details_approver2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/baise"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="27dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/lin_click_appover"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_click_refuse"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#DBDCDE"
+                android:gravity="center"
+                android:text="拒绝"
+                android:textColor="@color/baise"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_click_pass"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#65C9D2"
+                android:gravity="center"
+                android:text="通过"
+                android:textColor="@color/baise"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

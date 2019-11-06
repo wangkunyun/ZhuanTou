@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_click"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginTop="8dp"
+    android:background="#FFFFFF"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp">
+
+    <TextView
+        android:id="@+id/item_tv_meeting_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3.0版本迭代讨论"
+        android:textColor="#ff333333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/item_tv_meeting_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="07-13"
+        android:textColor="#ff999999"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/item_tv_meeting_content"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="1、全面优化操作细节体验及视觉节奏变化。
+2、制定统一视觉规范，传达更专业的品牌形象"
+        android:textColor="#ff666666"
+        android:textSize="14sp" />
+</RelativeLayout>

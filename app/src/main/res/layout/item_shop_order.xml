@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:layout_marginBottom="24dp"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/img_shopOrder"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="16dp"
+        android:src="@mipmap/img_baisuishan" />
+
+    <TextView
+        android:id="@+id/tv_shopOrderName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="96dp"
+        android:text="百岁山桶装水"
+        android:textColor="#ff333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_shopOrderPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="96dp"
+        android:text="¥10"
+        android:textColor="#ffff1b1b"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/click_order_add"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/icon_add_shop" />
+
+    <ImageView
+        android:id="@+id/click_order_remove"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="82dp"
+        android:src="@mipmap/icon_remove_shop" />
+
+    <TextView
+        android:id="@+id/tv_shopOrderNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="54dp"
+        android:text="2"
+        android:textColor="#ff333333"
+        android:textSize="18sp" />
+
+</RelativeLayout>

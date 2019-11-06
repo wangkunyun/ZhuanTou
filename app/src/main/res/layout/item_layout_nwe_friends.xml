@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_click_item_layout_newFriend"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_marginBottom="8dp"
+    android:background="@color/baise">
+
+    <ImageView
+        android:id="@+id/img_newFriendHead"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="12dp"
+        android:src="@drawable/head_portrait" />
+
+    <TextView
+        android:id="@+id/tv_newFriendName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="15dp"
+        android:text="王大云"
+        android:textColor="#ff333333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="41dp"
+        android:text="请求您添加好友"
+        android:textColor="#ff666666"
+        android:textSize="14sp" />
+
+
+    <Button
+        android:id="@+id/agree_newFriend"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="48dp"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/yuanjiaobtn"
+        android:text="同意"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_agree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="35dp"
+        android:text="已同意"
+        android:textColor="#ff999999"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+</RelativeLayout>

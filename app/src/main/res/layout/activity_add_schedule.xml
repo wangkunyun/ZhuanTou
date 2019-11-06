@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.AddSchedule">
+
+    <include layout="@layout/layout_toolbar" />
+
+
+    <!--开始时间-->
+    <RelativeLayout
+        android:id="@+id/click_leave_rl_startTime"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="开始时间"
+            android:textColor="#FF333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_startTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:text="请选择"
+            android:textColor="#FF999999"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/enterStartTime"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <ImageView
+            android:id="@+id/clearStartTime"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/oval"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+
+    <!--结束时间-->
+    <RelativeLayout
+        android:id="@+id/click_leave_rl_endTime"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="结束时间"
+            android:textColor="#FF333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_endTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:text="请选择"
+            android:textColor="#FF999999"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:id="@+id/enterEndTime"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <ImageView
+            android:id="@+id/clearEndTime"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/oval"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="添加日程"
+        android:textColor="#ff333333"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:background="@color/baise">
+
+        <EditText
+            android:id="@+id/etGroupAnn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:hint="输入日程"
+            android:maxLength="36"
+            android:paddingLeft="16dp"
+            android:paddingRight="11dp"
+            android:singleLine="true"
+            android:textColorHint="#999999"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>

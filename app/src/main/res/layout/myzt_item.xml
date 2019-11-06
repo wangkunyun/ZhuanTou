@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/myztitem_rl"
+    android:background="@color/baise"
+    android:layout_marginTop="11dp">
+
+    <ImageView
+        android:layout_width="167dp"
+        android:layout_height="105dp"
+        android:id="@+id/myztitem_img1"/>
+
+    <TextView
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:maxWidth="151dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="14sp"
+        android:textColor="@color/t6"
+        android:id="@+id/myztitem_tv1"
+        android:layout_below="@+id/myztitem_img1"
+        android:text="steelseries赛睿鼠标垫.."
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#F86312"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:text="100砖头"
+        android:id="@+id/myztitem_tv2"
+        android:layout_below="@+id/myztitem_tv1"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"/>
+
+
+
+</RelativeLayout>

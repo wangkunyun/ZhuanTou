@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".H5.H5EdittextActivity"
+    android:background="#F8F8F8"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/goback2"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="11dp"
+        android:id="@+id/h5edt_goback"/>
+    <EditText
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="@color/t6"
+        android:hint="发表你的看法.."
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/h5edt_edt"
+        android:background="@drawable/h5yuanjiaoedt"/>
+    <Button
+        android:id="@+id/h5edt_btn"
+        android:layout_width="155dp"
+        android:layout_height="44dp"
+        android:background="@drawable/yuanjiaobtn"
+        android:layout_marginLeft="110dp"
+        android:layout_marginRight="110dp"
+        android:layout_marginTop="100dp"
+        android:text="发表"
+        android:textSize="18sp"
+        android:textColor="@color/baise"/>
+
+
+</LinearLayout>

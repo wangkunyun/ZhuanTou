@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_rl_click"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginBottom="8dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/item_scheduleContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:ellipsize="end"
+        android:maxEms="14"
+        android:maxLines="1"
+        android:text="开会"
+        android:textColor="#ff333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/item_scheduleTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="45dp"
+        android:text="05:30"
+        android:textColor="#ff999999"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:src="@mipmap/icon_oa_enter" />
+
+</RelativeLayout>

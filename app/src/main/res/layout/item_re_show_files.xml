@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/report_add_files_yellow" />
+
+    <TextView
+        android:id="@+id/show_files_files_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="26dp"
+        android:text="北京砖头科技有限公司"
+        android:textColor="#FF333333"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/show_files_del_files"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="6dp"
+        android:src="@mipmap/oval" />
+
+</RelativeLayout>

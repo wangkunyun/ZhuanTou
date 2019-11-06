@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="168dp"
+    android:layout_height="260dp"
+    android:layout_margin="3dp"
+    android:background="@drawable/yuanjiaobtn_8dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_shopPic"
+        android:layout_width="169dp"
+        android:layout_height="168dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/img_live_shop_zhanwei" />
+
+    <TextView
+        android:id="@+id/tv_shop_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="8dp"
+        android:ellipsize="end"
+        android:lines="2"
+        android:text="ZIIIRO日食手表女防水德国创意夜光简约抖…"
+        android:textColor="#ff333333"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/yang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥"
+            android:textColor="#ffff1b1b"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_shopPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="1457"
+            android:textColor="#ffff1b1b"
+            android:textSize="18sp" />
+    </LinearLayout>
+</LinearLayout>

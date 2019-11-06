@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_report_relative"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp"
+    android:background="@drawable/yuanjiao_pearls_of_wisdom"
+    android:paddingLeft="16dp">
+
+    <TextView
+        android:id="@+id/item_report_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="小小云的周报"
+        android:textColor="#FF333333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/item_report_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_report_name"
+        android:layout_marginTop="6dp"
+        android:text="07-02 17:00"
+        android:textColor="#FF999999"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/item_report_img_head"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/head_portrait" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_report_time"
+        android:layout_marginTop="19dp"
+        android:text="工作总结"
+        android:textColor="#FF666666"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/item_report_content"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_below="@id/item_report_time"
+        android:layout_marginTop="43dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="16dp"
+        android:text="1、本周建立了“世界第一高大厦”，总高度达4888m。2、世界各大媒体争相报道，一日之间…"
+        android:textColor="@color/t6"
+        android:textSize="14sp" />
+
+
+</RelativeLayout>

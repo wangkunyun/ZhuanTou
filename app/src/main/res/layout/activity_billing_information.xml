@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF2F6F9"
+    android:orientation="vertical"
+    tools:context=".Activity.oa.BillingInformation">
+    <!--toolbar-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/sz_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/t3">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/goback" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="开票信息"
+                android:textColor="@color/baise"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:text="保存"
+                android:textColor="@color/baise"
+                android:textSize="16sp" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <!--开票信息将用于员工进行报销使用，请填写真实信息-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFF2F6F9">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:text="开票信息将用于员工进行报销使用，请填写真实信息"
+            android:textColor="@color/t6"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+
+    <!--开票抬头-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="开票抬头"
+            android:textColor="#FF333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:imeOptions="actionNext"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:gravity="right"
+            android:hint="请输入开票抬头"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/t5"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+
+    </RelativeLayout>
+
+
+    <!--税号-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="税号"
+            android:textColor="#FF333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="请输入开票税号"
+            android:imeOptions="actionNext"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/t5"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+
+    </RelativeLayout>
+
+
+    <!--银行账号-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="银行账号"
+            android:textColor="#FF333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="银行账号"
+            android:imeOptions="actionNext"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/t5"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+
+    </RelativeLayout>
+
+
+    <!--开户行-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="开户行"
+            android:textColor="#FF333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="请输入开户行"
+            android:imeOptions="actionNext"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/t5"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+
+    </RelativeLayout>
+
+
+    <!--电话-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="电话"
+            android:textColor="#FF333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="请输入电话"
+            android:imeOptions="actionNext"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/t5"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF8F8F8" />
+
+
+    </RelativeLayout>
+
+
+    <!--注册地址-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/baise"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="注册地址"
+            android:textColor="#FF333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="请输入注册地址"
+            android:imeOptions="actionNext"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/t5"
+            android:textCursorDrawable="@drawable/edittext_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:textColor="#FFF8F8F8" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="95dp">
+
+    <LinearLayout
+        android:layout_width="160dp"
+        android:layout_height="98dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@mipmap/per_icon_add_most"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/lin_pp3_btn1"
+            android:layout_width="94dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="25dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@mipmap/icon_addfriend_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="添加好友"
+                android:textColor="#ff333333"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#F8F8F8" />
+
+        <LinearLayout
+            android:id="@+id/lin_pp3_btn2"
+            android:layout_width="94dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="12dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@mipmap/icon_sendmessage_frey" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="建立群聊"
+                android:textColor="#ff333333"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

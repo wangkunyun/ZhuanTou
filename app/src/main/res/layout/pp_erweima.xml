@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/yuanjiaobttn5">
+
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="334dp"
+        android:background="@drawable/yuanjiaobttn5"
+        android:id="@+id/ppewm_r1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="二维码授权"
+            android:textSize="18sp"
+            android:textColor="@color/t2"
+            android:layout_marginTop="24dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/ppewm_wyt1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="该二维码可进出一次,24小时内有效"
+            android:textColor="@color/t6"
+            android:layout_below="@+id/ppewm_wyt1"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/ppewm_wyt2"/>
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ppewm_wyt2"
+            android:layout_marginTop="16dp"
+            android:id="@+id/ppewm_img"/>
+
+        <TextView
+            android:id="@+id/ppewm_xiahua"
+            android:layout_below="@id/ppewm_img"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#F8F8F8"/>
+
+        <LinearLayout
+            android:layout_width="334dp"
+            android:layout_height="73dp"
+            android:orientation="horizontal"
+            android:layout_below="@+id/ppewm_xiahua">
+            
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="73dp"
+                android:layout_weight="1"
+                android:id="@+id/ppewm_rl1">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+                    <ImageView
+                        android:id="@+id/ppewm_wyfimg1"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginLeft="9dp"
+                        android:src="@drawable/downloado"/>
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/ppewm_wyfimg1"
+                        android:layout_marginLeft="1dp"
+                        android:text="保存到本地"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="146px"
+                android:layout_weight="1"
+                android:id="@+id/ppewm_rl2">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:id="@+id/ppewm_wyfimg2"
+                    android:layout_width="87px"
+                    android:layout_height="87px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="18px"
+                    android:src="@drawable/icon_weixin"/>
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="30px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="2px"
+                    android:text="分享到微信"/>
+
+            </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

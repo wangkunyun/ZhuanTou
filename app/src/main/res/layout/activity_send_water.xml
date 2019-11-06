@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_sendWater"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.enterpriseService.SendWater">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_toolbar" />
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include">
+
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="345dp"
+            app:elevation="0dp">
+
+            <!--toolbar-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/sz_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_scrollFlags="scroll|snap">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:background="@color/t3"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:text="北京名水中心"
+                            android:textColor="#ffffffff"
+                            android:textSize="32sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="7dp"
+                            android:text="名优桶装水，瓶装水配送"
+                            android:textColor="#ffffffff"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="8dp"
+                            android:src="@mipmap/shophead" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="54dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_marginTop="3dp"
+                                android:src="@mipmap/local_whilt" />
+
+                            <TextView
+                                android:id="@+id/tv_sendWaterLocal"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+
+                                android:text="北京市通州区新华街道北关大道世界侨商中心.."
+                                android:textColor="#FFFFFF" />
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="16dp"
+                            android:drawableLeft="@mipmap/phone_while"
+                            android:text="010-989 765 426"
+                            android:textColor="#FFFFFF" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/yuanjiaotop">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:text="商品列表"
+                            android:textColor="#ff65c9d2"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="158dp"
+                        android:layout_height="216dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="150dp"
+                        android:layout_marginRight="4dp"
+                        android:src="@drawable/img_shuitong" />
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="66dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/reShopList"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:background="#F8F8F8" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/reShop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+    <!--底部阴影-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/bottom_shadow" />
+
+    <!--//团队成员代付-->
+    <LinearLayout
+        android:id="@+id/popViewMeasure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="78dp"
+            android:layout_height="49dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/yuanjiaobtn_daifu"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="团队成员"
+                android:textColor="#ffffffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="代付"
+                android:textColor="#ffffffff"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/click_lin_shopPop"
+        android:layout_width="257dp"
+        android:layout_height="49dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/yuanjiaobtn_daifu">
+
+
+        <!--付款-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/yuanjiaobtn_black">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="7dp"
+                android:text="0件商品"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="28dp"
+                android:text="共"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="22dp"
+                android:text="¥0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="78dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/yuanjiaobtn_daifu_orange">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="付款"
+                android:textColor="#ffffffff"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

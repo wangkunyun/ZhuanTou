@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/freeCheckingHead"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/freeCheckingName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="70dp"
+        android:text="王大云"
+        android:textColor="#ff333333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/freeCheckingDel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:text="删除"
+        android:textColor="#ffe81717"
+        android:textSize="16sp" />
+
+
+</RelativeLayout>

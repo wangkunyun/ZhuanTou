@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/zc_bc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".landing.ZcActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:background="@mipmap/img_logo_bg2">
+
+        <ImageView
+            android:id="@+id/zc_goback"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="32dp"
+            android:padding="5dp"
+            android:src="@drawable/goback" />
+
+        <ImageView
+            android:layout_width="164dp"
+            android:layout_height="63dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="68dp"
+            android:src="@mipmap/logo" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="396dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/yuanjiao"
+        android:orientation="vertical">
+
+        <!--<ImageView-->
+        <!--android:layout_width="22dp"-->
+        <!--android:layout_height="22dp"-->
+        <!--android:layout_marginTop="24dp"-->
+        <!--android:layout_marginLeft="24dp"-->
+        <!--android:src="@mipmap/icon_shouji"-->
+        <!--android:id="@+id/zc_icon1"/>-->
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="25dp"-->
+        <!--android:layout_marginLeft="3dp"-->
+        <!--android:layout_toRightOf="@+id/zc_icon1"-->
+        <!--android:textColor="@color/t1"-->
+        <!--android:textSize="14dp"-->
+        <!--android:text="手机号"/>-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="+86"-->
+        <!--android:textSize="18sp"-->
+        <!--android:textColor="@color/t2"-->
+        <!--android:layout_marginTop="69dp"-->
+        <!--android:layout_marginLeft="27dp"-->
+        <!--android:id="@+id/zc_86"/>-->
+        <!--<ImageView-->
+        <!--android:layout_width="10dp"-->
+        <!--android:layout_height="6dp"-->
+        <!--android:src="@mipmap/fill_1"-->
+        <!--android:layout_toRightOf="@+id/zc_86"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginTop="76dp"-->
+        <!--android:id="@+id/zc_icon2"/>-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/zc_edt1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="18sp"-->
+        <!--android:singleLine="true"-->
+        <!--android:textCursorDrawable="@drawable/my_cursor"-->
+        <!--android:theme="@style/MyEditText"-->
+        <!--android:background="@null"-->
+        <!--android:layout_marginTop="69dp"-->
+        <!--android:layout_toRightOf="@+id/zc_icon2"-->
+        <!--android:layout_marginLeft="32dp"-->
+        <!--android:hint="请输入手机号"-->
+        <!--android:layout_toLeftOf="@+id/zc_cha"/>-->
+        <!--<ImageView-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:src="@mipmap/oval"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignTop="@+id/zc_86"-->
+        <!--android:layout_marginRight="32dp"-->
+        <!--android:layout_marginTop="1dp"-->
+        <!--android:id="@+id/zc_cha"/>-->
+
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="#F8F8F8"-->
+        <!--android:layout_marginTop="100dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:id="@+id/login_xiahua1"/>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp">
+
+            <ImageView
+                android:id="@+id/login_icon1"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:src="@mipmap/icon_shouji" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="25dp"
+                android:layout_toRightOf="@+id/login_icon1"
+                android:text="手机号"
+                android:textColor="@color/t1"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_login_et"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/zc_edt1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入手机号"
+                android:inputType="number|numberDecimal"
+                android:singleLine="true"
+                android:textCursorDrawable="@drawable/my_cursor"
+                android:textSize="18sp"
+                android:theme="@style/MyEditText" />
+
+            <ImageView
+                android:id="@+id/zc_cha"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="16dp"
+                android:src="@mipmap/oval" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp">
+
+            <ImageView
+                android:id="@+id/login_icon3"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="24dp"
+                android:src="@mipmap/icon_login_people" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="真实姓名"
+                android:textColor="@color/t1"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_login_et"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/zcRealName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入真实姓名"
+                android:singleLine="true"
+                android:textCursorDrawable="@drawable/my_cursor"
+                android:textSize="18sp"
+                android:theme="@style/MyEditText" />
+
+            <ImageView
+                android:id="@+id/zc_cha2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:src="@mipmap/oval" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="252dp"
+            android:layout_height="14dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:text="小砖是实名办公服务平台，请填写您的真实姓名"
+            android:textColor="#ff999999"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/zc_btn"
+            android:layout_width="155dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="64dp"
+            android:background="@drawable/yuanjiaobtn"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:text="发送验证码"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

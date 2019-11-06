@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item2_r1">
+
+    <ImageView
+        android:layout_marginTop="19dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/lvyuan"
+        android:id="@+id/item2_lvyuan"/>
+
+    <TextView
+        android:layout_marginTop="19dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="1"
+        android:textColor="@color/baise"
+        android:textSize="14sp"
+        android:includeFontPadding="false"
+        android:lineSpacingMultiplier="0.9"
+        android:id="@+id/item2_number"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/t5"
+        android:text="#如何看待高智商罪犯北大学子弑母案嫌疑人吴谢宇三年后被抓？#"
+        android:textSize="16sp"
+        android:layout_toRightOf="@+id/item2_lvyuan"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@+id/item2_img1"
+        android:id="@+id/item2_title"/>
+
+    <ImageView
+        android:layout_width="96dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:id="@+id/item2_img1"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="100万热度"
+        android:textColor="@color/t1"
+        android:id="@+id/item2_hot"
+        android:layout_marginTop="82dp"
+        android:layout_marginBottom="8dp"
+        android:layout_alignLeft="@+id/item2_title"/>
+    
+</RelativeLayout>
