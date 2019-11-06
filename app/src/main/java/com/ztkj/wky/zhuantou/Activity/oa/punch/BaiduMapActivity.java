@@ -114,6 +114,7 @@ public class BaiduMapActivity extends AppCompatActivity
     BDLocationUtils bdLocationUtils;
 
     private void setMap() {
+        //哈哈哈 海荣的分支创建完成
         //获取地图控件引用
         map = bmapView.getMap();
         bdLocationUtils = new BDLocationUtils(BaiduMapActivity.this);
