@@ -87,9 +87,6 @@ public class SendWater extends AppCompatActivity {
         eid = intent.getStringExtra("eid");
         initView();
         initEven();
-
-
-        //呵呵
     }
 
     private void initEven() {
