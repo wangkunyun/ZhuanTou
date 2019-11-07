@@ -41,7 +41,7 @@ import com.ztkj.wky.zhuantou.adapter.ShowAdpoverAdapter;
 import com.ztkj.wky.zhuantou.adapter.ShowPictureAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.MonthIDBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -383,7 +383,7 @@ public class WriteMonReoprtActivity extends AppCompatActivity {
                     JPushInterface.deleteAlias(WriteMonReoprtActivity.this, Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
                     ActivityManager.getInstance().exit();
-                    intent = new Intent(WriteMonReoprtActivity.this, LoginActivity.class);
+                    intent = new Intent(WriteMonReoprtActivity.this, NewLoginActivity.class);
                     startActivity(intent);
 //                            getActivity().finish();
                 } else {

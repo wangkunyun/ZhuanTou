@@ -233,7 +233,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void gi() {
-        Log.d("regid1", JPushInterface.getRegistrationID(this));
         OkHttpUtils.post()
                 .url(url)
                 .addParams("phone", loginEdt1.getText().toString())

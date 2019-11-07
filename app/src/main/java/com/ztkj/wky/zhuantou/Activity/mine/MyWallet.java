@@ -17,6 +17,10 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
+import com.kongzue.dialog.util.BaseDialog;
+import com.kongzue.dialog.util.DialogSettings;
+import com.kongzue.dialog.v3.MessageDialog;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -54,6 +58,7 @@ public class MyWallet extends AppCompatActivity {
     ImageView clickAddBankCard;
     private Intent intent;
     private String TAG = "MyWallet";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +68,7 @@ public class MyWallet extends AppCompatActivity {
         more.setVisibility(View.VISIBLE);
         more.setText("账单");
         tvMoney.setText(SPUtils.getInstance().getString("balance"));
-        requestBankCarList() ;
+        requestBankCarList();
     }
 
     private void requestBankCarList() {
@@ -82,13 +87,13 @@ public class MyWallet extends AppCompatActivity {
                 BandingBankCardBean bandingBankCardBean = GsonUtil.gsonToBean(response, BandingBankCardBean.class);
                 List<BandingBankCardBean.DataBean> data = bandingBankCardBean.getData();
                 reBankCard.setLayoutManager(new LinearLayoutManager(MyWallet.this));
-                reBankCard.setAdapter(new BankCarAdapter(MyWallet.this,data));
+                reBankCard.setAdapter(new BankCarAdapter(MyWallet.this, data));
 
             }
         });
     }
 
-    @OnClick({R.id.layout_back, R.id.more, R.id.click_charge, R.id.click_addBankCard})
+    @OnClick({R.id.layout_back, R.id.more, R.id.click_charge, R.id.click_addBankCard, R.id.clickTips})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
@@ -112,10 +117,24 @@ public class MyWallet extends AppCompatActivity {
                     popuinit("实名认证后即可绑定银行卡，是否前往？", "取消", "前往");
                 } else {
                     intent = new Intent(MyWallet.this, BindingIdCard.class);
-                    intent.putExtra("intentTag","0");
+                    intent.putExtra("intentTag", "0");
                     startActivity(intent);
                 }
 
+                break;
+            case R.id.clickTips:
+                MessageDialog.build(MyWallet.this)
+                        .setStyle(DialogSettings.STYLE.STYLE_IOS)
+                        .setTheme(DialogSettings.THEME.LIGHT)
+                        .setMessage("显示余额均存储在微信商户平台，所有交易、转账均在第三方微信商户平台产生")
+                        .setOkButton("确定", new OnDialogButtonClickListener() {
+                            @Override
+                            public boolean onClick(BaseDialog baseDialog, View v) {
+                                return false;
+                            }
+
+                        })
+                        .show();
                 break;
         }
     }

@@ -1,11 +1,18 @@
 package com.ztkj.wky.zhuantou.isMy;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,12 +25,16 @@ import android.widget.Toast;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.LikeCompanyBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,22 +52,22 @@ public class EwmApplyActivity extends AppCompatActivity {
     Toolbar szToolbar;
     @BindView(R.id.company_name)
     EditText companyName;
-    @BindView(R.id.department)
-    EditText department;
     @BindView(R.id.name)
     EditText name;
     @BindView(R.id.sex)
     TextView sex;
     @BindView(R.id.click_sex)
     RelativeLayout clickSex;
-    @BindView(R.id.person_id)
-    EditText personId;
     @BindView(R.id.update)
     Button update;
+    @BindView(R.id.likeCompany)
+    RecyclerView likeCompany;
     private SharedPreferencesHelper sharedPreferencesHelper;
     private String uid;
     private String token, username;
     private String TAG = "EwmApplyActivity";
+    private String searchtv = " ";
+    private List<LikeCompanyBean.DataBean> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +80,61 @@ public class EwmApplyActivity extends AppCompatActivity {
         uid = (String) sharedPreferencesHelper.getSharedPreference("uid", "");
         token = (String) sharedPreferencesHelper.getSharedPreference("token", "");
         username = (String) sharedPreferencesHelper.getSharedPreference("realname", "");
+
+
+        companyName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                register();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
 
-    @OnClick({R.id.click_sex, R.id.update,R.id.layout_back})
+    /**
+     * 模糊查询
+     */
+    private void register() {
+        if ("".equals(companyName.getText().toString())) {
+            searchtv = " ";
+        } else {
+            searchtv = companyName.getText().toString();
+        }
+        OkHttpUtils.post()
+                .url(Contents.LIKECOMPANY)
+                .addParams("cname", searchtv)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e(TAG, "onResponse: " + response);
+                        LikeCompanyBean likeCompanyBean = GsonUtil.gsonToBean(response, LikeCompanyBean.class);
+                        if (likeCompanyBean.getErrno().equals("200")) {
+                            data = likeCompanyBean.getData();
+                            if (data.size() == 0) {
+                                likeCompany.setVisibility(View.VISIBLE);
+                            }
+                            LikeAdapter likeAdapter = new LikeAdapter();
+                            likeCompany.setLayoutManager(new LinearLayoutManager(EwmApplyActivity.this));
+                            likeCompany.setAdapter(likeAdapter);
+                        }
+                    }
+                });
+    }
+
+    @OnClick({R.id.click_sex, R.id.update, R.id.layout_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
@@ -81,16 +143,11 @@ public class EwmApplyActivity extends AppCompatActivity {
                 popuinit2();
                 break;
             case R.id.update:
-                if (!name.getText().toString().equals(username)) {
-                    Toast.makeText(this, "真实姓名与个人信息姓名不符，请前往修改", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                /**
+                 *  提交信息
+                 */
                 if (companyName.getText().toString().isEmpty()) {
                     Toast.makeText(this, "请输入所属企业", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (department.getText().toString().isEmpty()) {
-                    Toast.makeText(this, "请输入所属部门", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (name.getText().toString().isEmpty()) {
@@ -106,8 +163,6 @@ public class EwmApplyActivity extends AppCompatActivity {
                         .addParams("uid", uid)
                         .addParams("companyname", companyName.getText().toString())
                         .addParams("username", name.getText().toString())
-                        .addParams("IDnumber", personId.getText().toString())
-                        .addParams("department", department.getText().toString())
                         .addParams("sex", sex.getText().toString())
                         .build().execute(new StringCallback() {
                     @Override
@@ -117,6 +172,7 @@ public class EwmApplyActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String response) {
+                        Log.e(TAG, "onResponse: " + response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String errno = (String) jsonObject.get("errno");
@@ -187,4 +243,43 @@ public class EwmApplyActivity extends AppCompatActivity {
     }
 
 
+    class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ViewHolder> {
+
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            View view = LayoutInflater.from(EwmApplyActivity.this).inflate(R.layout.item_layout_likecompany, viewGroup, false);
+
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+            viewHolder.itemTitle.setText(data.get(i).getCname());
+            viewHolder.rlClick.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    companyName.setText(data.get(i).getCname());
+                    likeCompany.setVisibility(View.GONE);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return data.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            private TextView itemTitle;
+            private RelativeLayout rlClick;
+
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                itemTitle = itemView.findViewById(R.id.item_title);
+                rlClick = itemView.findViewById(R.id.rl_click);
+            }
+        }
+    }
 }

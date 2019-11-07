@@ -1,6 +1,7 @@
 package com.ztkj.wky.zhuantou.n1fra;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,7 +34,7 @@ import com.ztkj.wky.zhuantou.isMy.GeRenActivity;
 import com.ztkj.wky.zhuantou.isMy.JiFenActivity;
 import com.ztkj.wky.zhuantou.isMy.JiLuActivity;
 import com.ztkj.wky.zhuantou.isMy.SzActivity;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -117,6 +118,7 @@ public class N3Fragment extends Fragment {
                     public void onError(Request request, Exception e) {
                     }
 
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         Log.e(TAG, "onResponse: " + response);
@@ -164,7 +166,7 @@ public class N3Fragment extends Fragment {
             case R.id.n3_grzl:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -174,7 +176,7 @@ public class N3Fragment extends Fragment {
             case R.id.n3_wdjf:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -184,7 +186,7 @@ public class N3Fragment extends Fragment {
             case R.id.n3_tab1:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -194,7 +196,7 @@ public class N3Fragment extends Fragment {
             case R.id.n3_tab2:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -204,7 +206,7 @@ public class N3Fragment extends Fragment {
             case R.id.n3_tab3:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -216,7 +218,7 @@ public class N3Fragment extends Fragment {
             case R.id.click_mine_wallet:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -226,7 +228,7 @@ public class N3Fragment extends Fragment {
             case R.id.click_mine_parking: //停车缴费
 //                if (StringUtils.isEmpty(uid)) {
 //                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-//                    intent = new Intent(getActivity(), LoginActivity.class);
+//                    intent = new Intent(getActivity(), NewLoginActivity.class);
 //                    startActivity(intent);
 //                    return;
 //                }

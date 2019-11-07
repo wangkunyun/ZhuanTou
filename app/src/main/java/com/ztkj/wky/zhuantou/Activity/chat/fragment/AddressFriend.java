@@ -26,7 +26,7 @@ import com.ztkj.wky.zhuantou.adapter.AddressFriendAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.AddressFriendBean;
 import com.ztkj.wky.zhuantou.bean.AgreeFriendListBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.List;
 
@@ -139,7 +139,7 @@ public class AddressFriend extends Fragment {
                             JPushInterface.deleteAlias(getActivity(), Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(getActivity(), LoginActivity.class);
+                            intent = new Intent(getActivity(), NewLoginActivity.class);
                             startActivity(intent);
                             getActivity().finish();
                         } else {

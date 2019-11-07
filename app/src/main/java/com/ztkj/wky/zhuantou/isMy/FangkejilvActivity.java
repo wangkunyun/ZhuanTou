@@ -5,21 +5,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.FangKeJiLuAdapter;
 import com.ztkj.wky.zhuantou.bean.FangKeJiKvBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +82,7 @@ public class FangkejilvActivity extends AppCompatActivity {
                             JPushInterface.deleteAlias(FangkejilvActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(FangkejilvActivity.this, LoginActivity.class);
+                            intent = new Intent(FangkejilvActivity.this, NewLoginActivity.class);
                             startActivity(intent);
 //                            getActivity().finish();
                         }

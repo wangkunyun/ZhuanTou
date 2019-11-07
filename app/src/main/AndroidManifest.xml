@@ -78,7 +78,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.oa.punch.StatisticalDetailsActivity"></activity>
+        <activity android:name=".landing.NewLoginActivity"></activity>
+        <activity android:name=".Activity.oa.punch.StatisticalDetailsActivity" />
         <activity
             android:name=".Activity.oa.punch.ApplyReissuePunchinActivity"
             android:screenOrientation="portrait"
@@ -402,7 +403,7 @@
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator" />
         <activity
-            android:name=".Activity.oa.report.Report"
+            android:name=".Activity.oa.report.ReportTab"
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator" />
         <activity

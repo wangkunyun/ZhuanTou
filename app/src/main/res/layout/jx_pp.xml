@@ -28,10 +28,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="176dp"
+            android:layout_marginTop="160dp"
             android:text="扫码成功"
-            android:textColor="#ff333333"
-            android:textSize="18sp" />
+            android:textColor="#65C9D2"
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
             android:layout_marginTop="210dp"
             android:text="当太阳升起，便又是充满希望的一天"
             android:textColor="#ff999999"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
         
         <ImageView
             android:layout_width="match_parent"

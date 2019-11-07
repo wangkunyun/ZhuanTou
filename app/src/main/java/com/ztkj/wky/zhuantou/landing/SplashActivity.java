@@ -6,14 +6,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import com.hyphenate.easeui.utils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MainActivity;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.MPermissionUtils;
 import com.ztkj.wky.zhuantou.R;
 
 public class SplashActivity extends AppCompatActivity {
-    //    private SharedPreferencesHelper sharedPreferencesHelper;
-//    private Boolean aBooleanid;
+    private SharedPreferencesHelper sharedPreferencesHelper;
+    private Boolean aBooleanid;
     private Intent intent;
 
     @Override
@@ -46,34 +47,32 @@ public class SplashActivity extends AppCompatActivity {
                     }
                 });
 
-//        sharedPreferencesHelper = new SharedPreferencesHelper(SplashActivity.this, "anhua");
-//        aBooleanid = sharedPreferencesHelper.contain(
-//                "uid");
-//        Log.d("aBooleanid", aBooleanid.toString());
+        sharedPreferencesHelper = new SharedPreferencesHelper(SplashActivity.this, "anhua");
+        aBooleanid = sharedPreferencesHelper.contain("uid");
 
-        final Integer time = 2000;    //设置等待时间，单位为毫秒
+        final int time = 2000;    //设置等待时间，单位为毫秒
         final Handler handler = new Handler();
 
-//        if (aBooleanid == true) {
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-        intent = new Intent(SplashActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
-//                }
-//            }, time);
-//        } else {
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    intent = new Intent(SplashActivity.this, LoginActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }
-//            }, time);
-//
-//        }
+        if (aBooleanid) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, time);
+        } else {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, time);
+
+        }
 
     }
 

@@ -26,7 +26,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.ShowAdpoverAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.TidDetailsBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -175,7 +175,7 @@ public class ReadReportTidDetails extends AppCompatActivity {
                     JPushInterface.deleteAlias(ReadReportTidDetails.this, Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
                     ActivityManager.getInstance().exit();
-                    intent = new Intent(ReadReportTidDetails.this, LoginActivity.class);
+                    intent = new Intent(ReadReportTidDetails.this, NewLoginActivity.class);
                     startActivity(intent);
                 } else {
 

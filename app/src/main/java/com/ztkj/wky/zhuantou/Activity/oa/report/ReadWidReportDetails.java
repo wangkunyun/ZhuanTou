@@ -26,7 +26,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.ShowAdpoverAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.WidDetailsBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -177,7 +177,7 @@ public class ReadWidReportDetails extends AppCompatActivity {
                     JPushInterface.deleteAlias(ReadWidReportDetails.this, Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
                     ActivityManager.getInstance().exit();
-                    intent = new Intent(ReadWidReportDetails.this, LoginActivity.class);
+                    intent = new Intent(ReadWidReportDetails.this, NewLoginActivity.class);
                     startActivity(intent);
                 } else {
 

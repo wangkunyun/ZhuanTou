@@ -67,7 +67,7 @@ public class NearActivity extends AppCompatActivity {
 //                            JPushInterface.deleteAlias(NearActivity.this, Integer.parseInt(uid));
 //                            sharedPreferencesHelper.clear();
 //                            ActivityManager.getInstance().exit();
-//                            intent = new Intent(NearActivity.this, LoginActivity.class);
+//                            intent = new Intent(NearActivity.this, NewLoginActivity.class);
 //                            startActivity(intent);
 //                            finish();
 //                        }

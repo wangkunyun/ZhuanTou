@@ -22,7 +22,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.MyAdapter;
 import com.ztkj.wky.zhuantou.bean.FenLeiBean;
 import com.ztkj.wky.zhuantou.bean.RvBean1;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.List;
 
@@ -117,7 +117,7 @@ public class Blank4Fragment extends Fragment {
                                                 JPushInterface.deleteAlias(getContext(), Integer.parseInt(uid));
                                                 sharedPreferencesHelper.clear();
                                                 ActivityManager.getInstance().exit();
-                                                intent = new Intent(getContext(), LoginActivity.class);
+                                                intent = new Intent(getContext(), NewLoginActivity.class);
                                                 startActivity(intent);
 //                                                getActivity().finish();
                                             }
@@ -128,7 +128,7 @@ public class Blank4Fragment extends Fragment {
                             JPushInterface.deleteAlias(getContext(), Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(getContext(), LoginActivity.class);
+                            intent = new Intent(getContext(), NewLoginActivity.class);
                             startActivity(intent);
 //                                                getActivity().finish();
                         }

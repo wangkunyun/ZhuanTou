@@ -39,7 +39,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.IsUpDatePictureBean;
 import com.ztkj.wky.zhuantou.bean.UpdatePictureBeam;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -413,7 +413,7 @@ public class Enterprise extends AppCompatActivity {
                         Toast.makeText(Enterprise.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                         JPushInterface.deleteAlias(Enterprise.this, Integer.parseInt(uid));
                         sharedPreferencesHelper.clear();
-                        intent = new Intent(Enterprise.this, LoginActivity.class);
+                        intent = new Intent(Enterprise.this, NewLoginActivity.class);
                         startActivity(intent);
                         ActivityManager.getInstance().exit();
                         finish();
@@ -438,7 +438,7 @@ public class Enterprise extends AppCompatActivity {
 //                                Toast.makeText(Enterprise.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
 //                                JPushInterface.deleteAlias(Enterprise.this, Integer.parseInt(uid));
 //                                sharedPreferencesHelper.clear();
-//                                intent = new Intent(Enterprise.this, LoginActivity.class);
+//                                intent = new Intent(Enterprise.this, NewLoginActivity.class);
 //                                startActivity(intent);
 //                                ActivityManager.getInstance().exit();
 //                                finish();

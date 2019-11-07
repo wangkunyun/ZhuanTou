@@ -27,7 +27,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.ReadReportDetailsBean;
 import com.ztkj.wky.zhuantou.adapter.ShowAdpoverAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -189,7 +189,7 @@ public class ReadReportDetails extends AppCompatActivity {
                     JPushInterface.deleteAlias(ReadReportDetails.this, Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
                     ActivityManager.getInstance().exit();
-                    intent = new Intent(ReadReportDetails.this, LoginActivity.class);
+                    intent = new Intent(ReadReportDetails.this, NewLoginActivity.class);
                     startActivity(intent);
                 } else {
 

@@ -36,7 +36,7 @@ import com.ztkj.wky.zhuantou.MyUtils.ScrollWebView.OnScrollChangeListener;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -150,7 +150,7 @@ public class H52Activity extends AppCompatActivity {
                 } else if (url.contains("dianzan")) {
                     if (StringUtils.isEmpty(uid)) {
                         Toast.makeText(H52Activity.this, "请先登录", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(H52Activity.this, LoginActivity.class);
+                        intent = new Intent(H52Activity.this, NewLoginActivity.class);
                         startActivity(intent);
                     }
                 } else {

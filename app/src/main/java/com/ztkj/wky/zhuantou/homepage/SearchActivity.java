@@ -26,7 +26,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.MyAdapter6;
 import com.ztkj.wky.zhuantou.adapter.MyAdapter7;
 import com.ztkj.wky.zhuantou.bean.SearchBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.List;
 
@@ -124,7 +124,7 @@ public class SearchActivity extends AppCompatActivity {
                             JPushInterface.deleteAlias(SearchActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(SearchActivity.this, LoginActivity.class);
+                            intent = new Intent(SearchActivity.this, NewLoginActivity.class);
                             startActivity(intent);
                             finish();
                         }

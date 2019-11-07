@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.AllReportAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.AllReportBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.List;
 
@@ -103,7 +102,7 @@ public class AllReport extends Fragment {
                     JPushInterface.deleteAlias(getActivity(), Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
                     ActivityManager.getInstance().exit();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
 //                            getActivity().finish();
                 } else {

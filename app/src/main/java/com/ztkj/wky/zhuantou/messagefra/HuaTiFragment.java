@@ -11,17 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.MyAdapter2;
 import com.ztkj.wky.zhuantou.bean.RvBean2;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.List;
 
@@ -88,11 +88,11 @@ public class HuaTiFragment extends Fragment {
                             JPushInterface.deleteAlias(getContext(), Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(getContext(), LoginActivity.class);
+                            intent = new Intent(getContext(), NewLoginActivity.class);
                             startActivity(intent);
                             getActivity().finish();
 
-//                            Intent intent = new Intent(getContext(), LoginActivity.class);
+//                            Intent intent = new Intent(getContext(), NewLoginActivity.class);
 //                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                            Bundle bundle = new Bundle();
 //                            bundle.putBoolean(Constant.INTENT_LOGIN_AGAIN,true);

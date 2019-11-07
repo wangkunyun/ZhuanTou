@@ -26,7 +26,7 @@ import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.CreateTeamBean;
 import com.ztkj.wky.zhuantou.base.Contents;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -177,7 +177,7 @@ public class Create_Team extends AppCompatActivity {
                     JPushInterface.deleteAlias(Create_Team.this, Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
                     ActivityManager.getInstance().exit();
-                    intent = new Intent(Create_Team.this, LoginActivity.class);
+                    intent = new Intent(Create_Team.this, NewLoginActivity.class);
                     startActivity(intent);
 //                            getActivity().finish();
                 } else {

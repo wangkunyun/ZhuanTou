@@ -55,7 +55,7 @@ import com.ztkj.wky.zhuantou.bean.EwmBean;
 import com.ztkj.wky.zhuantou.isMy.EwmApplyActivity;
 import com.ztkj.wky.zhuantou.isMy.FangKeActivity;
 import com.ztkj.wky.zhuantou.isMy.JiLuActivity;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -310,7 +310,7 @@ public class N2Fragment extends Fragment {
                             JPushInterface.deleteAlias(getContext(), Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(getContext(), LoginActivity.class);
+                            intent = new Intent(getContext(), NewLoginActivity.class);
                             startActivity(intent);
 //                            getActivity().finish();
                         } else {
@@ -349,7 +349,6 @@ public class N2Fragment extends Fragment {
             @Override
             public void onDismiss() {
                 backgroundAlpha(1f);
-                Log.e("1111", "onClick: 刷新下了嘛" + "22222222");
 //                gi();
                 window.dismiss();
             }
@@ -399,7 +398,7 @@ public class N2Fragment extends Fragment {
                             JPushInterface.deleteAlias(getContext(), Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(getContext(), LoginActivity.class);
+                            intent = new Intent(getContext(), NewLoginActivity.class);
                             startActivity(intent);
 //                            getActivity().finish();
                         } else {
@@ -626,7 +625,7 @@ public class N2Fragment extends Fragment {
             case R.id.n2_bg2:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -639,7 +638,7 @@ public class N2Fragment extends Fragment {
             case R.id.n2_refresh:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -648,7 +647,7 @@ public class N2Fragment extends Fragment {
             case R.id.n2_fangke:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -662,7 +661,7 @@ public class N2Fragment extends Fragment {
             case R.id.click_emergencyPhone:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }

@@ -24,7 +24,7 @@ import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.SearchFriendBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -128,7 +128,7 @@ public class SearchFriend extends AppCompatActivity {
                     JPushInterface.deleteAlias(SearchFriend.this, Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
                     ActivityManager.getInstance().exit();
-                    intent = new Intent(SearchFriend.this, LoginActivity.class);
+                    intent = new Intent(SearchFriend.this, NewLoginActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

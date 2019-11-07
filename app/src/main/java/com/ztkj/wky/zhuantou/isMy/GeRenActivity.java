@@ -50,7 +50,7 @@ import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.GeRenBean;
 import com.ztkj.wky.zhuantou.bean.HeadBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -403,7 +403,7 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
                             JPushInterface.deleteAlias(GeRenActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(GeRenActivity.this, LoginActivity.class);
+                            intent = new Intent(GeRenActivity.this, NewLoginActivity.class);
                             startActivity(intent);
                             finish();
                         } else if (zcBean.getErrno().equals("212")) {
@@ -655,7 +655,7 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
                                 Toast.makeText(GeRenActivity.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                                 JPushInterface.deleteAlias(GeRenActivity.this, Integer.parseInt(uid));
                                 sharedPreferencesHelper.clear();
-                                intent = new Intent(GeRenActivity.this, LoginActivity.class);
+                                intent = new Intent(GeRenActivity.this, NewLoginActivity.class);
                                 startActivity(intent);
                                 ActivityManager.getInstance().exit();
                                 finish();
