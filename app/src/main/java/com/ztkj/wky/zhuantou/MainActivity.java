@@ -68,9 +68,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private LiveTabFragment liveTabFragment;
     private int position = 0;
     private SharedPreferencesHelper sharedPreferencesHelper;
-    private Intent intent2;
-
-
     //打开你的消息界面
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         ActivityManager.getInstance().addActivity(this);
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
-
         sharedPreferencesHelper = new SharedPreferencesHelper(MainActivity.this, "anhua");
         phone = (String) sharedPreferencesHelper.getSharedPreference("phone", "");
         password = (String) sharedPreferencesHelper.getSharedPreference("password", "");
@@ -110,8 +106,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 }
             });
         }
-
-
         MPermissionUtils.requestPermissionsResult(this, 1,
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -137,7 +131,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 });
 
         setTabSelection(position);
-
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 

@@ -56,7 +56,7 @@
     <string name="button_add">添加</string>
     <string name="search_header">搜</string>
     <string name="network_isnot_available">网络不可用</string>
-    <string name="recoding_fail">录音失败，请重试！</string>
+    <string name="recoding_fail">，请重试！</string>
     <string name="select_contacts">选择联系人</string>
     <string name="confirm_forward_to">确定转发到：%1$s ?</string>
     <string name="logout">退出登录</string>

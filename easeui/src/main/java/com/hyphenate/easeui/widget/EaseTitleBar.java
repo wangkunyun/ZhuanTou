@@ -58,7 +58,7 @@ public class EaseTitleBar extends RelativeLayout{
             
             Drawable leftDrawable = ta.getDrawable(R.styleable.EaseTitleBar_titleBarLeftImage);
             if (null != leftDrawable) {
-                leftImage.setImageDrawable(leftDrawable);
+                leftImage.setImageDrawable(getResources().getDrawable(R.drawable.goback));
             }
             Drawable rightDrawable = ta.getDrawable(R.styleable.EaseTitleBar_titleBarRightImage);
             if (null != rightDrawable) {

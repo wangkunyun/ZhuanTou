@@ -1,4 +1,17 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.hyphenate.easeui">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.hyphenate.easeui">
 
+
+<!--    <provider-->
+<!--        android:name="android.support.v4.content.FileProvider"-->
+<!--        android:authorities="com.ztkj.wky.zhuantou.fileprovider"-->
+<!--        android:exported="false"-->
+<!--        android:grantUriPermissions="true"-->
+<!--        tools:replace="android:authorities">-->
+<!--        <meta-data-->
+<!--            android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--            android:resource="@xml/file_paths" />-->
+<!--    </provider>-->
 
 </manifest>

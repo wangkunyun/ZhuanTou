@@ -5,10 +5,12 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingTop="13dp" >
+<!--    style="@style/chat_text_date_style"-->
 
     <TextView
+        android:textColor="#ff999999"
+        android:textSize="12sp"
         android:id="@+id/timestamp"
-        style="@style/chat_text_date_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
