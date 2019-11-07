@@ -61,14 +61,12 @@ public class EaseChatMessageList extends RelativeLayout{
     public void init(String toChatUsername, int chatType, EaseCustomChatRowProvider customChatRowProvider) {
         this.chatType = chatType;
         this.toChatUsername = toChatUsername;
-        
         conversation = EMClient.getInstance().chatManager().getConversation(toChatUsername, EaseCommonUtils.getConversationType(chatType), true);
         messageAdapter = new EaseMessageAdapter(context, toChatUsername, chatType, listView);
         messageAdapter.setItemStyle(itemStyle);
         messageAdapter.setCustomChatRowProvider(customChatRowProvider);
         // set message adapter
         listView.setAdapter(messageAdapter);
-        
         refreshSelectLast();
     }
     

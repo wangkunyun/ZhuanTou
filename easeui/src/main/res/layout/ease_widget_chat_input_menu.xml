@@ -23,15 +23,15 @@
         android:id="@+id/extend_menu_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
+        android:background="@color/haha"
         android:visibility="gone" >
 
         <com.hyphenate.easeui.widget.EaseChatExtendMenu
             android:id="@+id/extend_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="7dp"
-            android:layout_marginTop="9dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="25dp"
             hyphenate:numColumns="4" />
 
         <FrameLayout 

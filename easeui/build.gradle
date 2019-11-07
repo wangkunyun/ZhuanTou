@@ -40,6 +40,8 @@ dependencies {
     api 'com.google.android.gms:play-services-base:11.4.0'
     api 'junit:junit:4.12'
     api 'com.github.bumptech.glide:glide:4.8.0'
+    //高斯模糊
+    api 'jp.wasabeef:glide-transformations:2.0.1'
     api 'com.hyphenate:hyphenate-sdk:3.6.1'
     //网络
     api 'com.squareup.okhttp3:okhttp:3.11.0'

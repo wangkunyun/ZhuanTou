@@ -25,6 +25,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.chat.ECChatAcitivty;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
+import com.ztkj.wky.zhuantou.MyUtils.SystemBarHelper;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.ToastBean;
@@ -34,6 +35,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 import static com.ztkj.wky.zhuantou.R.drawable.head_portrait;
 
 public class PersonalDetails extends AppCompatActivity {
@@ -71,7 +73,7 @@ public class PersonalDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_details);
         ButterKnife.bind(this);
-
+        SystemBarHelper.immersiveStatusBar(this);
         sharedPreferencesHelper = new SharedPreferencesHelper(this, "anhua");
         token = (String) sharedPreferencesHelper.getSharedPreference("token", "");
         uid = (String) sharedPreferencesHelper.getSharedPreference("uid", "");
@@ -107,18 +109,18 @@ public class PersonalDetails extends AppCompatActivity {
         }
         //设置图片圆角角度
         RoundedCorners roundedCorners = new RoundedCorners(180);
-        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners)
+        RequestOptions options = bitmapTransform(roundedCorners)
                 .error(head_portrait);
         //设置图片圆角角度
 //        RoundedCorners roundedCorners2 = new RoundedCorners(10);
         RequestOptions requestOptions = new RequestOptions();
-        RequestOptions options2 = RequestOptions.bitmapTransform(new BlurTransformation(PersonalDetails.this, 23, 4));
+        RequestOptions options2 = bitmapTransform(new BlurTransformation(PersonalDetails.this, 100));
         Glide.with(this).load(head)
                 .apply(options)
                 .into(imgPersonDetailsHead);
-        Glide.with(this).load(head)
-                .into(imgPersonDetailsBg);
-
+//        Glide.with(this).load(head)
+//                .into(imgPersonDetailsBg);
+        Glide.with(this).load(head).into(imgPersonDetailsBg);
 
     }
 
