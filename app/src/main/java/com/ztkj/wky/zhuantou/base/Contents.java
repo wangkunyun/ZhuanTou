@@ -27,6 +27,15 @@ public class Contents {
     public static final String UPDATEAPK = BASE + "User/androidVersion";
     //友情链接点击
     public static final String CLICKYOUQINGLIANJIE = BASE + "User/clicks";
+    //验证码登录接口
+    public static final String CODELOGIN = BASE + "Login/signInAPP";
+    //发送验证码
+    public static final String SENDCODE = BASE + "Shortmessage/send_code";
+    //验证验证码
+    public static final String CHECKCODE = BASE + "Shortmessage/Verification";
+    //模糊查询公司
+    public static final String LIKECOMPANY = BASE + "Company/likeCompany";
+
 
     /**
      * 文章接口
@@ -298,6 +307,7 @@ public class Contents {
     public static final String RESTOREATTENDANCENORMAL = BASE + "Company/recovery";
     //一键恢复考勤状态（外勤考勤）
     public static final String RESTOREATTENDANCEOUTWORK = BASE + "Company/recoveryFieldPersonnel";
-
+    //考勤打卡记录
+    public static final String PUNCHINLIST = BASE + "Company/punchInList";
 
 }

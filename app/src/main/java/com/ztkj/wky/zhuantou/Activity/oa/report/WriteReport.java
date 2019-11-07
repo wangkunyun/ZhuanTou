@@ -41,7 +41,7 @@ import com.ztkj.wky.zhuantou.adapter.ShowAdpoverAdapter;
 import com.ztkj.wky.zhuantou.adapter.ShowPictureAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.DidIDBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -393,7 +393,7 @@ public class WriteReport extends AppCompatActivity {
                     JPushInterface.deleteAlias(WriteReport.this, Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
                     ActivityManager.getInstance().exit();
-                    intent = new Intent(WriteReport.this, LoginActivity.class);
+                    intent = new Intent(WriteReport.this, NewLoginActivity.class);
                     startActivity(intent);
 //                            getActivity().finish();
                 } else {

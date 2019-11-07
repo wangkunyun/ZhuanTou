@@ -23,7 +23,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.AddressBookAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.AddressBookBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.List;
 
@@ -115,7 +115,7 @@ public class AddressBook extends AppCompatActivity {
                             JPushInterface.deleteAlias(AddressBook.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(AddressBook.this, LoginActivity.class);
+                            intent = new Intent(AddressBook.this, NewLoginActivity.class);
                             startActivity(intent);
 //                            getActivity().finish();
                         } else {

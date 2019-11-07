@@ -38,7 +38,7 @@ import com.ztkj.wky.zhuantou.Activity.oa.SetTongzhi;
 import com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.ApplyFor;
 import com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.apply.Examine;
 import com.ztkj.wky.zhuantou.Activity.oa.punch.PunchInTab;
-import com.ztkj.wky.zhuantou.Activity.oa.report.Report;
+import com.ztkj.wky.zhuantou.Activity.oa.report.ReportTab;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
@@ -47,7 +47,7 @@ import com.ztkj.wky.zhuantou.bean.GetCompanyAnnBean;
 import com.ztkj.wky.zhuantou.bean.ScheduleListBean;
 import com.ztkj.wky.zhuantou.bean.ServersListBean;
 import com.ztkj.wky.zhuantou.bean.WhatDaysBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -480,7 +480,7 @@ public class N4Fragment extends Fragment {
             case R.id.n4_create_team://创建团队
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -490,7 +490,7 @@ public class N4Fragment extends Fragment {
             case R.id.img_n4_address_book://联系人
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -502,7 +502,7 @@ public class N4Fragment extends Fragment {
             case R.id.img_n4_chat://聊天
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -513,7 +513,7 @@ public class N4Fragment extends Fragment {
             case R.id.n4_daka://打卡
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -527,7 +527,7 @@ public class N4Fragment extends Fragment {
             case R.id.n4_apply://申请
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -538,14 +538,14 @@ public class N4Fragment extends Fragment {
             case R.id.n4_log://日志
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
                 if (cid.equals(0)) {
                     popuinit("该功能需加入团队后方可使用，请先加入团队", "取消", "确认");
                 } else {
-                    intent.setClass(getActivity(), Report.class);
+                    intent.setClass(getActivity(), ReportTab.class);
                     startActivity(intent);
                 }
 
@@ -553,7 +553,7 @@ public class N4Fragment extends Fragment {
             case R.id.n4_examine://审批
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -616,7 +616,7 @@ public class N4Fragment extends Fragment {
             case R.id.lin_click_tongzhi: //通知
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -628,7 +628,7 @@ public class N4Fragment extends Fragment {
 
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), LoginActivity.class);
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }

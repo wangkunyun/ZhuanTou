@@ -41,7 +41,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.ShowAdpoverAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.TIDBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -339,7 +339,7 @@ public class WorkSummary extends AppCompatActivity {
                     JPushInterface.deleteAlias(WorkSummary.this, Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
                     ActivityManager.getInstance().exit();
-                    intent = new Intent(WorkSummary.this, LoginActivity.class);
+                    intent = new Intent(WorkSummary.this, NewLoginActivity.class);
                     startActivity(intent);
 //                            getActivity().finish();
                 } else {

@@ -16,17 +16,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.AllServiceBean;
 import com.ztkj.wky.zhuantou.bean.AllServiceBean2;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -109,7 +109,7 @@ public class AllServiceActivity extends AppCompatActivity {
                             JPushInterface.deleteAlias(AllServiceActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(AllServiceActivity.this, LoginActivity.class);
+                            intent = new Intent(AllServiceActivity.this, NewLoginActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -148,7 +148,7 @@ public class AllServiceActivity extends AppCompatActivity {
                             JPushInterface.deleteAlias(AllServiceActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(AllServiceActivity.this, LoginActivity.class);
+                            intent = new Intent(AllServiceActivity.this, NewLoginActivity.class);
                             startActivity(intent);
                             finish();
                         }

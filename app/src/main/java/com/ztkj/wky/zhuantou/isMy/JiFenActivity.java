@@ -13,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.H5.UserInstructionsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.Colorstring;
@@ -22,11 +26,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.MyAdapter4;
 import com.ztkj.wky.zhuantou.bean.JiFenBean;
 import com.ztkj.wky.zhuantou.bean.MyZtBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.List;
 
@@ -112,7 +112,7 @@ public class JiFenActivity extends AppCompatActivity {
                             JPushInterface.deleteAlias(JiFenActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(JiFenActivity.this, LoginActivity.class);
+                            intent = new Intent(JiFenActivity.this, NewLoginActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -147,7 +147,7 @@ public class JiFenActivity extends AppCompatActivity {
                             JPushInterface.deleteAlias(JiFenActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(JiFenActivity.this, LoginActivity.class);
+                            intent = new Intent(JiFenActivity.this, NewLoginActivity.class);
                             startActivity(intent);
                             finish();
                         }else {

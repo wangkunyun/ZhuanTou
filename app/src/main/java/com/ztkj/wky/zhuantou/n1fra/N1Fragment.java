@@ -60,7 +60,7 @@ import com.ztkj.wky.zhuantou.bean.UpdateBean;
 import com.ztkj.wky.zhuantou.bean.WeatherBean;
 import com.ztkj.wky.zhuantou.homepage.SearchActivity;
 import com.ztkj.wky.zhuantou.isMy.JiLuActivity;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 import com.ztkj.wky.zhuantou.messagefra.HuaTiFragment;
 import com.ztkj.wky.zhuantou.messagefra.WuYeFragment;
 import com.ztkj.wky.zhuantou.messagefra.ZiXunFragment;
@@ -86,7 +86,6 @@ public class N1Fragment extends Fragment {
 
     @BindView(R.id.n1_search)
     ImageView n1Search;
-
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.jd_sy)
@@ -667,7 +666,7 @@ public class N1Fragment extends Fragment {
             case R.id.n1_work_rl:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getContext(), LoginActivity.class);
+                    intent = new Intent(getContext(), NewLoginActivity.class);
                     startActivity(intent);
                 } else {
                     intent = new Intent(getContext(), JiLuActivity.class);

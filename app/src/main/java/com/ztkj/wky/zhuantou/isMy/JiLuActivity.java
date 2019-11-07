@@ -17,6 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.DateUtil;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
@@ -25,11 +29,7 @@ import com.ztkj.wky.zhuantou.MyUtils.WheelView;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.MyAdapter5;
 import com.ztkj.wky.zhuantou.bean.DakaBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -213,7 +213,7 @@ public class JiLuActivity extends AppCompatActivity {
                             JPushInterface.deleteAlias(JiLuActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(JiLuActivity.this, LoginActivity.class);
+                            intent = new Intent(JiLuActivity.this, NewLoginActivity.class);
                             startActivity(intent);
                             finish();
                         }

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -26,6 +27,9 @@ import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -58,6 +62,8 @@ public class ApplyReissuePunchinActivity extends AppCompatActivity {
     ImageView ReissueDelPicture;
     @BindView(R.id.rl_appvoer)
     RelativeLayout rlAppvoer;
+    @BindView(R.id.btnSubmit)
+    Button btnSubmit;
     private Intent intent;
     private SharedPreferencesHelper listApprover_head_uid;
     private String approver_uid, approver_head;
@@ -92,9 +98,12 @@ public class ApplyReissuePunchinActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick({R.id.click_rl_Reissue, R.id.click_rl_addApppover, R.id.Reissue_del_picture, R.id.btnSubmit})
+    @OnClick({R.id.layout_back, R.id.click_rl_Reissue, R.id.click_rl_addApppover, R.id.Reissue_del_picture, R.id.btnSubmit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.layout_back:
+                finish();
+                break;
             case R.id.click_rl_Reissue://选择时间
                 TimePickerView pvTime = new TimePickerBuilder(ApplyReissuePunchinActivity.this, new OnTimeSelectListener() {
                     @Override
@@ -150,7 +159,16 @@ public class ApplyReissuePunchinActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e(TAG, "onResponse: " + response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.get("errno").equals("200")) {
+                                Toast.makeText(ApplyReissuePunchinActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 });
 
@@ -175,4 +193,5 @@ public class ApplyReissuePunchinActivity extends AppCompatActivity {
         }
         return "";
     }
+
 }

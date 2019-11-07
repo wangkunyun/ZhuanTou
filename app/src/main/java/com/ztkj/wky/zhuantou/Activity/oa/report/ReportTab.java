@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class Report extends AppCompatActivity {
+public class ReportTab extends AppCompatActivity {
 
     @BindView(R.id.back)
     ImageView back;

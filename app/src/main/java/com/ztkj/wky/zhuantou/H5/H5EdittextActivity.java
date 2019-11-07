@@ -9,16 +9,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.CommentBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +65,7 @@ public class H5EdittextActivity extends AppCompatActivity {
             case R.id.h5edt_btn:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(H5EdittextActivity.this, LoginActivity.class);
+                    intent = new Intent(H5EdittextActivity.this, NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -107,7 +107,7 @@ public class H5EdittextActivity extends AppCompatActivity {
                                 JPushInterface.deleteAlias(H5EdittextActivity.this, Integer.parseInt(uid));
                                 sharedPreferencesHelper.clear();
                                 ActivityManager.getInstance().exit();
-                                intent = new Intent(H5EdittextActivity.this, LoginActivity.class);
+                                intent = new Intent(H5EdittextActivity.this, NewLoginActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {

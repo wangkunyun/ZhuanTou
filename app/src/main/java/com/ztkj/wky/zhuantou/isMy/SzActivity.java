@@ -35,7 +35,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.IsPayPassWordBean;
 import com.ztkj.wky.zhuantou.bean.UpdateBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -361,7 +361,7 @@ public class SzActivity extends AppCompatActivity {
 
 //                sharedPreferencesHelper.put("regId", regid);
                 ActivityManager.getInstance().exit();
-                intent = new Intent(SzActivity.this, LoginActivity.class);
+                intent = new Intent(SzActivity.this, NewLoginActivity.class);
                 startActivity(intent);
 //                finish();
 
@@ -427,7 +427,7 @@ public class SzActivity extends AppCompatActivity {
                                     JPushInterface.deleteAlias(SzActivity.this, Integer.parseInt(uid));
                                     sharedPreferencesHelper.clear();
                                     ActivityManager.getInstance().exit();
-                                    intent = new Intent(SzActivity.this, LoginActivity.class);
+                                    intent = new Intent(SzActivity.this, NewLoginActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }//

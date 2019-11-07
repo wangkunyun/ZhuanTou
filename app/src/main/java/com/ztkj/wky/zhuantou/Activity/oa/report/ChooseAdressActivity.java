@@ -11,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.R;
@@ -18,11 +22,7 @@ import com.ztkj.wky.zhuantou.adapter.ChooseAddressAdapter;
 import com.ztkj.wky.zhuantou.adapter.TeamScaleAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.AddressBookBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.List;
 
@@ -110,7 +110,7 @@ public class ChooseAdressActivity extends AppCompatActivity {
                             JPushInterface.deleteAlias(ChooseAdressActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(ChooseAdressActivity.this, LoginActivity.class);
+                            intent = new Intent(ChooseAdressActivity.this, NewLoginActivity.class);
                             startActivity(intent);
 //                            getActivity().finish();
                         } else {

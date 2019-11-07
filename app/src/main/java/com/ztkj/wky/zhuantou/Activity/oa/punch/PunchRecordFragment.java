@@ -11,13 +11,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
 import com.hyphenate.easeui.utils.SharedPreferencesHelper;
 import com.necer.calendar.BaseCalendar;
@@ -26,14 +27,17 @@ import com.necer.listener.OnCalendarChangedListener;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.PunchInListBean;
 import com.ztkj.wky.zhuantou.bean.ThreeAndOneBean;
 
 import org.joda.time.LocalDate;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -85,6 +89,7 @@ public class PunchRecordFragment extends Fragment {
     private Intent intent;
     private SharedPreferencesHelper sharedPreferencesHelper, sp_create_team;
     private String uid, token, cid;
+    private String TAG = "PunchRecordFragment";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -107,14 +112,85 @@ public class PunchRecordFragment extends Fragment {
         sp_create_team = new SharedPreferencesHelper(getContext(), "Create_team");
         cid = (String) sp_create_team.getSharedPreference("Create_team_cid", "");
 
+
         calender.setOnCalendarChangedListener(new OnCalendarChangedListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onCalendarChange(BaseCalendar baseCalendar, int year, int month, LocalDate localDate) {
-                Toast.makeText(getActivity(), localDate.toString(), Toast.LENGTH_SHORT).show();
+                tvCalDate.setText(year + "年" + month + "月");
+                requestPunchInList(year + "", month + "", localDate.getDayOfMonth() + "");
             }
         });
 
         return view;
+    }
+
+    private void requestPunchInList(String year, String month, String day) {
+        OkHttpUtils.post().url(Contents.PUNCHINLIST)
+                .addParams("token", SPUtils.getInstance().getString("token"))
+                .addParams("uid", SPUtils.getInstance().getString("uid"))
+                .addParams("cid", SPUtils.getInstance().getString("cid"))
+                .addParams("year", year)
+                .addParams("month", month)
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "onResponse: " + response);
+                PunchInListBean punchInListBean = GsonUtil.gsonToBean(response, PunchInListBean.class);
+                if (punchInListBean.getErrno().equals("200")) {
+                    List<PunchInListBean.DataBean> data = punchInListBean.getData();
+                    for (int i = 0; i < data.size(); i++) {
+                        if (data.get(i).getDay().equals(day)) {
+                            if (!data.get(i).getStart_time().equals("0")) {
+                                tvWorkOn.setVisibility(View.VISIBLE);
+                                String stron = timeStamp2Date(Integer.parseInt(data.get(i).getStart_time()), "HH:mm");
+                                tvWorkOn.setText("上班打卡 " + stron);
+                                if (!data.get(i).getLate().equals("0")) {
+                                    tvLateWorkOn.setVisibility(View.VISIBLE);
+                                    tvApplyWorkOn.setVisibility(View.VISIBLE);
+                                    tvLateWorkOn.setText("迟到");
+                                }
+                                if (!data.get(i).getStart_field_address().equals("0")) {
+                                    tvLateWorkOn.setVisibility(View.VISIBLE);
+                                    tvApplyWorkOn.setVisibility(View.VISIBLE);
+                                    tvLateWorkOn.setText("外勤");
+                                }
+                            } else {
+                                tvWorkOn.setVisibility(View.GONE);
+                                tvApplyWorkOn.setVisibility(View.VISIBLE);
+                                tvLateWorkOn.setVisibility(View.GONE);
+                            }
+
+                            if (data.get(i).getEnd_time().equals("0")) {
+                                tvWorkOff.setVisibility(View.VISIBLE);
+                                String stroff = timeStamp2Date(Integer.parseInt(data.get(i).getEnd_time()), "HH:mm");
+                                tvWorkOff.setText("下班打卡 " + stroff);
+                                if (!data.get(i).getLeave_early().equals("0")) {
+                                    tvLateWorkOff.setVisibility(View.VISIBLE);
+                                    tvApplyWorkOff.setVisibility(View.VISIBLE);
+                                    tvLateWorkOff.setText("早退");
+                                }
+                                if (!data.get(i).getEnd_field_address().equals("0")) {
+                                    tvLateWorkOff.setVisibility(View.VISIBLE);
+                                    tvApplyWorkOff.setVisibility(View.VISIBLE);
+                                    tvLateWorkOn.setText("外勤");
+                                }
+                            }else {
+                                tvWorkOff.setVisibility(View.GONE);
+                                tvApplyWorkOff.setVisibility(View.VISIBLE);
+                                tvLateWorkOff.setVisibility(View.GONE);
+                            }
+
+                        }
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -160,7 +236,7 @@ public class PunchRecordFragment extends Fragment {
                 if (data.getEnd_night().equals("2")) {
                     tvWorkOff.setVisibility(View.VISIBLE);
                     String stroff = timeStamp2Date(Integer.parseInt(data.getPunchInInfo().getEnd_time()), "HH:mm");
-                    tvWorkOff.setText("上班打卡 " + stroff);
+                    tvWorkOff.setText("下班打卡 " + stroff);
                     if (!data.getPunchInInfo().getLeave_early().equals("0")) {
                         tvLateWorkOff.setVisibility(View.VISIBLE);
                         tvApplyWorkOff.setVisibility(View.VISIBLE);
@@ -182,7 +258,7 @@ public class PunchRecordFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.layout_back, R.id.more, R.id.tv_ApplyWorkOn, R.id.tv_ApplyWorkOff})
+    @OnClick({R.id.layout_back, R.id.more, R.id.tv_ApplyWorkOn, R.id.tv_ApplyWorkOff, R.id.img_click_lase, R.id.img_click_next})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
@@ -197,6 +273,12 @@ public class PunchRecordFragment extends Fragment {
             case R.id.tv_ApplyWorkOn:
                 break;
             case R.id.tv_ApplyWorkOff:
+                break;
+            case R.id.img_click_lase:
+                calender.toLastPager();
+                break;
+            case R.id.img_click_next:
+                calender.toNextPager();
                 break;
         }
     }

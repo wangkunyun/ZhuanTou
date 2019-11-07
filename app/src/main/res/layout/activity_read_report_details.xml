@@ -113,13 +113,14 @@
                 android:paddingLeft="24dp"
                 android:paddingRight="16dp"
                 android:visibility="gone">
+
                 <!--工作总结-->
                 <TextView
                     android:id="@+id/details_report_work_content_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:text="工作总结"
+                    android:text="工作内容"
                     android:textColor="#FF333333"
                     android:textSize="16sp" />
                 <!--工作内容-->
@@ -143,13 +144,14 @@
                 android:paddingLeft="24dp"
                 android:paddingRight="16dp"
                 android:visibility="gone">
+
                 <!--工作总结-->
                 <TextView
                     android:id="@+id/details_report_performance_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:text="工作总结"
+                    android:text="完成情况"
                     android:textColor="#FF333333"
                     android:textSize="16sp" />
                 <!--工作内容-->
@@ -173,13 +175,14 @@
                 android:paddingLeft="24dp"
                 android:paddingRight="16dp"
                 android:visibility="gone">
+
                 <!--工作总结-->
                 <TextView
                     android:id="@+id/details_report_plan_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:text="工作总结"
+                    android:text="下一步计划"
                     android:textColor="#FF333333"
                     android:textSize="16sp" />
                 <!--工作内容-->
@@ -211,8 +214,8 @@
                     android:layout_height="36dp"
                     android:background="#FFF2F6F9"
                     android:gravity="center_vertical"
-                    android:paddingLeft="24dp"
-                    android:text="已读 2" />
+                    android:paddingLeft="24dp" />
+                <!--android:text="已读 2"-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

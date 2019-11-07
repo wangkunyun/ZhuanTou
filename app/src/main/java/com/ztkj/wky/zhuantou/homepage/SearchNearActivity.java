@@ -27,7 +27,7 @@ import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.MyAdapter8;
 import com.ztkj.wky.zhuantou.bean.NearSearcchBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.util.List;
 
@@ -132,7 +132,7 @@ public class  SearchNearActivity extends AppCompatActivity {
                             JPushInterface.deleteAlias(SearchNearActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(SearchNearActivity.this, LoginActivity.class);
+                            intent = new Intent(SearchNearActivity.this, NewLoginActivity.class);
                             startActivity(intent);
                             finish();
                         }

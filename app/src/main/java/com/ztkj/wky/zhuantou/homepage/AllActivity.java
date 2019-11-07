@@ -173,7 +173,7 @@ public class AllActivity extends AppCompatActivity {
 //                            JPushInterface.deleteAlias(AllActivity.this, Integer.parseInt(uid));
 //                            sharedPreferencesHelper.clear();
 //                            ActivityManager.getInstance().exit();
-//                            intent = new Intent(AllActivity.this, LoginActivity.class);
+//                            intent = new Intent(AllActivity.this, NewLoginActivity.class);
 //                            startActivity(intent);
 //                            finish();
 //                        }

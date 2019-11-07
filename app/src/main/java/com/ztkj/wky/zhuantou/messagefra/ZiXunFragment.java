@@ -15,21 +15,21 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.Colorstring;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.FenLeiBean;
-import com.ztkj.wky.zhuantou.landing.LoginActivity;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 import com.ztkj.wky.zhuantou.messagefra2.Blank1Fragment;
 import com.ztkj.wky.zhuantou.messagefra2.Blank2Fragment;
 import com.ztkj.wky.zhuantou.messagefra2.Blank3Fragment;
 import com.ztkj.wky.zhuantou.messagefra2.Blank4Fragment;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Request;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,7 +120,7 @@ public class ZiXunFragment extends Fragment {
                             JPushInterface.deleteAlias(getContext(), Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             ActivityManager.getInstance().exit();
-                            intent = new Intent(getContext(), LoginActivity.class);
+                            intent = new Intent(getContext(), NewLoginActivity.class);
                             startActivity(intent);
                             getActivity().finish();
                         }

@@ -1,10 +1,12 @@
 package com.ztkj.wky.zhuantou.landing;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,18 +15,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
-import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
-import com.ztkj.wky.zhuantou.R;
-import com.ztkj.wky.zhuantou.bean.ZcBean;
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.MainActivity;
+import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
+import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
+import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
+import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.DlBean;
+import com.ztkj.wky.zhuantou.bean.ZcBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 public class DxYzActivity extends AppCompatActivity implements SecurityCodeView.InputCompleteListener {
 
@@ -46,8 +54,11 @@ public class DxYzActivity extends AppCompatActivity implements SecurityCodeView.
     private String url = StringUtils.jiekouqianzui + "Shortmessage/Verification";
     private String urlmsg = StringUtils.jiekouqianzui + "Shortmessage/send_code";
     private String phone = "";
-    private String source, realName;
+    private String TAG = "DxYzActivity";
+    private SharedPreferencesHelper sharedPreferencesHelper;
+    private SharedPreferencesHelper sp;
 
+    @SuppressLint("HandlerLeak")
     private Handler mCountHandler = new Handler() {
 
         @Override
@@ -74,10 +85,10 @@ public class DxYzActivity extends AppCompatActivity implements SecurityCodeView.
         setContentView(R.layout.activity_dx_yz);
         ActivityManager.getInstance().addActivity(this);
         ButterKnife.bind(this);
+        sharedPreferencesHelper = new SharedPreferencesHelper(this, "anhua");
+        sp = new SharedPreferencesHelper(this, "Create_team");
         intent2 = getIntent();
         phone = intent2.getStringExtra("phone");
-        source = intent2.getStringExtra("source");
-        realName = intent2.getStringExtra("realName");
         setListener();
     }
 
@@ -113,18 +124,62 @@ public class DxYzActivity extends AppCompatActivity implements SecurityCodeView.
 
                     @Override
                     public void onResponse(String response) {
+                        Log.e(TAG, "onResponse: " + response);
                         Gson gson = new Gson();
                         ZcBean zcBean = gson.fromJson(response, ZcBean.class);
                         if (zcBean.getErrno().equals("200")) {
-                            intent = new Intent(DxYzActivity.this, PasswordActivity.class);
-                            intent.putExtra("phone", phone);
-                            intent.putExtra("source", source);
-                            intent.putExtra("realName", realName);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            showToast(zcBean.getErrmsg());
-                            editSecurityCode.clearEditText();
+
+                            OkHttpUtils.post().url(Contents.CODELOGIN)
+                                    .addParams("phone", phone)
+                                    .addParams("addtag", JPushInterface.getRegistrationID(DxYzActivity.this))
+                                    .build().execute(new StringCallback() {
+                                @Override
+                                public void onError(Request request, Exception e) {
+
+                                }
+
+                                @Override
+                                public void onResponse(String response) {
+                                    Log.e("LoginActivity", "onResponse: " + response);
+                                    Gson gson = new Gson();
+                                    DlBean dlBean = gson.fromJson(response, DlBean.class);
+                                    Log.d("log111", response);
+                                    if (dlBean.getErrno().equals("200")) {
+                                        SPUtils.getInstance().put("token", dlBean.getData().getToken());
+                                        SPUtils.getInstance().put("uid", dlBean.getData().getUid());
+                                        SPUtils.getInstance().put("realname", dlBean.getData().getUsername());
+                                        SPUtils.getInstance().put("phone", dlBean.getData().getPhone());
+                                        SPUtils.getInstance().put("cid", dlBean.getData().getCid());
+
+                                        sharedPreferencesHelper.put("uid", dlBean.getData().getUid());
+                                        sharedPreferencesHelper.put("username", dlBean.getData().getName());
+                                        sharedPreferencesHelper.put("realname", dlBean.getData().getUsername());
+                                        sharedPreferencesHelper.put("phone", dlBean.getData().getPhone());
+//                                        sharedPreferencesHelper.put("password", loginEdt2.getText().toString().trim());
+                                        sharedPreferencesHelper.put("type", dlBean.getData().getType());
+                                        sharedPreferencesHelper.put("token", dlBean.getData().getToken());
+
+                                        sharedPreferencesHelper.put("userhead", dlBean.getData().getHead());
+                                        sp.put("Create_team_cid", dlBean.getData().getCid());
+                                        sp.put("Create_team_name", dlBean.getData().getTeam_name());
+//                            Log.e(TAG, "onResponse: "+ sp.getSharedPreference("Create_team_name",""));
+                                        sp.put("Create_team_logo", dlBean.getData().getTeam_logo());
+                                        sp.put("Create_team_jurisdiction", dlBean.getData().getJurisdiction());
+
+
+                                        //极光推送
+                                        JPushInterface.setAlias(DxYzActivity.this, Integer.parseInt(dlBean.getData().getUid()), dlBean.getData().getUid());
+                                        intent = new Intent(DxYzActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        showToast(zcBean.getErrmsg());
+                                        editSecurityCode.clearEditText();
+
+                                    }
+                                }
+                            });
+
                         }
                     }
                 });
@@ -138,7 +193,6 @@ public class DxYzActivity extends AppCompatActivity implements SecurityCodeView.
         OkHttpUtils.post()
                 .url(urlmsg)
                 .addParams("phone", phone)
-                .addParams("source", source)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -147,7 +201,7 @@ public class DxYzActivity extends AppCompatActivity implements SecurityCodeView.
 
                     @Override
                     public void onResponse(String response) {
-
+                        Log.e(TAG, "onResponse: " + response);
                         Gson gson = new Gson();
                         ZcBean zcBean = gson.fromJson(response, ZcBean.class);
                         if (zcBean.getErrno().equals("200")) {
