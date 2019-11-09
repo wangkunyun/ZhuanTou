@@ -88,11 +88,13 @@ public class GoOutDetials extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_go_out_detials);
         ButterKnife.bind(this);
-        toolbarTitle.setText("用车申请");
+        toolbarTitle.setText("外出申请");
         intent = getIntent();
         id = intent.getStringExtra("id");
         head = intent.getStringExtra("head");
         discover = intent.getStringExtra("discover");
+        String name = intent.getStringExtra("name");
+        detailsReportName.setText(name);
         //获取token和id
         sharedPreferencesHelper = new SharedPreferencesHelper(this, "anhua");
         token = (String) sharedPreferencesHelper.getSharedPreference("token", "");

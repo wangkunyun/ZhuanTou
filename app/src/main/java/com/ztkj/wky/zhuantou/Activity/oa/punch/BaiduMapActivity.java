@@ -49,6 +49,9 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.PoiListAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,6 +87,7 @@ public class BaiduMapActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baidu_map);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         refresh_localtion.setOnClickListener(this);
         bigsearch_back.setOnClickListener(this);
         confirm.setOnClickListener(this);
@@ -119,9 +123,9 @@ public class BaiduMapActivity extends AppCompatActivity
         map = bmapView.getMap();
         bdLocationUtils = new BDLocationUtils(BaiduMapActivity.this);
         bdLocationUtils.doLocation();
-        if (Contents.LOCATION != null) {
-            setAdress(Contents.LOCATION);
-        }
+//        if (Contents.LOCATION != null) {
+//            setAdress(Contents.LOCATION);
+//        }
         // 创建poi检索实例，注册搜索事件监听
         mPoiSearch = PoiSearch.newInstance();
         mPoiSearch.setOnGetPoiSearchResultListener(this);
@@ -250,7 +254,7 @@ public class BaiduMapActivity extends AppCompatActivity
     private void initMsg(String locationAdreess) {
         MessageDialog.build(BaiduMapActivity.this)
                 .setTitle("提示")
-                .setMessage("是否使用【"+locationAdreess+"】为考勤地点")
+                .setMessage("是否使用【" + locationAdreess + "】为考勤地点")
                 .setOkButton("确定", new OnDialogButtonClickListener() {
                     @Override
                     public boolean onClick(BaseDialog baseDialog, View v) {
@@ -268,7 +272,7 @@ public class BaiduMapActivity extends AppCompatActivity
     }
 
     private void setAdress(String addres) {
-        address=addres;
+        address = addres;
         tv_cur_dingwei.setText("[当前位置]：" + addres);
     }
 
@@ -352,6 +356,10 @@ public class BaiduMapActivity extends AppCompatActivity
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void messageEventBus(String event) {
+        setAdress(event);
+    }
 
     @Override
     protected void onDestroy() {
@@ -359,6 +367,7 @@ public class BaiduMapActivity extends AppCompatActivity
         bdLocationUtils.stopLoacation();
         bmapView.onDestroy();
         bmapView = null;
+        EventBus.getDefault().unregister(this);
     }
 }
 

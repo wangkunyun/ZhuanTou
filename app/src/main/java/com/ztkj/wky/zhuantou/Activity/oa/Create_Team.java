@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -176,6 +177,7 @@ public class Create_Team extends AppCompatActivity {
                     Toast.makeText(Create_Team.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                     JPushInterface.deleteAlias(Create_Team.this, Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
+                    SPUtils.getInstance().clear();
                     ActivityManager.getInstance().exit();
                     intent = new Intent(Create_Team.this, NewLoginActivity.class);
                     startActivity(intent);

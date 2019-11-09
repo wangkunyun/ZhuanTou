@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -49,7 +50,7 @@ public class HaveApply extends Fragment {
     private String token;
     private String cid;
     private Intent intent;
-    private String sp_apply_type;
+    private String sp_apply_type, sp_apply_isAppover, url;
     private String TAG = "HaveApply";
     private List<AllApplyBean.DataBean> data;
     private String discover;
@@ -72,7 +73,6 @@ public class HaveApply extends Fragment {
         //获取type
         sp_apply = new SharedPreferencesHelper(getActivity(), "apply");
         sp_apply_type = (String) sp_apply.getSharedPreference("sp_apply_type", "0");
-        request();
 
 
         return view;
@@ -84,16 +84,21 @@ public class HaveApply extends Fragment {
         //获取type
         sp_apply = new SharedPreferencesHelper(getActivity(), "apply");
         sp_apply_type = (String) sp_apply.getSharedPreference("sp_apply_type", "0");
+        sp_apply_isAppover = (String) sp_apply.getSharedPreference("apply_isAppover", "0");
+        if (sp_apply_isAppover.equals("0")) {
+            url = Contents.HAVEAPPLY;
+        } else if (sp_apply_isAppover.equals("1")) {
+            url = Contents.HAVEEXAME;
+        }
         Log.e(TAG, "onResume: " + sp_apply_type);
-        request();
+        request(url);
     }
 
 
-    private void request() {
+    private void request(String url) {
         Log.e(TAG, "request: qingqiuqingiuq" + token + "==" + uid + "==" + cid + "==" + sp_apply_type);
-        Log.e(TAG, "request: 我请求的哪个接口," + Contents.HAVEAPPLY);
         OkHttpUtils.post()
-                .url(Contents.HAVEAPPLY)
+                .url(url)
                 .addParams("token", token)
                 .addParams("uid", uid)
                 .addParams("cid", cid)
@@ -122,6 +127,7 @@ public class HaveApply extends Fragment {
                     Toast.makeText(getActivity(), "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                     JPushInterface.deleteAlias(getActivity(), Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
+                    SPUtils.getInstance().clear();
                     ActivityManager.getInstance().exit();
                     intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);

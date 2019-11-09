@@ -53,6 +53,9 @@ public class ReceiveReportAdapter extends RecyclerView.Adapter<ReceiveReportAdap
         Glide.with(context).load(data.get(i).getHead())
                 .apply(options)
                 .into(viewHolder.item_report_img_head);
+        if (data.get(i).getAlready_read().equals("0")) {
+            viewHolder.item_reportRedDot.setVisibility(View.VISIBLE);
+        }
         viewHolder.item_report_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,9 +98,10 @@ public class ReceiveReportAdapter extends RecyclerView.Adapter<ReceiveReportAdap
         return data.size();
     }
 
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView item_report_name, item_report_time, item_report_content;
+        private TextView item_report_name, item_report_time, item_report_content, item_reportRedDot;
         private ImageView item_report_img_head;
         private RelativeLayout item_report_relative;
 
@@ -109,7 +113,7 @@ public class ReceiveReportAdapter extends RecyclerView.Adapter<ReceiveReportAdap
             item_report_content = itemView.findViewById(R.id.item_report_content);
             item_report_img_head = itemView.findViewById(R.id.item_report_img_head);
             item_report_relative = itemView.findViewById(R.id.item_report_relative);
-
+            item_reportRedDot = itemView.findViewById(R.id.item_reportRedDot);
 
         }
     }

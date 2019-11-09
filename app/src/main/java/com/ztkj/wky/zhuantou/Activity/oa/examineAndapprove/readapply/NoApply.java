@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -71,16 +72,9 @@ public class NoApply extends Fragment {
         //获取type
         sp_apply = new SharedPreferencesHelper(getActivity(), "apply");
         sp_apply_type = (String) sp_apply.getSharedPreference("sp_apply_type", "0");
-        sp_apply_isAppover = (String) sp_apply.getSharedPreference("apply_isAppover", "0");
 
 
-        if (sp_apply_isAppover.equals("0")) {
-            url = Contents.NOEAPPLY;
-        } else if (sp_apply_isAppover.equals("1")) {
-            url = Contents.COPYMINE;
-        }
 
-        request(url);
 
         return view;
     }
@@ -91,9 +85,9 @@ public class NoApply extends Fragment {
         //获取type
         sp_apply = new SharedPreferencesHelper(getActivity(), "apply");
         sp_apply_type = (String) sp_apply.getSharedPreference("sp_apply_type", "0");
-        Log.e(TAG, "onResume: " + sp_apply_type);
+        sp_apply_isAppover = (String) sp_apply.getSharedPreference("apply_isAppover", "0");
         if (sp_apply_isAppover.equals("0")) {
-            url = Contents.NOEAPPLY;
+            url = Contents.NOTAPPLY;
         } else if (sp_apply_isAppover.equals("1")) {
             url = Contents.COPYMINE;
         }
@@ -133,6 +127,7 @@ public class NoApply extends Fragment {
                     Toast.makeText(getActivity(), "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                     JPushInterface.deleteAlias(getActivity(), Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
+                    SPUtils.getInstance().clear();
                     ActivityManager.getInstance().exit();
                     intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);

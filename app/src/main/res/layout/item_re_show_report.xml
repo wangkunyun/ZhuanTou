@@ -19,6 +19,16 @@
         android:textSize="18sp" />
 
     <TextView
+        android:id="@+id/item_reportRedDot"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@id/item_report_name"
+        android:background="@drawable/yuanjiaobtnmeaage"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/item_report_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

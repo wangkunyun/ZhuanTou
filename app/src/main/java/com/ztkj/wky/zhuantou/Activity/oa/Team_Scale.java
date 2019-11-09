@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -98,6 +99,7 @@ public class Team_Scale extends AppCompatActivity {
                             Toast.makeText(Team_Scale.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                             JPushInterface.deleteAlias(Team_Scale.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
+                            SPUtils.getInstance().clear();
                             ActivityManager.getInstance().exit();
                             intent = new Intent(Team_Scale.this, NewLoginActivity.class);
                             startActivity(intent);

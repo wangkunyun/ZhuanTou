@@ -37,16 +37,31 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
-
-    <com.hjm.bottomtabbar.BottomTabBar
-        android:id="@+id/bottom_tab_bar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        hjm:tab_selected_color="@color/lanse"
-        app:tab_img_font_padding="0px"
-        app:tab_padding_top="10dp"
-        app:tab_bar_background="#FFFFFF"
-        app:tab_divider_background="#FFE5E5E5"
-        hjm:tab_unselected_color="#FF999999"/>
+        android:layout_height="match_parent">
+
+        <com.hjm.bottomtabbar.BottomTabBar
+            android:id="@+id/bottom_tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:tab_bar_background="#FFFFFF"
+            app:tab_divider_background="#FFE5E5E5"
+            app:tab_img_font_padding="0px"
+            app:tab_padding_top="10dp"
+            hjm:tab_selected_color="@color/lanse"
+            hjm:tab_unselected_color="#FF999999" />
+
+        <TextView
+            android:id="@+id/ReportRedDot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="78dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/yuanjiaobtnmeaage"
+            android:visibility="gone" />
+    </RelativeLayout>
 
 </LinearLayout>

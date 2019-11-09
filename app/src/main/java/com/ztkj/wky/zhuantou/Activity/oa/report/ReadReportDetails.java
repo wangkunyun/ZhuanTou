@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -188,6 +189,7 @@ public class ReadReportDetails extends AppCompatActivity {
                     Toast.makeText(ReadReportDetails.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                     JPushInterface.deleteAlias(ReadReportDetails.this, Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
+                    SPUtils.getInstance().clear();
                     ActivityManager.getInstance().exit();
                     intent = new Intent(ReadReportDetails.this, NewLoginActivity.class);
                     startActivity(intent);

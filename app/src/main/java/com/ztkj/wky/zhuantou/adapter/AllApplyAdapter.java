@@ -160,6 +160,7 @@ public class AllApplyAdapter extends RecyclerView.Adapter<AllApplyAdapter.ViewHo
                         } else {
                             intent.putExtra("discover", "4");
                         }
+                        intent.putExtra("name", data.get(i).getUsername());
                         intent.putExtra("id", data.get(i).getId());
                         intent.putExtra("head", data.get(i).getHead());
                         context.startActivity(intent);
@@ -171,6 +172,7 @@ public class AllApplyAdapter extends RecyclerView.Adapter<AllApplyAdapter.ViewHo
                         } else {
                             intent.putExtra("discover", "4");
                         }
+                        intent.putExtra("name", data.get(i).getUsername());
                         intent.putExtra("id", data.get(i).getId());
                         intent.putExtra("head", data.get(i).getHead());
                         context.startActivity(intent);
@@ -182,6 +184,7 @@ public class AllApplyAdapter extends RecyclerView.Adapter<AllApplyAdapter.ViewHo
                         } else {
                             intent.putExtra("discover", "4");
                         }
+                        intent.putExtra("name", data.get(i).getUsername());
                         intent.putExtra("id", data.get(i).getId());
                         intent.putExtra("head", data.get(i).getHead());
                         context.startActivity(intent);
@@ -193,6 +196,7 @@ public class AllApplyAdapter extends RecyclerView.Adapter<AllApplyAdapter.ViewHo
                         } else {
                             intent.putExtra("discover", "4");
                         }
+                        intent.putExtra("name", data.get(i).getUsername());
                         intent.putExtra("id", data.get(i).getId());
                         intent.putExtra("head", data.get(i).getHead());
                         context.startActivity(intent);
@@ -204,6 +208,7 @@ public class AllApplyAdapter extends RecyclerView.Adapter<AllApplyAdapter.ViewHo
                         } else {
                             intent.putExtra("discover", "4");
                         }
+                        intent.putExtra("name", data.get(i).getUsername());
                         intent.putExtra("id", data.get(i).getId());
                         intent.putExtra("head", data.get(i).getHead());
                         context.startActivity(intent);
@@ -215,6 +220,7 @@ public class AllApplyAdapter extends RecyclerView.Adapter<AllApplyAdapter.ViewHo
                         } else {
                             intent.putExtra("discover", "4");
                         }
+                        intent.putExtra("name", data.get(i).getUsername());
                         intent.putExtra("id", data.get(i).getId());
                         intent.putExtra("head", data.get(i).getHead());
                         context.startActivity(intent);
@@ -226,6 +232,7 @@ public class AllApplyAdapter extends RecyclerView.Adapter<AllApplyAdapter.ViewHo
                         } else {
                             intent.putExtra("discover", "4");
                         }
+                        intent.putExtra("name", data.get(i).getUsername());
                         intent.putExtra("id", data.get(i).getId());
                         intent.putExtra("head", data.get(i).getHead());
                         context.startActivity(intent);
@@ -237,6 +244,7 @@ public class AllApplyAdapter extends RecyclerView.Adapter<AllApplyAdapter.ViewHo
                         } else {
                             intent.putExtra("discover", "4");
                         }
+                        intent.putExtra("name", data.get(i).getUsername());
                         intent.putExtra("id", data.get(i).getId());
                         intent.putExtra("head", data.get(i).getHead());
                         context.startActivity(intent);
@@ -248,6 +256,7 @@ public class AllApplyAdapter extends RecyclerView.Adapter<AllApplyAdapter.ViewHo
                         } else {
                             intent.putExtra("discover", "4");
                         }
+                        intent.putExtra("name", data.get(i).getUsername());
                         intent.putExtra("id", data.get(i).getId());
                         intent.putExtra("head", data.get(i).getHead());
                         context.startActivity(intent);

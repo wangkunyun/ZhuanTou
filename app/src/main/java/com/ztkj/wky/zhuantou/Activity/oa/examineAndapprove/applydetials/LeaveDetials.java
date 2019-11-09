@@ -89,11 +89,13 @@ public class LeaveDetials extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave_detials);
         ButterKnife.bind(this);
-        toolbarTitle.setText("用车申请");
+        toolbarTitle.setText("请假申请");
         intent = getIntent();
         id = intent.getStringExtra("id");
         head = intent.getStringExtra("head");
         discover = intent.getStringExtra("discover");
+        String name = intent.getStringExtra("name");
+        detailsReportName.setText(name);
         //获取token和id
         sharedPreferencesHelper = new SharedPreferencesHelper(this, "anhua");
         token = (String) sharedPreferencesHelper.getSharedPreference("token", "");

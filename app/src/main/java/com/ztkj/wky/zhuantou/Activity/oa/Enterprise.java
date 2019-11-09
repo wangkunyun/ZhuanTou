@@ -27,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
@@ -413,6 +414,7 @@ public class Enterprise extends AppCompatActivity {
                         Toast.makeText(Enterprise.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                         JPushInterface.deleteAlias(Enterprise.this, Integer.parseInt(uid));
                         sharedPreferencesHelper.clear();
+                        SPUtils.getInstance().clear();
                         intent = new Intent(Enterprise.this, NewLoginActivity.class);
                         startActivity(intent);
                         ActivityManager.getInstance().exit();

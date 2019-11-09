@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -67,12 +69,19 @@ public class ReceiveReport extends Fragment {
         sp_create_team = new SharedPreferencesHelper(getActivity(), "Create_team");
         cid = (String) sp_create_team.getSharedPreference("Create_team_cid", "");
 
-        request();
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        request();
+    }
+
+
     private void request() {
+        Log.e(TAG, "request: " + token + uid + cid);
         OkHttpUtils.post()
                 .url(Contents.RECEIVEREPORT)
                 .addParams("token", token)
@@ -81,11 +90,12 @@ public class ReceiveReport extends Fragment {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Request request, Exception e) {
-
+                Log.e(TAG, "onError: " + e.getMessage());
             }
 
             @Override
             public void onResponse(String response) {
+                Log.e(TAG, "我收到的onResponse: " + response);
                 ReceiveReportBean receiveReportBean = new Gson().fromJson(response, ReceiveReportBean.class);
                 if (receiveReportBean.getErrno().equals("200")) {
                     data = receiveReportBean.getData();
@@ -102,6 +112,7 @@ public class ReceiveReport extends Fragment {
                     Toast.makeText(getActivity(), "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                     JPushInterface.deleteAlias(getActivity(), Integer.parseInt(uid));
                     sharedPreferencesHelper.clear();
+                    SPUtils.getInstance().clear();
                     ActivityManager.getInstance().exit();
                     intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);

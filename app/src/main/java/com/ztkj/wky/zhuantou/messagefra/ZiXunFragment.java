@@ -15,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -119,6 +120,7 @@ public class ZiXunFragment extends Fragment {
                             Toast.makeText(getContext(),"您的账号已在其他手机登录，如非本人操作，请修改密码",Toast.LENGTH_LONG).show();
                             JPushInterface.deleteAlias(getContext(), Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
+                            SPUtils.getInstance().clear();
                             ActivityManager.getInstance().exit();
                             intent = new Intent(getContext(), NewLoginActivity.class);
                             startActivity(intent);

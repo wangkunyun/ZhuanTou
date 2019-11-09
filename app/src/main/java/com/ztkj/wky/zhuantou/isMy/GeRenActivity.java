@@ -402,6 +402,7 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
                             Toast.makeText(GeRenActivity.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                             JPushInterface.deleteAlias(GeRenActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
+                            SPUtils.getInstance().clear();
                             ActivityManager.getInstance().exit();
                             intent = new Intent(GeRenActivity.this, NewLoginActivity.class);
                             startActivity(intent);
@@ -655,6 +656,7 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
                                 Toast.makeText(GeRenActivity.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                                 JPushInterface.deleteAlias(GeRenActivity.this, Integer.parseInt(uid));
                                 sharedPreferencesHelper.clear();
+                                SPUtils.getInstance().clear();
                                 intent = new Intent(GeRenActivity.this, NewLoginActivity.class);
                                 startActivity(intent);
                                 ActivityManager.getInstance().exit();

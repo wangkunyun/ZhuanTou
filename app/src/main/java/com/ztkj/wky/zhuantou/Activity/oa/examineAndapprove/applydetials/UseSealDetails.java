@@ -96,6 +96,8 @@ public class UseSealDetails extends AppCompatActivity {
         id = intent.getStringExtra("id");
         head = intent.getStringExtra("head");
         discover = intent.getStringExtra("discover");
+        String name = intent.getStringExtra("name");
+        detailsReportName.setText(name);
         //获取token和id
         sharedPreferencesHelper = new SharedPreferencesHelper(this, "anhua");
         token = (String) sharedPreferencesHelper.getSharedPreference("token", "");

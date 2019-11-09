@@ -90,6 +90,7 @@ public class PunchRecordFragment extends Fragment {
     private SharedPreferencesHelper sharedPreferencesHelper, sp_create_team;
     private String uid, token, cid;
     private String TAG = "PunchRecordFragment";
+    private String addTime;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -138,6 +139,7 @@ public class PunchRecordFragment extends Fragment {
 
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(String response) {
                 Log.e(TAG, "onResponse: " + response);
@@ -146,6 +148,16 @@ public class PunchRecordFragment extends Fragment {
                     List<PunchInListBean.DataBean> data = punchInListBean.getData();
                     for (int i = 0; i < data.size(); i++) {
                         if (data.get(i).getDay().equals(day)) {
+                            addTime = data.get(i).getAddtime();
+                            //设置今日时长
+                            if (data.get(i).getStart_time().equals("0") || data.get(i).getEnd_time().equals("0")) {
+                                tvTodayHours.setText("今日工时：0小时");
+                            } else {
+                                int todayHour = Integer.parseInt(data.get(i).getEnd_time()) - Integer.parseInt(data.get(i).getStart_time());
+                                tvTodayHours.setText("今日工时：" + todayHour / 3600 + "小时");
+                            }
+
+                            //判断设置出勤
                             if (!data.get(i).getStart_time().equals("0")) {
                                 tvWorkOn.setVisibility(View.VISIBLE);
                                 String stron = timeStamp2Date(Integer.parseInt(data.get(i).getStart_time()), "HH:mm");
@@ -160,13 +172,18 @@ public class PunchRecordFragment extends Fragment {
                                     tvApplyWorkOn.setVisibility(View.VISIBLE);
                                     tvLateWorkOn.setText("外勤");
                                 }
+                                if (data.get(i).getLate().equals("0") && data.get(i).getStart_field_address().equals("0")) {
+                                    tvLateWorkOn.setVisibility(View.GONE);
+                                    tvApplyWorkOn.setVisibility(View.GONE);
+                                }
                             } else {
                                 tvWorkOn.setVisibility(View.GONE);
                                 tvApplyWorkOn.setVisibility(View.VISIBLE);
-                                tvLateWorkOn.setVisibility(View.GONE);
+                                tvLateWorkOn.setVisibility(View.VISIBLE);
+                                tvLateWorkOn.setText("缺卡");
                             }
 
-                            if (data.get(i).getEnd_time().equals("0")) {
+                            if (!data.get(i).getEnd_time().equals("0")) {
                                 tvWorkOff.setVisibility(View.VISIBLE);
                                 String stroff = timeStamp2Date(Integer.parseInt(data.get(i).getEnd_time()), "HH:mm");
                                 tvWorkOff.setText("下班打卡 " + stroff);
@@ -178,15 +195,30 @@ public class PunchRecordFragment extends Fragment {
                                 if (!data.get(i).getEnd_field_address().equals("0")) {
                                     tvLateWorkOff.setVisibility(View.VISIBLE);
                                     tvApplyWorkOff.setVisibility(View.VISIBLE);
-                                    tvLateWorkOn.setText("外勤");
+                                    tvLateWorkOff.setText("外勤");
                                 }
-                            }else {
+                                if (data.get(i).getLeave_early().equals("0") && data.get(i).getEnd_field_address().equals("0")) {
+                                    tvLateWorkOff.setVisibility(View.GONE);
+                                    tvApplyWorkOff.setVisibility(View.GONE);
+                                }
+                            } else {
                                 tvWorkOff.setVisibility(View.GONE);
                                 tvApplyWorkOff.setVisibility(View.VISIBLE);
-                                tvLateWorkOff.setVisibility(View.GONE);
+                                tvLateWorkOff.setVisibility(View.VISIBLE);
+                                tvLateWorkOff.setText("缺卡");
                             }
-
                         }
+//                        else {
+//                            Log.e(TAG, "onResponse: " + day + "没有数据");
+//                            tvWorkOn.setVisibility(View.GONE);
+//                            tvWorkOff.setVisibility(View.GONE);
+//                            tvLateWorkOn.setVisibility(View.GONE);
+//                            tvLateWorkOff.setVisibility(View.GONE);
+//                            tvApplyWorkOn.setVisibility(View.GONE);
+//                            tvApplyWorkOff.setVisibility(View.GONE);
+//                            break;
+//                        }
+
                     }
                 }
             }
@@ -196,7 +228,7 @@ public class PunchRecordFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        requestPunchInInfo();
+//        requestPunchInInfo();
 
     }
 
@@ -270,9 +302,17 @@ public class PunchRecordFragment extends Fragment {
 //                intent = new Intent(getActivity(), Statistical_Table.class);
                 startActivity(intent);
                 break;
-            case R.id.tv_ApplyWorkOn:
+            case R.id.tv_ApplyWorkOn: //上午的补卡申请
+                intent = new Intent(getActivity(), ApplyReissuePunchinActivity.class);
+                intent.putExtra("time", addTime);
+                intent.putExtra("type", "1");
+                startActivity(intent);
                 break;
-            case R.id.tv_ApplyWorkOff:
+            case R.id.tv_ApplyWorkOff://下午的补卡申请
+                intent = new Intent(getActivity(), ApplyReissuePunchinActivity.class);
+                intent.putExtra("time", addTime);
+                intent.putExtra("type", "2");
+                startActivity(intent);
                 break;
             case R.id.img_click_lase:
                 calender.toLastPager();

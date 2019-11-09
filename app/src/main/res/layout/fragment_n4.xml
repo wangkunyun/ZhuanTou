@@ -282,6 +282,15 @@
                         android:text="审批"
                         android:textColor="@color/t6"
                         android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/ExamineRedDot"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="15dp"
+                        android:background="@drawable/yuanjiaobtnmeaage"
+                        android:visibility="gone" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -307,6 +316,15 @@
                         android:text="日志"
                         android:textColor="@color/t6"
                         android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/ReportRedDot"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="15dp"
+                        android:background="@drawable/yuanjiaobtnmeaage"
+                        android:visibility="gone" />
                 </RelativeLayout>
 
 
@@ -331,10 +349,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="更多服务"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginEnd="16dp"
+                    android:text="更多服务"
                     android:textColor="#999999"
                     android:textSize="16sp" />
 

@@ -426,6 +426,7 @@ public class SzActivity extends AppCompatActivity {
                                     Toast.makeText(SzActivity.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
                                     JPushInterface.deleteAlias(SzActivity.this, Integer.parseInt(uid));
                                     sharedPreferencesHelper.clear();
+                                    SPUtils.getInstance().clear();
                                     ActivityManager.getInstance().exit();
                                     intent = new Intent(SzActivity.this, NewLoginActivity.class);
                                     startActivity(intent);

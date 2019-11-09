@@ -80,7 +80,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="69dp"
             android:layout_marginRight="32dp"
-            android:src="@mipmap/oval" />
+            android:src="@mipmap/oval2" />
 
         <TextView
             android:id="@+id/ps_xiahua1"

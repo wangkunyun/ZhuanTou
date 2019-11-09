@@ -39,11 +39,14 @@ import com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.ApplyFor;
 import com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.apply.Examine;
 import com.ztkj.wky.zhuantou.Activity.oa.punch.PunchInTab;
 import com.ztkj.wky.zhuantou.Activity.oa.report.ReportTab;
+import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.AllApplyBean;
 import com.ztkj.wky.zhuantou.bean.GetCompanyAnnBean;
+import com.ztkj.wky.zhuantou.bean.ReportRedDot;
 import com.ztkj.wky.zhuantou.bean.ScheduleListBean;
 import com.ztkj.wky.zhuantou.bean.ServersListBean;
 import com.ztkj.wky.zhuantou.bean.WhatDaysBean;
@@ -166,6 +169,10 @@ public class N4Fragment extends Fragment {
     TextView tvN4Examine4;
     @BindView(R.id.n4_examine4)
     RelativeLayout n4Examine4;
+    @BindView(R.id.ExamineRedDot)
+    TextView ExamineRedDot;
+    @BindView(R.id.ReportRedDot)
+    TextView ReportRedDot;
 
     private SharedPreferencesHelper sp_apply;
     private SharedPreferencesHelper sharedPreferencesHelper;
@@ -260,7 +267,63 @@ public class N4Fragment extends Fragment {
         requestFuwu();
         //==========================请求企业服务列表========================
 
+
         return view;
+    }
+
+    private void requestRedDot() {
+        //请求审批小红点
+        OkHttpUtils.post()
+                .url(Contents.NOTEXAME)
+                .addParams("token", token)
+                .addParams("uid", uid)
+                .addParams("cid", cid)
+                .addParams("type", "0")
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "onResponse: " + response);
+                AllApplyBean allApplyBean = new Gson().fromJson(response, AllApplyBean.class);
+                if (allApplyBean.getErrno().equals("200")) {
+                    List<AllApplyBean.DataBean> data = allApplyBean.getData();
+                    if (data.size() != 0) {
+                        ExamineRedDot.setVisibility(View.VISIBLE);
+                    } else {
+                        ExamineRedDot.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
+        //请求日志小红点
+        OkHttpUtils.post()
+                .url(Contents.REPORTREDDOT)
+                .addParams("token", token)
+                .addParams("uid", uid)
+                .addParams("cid", cid)
+                .addParams("type", "0")
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                ReportRedDot reportRedDot = GsonUtil.gsonToBean(response, ReportRedDot.class);
+                int num = reportRedDot.getData().getNum();
+                Contents.reportReddotNum = num;
+                if (num != 0) {
+                    ReportRedDot.setVisibility(View.VISIBLE);
+                } else {
+                    ReportRedDot.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     private void requestFuwu() {
@@ -381,8 +444,11 @@ public class N4Fragment extends Fragment {
         if (!StringUtils.isEmpty(uid) && !StringUtils.isEmpty(token)) {
             requestTongzhi();
         }
-
+        //==========================小红点========================
+        requestRedDot();
+        //==========================小红点========================
     }
+
 
     private void requestTongzhi() {
         Log.e(TAG, "requestTongzhi: " + uid + "====" + token + "====" + cid);
@@ -524,17 +590,6 @@ public class N4Fragment extends Fragment {
                 break;
 
 
-            case R.id.n4_apply://申请
-                if (StringUtils.isEmpty(uid)) {
-                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), NewLoginActivity.class);
-                    startActivity(intent);
-                    return;
-                }
-                sp_apply.put("apply_isAppover", "0");
-                intent = new Intent(getContext(), ApplyFor.class);
-                startActivity(intent);
-                break;
             case R.id.n4_log://日志
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
@@ -549,6 +604,18 @@ public class N4Fragment extends Fragment {
                     startActivity(intent);
                 }
 
+                break;
+
+            case R.id.n4_apply://申请
+                if (StringUtils.isEmpty(uid)) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                sp_apply.put("apply_isAppover", "0");
+                intent = new Intent(getContext(), ApplyFor.class);
+                startActivity(intent);
                 break;
             case R.id.n4_examine://审批
                 if (StringUtils.isEmpty(uid)) {

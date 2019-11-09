@@ -19,8 +19,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.baidu.mapapi.SDKInitializer;
 import com.google.gson.Gson;
 import com.hyphenate.easeui.utils.SharedPreferencesHelper;
 import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
@@ -29,11 +29,16 @@ import com.kongzue.dialog.v3.MessageDialog;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.MyApplication;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.CompanyPunchInTime;
 import com.ztkj.wky.zhuantou.bean.PunchInBean;
 import com.ztkj.wky.zhuantou.bean.ThreeAndOneBean;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -124,7 +129,7 @@ public class PunchInFragment extends Fragment {
         sp_create_team = new SharedPreferencesHelper(getContext(), "Create_team");
         cid = (String) sp_create_team.getSharedPreference("Create_team_cid", "");
 
-
+        EventBus.getDefault().register(this);
         //===================設置title====================
         layoutTitleTv.setText("打卡");
 
@@ -136,12 +141,28 @@ public class PunchInFragment extends Fragment {
         requestCompanyPunchInTime();//获取公司上下班时间
 
 
-        //================= 设置位置 ========================
-        tvLocalNow.setText(Contents.LOCATION);
+//        tvLocalNow.setText(Contents.LOCATION);
 
         return view;
     }
 
+//    @Override
+//    public void onHiddenChanged(boolean hidden) {
+////        super.onHiddenChanged(hidden);
+////        if (!hidden) {
+////            tvLocalNow.setText(Contents.LOCATION);
+////            Log.e(TAG, "onHiddenChanged: " + 1);
+////        }
+////
+////    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //================= 设置位置 ========================
+        tvLocalNow.setText(Contents.LOCATION);
+        Log.e(TAG, "onHiddenChanged: " + 2);
+    }
 
     private void requestPunchInfo() {
         OkHttpUtils.post().url(Contents.SANHEYIPANDUAN)
@@ -398,6 +419,7 @@ public class PunchInFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        EventBus.getDefault().unregister(this);
         unbinder.unbind();
 
     }
@@ -425,20 +447,25 @@ public class PunchInFragment extends Fragment {
             case R.id.tv_ClickApplyOffWork: //下午的补卡申请
                 intent = new Intent(getActivity(), ApplyReissuePunchinActivity.class);
                 String format2 = simDay.format(new Date().getTime());
+                Toast.makeText(getActivity(), format2, Toast.LENGTH_SHORT).show();
                 intent.putExtra("time", format2);
                 intent.putExtra("type", "2");
                 startActivity(intent);
                 break;
             case R.id.cl_ClickPunchIn: //打卡
-
                 requestPunchIn();
                 break;
             case R.id.tv_ClickReLocal: //重新定位
-                SDKInitializer.initialize(getContext());
+                MyApplication.bdLocationUtils.doLocation();
+
                 break;
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void messageEventBus(String event) {
+        tvLocalNow.setText(event);
+    }
 
     //打卡
     private void requestPunchIn() {
@@ -598,4 +625,6 @@ public class PunchInFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(new Date(time * 1000));
     }
+
+
 }

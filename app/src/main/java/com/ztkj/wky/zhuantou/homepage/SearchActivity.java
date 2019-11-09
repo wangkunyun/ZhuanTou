@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -123,6 +124,7 @@ public class SearchActivity extends AppCompatActivity {
                             Toast.makeText(SearchActivity.this,"您的账号已在其他手机登录，如非本人操作，请修改密码",Toast.LENGTH_LONG).show();
                             JPushInterface.deleteAlias(SearchActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
+                            SPUtils.getInstance().clear();
                             ActivityManager.getInstance().exit();
                             intent = new Intent(SearchActivity.this, NewLoginActivity.class);
                             startActivity(intent);

@@ -90,6 +90,8 @@ public class ReimbursementDetails extends AppCompatActivity {
         intent = getIntent();
         id = intent.getStringExtra("id");
         head = intent.getStringExtra("head");
+        String name = intent.getStringExtra("name");
+        detailsReportName.setText(name);
         //获取token和id
         sharedPreferencesHelper = new SharedPreferencesHelper(this, "anhua");
         token = (String) sharedPreferencesHelper.getSharedPreference("token", "");

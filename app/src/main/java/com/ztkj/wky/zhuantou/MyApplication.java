@@ -14,6 +14,7 @@ import com.hyphenate.push.PushListener;
 import com.kongzue.baseokhttp.util.BaseOkHttp;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+import com.ztkj.wky.zhuantou.MyUtils.BDLocationUtils;
 import com.ztkj.wky.zhuantou.huanxin.DemoHelper;
 
 import java.io.BufferedReader;
@@ -29,6 +30,7 @@ public class MyApplication extends Application {
     private static MyApplication instance;
     // login user name
     public final String PREF_USERNAME = "username";
+    public static BDLocationUtils bdLocationUtils;
 
     @Override
     public void onCreate() {
@@ -56,7 +58,10 @@ public class MyApplication extends Application {
 
 //================================== 百度地图 =====================================
         SDKInitializer.initialize(this);
+        bdLocationUtils = new BDLocationUtils(instance);
+        bdLocationUtils.doLocation();//开启定位
 //================================== 百度地图 =====================================
+
 
         huanxin();
     }

@@ -21,6 +21,7 @@ public class BDLocationUtils {
         mLocationClient = new LocationClient(context.getApplicationContext());
         //注册监听函数
         mLocationClient.registerLocationListener(myListener);
+        mLocationClient.start();
         // 初始化定位
         initLocation();
     }

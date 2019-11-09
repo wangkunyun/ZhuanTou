@@ -43,7 +43,6 @@ import com.youth.banner.loader.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.enterpriseService.TakeOutCodeActivity;
-import com.ztkj.wky.zhuantou.MyUtils.BDLocationUtils;
 import com.ztkj.wky.zhuantou.MyUtils.Colorstring;
 import com.ztkj.wky.zhuantou.MyUtils.HeadRefreshView;
 import com.ztkj.wky.zhuantou.MyUtils.LoadMoreView;
@@ -166,9 +165,7 @@ public class N1Fragment extends Fragment {
 
         updateApk();
 
-        BDLocationUtils bdLocationUtils = new BDLocationUtils(getActivity());
-        bdLocationUtils.doLocation();//开启定位
-        bdLocationUtils.mLocationClient.start();//开始定位
+
 
 
         gi();

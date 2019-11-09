@@ -385,11 +385,12 @@ public class ApplyLeave extends AppCompatActivity {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Request request, Exception e) {
-
+//                Log.e(TAG, "onError: " + e.getMessage());
             }
 
             @Override
             public void onResponse(String response) {
+//                Log.e(TAG, "onResponse: " + response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     Log.e(TAG, "onResponse: " + jsonObject.get("errno"));

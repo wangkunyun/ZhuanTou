@@ -5,7 +5,10 @@ import android.util.Log;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
+import com.ztkj.wky.zhuantou.MyApplication;
 import com.ztkj.wky.zhuantou.base.Contents;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -98,9 +101,11 @@ public class MyLocationListener implements BDLocationListener {
         String str = location.getAddrStr() + location.getLocationDescribe();
 
         String nStr = str.substring(2);
+        Log.i("BaiduLocationApiDem", "定位地点: ======" + nStr);
         if (!StringUtils.isEmpty(nStr)) {
             Contents.LOCATION = nStr;
         }
+        Log.i("BaiduLocationApiDem", " Contents.LOCATION: " + Contents.LOCATION);
 //        Log.e("BaiduLocationApiDem", "onReceiveLocation: " + str);
 //        Log.e("BaiduLocationApiDem", "onReceiveLocation: " + nStr);
 
@@ -109,5 +114,9 @@ public class MyLocationListener implements BDLocationListener {
         Contents.LONGITUDE = location.getLongitude();
         Contents.LATITUDE = location.getLatitude();
         Contents.NEARLOCATION = location.getLocationDescribe();
+        if (!StringUtils.isEmpty(Contents.LOCATION)) {
+            EventBus.getDefault().post(Contents.LOCATION);
+            MyApplication.bdLocationUtils.stopLoacation();
+        }
     }
 }

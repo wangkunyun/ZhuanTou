@@ -62,11 +62,11 @@ public class ReadApplyForFragment extends Fragment {
 
         List<String> titles = new ArrayList<>();
         titles.add("全部");
-        titles.add("已审批");
         titles.add("未审批");
+        titles.add("已审批");
         fragments.add(new AllApplyFor());
-        fragments.add(new HaveApply());
         fragments.add(new NoApply());
+        fragments.add(new HaveApply());
 
         xtablayoutAdapter = new XtablayoutAdapter(getFragmentManager(), fragments, titles);
         viewPager.setAdapter(xtablayoutAdapter);
