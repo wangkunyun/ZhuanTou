@@ -87,7 +87,7 @@ public class BaiduMapActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baidu_map);
         ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
+        org.greenrobot.eventbus.EventBus.getDefault().register(this);
         refresh_localtion.setOnClickListener(this);
         bigsearch_back.setOnClickListener(this);
         confirm.setOnClickListener(this);
