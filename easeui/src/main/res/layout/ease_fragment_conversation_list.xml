@@ -3,36 +3,56 @@
     xmlns:hyphenate="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_bg"
+    android:background="@color/white"
     android:orientation="vertical">
 
-	<com.hyphenate.easeui.widget.EaseTitleBar 
-	    android:id="@+id/title_bar"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    hyphenate:titleBarTitle="@string/session"
-	    />
-    
-    <include
-		android:visibility="gone"
-		layout="@layout/ease_search_bar" />
-    
-    <FrameLayout
+    <com.hyphenate.easeui.widget.EaseTitleBar
+        android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fl_error_item"
-        >
-    </FrameLayout>
+        hyphenate:titleBarTitle="@string/session" />
 
-
-    <com.hyphenate.easeui.widget.EaseConversationList
-        android:id="@+id/list"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        android:cacheColorHint="#00000000"
-        android:divider="@null"
-        hyphenate:cvsListPrimaryTextSize="16sp"
-         />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:background="@color/lanse"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"/>
+        <include
+            layout="@layout/ease_search_bar"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:visibility="gone"
+            android:id="@+id/fl_error_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></FrameLayout>
+
+        <RelativeLayout
+            android:paddingTop="5dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/yuanjiaobtn_24dp">
+
+
+            <com.hyphenate.easeui.widget.EaseConversationList
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                hyphenate:cvsListPrimaryTextSize="16sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
 
 </LinearLayout>
