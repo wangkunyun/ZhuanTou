@@ -36,8 +36,8 @@
     <color name="black_deep">#FF000000</color>
     <color name="btn_answer_pressed">#4ebcd3</color>
     <color name="btn_answer_normal">#2dafa3</color>
-	<color name="list_itease_secondary_color">#888888</color>
-	<color name="list_itease_primary_color">#000</color>
+	<color name="list_itease_secondary_color">#CCCCCC</color>
+	<color name="list_itease_primary_color">#333333</color>
 	<color name="holo_blue_bright">#ff00ddff</color>
 	<color name="holo_green_light">#ff99cc00</color>
 	<color name="holo_orange_light">#ffffbb33</color>
