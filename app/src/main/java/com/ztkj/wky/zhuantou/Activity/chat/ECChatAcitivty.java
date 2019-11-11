@@ -24,7 +24,7 @@ public class ECChatAcitivty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecchat_acitivty);
-        chatFragment = new EaseChatFragment();
+        chatFragment = new ChatFragment();
         chatFragment.setArguments(getIntent().getExtras());
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.ec_layout_container, chatFragment).commit();

@@ -15,7 +15,7 @@ import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.easeui.widget.EaseTitleBar;
 import com.ztkj.wky.zhuantou.R;
 
-public class EChatConversationList extends AppCompatActivity {
+public class EChatConversationList extends AppCompatActivity implements EaseConversationListFragment.finishActivityListen {
     private EaseTitleBar titleBar;
     private String TAG = "EChatConversationList";
 
@@ -43,5 +43,10 @@ public class EChatConversationList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void finishActivty() {
+        finish();
     }
 }

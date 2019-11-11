@@ -150,7 +150,6 @@ public class DxYzActivity extends AppCompatActivity implements SecurityCodeView.
                                         SPUtils.getInstance().put("realname", dlBean.getData().getUsername());
                                         SPUtils.getInstance().put("phone", dlBean.getData().getPhone());
                                         SPUtils.getInstance().put("cid", dlBean.getData().getCid());
-
                                         sharedPreferencesHelper.put("uid", dlBean.getData().getUid());
                                         sharedPreferencesHelper.put("username", dlBean.getData().getName());
                                         sharedPreferencesHelper.put("realname", dlBean.getData().getUsername());
@@ -158,7 +157,6 @@ public class DxYzActivity extends AppCompatActivity implements SecurityCodeView.
 //                                        sharedPreferencesHelper.put("password", loginEdt2.getText().toString().trim());
                                         sharedPreferencesHelper.put("type", dlBean.getData().getType());
                                         sharedPreferencesHelper.put("token", dlBean.getData().getToken());
-
                                         sharedPreferencesHelper.put("userhead", dlBean.getData().getHead());
                                         sp.put("Create_team_cid", dlBean.getData().getCid());
                                         sp.put("Create_team_name", dlBean.getData().getTeam_name());

@@ -173,7 +173,6 @@ public class AddressTeam extends Fragment {
                     public void onResponse(String response) {
                         Log.e(TAG, "onResponse: " + response);
                         AddressBookBean addressBookBean = new Gson().fromJson(response, AddressBookBean.class);
-
                         if (addressBookBean.getErrno().equals("200")) {
                             data = addressBookBean.getData();
                             AddressBookAdapter addressBookAdapter = new AddressBookAdapter(data, getActivity());

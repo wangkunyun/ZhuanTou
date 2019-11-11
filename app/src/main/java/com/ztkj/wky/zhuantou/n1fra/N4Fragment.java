@@ -315,12 +315,14 @@ public class N4Fragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 ReportRedDot reportRedDot = GsonUtil.gsonToBean(response, ReportRedDot.class);
-                int num = reportRedDot.getData().getNum();
-                Contents.reportReddotNum = num;
-                if (num != 0) {
-                    ReportRedDot.setVisibility(View.VISIBLE);
-                } else {
-                    ReportRedDot.setVisibility(View.GONE);
+                if (reportRedDot.getErrno().equals("200")) {
+                    int num = reportRedDot.getData().getNum();
+                    Contents.reportReddotNum = num;
+                    if (num != 0) {
+                        ReportRedDot.setVisibility(View.VISIBLE);
+                    } else {
+                        ReportRedDot.setVisibility(View.GONE);
+                    }
                 }
             }
         });
@@ -333,9 +335,7 @@ public class N4Fragment extends Fragment {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Request request, Exception e) {
-
             }
-
             @Override
             public void onResponse(String response) {
                 Log.e(TAG, "onResponse: =====请求企业服务列表接口=====" + response);
@@ -403,17 +403,20 @@ public class N4Fragment extends Fragment {
                     public void onResponse(String response) {
 //                        Log.e(TAG, "onResponse: " + response);
                         ScheduleListBean scheduleListBean = new Gson().fromJson(response, ScheduleListBean.class);
-                        days = new ArrayList<>();
-                        List<ScheduleListBean.DataBean> data = scheduleListBean.getData();
-                        for (int i = 0; i < data.size(); i++) {
-                            days.add(data.get(i).getDays());
-                        }
+                        if(scheduleListBean.getErrno().equals("200")){
+                            days = new ArrayList<>();
+                            List<ScheduleListBean.DataBean> data = scheduleListBean.getData();
+                            for (int i = 0; i < data.size(); i++) {
+                                days.add(data.get(i).getDays());
+                            }
 
 //                        for (int i = 0; i < days.size(); i++) {
 //                            Log.e(TAG, "onResponse: " + days.get(i));
 //                        }
 
-                        innerPainter.setPointList(days);
+                            innerPainter.setPointList(days);
+                        }
+
                     }
                 });
             }
@@ -466,14 +469,17 @@ public class N4Fragment extends Fragment {
             public void onResponse(String response) {
                 Log.e(TAG, "onResponse:gettongzhi " + response);
                 GetCompanyAnnBean getCompanyAnnBean = new Gson().fromJson(response, GetCompanyAnnBean.class);
-                String notice = getCompanyAnnBean.getData().getNotice();
+                if (getCompanyAnnBean.getErrno().equals("200")) {
+                    String notice = getCompanyAnnBean.getData().getNotice();
 //                Log.e(TAG, "onResponse: ==========notice=================" + notice);
-                if (!com.hyphenate.easeui.utils.map.StringUtils.isEmpty(notice)) {
-                    if (!notice.equals("0")) {
-                        tvTongzhi.setText("通知：" + notice);
+                    if (!com.hyphenate.easeui.utils.map.StringUtils.isEmpty(notice)) {
+                        if (!notice.equals("0")) {
+                            tvTongzhi.setText("通知：" + notice);
+                        }
+                    } else {
                     }
-                } else {
                 }
+
 
             }
         });
