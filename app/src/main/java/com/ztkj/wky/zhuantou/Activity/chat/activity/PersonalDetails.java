@@ -146,6 +146,7 @@ public class PersonalDetails extends AppCompatActivity {
 //                Toast.makeText(this, "敬请期待！！！", Toast.LENGTH_SHORT).show();
 
                 Intent sendIntent = new Intent(PersonalDetails.this, ECChatAcitivty.class);
+                sendIntent.putExtra(EaseConstant.NICKNAME,name);
                 sendIntent.putExtra(EaseConstant.EXTRA_USER_ID, phone);
                 sendIntent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
                 startActivity(sendIntent);
@@ -154,6 +155,7 @@ public class PersonalDetails extends AppCompatActivity {
 //                Toast.makeText(this, "敬请期待！！！", Toast.LENGTH_SHORT).show();
 
                 Intent sendIntent2 = new Intent(PersonalDetails.this, ECChatAcitivty.class);
+                sendIntent2.putExtra(EaseConstant.NICKNAME,name);
                 sendIntent2.putExtra(EaseConstant.EXTRA_USER_ID, phone);
                 sendIntent2.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
                 startActivity(sendIntent2);

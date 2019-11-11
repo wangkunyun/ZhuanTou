@@ -39,7 +39,6 @@ public class EChatConversationList extends AppCompatActivity implements EaseConv
                 intent.putExtra(EaseConstant.EXTRA_USER_ID, conversation.conversationId());
                 intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, conversation.getType());
                 Log.e(TAG, "onListItemClicked: " + "====================================" + conversation.getType() + "===" + conversation.conversationId());
-
                 startActivity(intent);
             }
         });
