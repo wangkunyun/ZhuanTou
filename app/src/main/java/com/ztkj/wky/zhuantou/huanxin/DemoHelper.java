@@ -1310,15 +1310,17 @@ public class DemoHelper {
         } else { // 如果内存中没有，则将本地数据库中的取出到内存中。
             getContactList();
         }
-
-        user = contactList.get(username);
-        if(user == null){
-            user = new EaseUser(username);
-        } else {
-            if(TextUtils.isEmpty(user.getNickname())){ // 如果名字为空，则显示环信号码
-                user.setNickname(user.getUsername());
-            }
+if(contactList!=null){
+    user = contactList.get(username);
+    if(user == null){
+        user = new EaseUser(username);
+    } else {
+        if(TextUtils.isEmpty(user.getNickname())){ // 如果名字为空，则显示环信号码
+            user.setNickname(user.getUsername());
         }
+    }
+}
+
 
 
 //        if(username.equals(EMClient.getInstance().getCurrentUser())) {
