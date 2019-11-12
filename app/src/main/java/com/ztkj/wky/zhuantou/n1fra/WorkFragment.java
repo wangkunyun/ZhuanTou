@@ -244,14 +244,17 @@ public class WorkFragment extends Fragment {
                 isFirst = false;
             } else {
                 if (!StringUtils.isEmpty(uid)) {
-                    for (int i = 0; i < days.size(); i++) {
-                        if (days.contains(localDate.toString())) {
-                            intent = new Intent(getContext(), ScheduleList.class);
-                            intent.putExtra("Schedule_date", localDate.toString());
-                            startActivity(intent);
-                            break;
+                    if(days!=null&&days.size()>0){
+                        for (int i = 0; i < days.size(); i++) {
+                            if (days.contains(localDate.toString())) {
+                                intent = new Intent(getContext(), ScheduleList.class);
+                                intent.putExtra("Schedule_date", localDate.toString());
+                                startActivity(intent);
+                                break;
+                            }
                         }
                     }
+
                 }
             }
         });
