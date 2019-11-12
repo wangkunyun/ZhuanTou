@@ -112,7 +112,7 @@ public class PunchInFragment extends Fragment {
     private String leave_early = "0";
     private String start_address = "0";
     private String end_address = "0";
-    private int num = 0;
+
     private Intent intent;
 
     @Override
@@ -146,15 +146,6 @@ public class PunchInFragment extends Fragment {
         return view;
     }
 
-//    @Override
-//    public void onHiddenChanged(boolean hidden) {
-////        super.onHiddenChanged(hidden);
-////        if (!hidden) {
-////            tvLocalNow.setText(Contents.LOCATION);
-////            Log.e(TAG, "onHiddenChanged: " + 1);
-////        }
-////
-////    }
 
     @Override
     public void onResume() {
@@ -470,17 +461,17 @@ public class PunchInFragment extends Fragment {
     //打卡
     private void requestPunchIn() {
         time1000 = new Date().getTime() / 1000;
-        if (num == 0) {
+        if (Contents.num == 0) {
             if (time1000 < Integer.parseInt(s12)) { //当前时间小于12点 上午打卡
                 if (time1000 > Integer.parseInt(s)) { //迟到
-                    start_time = s;
+                    start_time = time1000 + "";
                     end_time = "0";
                     late = time1000 + "";
                     leave_early = "0";
                     start_address = Contents.LOCATION;
                     end_address = "0";
                 } else { //未迟到
-                    start_time = s;
+                    start_time = time1000 + "";
                     end_time = "0";
                     late = "";
                     leave_early = "0";
@@ -490,46 +481,62 @@ public class PunchInFragment extends Fragment {
             } else { //下午打卡
                 if (time1000 < Integer.parseInt(ss)) { //早退
                     start_time = "0";
-                    end_time = ss;
+                    end_time = time1000 + "";
                     late = "0";
                     leave_early = time1000 + "";
                     start_address = "0";
                     end_address = Contents.LOCATION;
                 } else { //未早退
                     start_time = "0";
-                    end_time = ss;
+                    end_time = time1000 + "";
                     late = "0";
                     leave_early = "";
                     start_address = "0";
                     end_address = Contents.LOCATION;
                 }
             }
+
+            PunchIn();
         } else {
-            MessageDialog.show((AppCompatActivity) Objects.requireNonNull(getContext()), "提示", "当前打卡为早退，是否继续？", "确定", "取消")
-                    .setOnOkButtonClickListener(new OnDialogButtonClickListener() {
-                        @Override
-                        public boolean onClick(BaseDialog baseDialog, View v) {
-                            if (time1000 < Integer.parseInt(ss)) { //早退
+            //判断是否为上午，若为上午则提示早退
+            if (time1000 < Integer.parseInt(s12)) {
+                MessageDialog.show((AppCompatActivity) Objects.requireNonNull(getContext()), "提示", "当前打卡为早退，是否继续？", "确定", "取消")
+                        .setOnOkButtonClickListener(new OnDialogButtonClickListener() {
+                            @Override
+                            public boolean onClick(BaseDialog baseDialog, View v) {
                                 start_time = "0";
-                                end_time = ss;
+                                end_time = time1000 + "";
                                 late = "0";
                                 leave_early = time1000 + "";
                                 start_address = "0";
                                 end_address = Contents.LOCATION;
-                            } else { //未早退
-                                start_time = "0";
-                                end_time = ss;
-                                late = "0";
-                                leave_early = "";
-                                start_address = "0";
-                                end_address = Contents.LOCATION;
+                                PunchIn();
+                                return false;
                             }
-                            return false;
-                        }
-                    });
+                        });
+            } else {
+                if (time1000 < Integer.parseInt(ss)) { //早退
+                    start_time = "0";
+                    end_time = time1000 + "";
+                    late = "0";
+                    leave_early = time1000 + "";
+                    start_address = "0";
+                    end_address = Contents.LOCATION;
+                } else { //未早退
+                    start_time = "0";
+                    end_time = time1000 + "";
+                    late = "0";
+                    leave_early = "";
+                    start_address = "0";
+                    end_address = Contents.LOCATION;
+                }
+                PunchIn();
+            }
         }
 
+    }
 
+    private void PunchIn() {
         if (showTvTime.getText().equals("外勤打卡")) {
             OkHttpUtils.post().url(Contents.PUNCHIN)
                     .addParams("token", token)
@@ -554,57 +561,45 @@ public class PunchInFragment extends Fragment {
                     Log.e(TAG, "onResponse: ======打卡=======" + response);
                     PunchInBean punchInBean = new Gson().fromJson(response, PunchInBean.class);
                     if (punchInBean.getErrno().equals("200")) {
-                        num++;
+                        Contents.num++;
                         requestPunchInfo();
                     }
                 }
             });
 
-            return;
-        }
+        } else {
+            Log.e(TAG, "requestPunchIn: " + start_time);
+            OkHttpUtils.post().url(Contents.PUNCHIN)
+                    .addParams("token", token)
+                    .addParams("uid", uid)
+                    .addParams("cid", cid)
+                    .addParams("x", String.valueOf(Contents.LONGITUDE))
+                    .addParams("y", String.valueOf(Contents.LATITUDE))
+                    .addParams("start_time", start_time)
+                    .addParams("end_time", end_time)
+                    .addParams("late", late)
+                    .addParams("leave_early", leave_early)
+                    .addParams("start_address", start_address)
+                    .addParams("end_address", end_address)
+                    .build().execute(new StringCallback() {
+                @Override
+                public void onError(Request request, Exception e) {
 
-
-        OkHttpUtils.post().url(Contents.PUNCHIN)
-                .addParams("token", token)
-                .addParams("uid", uid)
-                .addParams("cid", cid)
-                .addParams("x", String.valueOf(Contents.LONGITUDE))
-                .addParams("y", String.valueOf(Contents.LATITUDE))
-                .addParams("start_time", start_time)
-                .addParams("end_time", end_time)
-                .addParams("late", late)
-                .addParams("leave_early", leave_early)
-                .addParams("start_address", start_address)
-                .addParams("end_address", end_address)
-                .build().execute(new StringCallback() {
-            @Override
-            public void onError(Request request, Exception e) {
-
-            }
-
-            @Override
-            public void onResponse(String response) {
-//                Log.e(TAG, "onResponse: =====参数====" + "token++++++" + token + "++++uid+++" + uid + "+++cid++++++" + cid + "x" + Contents.LONGITUDE + "y" + Contents.LATITUDE + "start_time" + start_time + "end_time" + end_time + "late" + late + "leave_early" + leave_early + "start_address" + start_address + "end_address" + end_address);
-//                Log.e(TAG, "onResponse: x" + Contents.LONGITUDE);
-//                Log.e(TAG, "onResponse: y" + Contents.LATITUDE);
-//                Log.e(TAG, "onResponse: start_time" + start_time);
-//                Log.e(TAG, "onResponse: end_time" + end_time);
-//                Log.e(TAG, "onResponse: late" + late);
-//                Log.e(TAG, "onResponse: leave_early" + leave_early);
-//                Log.e(TAG, "onResponse: start_address" + start_address);
-//                Log.e(TAG, "onResponse: end_address" + end_address);
-                Log.e(TAG, "onResponse: ======打卡=======" + response);
-                PunchInBean punchInBean = new Gson().fromJson(response, PunchInBean.class);
-
-
-                if (punchInBean.getErrno().equals("200")) {
-                    num++;
-                    requestPunchInfo();
                 }
-            }
-        });
+
+                @Override
+                public void onResponse(String response) {
+                    Log.e(TAG, "onResponse: ======打卡=======" + response);
+                    PunchInBean punchInBean = new Gson().fromJson(response, PunchInBean.class);
 
 
+                    if (punchInBean.getErrno().equals("200")) {
+                        Contents.num++;
+                        requestPunchInfo();
+                    }
+                }
+            });
+        }
     }
 
     //日期格式字符串转换时间戳

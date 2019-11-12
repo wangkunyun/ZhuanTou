@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lanse"
     android:orientation="vertical"
-    tools:context=".n1fra.N1Fragment">
+    tools:context=".n1fra.HomeFragment">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"

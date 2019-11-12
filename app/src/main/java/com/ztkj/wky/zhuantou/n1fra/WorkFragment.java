@@ -67,7 +67,7 @@ import butterknife.Unbinder;
  * 企业服务
  * A simple {@link Fragment} subclass.
  */
-public class N4Fragment extends Fragment {
+public class WorkFragment extends Fragment {
     @BindView(R.id.n4_create_team)
     TextView n4CreateTeam;
     @BindView(R.id.img_n4_address_book)
@@ -181,7 +181,7 @@ public class N4Fragment extends Fragment {
     private boolean isFirst = true;
     private Intent intent;
     private String url = StringUtils.jiekouqianzui + "Article/enterpriseService";
-    private String TAG = "N4Fragment";
+    private String TAG = "WorkFragment";
     private View view;
     private ArrayList<String> days;
     private List<ServersListBean.DataBean> data;

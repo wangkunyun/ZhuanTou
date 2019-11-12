@@ -1,7 +1,10 @@
 package com.ztkj.wky.zhuantou;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
@@ -26,11 +29,11 @@ import com.ztkj.wky.zhuantou.MyUtils.MPermissionUtils;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.n1fra.LiveTabFragment;
-import com.ztkj.wky.zhuantou.n1fra.N1Fragment;
-import com.ztkj.wky.zhuantou.n1fra.N2Fragment;
-import com.ztkj.wky.zhuantou.n1fra.N3Fragment;
-import com.ztkj.wky.zhuantou.n1fra.N4Fragment;
-import com.ztkj.wky.zhuantou.n1fra.N5Fragment;
+import com.ztkj.wky.zhuantou.n1fra.HomeFragment;
+import com.ztkj.wky.zhuantou.n1fra.CodeFragment;
+import com.ztkj.wky.zhuantou.n1fra.MineFragment;
+import com.ztkj.wky.zhuantou.n1fra.WorkFragment;
+import com.ztkj.wky.zhuantou.n1fra.LiveFragment;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -60,14 +63,15 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     @BindView(R.id.rb_5)
     RadioButton rb5;
     private String phone, password;
-    private N1Fragment n1Fragment;
-    private N2Fragment n2Fragment;
-    private N3Fragment n3Fragment;
-    private N4Fragment n4Fragment;
-    private N5Fragment n5Fragment;
+    private HomeFragment n1Fragment;
+    private CodeFragment n2Fragment;
+    private MineFragment n3Fragment;
+    private WorkFragment n4Fragment;
+    private LiveFragment n5Fragment;
     private LiveTabFragment liveTabFragment;
     private int position = 0;
     private SharedPreferencesHelper sharedPreferencesHelper;
+
     //打开你的消息界面
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,42 +86,53 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         password = (String) sharedPreferencesHelper.getSharedPreference("password", "");
         //如果之前登录过，APP 长期在后台再进的时候也可能会导致加载到内存的群组和会话为空
         // ，可以在主页面的 oncreate 里也加上这两句代码，当然，更好的办法应该是放在程序的开屏页。
+        Contents.localVersion = getLocalVersionName(this);
         EMClient.getInstance().groupManager().loadAllGroups();
         EMClient.getInstance().chatManager().loadAllConversations();
 //        登录环信
-        if (!StringUtils.isEmpty(password)&&!StringUtils.isEmpty(phone)){
-            String md5 = md5Decode(password);
+        if (!StringUtils.isEmpty(phone)) {
+            String md5 = md5Decode("wang1012");
+//            !StringUtils.isEmpty(password) &&
+            EMClient.getInstance().logout(true);
             EMClient.getInstance().login(phone, md5, new EMCallBack() { //回调
                 @Override
                 public void onSuccess() {
                     EMClient.getInstance().groupManager().loadAllGroups();
                     EMClient.getInstance().chatManager().loadAllConversations();
-                    Log.e("SplashActivity", "登录聊天服务器成功！");
+                    Log.e("111", "登录聊天服务器成功！");
                 }
 
                 @Override
                 public void onProgress(int progress, String status) {
-
+                    Log.e("111", "正在登录聊天服务器" + progress);
                 }
 
                 @Override
                 public void onError(int code, String message) {
-                    Log.e("SplashActivity", "登录聊天服务器失败！");
+                    Log.e("111", "登录聊天服务器失败！");
+                    Log.e("111", "onError: " + "code" + code + "message" + message);
                 }
             });
         }
+
+
         MPermissionUtils.requestPermissionsResult(this, 1,
-                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.CAMERA,
-                        Manifest.permission.VIBRATE,
-                        Manifest.permission.WAKE_LOCK,
-                        Manifest.permission.SYSTEM_ALERT_WINDOW,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.CALL_PHONE,
-                        Manifest.permission.ACCESS_FINE_LOCATION ,
-                         Manifest.permission.ACCESS_COARSE_LOCATION ,
-                },
+                new String[]
+
+                        {
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA,
+                                Manifest.permission.VIBRATE,
+                                Manifest.permission.WAKE_LOCK,
+                                Manifest.permission.SYSTEM_ALERT_WINDOW,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CALL_PHONE,
+                                Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.WRITE_CALENDAR,
+                                Manifest.permission.READ_CALENDAR
+                        },
 
                 //这个是悬浮窗设置 但是小米手机设置悬浮窗权限的时候要求必须要在设置里面打开
                 new MPermissionUtils.OnPermissionListener() {
@@ -173,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
                 rb1.setChecked(true);
                 if (n1Fragment == null) {
-                    n1Fragment = new N1Fragment();
+                    n1Fragment = new HomeFragment();
                     transaction.add(R.id.content_frag, n1Fragment);
                 } else {
                     transaction.show(n1Fragment);
@@ -189,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
 //                rb2.setChecked(true);
 //                if (n2Fragment == null) {
-                n2Fragment = new N2Fragment();
+                n2Fragment = new CodeFragment();
                 transaction.add(R.id.content_frag, n2Fragment);
 //                } else {
 //                    transaction.show(n2Fragment);
@@ -204,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 Contents.strExit = "0";
                 rb3.setChecked(true);
                 if (n3Fragment == null) {
-                    n3Fragment = new N3Fragment();
+                    n3Fragment = new MineFragment();
                     transaction.add(R.id.content_frag, n3Fragment);
                 } else {
                     transaction.show(n3Fragment);
@@ -221,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
                 rb4.setChecked(true);
                 if (n4Fragment == null) {
-                    n4Fragment = new N4Fragment();
+                    n4Fragment = new WorkFragment();
                     transaction.add(R.id.content_frag, n4Fragment);
                 } else {
                     transaction.show(n4Fragment);
@@ -321,6 +336,23 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
 
+    }
+
+    /**
+     * 获取本地软件版本号名称
+     */
+    public static String getLocalVersionName(Context ctx) {
+        String localVersion = "";
+        try {
+            PackageInfo packageInfo = ctx.getApplicationContext()
+                    .getPackageManager()
+                    .getPackageInfo(ctx.getPackageName(), 0);
+            localVersion = packageInfo.versionName;
+            Log.d("TAG", "当前版本名称：" + localVersion);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return localVersion;
     }
 
     /**

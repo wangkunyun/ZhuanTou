@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F8F8"
-    tools:context=".n1fra.N3Fragment">
+    tools:context=".n1fra.MineFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

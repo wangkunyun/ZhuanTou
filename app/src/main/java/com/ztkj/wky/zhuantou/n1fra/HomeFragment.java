@@ -80,7 +80,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class N1Fragment extends Fragment {
+public class HomeFragment extends Fragment {
 
 
     @BindView(R.id.n1_search)
@@ -139,14 +139,14 @@ public class N1Fragment extends Fragment {
     private Intent intent;
     private String uid;
     private String token, realname;
-    private String TAG = "N1Fragment";
+    private String TAG = "HomeFragment";
     public static final int REQUEST_CODE = 111;
     private static final String savePath = "/sdcard/小砖开门/";
     private static final String saveFileName = savePath + "小砖开门.apk";
     private int page = 2;
 
 
-    public N1Fragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -164,8 +164,6 @@ public class N1Fragment extends Fragment {
 
 
         updateApk();
-
-
 
 
         gi();
@@ -290,7 +288,7 @@ public class N1Fragment extends Fragment {
                         Gson gson = new Gson();
                         UpdateBean updateBean = gson.fromJson(response, UpdateBean.class);
                         if ("200".equals(updateBean.getErrno())) {
-                            if (StringUtils.string_version.equals(updateBean.getData().getAndroid_number())) {
+                            if (Contents.localVersion.equals(updateBean.getData().getAndroid_number())) {
 //                                update_popuinit("当前版本已是最新版本", "取消 ", "确定", updateBean.getData().getAndroid_address());
                             } else {
                                 update_popuinit("发现已知bug，是否要现在更新？", "取消 ", "立即更新", updateBean.getData().getAndroid_address());

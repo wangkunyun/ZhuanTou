@@ -127,7 +127,7 @@
             app:hollowCircleColor="#65C9D2"
             app:isShowHoliday="false"
             app:isShowLunar="false"
-            app:pointColor="#65C9D2"
+            app:pointColor="#FFA33F"
             app:pointDistance="-10dp"
             app:selectCircleColor="#65C9D2"
             app:selectCircleRadius="14dp"

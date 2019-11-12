@@ -67,7 +67,7 @@ public class EaseConversationListFragment extends EaseBaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        finishActivityListen = (EaseConversationListFragment.finishActivityListen) context;
+         finishActivityListen = (EaseConversationListFragment.finishActivityListen) context;
     }
 
     @Override

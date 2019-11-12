@@ -64,7 +64,7 @@ public class LiveTabFragment extends Fragment {
     private String[] mTitles = {"生活", "商城"};
     private Intent intent;
     private int position = 0;
-    private N5Fragment n5Fragment;
+    private LiveFragment n5Fragment;
     private LiveShopFragment liveShopFragment;
     private String co_id, co_address;
     private SharedPreferencesHelper sharedPreferencesHelper;
@@ -121,7 +121,7 @@ public class LiveTabFragment extends Fragment {
                 jdXiahua2.setAlpha(0f);
                 jdSy.setChecked(true);
 //                if (ziXunFragment == null) {
-                n5Fragment = new N5Fragment();
+                n5Fragment = new LiveFragment();
                 transaction.add(R.id.jdfr, n5Fragment);
                 break;
             case 1:

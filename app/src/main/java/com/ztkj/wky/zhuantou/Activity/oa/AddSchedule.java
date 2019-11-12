@@ -210,6 +210,13 @@ public class AddSchedule extends AppCompatActivity {
     }
 
     private void addScheduleRequest() {
+        int i = CalendarReminderUtils.checkAndAddCalendarAccount(AddSchedule.this);
+        if (i == -1) {
+            Toast.makeText(this, "没有日历ID", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            Log.e(TAG, "addScheduleRequest: =====日历ID====" + i);
+        }
         if (tvStartTime.equals("请选择")) {
             Toast.makeText(this, "请选择开始时间", Toast.LENGTH_SHORT).show();
             return;
@@ -222,6 +229,7 @@ public class AddSchedule extends AppCompatActivity {
             Toast.makeText(this, "请输入日程信息", Toast.LENGTH_SHORT).show();
             return;
         }
+
         OkHttpUtils.post().url(Contents.ADDSCHEDULE)
                 .addParams("token", token)
                 .addParams("uid", uid)
@@ -244,6 +252,7 @@ public class AddSchedule extends AppCompatActivity {
                     PermissionsUtil.requestPermission(getApplication(), new PermissionListener() {
                         @Override
                         public void permissionGranted(@NonNull String[] permission) {
+
                             CalendarReminderUtils.addCalendarEvent(AddSchedule.this, "小砖提醒", etGroupAnn.getText().toString(), l_Strtetime, l_Endtime, 1);
                             Toast.makeText(AddSchedule.this, toastBean.getErrmsg(), Toast.LENGTH_SHORT).show();
                             finish();

@@ -3,12 +3,17 @@ package com.ztkj.wky.zhuantou.base;
 public class Contents {
     //后台域名
     public static final String BASE = "https://api.zhuantoukj.com/birck/index.php/Home/";
+    //当前版本
+    public static String localVersion = " ";
     //支付宝业务
     public static final String ALI_ID = "2019101568416015";
     // 支付宝私钥
     public static final String RSA2_PRIVATE = "MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCiGOiR/feH0jPeESMjAN8zpovXVjG6ib0ObMsSeDbg7szv29l5r6UYSOkXq2XsjsHg8+Gvo9MWZ85lztshn2mb6H+nxGNvEzPYPz0l9p+LB4+kswh4CItAPWIddRiTzbnKkx7Sw/ko07dATWFKs9nJy5oxmWzXYsm216ad0dxfz+vr3ptb2Q/pL96G9D0lYI6gWRcTUQuCfXn31J+rC7es57q6/DLykMNQEHy+filUk5aWAX4iWOiwG0nND9B7Jv0JR/a8bhmPem3+m7TssItXf2hU0lZ55N/2U39csfKkha/JZ+k9umGIu1FkBjOMPMaFVBy8364/ShR5U0RH7+iRAgMBAAECggEBAIxjdkm6439GlpVl0kCmqKlbPRIrHLaqRIsRvm8onp8BM40po5i4fwwhWX+eeo/+s/vYPUaZZGCrVx7loPPl1Nmq66SpelThFK3dV2Bh0Jvg2I+UX2lWPQROJYPNvpOEQb0o3jE8ebbaZoPSgMjqK12ScOE0OAfzDzDEZRGaiHqRgGWiXsmNn/1BQ5N7CMRFVVyXbbjVamGizzU5CVBP2P0QgkQ9/wIOEo6cAh71y9tJaxvz46EAj94R/xyH7FJiMkszT6vg7Ugdh5pEmLbYxq5uFsAeuwuwKTRGALaQRo2zpsLE6IjF98r6wO/iJ6k0lUJKCQkYDne8mHHcFO/XBeECgYEA1BVMopNCJ1JZJHxkHaaS3AgGKg/GMMgGCg7VYQ1iQ6g87dNWwWz5TE7jm8JjMw+tUNhU/wo3etg3cbAJoCjk3p7sqp648qQOUrKlJ6O2lciyzMXGyrFuj4lvgBJW3Q2QBeLkxqHbvqmEQ0hMuOmBUNdnQfTsJwH8DKbQOZEcG68CgYEAw6nQ/Jcsdd9SRFI6Q/DnDkUiRvbmTqCSkRru3r2WywZ26vnCE+O0vhCEOr4nQM8kFnMY7ItSGXRLxbfkMiatnw8CKZbnTOi0F0rl1ST1yO2i+2Zkb+rC7gKrZgfaSRZj8gj0KhaXJ91vgWCprWM1kTcAwbnpGkYF1IVigGUoD78CgYEAszHj9KHUDYFozIlF1j++aqdk/fkiDmmToL/zzvMOCfiGsrQU4439/lnRuvO9+ZDPcjW3a17ojaVPA4IoP+kNqIRDl85QmsO/TmSfYyTSyzAu0xJw6yaMMj9/tIjKWDBzdmXFw4dTMn/svyTBnqO9nd7C4lndhwAIRXBVE67mPwUCgYA/5YMEGfJBBA7/lMLGUTODa3xIJHUNlE6I6Hy9bLiD0LahAbMpf6EUuJwV+uciuQKV+jxXcx/6hAoCpYz1+7+TQ/l2z3r1mMDHIoRv2MQTO9ePtd5y1f2WcHS8uy/D0nYNInNqEzqFoEC7xW9j2hQyOf4bRbUkCV36Cx0hxOcSTQKBgQCZQAKRyCGlk+jaatcsH6lyOp3/9jM3ewB+MfPmZE5wq2tpjKVV3+EVMbhOhInv5nNNpM37gUzEtvOINUFTXeCcOKx+1UZC3plEYwZCISQU+VOMd4qRJPPHhhhqTwGcSxbPmvc+uE4pqktkHXA86Qzh8QKCWF32KriHL9btfx3Qrw==";
     public static String strExit = "0";
+    //日志小红点次数
     public static int reportReddotNum = 0;
+    //打卡次数
+    public static int num = 0;
 
     /**
      * 百度地图

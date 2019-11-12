@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/t3"
-    tools:context=".n1fra.N2Fragment">
+    tools:context=".n1fra.CodeFragment">
 
     <TextView
         android:id="@+id/n2_sysm"

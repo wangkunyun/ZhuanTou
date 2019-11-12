@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 //字符串 正则
 public class StringUtils {
     public static String jiekouqianzui = "https://api.zhuantoukj.com/birck/index.php/Home/";
-    public static String string_version = "1.4.2";
+//    public static String string_version = "1.4.2";
     public static final String REGEX_PASSWORD = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,18}+$";
 //    public static String mm = "^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{8,18}";
 

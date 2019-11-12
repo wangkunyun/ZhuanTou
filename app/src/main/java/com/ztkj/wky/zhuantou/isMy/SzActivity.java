@@ -87,7 +87,7 @@ public class SzActivity extends AppCompatActivity {
         uid = (String) sharedPreferencesHelper.getSharedPreference("uid", "");
         token = (String) sharedPreferencesHelper.getSharedPreference("token", "");
         sp_Create_team = new SharedPreferencesHelper(SzActivity.this, "Create_team");
-        appVersion.setText(StringUtils.string_version);
+        appVersion.setText(Contents.localVersion);
         request();
     }
 
@@ -415,7 +415,7 @@ public class SzActivity extends AppCompatActivity {
                                 Gson gson = new Gson();
                                 UpdateBean updateBean = gson.fromJson(response, UpdateBean.class);
                                 if ("200".equals(updateBean.getErrno())) {
-                                    if (StringUtils.string_version.equals(updateBean.getData().getAndroid_number())) {
+                                    if (Contents.localVersion.equals(updateBean.getData().getAndroid_number())) {
                                         popuinit("当前版本已是最新版本", "取消 ", "确定", updateBean.getData().getAndroid_address());
                                     } else {
                                         //zhejiushi s3 下载地址没问题

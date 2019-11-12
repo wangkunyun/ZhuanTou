@@ -97,7 +97,7 @@ public class AddressFriend extends Fragment {
                 intentData = response;
                 AgreeFriendListBean agreeFriendListBean = new Gson().fromJson(response, AgreeFriendListBean.class);
                 List<AgreeFriendListBean.DataBean> data = agreeFriendListBean.getData();
-                if (!data.isEmpty()) {
+                if (data != null && data.size() > 0) {
                     imgNewMessage.setVisibility(View.VISIBLE);
                 } else {
                     imgNewMessage.setVisibility(View.GONE);

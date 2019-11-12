@@ -44,7 +44,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class N3Fragment extends Fragment {
+public class MineFragment extends Fragment {
 
 
     @BindView(R.id.n3_headImg)
@@ -73,7 +73,7 @@ public class N3Fragment extends Fragment {
     private String url = StringUtils.jiekouqianzui + "User/userInfo";
     private String TAG = "fragment_n3";
 
-    public N3Fragment() {
+    public MineFragment() {
         // Required empty public constructor
     }
 

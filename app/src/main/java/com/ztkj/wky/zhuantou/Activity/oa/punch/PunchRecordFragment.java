@@ -24,6 +24,7 @@ import com.hyphenate.easeui.utils.SharedPreferencesHelper;
 import com.necer.calendar.BaseCalendar;
 import com.necer.calendar.MonthCalendar;
 import com.necer.listener.OnCalendarChangedListener;
+import com.necer.painter.InnerPainter;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -36,6 +37,7 @@ import com.ztkj.wky.zhuantou.bean.ThreeAndOneBean;
 import org.joda.time.LocalDate;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -91,6 +93,7 @@ public class PunchRecordFragment extends Fragment {
     private String uid, token, cid;
     private String TAG = "PunchRecordFragment";
     private String addTime;
+    private ArrayList<String> days;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -120,6 +123,7 @@ public class PunchRecordFragment extends Fragment {
             public void onCalendarChange(BaseCalendar baseCalendar, int year, int month, LocalDate localDate) {
                 tvCalDate.setText(year + "年" + month + "月");
                 requestPunchInList(year + "", month + "", localDate.getDayOfMonth() + "");
+//                SchedulerInnerPainter(year, month);
             }
         });
 
@@ -127,6 +131,7 @@ public class PunchRecordFragment extends Fragment {
     }
 
     private void requestPunchInList(String year, String month, String day) {
+        InnerPainter innerPainter = (InnerPainter) calender.getCalendarPainter();
         OkHttpUtils.post().url(Contents.PUNCHINLIST)
                 .addParams("token", SPUtils.getInstance().getString("token"))
                 .addParams("uid", SPUtils.getInstance().getString("uid"))
@@ -146,79 +151,91 @@ public class PunchRecordFragment extends Fragment {
                 PunchInListBean punchInListBean = GsonUtil.gsonToBean(response, PunchInListBean.class);
                 if (punchInListBean.getErrno().equals("200")) {
                     List<PunchInListBean.DataBean> data = punchInListBean.getData();
-                    for (int i = 0; i < data.size(); i++) {
-                        if (data.get(i).getDay().equals(day)) {
-                            addTime = data.get(i).getAddtime();
-                            //设置今日时长
-                            if (data.get(i).getStart_time().equals("0") || data.get(i).getEnd_time().equals("0")) {
-                                tvTodayHours.setText("今日工时：0小时");
-                            } else {
-                                int todayHour = Integer.parseInt(data.get(i).getEnd_time()) - Integer.parseInt(data.get(i).getStart_time());
-                                tvTodayHours.setText("今日工时：" + todayHour / 3600 + "小时");
+                    if (!data.isEmpty()) {
+                        days = new ArrayList<>();
+                        //1.循环判断当前选中的day在集合里是否存在 2.出勤异常则设置小黄点
+                        for (int i = 0; i < data.size(); i++) {
+                            //1.循环判断当前选中的day在集合里是否存在 并设置状态
+                            if (data.get(i).getDay().equals(day)) {
+                                addTime = data.get(i).getAddtime();
+                                //设置今日时长
+                                if (data.get(i).getStart_time().equals("0") || data.get(i).getEnd_time().equals("0")) {
+                                    tvTodayHours.setText("今日工时：0小时");
+                                } else {
+                                    int todayHour = Integer.parseInt(data.get(i).getEnd_time()) - Integer.parseInt(data.get(i).getStart_time());
+                                    tvTodayHours.setText("今日工时：" + todayHour / 3600 + "小时");
+                                }
+
+                                //判断设置出勤
+                                if (!data.get(i).getStart_time().equals("0")) {
+                                    tvWorkOn.setVisibility(View.VISIBLE);
+                                    String stron = timeStamp2Date(Integer.parseInt(data.get(i).getStart_time()), "HH:mm");
+                                    tvWorkOn.setText("上班打卡 " + stron);
+                                    if (!data.get(i).getLate().equals("0")) {
+                                        tvLateWorkOn.setVisibility(View.VISIBLE);
+                                        tvApplyWorkOn.setVisibility(View.VISIBLE);
+                                        tvLateWorkOn.setText("迟到");
+                                    }
+                                    if (!data.get(i).getStart_field_address().equals("0")) {
+                                        tvLateWorkOn.setVisibility(View.VISIBLE);
+                                        tvApplyWorkOn.setVisibility(View.VISIBLE);
+                                        tvLateWorkOn.setText("外勤");
+                                    }
+                                    if (data.get(i).getLate().equals("0") && data.get(i).getStart_field_address().equals("0")) {
+                                        tvLateWorkOn.setVisibility(View.GONE);
+                                        tvApplyWorkOn.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    tvWorkOn.setVisibility(View.GONE);
+                                    tvApplyWorkOn.setVisibility(View.VISIBLE);
+                                    tvLateWorkOn.setVisibility(View.VISIBLE);
+                                    tvLateWorkOn.setText("缺卡");
+                                }
+
+                                if (!data.get(i).getEnd_time().equals("0")) {
+                                    tvWorkOff.setVisibility(View.VISIBLE);
+                                    String stroff = timeStamp2Date(Integer.parseInt(data.get(i).getEnd_time()), "HH:mm");
+                                    tvWorkOff.setText("下班打卡 " + stroff);
+                                    if (!data.get(i).getLeave_early().equals("0")) {
+                                        tvLateWorkOff.setVisibility(View.VISIBLE);
+                                        tvApplyWorkOff.setVisibility(View.VISIBLE);
+                                        tvLateWorkOff.setText("早退");
+                                    }
+                                    if (!data.get(i).getEnd_field_address().equals("0")) {
+                                        tvLateWorkOff.setVisibility(View.VISIBLE);
+                                        tvApplyWorkOff.setVisibility(View.VISIBLE);
+                                        tvLateWorkOff.setText("外勤");
+                                    }
+                                    if (data.get(i).getLeave_early().equals("0") && data.get(i).getEnd_field_address().equals("0")) {
+                                        tvLateWorkOff.setVisibility(View.GONE);
+                                        tvApplyWorkOff.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    tvWorkOff.setVisibility(View.GONE);
+                                    tvApplyWorkOff.setVisibility(View.VISIBLE);
+                                    tvLateWorkOff.setVisibility(View.VISIBLE);
+                                    tvLateWorkOff.setText("缺卡");
+                                }
                             }
 
-                            //判断设置出勤
-                            if (!data.get(i).getStart_time().equals("0")) {
-                                tvWorkOn.setVisibility(View.VISIBLE);
-                                String stron = timeStamp2Date(Integer.parseInt(data.get(i).getStart_time()), "HH:mm");
-                                tvWorkOn.setText("上班打卡 " + stron);
-                                if (!data.get(i).getLate().equals("0")) {
-                                    tvLateWorkOn.setVisibility(View.VISIBLE);
-                                    tvApplyWorkOn.setVisibility(View.VISIBLE);
-                                    tvLateWorkOn.setText("迟到");
-                                }
-                                if (!data.get(i).getStart_field_address().equals("0")) {
-                                    tvLateWorkOn.setVisibility(View.VISIBLE);
-                                    tvApplyWorkOn.setVisibility(View.VISIBLE);
-                                    tvLateWorkOn.setText("外勤");
-                                }
-                                if (data.get(i).getLate().equals("0") && data.get(i).getStart_field_address().equals("0")) {
-                                    tvLateWorkOn.setVisibility(View.GONE);
-                                    tvApplyWorkOn.setVisibility(View.GONE);
-                                }
-                            } else {
-                                tvWorkOn.setVisibility(View.GONE);
-                                tvApplyWorkOn.setVisibility(View.VISIBLE);
-                                tvLateWorkOn.setVisibility(View.VISIBLE);
-                                tvLateWorkOn.setText("缺卡");
-                            }
+                            // 2.出勤异常则设置小黄点,获取异常的天数并存入集合
+                            if (!data.get(i).getFestival().equals("1")) {
+                                if (!data.get(i).getWeek().equals("6")) {
+                                    if (!data.get(i).getWeek().equals("7")) {
+                                        if (data.get(i).getStart_time().equals("0") ||
+                                                data.get(i).getEnd_time().equals("0") ||
+                                                !data.get(i).getLate().equals("0") ||
+                                                !data.get(i).getLeave_early().equals("0") ||
+                                                !data.get(i).getStart_field_address().equals("0") ||
+                                                !data.get(i).getEnd_field_address().equals("0")) {
 
-                            if (!data.get(i).getEnd_time().equals("0")) {
-                                tvWorkOff.setVisibility(View.VISIBLE);
-                                String stroff = timeStamp2Date(Integer.parseInt(data.get(i).getEnd_time()), "HH:mm");
-                                tvWorkOff.setText("下班打卡 " + stroff);
-                                if (!data.get(i).getLeave_early().equals("0")) {
-                                    tvLateWorkOff.setVisibility(View.VISIBLE);
-                                    tvApplyWorkOff.setVisibility(View.VISIBLE);
-                                    tvLateWorkOff.setText("早退");
+                                            days.add(data.get(i).getAddtime());
+                                        }
+                                    }
                                 }
-                                if (!data.get(i).getEnd_field_address().equals("0")) {
-                                    tvLateWorkOff.setVisibility(View.VISIBLE);
-                                    tvApplyWorkOff.setVisibility(View.VISIBLE);
-                                    tvLateWorkOff.setText("外勤");
-                                }
-                                if (data.get(i).getLeave_early().equals("0") && data.get(i).getEnd_field_address().equals("0")) {
-                                    tvLateWorkOff.setVisibility(View.GONE);
-                                    tvApplyWorkOff.setVisibility(View.GONE);
-                                }
-                            } else {
-                                tvWorkOff.setVisibility(View.GONE);
-                                tvApplyWorkOff.setVisibility(View.VISIBLE);
-                                tvLateWorkOff.setVisibility(View.VISIBLE);
-                                tvLateWorkOff.setText("缺卡");
                             }
                         }
-//                        else {
-//                            Log.e(TAG, "onResponse: " + day + "没有数据");
-//                            tvWorkOn.setVisibility(View.GONE);
-//                            tvWorkOff.setVisibility(View.GONE);
-//                            tvLateWorkOn.setVisibility(View.GONE);
-//                            tvLateWorkOff.setVisibility(View.GONE);
-//                            tvApplyWorkOn.setVisibility(View.GONE);
-//                            tvApplyWorkOff.setVisibility(View.GONE);
-//                            break;
-//                        }
-
+                        innerPainter.setPointList(days);
                     }
                 }
             }

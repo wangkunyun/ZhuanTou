@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'ZTKJ'
             keyPassword '123456'
-//            storeFile file('D:/ztkj_jks/.jks')
+            storeFile file('D:/ztkj_jks/.jks')
             storePassword '123456'
         }
     }

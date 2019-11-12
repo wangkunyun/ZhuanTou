@@ -75,7 +75,7 @@ import cn.jpush.android.api.JPushInterface;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class N2Fragment extends Fragment {
+public class CodeFragment extends Fragment {
 
 
     @BindView(R.id.n2_sysm)
@@ -115,7 +115,7 @@ public class N2Fragment extends Fragment {
     private String p = null;
     private boolean flag = false;//标志位，用来标识是否应该通知主线程或者其他对象改做事情了
     private String logcode = " ";
-    private String TAG = "N2Fragment";
+    private String TAG = "CodeFragment";
     private String errno;  //判断返回时间
     private String strType = "0"; //判断是否返回接口
     private String propertyPhone;

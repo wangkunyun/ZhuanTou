@@ -52,7 +52,7 @@ import butterknife.Unbinder;
  * <p>
  * A simple {@link Fragment} subclass.
  */
-public class N5Fragment extends Fragment {
+public class LiveFragment extends Fragment {
     @BindView(R.id.n5_banner)
     Banner n5_banner;
     @BindView(R.id.near_dingweiimg)
@@ -82,9 +82,9 @@ public class N5Fragment extends Fragment {
 
     private String order_by; //根据id或者name排序
     private String order_type; //正序或者倒叙排序 正旭：ASC  倒叙： DESC
-    private String TAG = "N5Fragment";
+    private String TAG = "LiveFragment";
 
-    public N5Fragment() {
+    public LiveFragment() {
         // Required empty public constructor
     }
 
