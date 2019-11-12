@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:paddingRight="15dp"
     android:paddingTop="13dp" >
 <!--    style="@style/chat_text_date_style"-->
 
@@ -30,28 +31,29 @@
             android:scaleType="fitXY" />
 
         <RelativeLayout
+            android:layout_marginLeft="15dp"
             android:id="@+id/bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_chat_activity"
             android:layout_toLeftOf="@id/iv_userhead"
-            android:background="@drawable/ease_chatto_bg"
-            >
+            android:background="@drawable/shape_fillet_regis"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/tv_chatcontent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:autoLink="web"
                 android:layout_centerInParent="true"
+                android:autoLink="web"
+                android:text=""
                 android:gravity="center|left"
-                android:paddingRight="6dp"
-                android:paddingLeft="1dp"
-                android:minHeight="38dp"
                 android:lineSpacingExtra="2dp"
-              	android:textColor="#000000"
-                android:maxWidth="225.0dip"
-                android:textSize="15sp" />
+                android:textColor="#000000"
+                android:textSize="16sp" />
         </RelativeLayout>
 
        <!--  <TextView
@@ -75,6 +77,7 @@
             android:visibility="gone" />
 
         <TextView
+            android:layout_marginRight="@dimen/recall_dimen"
             android:id="@+id/tv_ack"
             style="@style/chat_text_name_style"
             android:layout_width="wrap_content"

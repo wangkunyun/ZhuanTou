@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:paddingRight="15dp"
+
     android:paddingTop="13dp" >
 
     <TextView
@@ -33,15 +35,17 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/iv_userhead"
             android:layout_marginRight="10dp"
-             android:background="@drawable/ease_chatto_bg"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp"
+             android:background="@drawable/shape_fillet_regis"
             >
 	        <ImageView
 	            android:id="@+id/iv_voice"
 	            android:layout_centerInParent="true"
-	            android:paddingLeft="12dp"
-	            android:paddingRight="10dp"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="19dp"
+	            android:layout_height="19dp"
 	            android:src="@drawable/ease_chatto_voice_playing" />
 		</RelativeLayout>
         <TextView
@@ -71,6 +75,7 @@
             android:layout_centerVertical="true"
             android:text="@string/text_ack_msg"
             android:textSize="12sp"
+            android:layout_marginRight="@dimen/recall_dimen"
             android:layout_toLeftOf="@id/tv_length"
             android:visibility="invisible"
             />

@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:paddingRight="15dp"
+
     android:paddingTop="13dp" >
 
     <TextView
@@ -33,9 +35,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_chat_activity"
             android:layout_toLeftOf="@id/iv_userhead"
-            android:background="@drawable/ease_chatto_bg" >
+            android:background="@drawable/shape_fillet_regis"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp" >
 
             <ImageView
+                android:visibility="visible"
                 android:layout_marginLeft="4dp"
                 android:id="@+id/iv_call_icon"
                 android:layout_width="wrap_content"
@@ -44,15 +51,15 @@
                 android:src="@drawable/ease_chat_voice_call_self" />
 
             <TextView
+                android:visibility="visible"
                 android:id="@+id/tv_chatcontent"
-                style="@style/chat_content_date_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/iv_call_icon"
                 android:background="@null"
-                android:minHeight="40dp"
-                android:padding="6dp"
+                android:text=""
+
               />
         </RelativeLayout>
 
@@ -75,6 +82,7 @@
             android:layout_toLeftOf="@id/bubble"
             android:text="@string/text_ack_msg"
             android:textSize="12sp"
+            android:layout_marginRight="@dimen/recall_dimen"
             android:visibility="invisible" />
     </RelativeLayout>
 

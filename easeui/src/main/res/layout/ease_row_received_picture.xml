@@ -5,6 +5,8 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:paddingLeft="15dp"
+
     android:paddingTop="13dp" >
 
     <TextView
@@ -35,7 +37,11 @@
             android:layout_marginLeft="@dimen/margin_chat_activity"
             android:layout_toRightOf="@id/iv_userhead"
             android:layout_below="@+id/tv_userid"
-            android:background="@drawable/ease_chatfrom_bg"
+            android:background="@drawable/shape_fillet_regis"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp"
              >
 
             <ImageView

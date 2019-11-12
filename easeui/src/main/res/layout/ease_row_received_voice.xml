@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:paddingLeft="15dp"
     android:paddingTop="13dp" >
 
     <TextView
@@ -31,19 +32,20 @@
         <RelativeLayout
             android:id="@+id/bubble"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
+            android:layout_height="40dp"
             android:layout_toRightOf="@id/iv_userhead"
             android:layout_marginLeft="@dimen/margin_chat_activity"
             android:layout_below="@+id/tv_userid"
-            android:background="@drawable/ease_chatfrom_bg"
+            android:background="@drawable/shape_fillet_regis"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp"
             >
-
             <ImageView
                 android:id="@+id/iv_voice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-	            android:paddingRight="12dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
 	            android:layout_centerInParent="true"
                 android:src="@drawable/ease_chatfrom_voice_playing" />
         </RelativeLayout>
@@ -67,7 +69,7 @@
             android:layout_marginLeft="10dp"
             android:layout_alignTop="@id/bubble"
             android:layout_toRightOf="@id/tv_length"
-            android:src="@drawable/ease_voice_unread" />
+            android:src="@drawable/yuanjiaobtnmeaage" />
 
         <ProgressBar
             android:id="@+id/progress_bar"

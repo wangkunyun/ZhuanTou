@@ -183,7 +183,7 @@ public class EaseVoiceRecorderView extends RelativeLayout {
 
     public void showReleaseToCancelHint() {
         recordingHint.setText(context.getString(R.string.release_to_cancel));
-        recordingHint.setBackgroundResource(R.drawable.ease_recording_text_hint_bg);
+//        recordingHint.setBackgroundResource(R.drawable.ease_recording_text_hint_bg);
     }
 
     public void showMoveUpToCancelHint() {
