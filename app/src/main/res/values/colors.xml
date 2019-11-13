@@ -17,5 +17,8 @@
     <color name="bk">#DBDCDE</color>
     <color name="b1">#65C9D2</color>
     <color name="b2">#C2C2C7</color>
-
+    <color name="f33">#ff333333</color>
+    <color name="ffe8">#ffe81717</color>
+    <color name="ff65">#65C9D2</color>
+    <color name="e5">#E5E5E5</color>
 </resources>

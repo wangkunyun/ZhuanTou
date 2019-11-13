@@ -39,6 +39,14 @@ public class BannerBean {
     }
 
     public static class DataBean {
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "href='" + href + '\'' +
+                    ", banner='" + banner + '\'' +
+                    '}';
+        }
+
         /**
          * href : http://www.baidu.com
          * banner : https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1911150647,1930869014&fm=27&gp=0.jpg
@@ -62,5 +70,14 @@ public class BannerBean {
         public void setBanner(String banner) {
             this.banner = banner;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "BannerBean{" +
+                "errno='" + errno + '\'' +
+                ", errmsg='" + errmsg + '\'' +
+                ", data=" + data +
+                '}';
     }
 }

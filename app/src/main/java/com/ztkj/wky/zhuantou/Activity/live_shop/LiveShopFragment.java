@@ -59,7 +59,8 @@ public class LiveShopFragment extends Fragment {
     RecyclerView recycle_shop_list;
     Unbinder unbinder;
     LiveShopFragAdapter liveShopFragAdapter;
-
+    private String banner_url = StringUtils.jiekouqianzui + "Article/bannerShop";
+    Intent intent;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,16 +83,48 @@ public class LiveShopFragment extends Fragment {
         recycle_shop_list.setLayoutManager(manager);
         liveShopFragAdapter = new LiveShopFragAdapter(getActivity());
         recycle_shop_list.setAdapter(liveShopFragAdapter);
-
-//        Banner_gi();
-//        Listdata();
+        Listdata();
 
 
         return view;
     }
 
-    private void Listdata() {
 
+
+//                            getActivity().finish();
+    private void Listdata() {
+            OkHttpUtils.post()
+                    .url(banner_url)
+                    .addParams("token", "")
+                    .build()
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onError(Request request, Exception e) {
+
+                        }
+
+                        @Override
+                        public void onResponse(String response) {
+                            Gson gson = new Gson();
+                            Log.d("repres", response);
+                            BannerBean bannerBean = gson.fromJson(response, BannerBean.class);
+                            if (bannerBean.getErrno().equals("200")) {
+                                liveShopFragAdapter.setBannerData(bannerBean);
+                                liveShopFragAdapter.notifyDataSetChanged();
+//                                List<BannerBean.DataBean> data = bannerBean.getData();
+
+                            } else if (bannerBean.getErrno().equals("666666")) {
+                                Toast.makeText(getContext(), "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
+//                                JPushInterface.deleteAlias(getContext(), Integer.parseInt(uid));
+//                                sharedPreferencesHelper.clear();
+                                SPUtils.getInstance().clear();
+                                ActivityManager.getInstance().exit();
+                                intent = new Intent(getContext(), NewLoginActivity.class);
+                                startActivity(intent);
+
+                            }
+                        }
+                    });
 
     }
 
@@ -101,12 +134,7 @@ public class LiveShopFragment extends Fragment {
         unbinder.unbind();
     }
 
-    private class GlideImageLoader extends ImageLoader {
-        @Override
-        public void displayImage(Context context, Object path, ImageView imageView) {
-            Glide.with(context).load(path).into(imageView);
-        }
-    }
+
 
 
 }
