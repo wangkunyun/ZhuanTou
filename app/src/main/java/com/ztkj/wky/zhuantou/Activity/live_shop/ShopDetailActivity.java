@@ -64,7 +64,10 @@ public class ShopDetailActivity extends AppCompatActivity {
         shop_detail_img.setAdapter(liveShopDetailAdapter);
         shop_detail_img.setNestedScrollingEnabled(false);
         shop_list.setNestedScrollingEnabled(false);
-        guess_like_list.setNestedScrollingEnabled(true);
+        guess_like_list.setNestedScrollingEnabled(false);
+        shop_list.setHasFixedSize(true);
+        shop_detail_img.setHasFixedSize(true);
+        guess_like_list.setHasFixedSize(true);
     }
 
     public static void start(Context context) {

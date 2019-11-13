@@ -10,10 +10,10 @@
     <include layout="@layout/layout_toolbar_search" />
 
     <ScrollView
-        android:layout_above="@+id/tab_bottom_bar"
-        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/tab_bottom_bar"
+        android:layout_below="@+id/toolbar"
         android:scrollbars="none">
 
         <LinearLayout
@@ -147,6 +147,14 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:src="@mipmap/icon_oa_enter" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/shop_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp">
+
+                    </android.support.v7.widget.RecyclerView>
                 </RelativeLayout>
 
                 <View
@@ -212,14 +220,6 @@
                         android:textColor="@color/ff65"
                         android:textSize="12sp" />
                 </RelativeLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/shop_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
-
-                </android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
 

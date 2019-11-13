@@ -1,5 +1,6 @@
 package com.ztkj.wky.zhuantou.homepage;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -86,6 +87,11 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+     public static void start(Context context) {
+        Intent starter = new Intent(context, SearchActivity.class);
+        context.startActivity(starter);
     }
 
     private void register() {

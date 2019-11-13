@@ -3,9 +3,7 @@ package com.ztkj.wky.zhuantou.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,18 +15,18 @@ import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
-import com.ztkj.wky.zhuantou.Activity.live_shop.LiveShopFragment;
 import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.BannerBean;
 import com.ztkj.wky.zhuantou.bean.JsonBean;
+import com.ztkj.wky.zhuantou.homepage.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
     public static final int ITEM_TYPE_TOP = 0;
     public static final int ITEM_TYPE_MIDDLE = 1;
@@ -88,14 +86,36 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             shopCataoryViewHolder.n5_banner.setImageLoader(new GlideImageLoader());
             shopCataoryViewHolder.n5_banner.setImages(listImgs);
             shopCataoryViewHolder.n5_banner.start();
-            shopCataoryViewHolder.tv_click1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ShopDetailActivity.start(mContext);
-                }
-            });
+            shopCataoryViewHolder.live_search.setOnClickListener(this);
+            shopCataoryViewHolder.tv_click1.setOnClickListener(this);
+            shopCataoryViewHolder.tv_click2.setOnClickListener(this);
+            shopCataoryViewHolder.tv_click3.setOnClickListener(this);
+            shopCataoryViewHolder.tv_click4.setOnClickListener(this);
+            shopCataoryViewHolder.tv_click5.setOnClickListener(this);
+
         } else {
 
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.live_search:
+                SearchActivity.start(mContext);
+                break;
+            case R.id.tv_click1:
+                ShopDetailActivity.start(mContext);
+                break;
+            case R.id.tv_click2:
+
+                break;
+            case R.id.tv_click3:
+                break;
+            case R.id.tv_click4:
+                break;
+            case R.id.tv_click5:
+                break;
         }
     }
 
@@ -124,13 +144,20 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     class ShopCataoryViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv_click1;
+        private TextView tv_click1, tv_click2, tv_click3, tv_click4, tv_click5;
         Banner n5_banner;
+        private RelativeLayout live_search;
 
         public ShopCataoryViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_click1 = itemView.findViewById(R.id.tv_click1);
+            tv_click2 = itemView.findViewById(R.id.tv_click2);
+            tv_click3 = itemView.findViewById(R.id.tv_click3);
+            tv_click4 = itemView.findViewById(R.id.tv_click4);
+            tv_click5 = itemView.findViewById(R.id.tv_click5);
             n5_banner = itemView.findViewById(R.id.n5_banner);
+            live_search = itemView.findViewById(R.id.live_search);
+
         }
     }
 

@@ -1,6 +1,10 @@
 package com.ztkj.wky.zhuantou.Activity.live_shop.order;
 
-
+/**
+ * 作者：wky
+ * 功能描述：全部订单
+ *
+ */
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
