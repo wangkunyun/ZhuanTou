@@ -61,6 +61,7 @@ public class LiveShopFragment extends Fragment {
     LiveShopFragAdapter liveShopFragAdapter;
     private String banner_url = StringUtils.jiekouqianzui + "Article/bannerShop";
     Intent intent;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
