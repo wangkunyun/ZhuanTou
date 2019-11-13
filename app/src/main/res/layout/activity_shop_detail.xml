@@ -148,13 +148,7 @@
                         android:layout_alignParentRight="true"
                         android:src="@mipmap/icon_oa_enter" />
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/shop_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="20dp">
 
-                    </android.support.v7.widget.RecyclerView>
                 </RelativeLayout>
 
                 <View
@@ -191,6 +185,8 @@
                         android:layout_alignParentRight="true"
                         android:src="@mipmap/icon_oa_enter" />
                 </RelativeLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -220,7 +216,13 @@
                         android:textColor="@color/ff65"
                         android:textSize="12sp" />
                 </RelativeLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/shop_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp">
 
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
 
             <LinearLayout
