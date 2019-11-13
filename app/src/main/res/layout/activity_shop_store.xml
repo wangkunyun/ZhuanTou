@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:hjm="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#65C9D2"
+    android:orientation="vertical"
+    tools:context=".Activity.live_shop.store.ShopStoreActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_toolbar_search" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:background="#65C9D2">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@mipmap/img_bg_shop_store"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/img_StoreHead"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="29dp"
+            android:src="@drawable/head_portrait" />
+
+        <TextView
+            android:id="@+id/tv_StoreName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="85dp"
+            android:text="品牌直营店铺"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+    <com.hjm.bottomtabbar.BottomTabBar
+        android:id="@+id/bottom_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        app:tab_bar_background="#FFFFFF"
+        app:tab_divider_background="#FFE5E5E5"
+        app:tab_img_font_padding="0px"
+        app:tab_padding_top="10dp"
+        hjm:tab_selected_color="@color/lanse"
+        hjm:tab_unselected_color="#FF999999" />
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@color/baise">-->
+
+    <!--</RelativeLayout>-->
+
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:background="@color/baise">-->
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/rl_ClickStoreHomePage"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:drawableStart="@mipmap/zhanweitu_shop"-->
+    <!--android:drawablePadding="6dp"-->
+    <!--android:gravity="center"-->
+    <!--android:text="店铺首页"-->
+    <!--android:textColor="#ff65c9d2"-->
+    <!--android:textSize="14sp" />-->
+    <!--</RelativeLayout>-->
+
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/rl_ClickStoreAllShop"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:drawableStart="@mipmap/zhanweitu_shop"-->
+    <!--android:drawablePadding="6dp"-->
+    <!--android:gravity="center"-->
+    <!--android:text="全部商品"-->
+    <!--android:textColor="#ff65c9d2"-->
+    <!--android:textSize="14sp" />-->
+    <!--</RelativeLayout>-->
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/rl_ClickStoreShopClass"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:drawableStart="@mipmap/zhanweitu_shop"-->
+    <!--android:drawablePadding="6dp"-->
+    <!--android:gravity="center"-->
+    <!--android:text="商品分类"-->
+    <!--android:textColor="#ff65c9d2"-->
+    <!--android:textSize="14sp" />-->
+    <!--</RelativeLayout>-->
+
+    <!--</LinearLayout>-->
+
+</LinearLayout>

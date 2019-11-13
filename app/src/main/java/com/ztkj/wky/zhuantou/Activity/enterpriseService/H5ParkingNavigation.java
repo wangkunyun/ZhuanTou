@@ -47,7 +47,6 @@ public class H5ParkingNavigation extends AppCompatActivity {
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.DISALLOW)//打开其他页面时，弹窗质询用户前往其他应用 AgentWeb 3.0.0 加入。
                 .interceptUnkownUrl() //拦截找不到相关页面的Url AgentWeb 3.0.0 加入。
                 .createAgentWeb()//创建AgentWeb。
-
                 .ready()//设置 WebSettings。
                 .go("http://banbentishi.zhuantoukj.com/parking/?nowIndex=" + h5Url); //WebView载入该url地址的页面并显示。
 

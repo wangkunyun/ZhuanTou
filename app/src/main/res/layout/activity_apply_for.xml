@@ -9,8 +9,6 @@
     android:orientation="vertical"
     tools:context=".Activity.oa.examineAndapprove.ApplyFor">
 
-
-
     <com.hjm.bottomtabbar.BottomTabBar
         android:id="@+id/bottom_tab_bar"
         android:layout_width="match_parent"
@@ -21,8 +19,5 @@
         app:tab_bar_background="#FFFFFF"
         app:tab_divider_background="#FFE5E5E5"
         hjm:tab_unselected_color="#FF999999"/>
-
-
-
 
 </LinearLayout>
