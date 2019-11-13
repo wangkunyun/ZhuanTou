@@ -33,6 +33,7 @@ import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.LiveShopAdapter;
+import com.ztkj.wky.zhuantou.adapter.LiveShopFragAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.BannerBean;
 import com.ztkj.wky.zhuantou.bean.JsonBean;
@@ -54,35 +55,10 @@ import cn.jpush.android.api.JPushInterface;
 public class LiveShopFragment extends Fragment {
 
 
-    @BindView(R.id.live_search)
-    RelativeLayout liveSearch;
-    @BindView(R.id.tv_click1)
-    TextView tvClick1;
-    @BindView(R.id.tv_click2)
-    TextView tvClick2;
-    @BindView(R.id.tv_click3)
-    TextView tvClick3;
-    @BindView(R.id.tv_click4)
-    TextView tvClick4;
-    @BindView(R.id.tv_click5)
-    TextView tvClick5;
-    @BindView(R.id.lin_4Btn)
-    LinearLayout lin4Btn;
-    @BindView(R.id.n5_banner)
-    Banner n5Banner;
-    @BindView(R.id.cardview_banner)
-    CardView cardviewBanner;
-    @BindView(R.id.n5_tv_shop)
-    TextView n5TvShop;
-    @BindView(R.id.re_shop)
-    RecyclerView reShop;
+    @BindView(R.id.recycle_shop_list)
+    RecyclerView recycle_shop_list;
     Unbinder unbinder;
-    private String banner_url = StringUtils.jiekouqianzui + "Article/bannerShop";
-    private SharedPreferencesHelper sharedPreferencesHelper;
-    private String uid, token;
-    private List<String> imgs = new ArrayList<>();
-    private List<String> strs = new ArrayList<>();
-    private Intent intent;
+    LiveShopFragAdapter liveShopFragAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,75 +66,33 @@ public class LiveShopFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_live_shop, container, false);
         unbinder = ButterKnife.bind(this, view);
+        GridLayoutManager manager = new GridLayoutManager(getActivity(), 4);
+        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (position == 0) {
+                    return 4;
+                } else if (position == 1) {
+                    return 4;
+                } else {
+                    return 4;
+                }
+            }
+        });
+        recycle_shop_list.setLayoutManager(manager);
+        liveShopFragAdapter = new LiveShopFragAdapter(getActivity());
+        recycle_shop_list.setAdapter(liveShopFragAdapter);
 
-        sharedPreferencesHelper = new SharedPreferencesHelper(getContext(), "anhua");
-        uid = (String) sharedPreferencesHelper.getSharedPreference("uid", "");
-        token = (String) sharedPreferencesHelper.getSharedPreference("token", "");
-        reShop.setHasFixedSize(true);
-        reShop.setNestedScrollingEnabled(false);
-
-        Banner_gi();
-        Listdata();
+//        Banner_gi();
+//        Listdata();
 
 
         return view;
     }
 
-    private void Banner_gi() {
-
-        OkHttpUtils.post()
-                .url(banner_url)
-                .addParams("token", token)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        Gson gson = new Gson();
-                        Log.d("repres", response);
-                        BannerBean bannerBean = gson.fromJson(response, BannerBean.class);
-
-                        if (bannerBean.getErrno().equals("200")) {
-                            List<BannerBean.DataBean> data = bannerBean.getData();
-                            for (int i = 0; i < data.size(); i++) {
-                                imgs.add(data.get(i).getBanner());
-                                strs.add(data.get(i).getHref());
-                            }
-
-                            n5Banner.setIndicatorGravity(BannerConfig.CENTER);
-                            n5Banner.setDelayTime(5000);
-                            n5Banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
-                            n5Banner.setImageLoader(new GlideImageLoader());
-                            n5Banner.setImages(imgs);
-                            n5Banner.start();
-                        } else if (bannerBean.getErrno().equals("666666")) {
-                            Toast.makeText(getContext(), "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
-                            JPushInterface.deleteAlias(getContext(), Integer.parseInt(uid));
-                            sharedPreferencesHelper.clear();
-                            SPUtils.getInstance().clear();
-                            ActivityManager.getInstance().exit();
-                            intent = new Intent(getContext(), NewLoginActivity.class);
-                            startActivity(intent);
-//                            getActivity().finish();
-                        } else {
-
-                        }
-                    }
-                });
-
-
-    }
-
     private void Listdata() {
 
-        JsonBean jsonBean = GsonUtil.gsonToBean(Contents.Json, JsonBean.class);
-        List<JsonBean.ListBean> list = jsonBean.getList();
-        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(getContext(), list);
-        reShop.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        reShop.setAdapter(liveShopAdapter);
+
     }
 
     @Override
@@ -174,23 +108,5 @@ public class LiveShopFragment extends Fragment {
         }
     }
 
-    @OnClick({R.id.live_search, R.id.tv_click1, R.id.tv_click2, R.id.tv_click3, R.id.tv_click4, R.id.tv_click5})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.live_search:
-                intent = new Intent(getContext(), SearchActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.tv_click1:
-                break;
-            case R.id.tv_click2:
-                break;
-            case R.id.tv_click3:
-                break;
-            case R.id.tv_click4:
-                break;
-            case R.id.tv_click5:
-                break;
-        }
-    }
+
 }

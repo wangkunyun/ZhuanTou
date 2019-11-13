@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/f8">
+
+    <!--背景占位色块-->
+    <RelativeLayout
+        android:id="@+id/rela_top"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/lanse">
+
+        <!--搜索-->
+        <RelativeLayout
+            android:id="@+id/live_search"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/fxedt1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/search" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/yuanjiaotop">
+
+            <!--四个按钮-->
+            <LinearLayout
+                android:id="@+id/lin_4Btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="25dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="70dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_click1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_live_lingshi"
+                        android:gravity="center_horizontal"
+                        android:text="零食" />
+
+                    <TextView
+                        android:id="@+id/tv_click2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_live_wenjv"
+                        android:gravity="center_horizontal"
+                        android:text="文具" />
+
+                    <TextView
+                        android:id="@+id/tv_click3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_live_books"
+                        android:gravity="center_horizontal"
+                        android:text="书籍" />
+
+                    <TextView
+                        android:id="@+id/tv_click4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_live_skin"
+                        android:gravity="center_horizontal"
+                        android:text="ins新品" />
+
+                    <TextView
+                        android:id="@+id/tv_click5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_live_shuma"
+                        android:gravity="center_horizontal"
+                        android:text="数码" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginRight="19dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/yuanjiaotop_orange"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview_banner"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:visibility="visible"
+                app:cardCornerRadius="8dp">
+
+                <com.youth.banner.Banner
+                    android:id="@+id/n5_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    app:indicator_drawable_selected="@drawable/rectangle2"
+                    app:indicator_drawable_unselected="@drawable/rectangle2copy"
+                    app:indicator_height="3dp"
+                    app:indicator_margin="8dp"
+                    app:indicator_width="18dp" />
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
