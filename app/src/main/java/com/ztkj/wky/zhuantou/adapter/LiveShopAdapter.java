@@ -11,20 +11,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.bean.JsonBean;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class LiveShopAdapter extends RecyclerView.Adapter<LiveShopAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<Integer> img;
-    private ArrayList<String> des;
-    private ArrayList<String> price;
+    private List<JsonBean.ListBean> list;
 
-    public LiveShopAdapter(Context context, ArrayList<Integer> img, ArrayList<String> des, ArrayList<String> price) {
+    public LiveShopAdapter(Context context, List<JsonBean.ListBean> list) {
         this.context = context;
-        this.img = img;
-        this.des = des;
-        this.price = price;
+        this.list = list;
     }
 
     @NonNull
@@ -37,14 +34,14 @@ public class LiveShopAdapter extends RecyclerView.Adapter<LiveShopAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.tv_des.setText(des.get(i));
-        viewHolder.tv_price.setText(price.get(i));
-        Glide.with(context).load(img.get(i)).into(viewHolder.img);
+        viewHolder.tv_des.setText(list.get(i).getTitle());
+        viewHolder.tv_price.setText(list.get(i).getMoney());
+        Glide.with(context).load(list.get(i).getImg()).into(viewHolder.img);
     }
 
     @Override
     public int getItemCount() {
-        return des.size();
+        return list.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -28,11 +28,14 @@ import com.youth.banner.loader.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
+import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.LiveShopAdapter;
+import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.BannerBean;
+import com.ztkj.wky.zhuantou.bean.JsonBean;
 import com.ztkj.wky.zhuantou.homepage.SearchActivity;
 import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
@@ -74,9 +77,6 @@ public class LiveShopFragment extends Fragment {
     @BindView(R.id.re_shop)
     RecyclerView reShop;
     Unbinder unbinder;
-    private ArrayList<Integer> img;
-    private ArrayList<String> des;
-    private ArrayList<String> price;
     private String banner_url = StringUtils.jiekouqianzui + "Article/bannerShop";
     private SharedPreferencesHelper sharedPreferencesHelper;
     private String uid, token;
@@ -153,26 +153,10 @@ public class LiveShopFragment extends Fragment {
     }
 
     private void Listdata() {
-        img = new ArrayList<>();
-        des = new ArrayList<>();
-        price = new ArrayList<>();
 
-        img.add(R.mipmap.img_live_shop_zhanwei);
-        img.add(R.mipmap.img_live_shop_zhanweitu2);
-        img.add(R.mipmap.img_live_shop_zhanweitu3);
-        img.add(R.mipmap.img_live_zhanweitu4);
-
-        des.add("ZIIIRO日食手表女防水德国创意夜光简约抖…");
-        des.add("波浪边渔夫帽男女休闲春夏出游文艺…");
-        des.add("北欧/丹麦Frandsen灯具/简约现代/Dad..");
-        des.add("原创设计女装【隐侠】秋冬新款 高领百…");
-
-        price.add("1457");
-        price.add("32");
-        price.add("432");
-        price.add("58");
-
-        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(getContext(), img, des, price);
+        JsonBean jsonBean = GsonUtil.gsonToBean(Contents.Json, JsonBean.class);
+        List<JsonBean.ListBean> list = jsonBean.getList();
+        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(getContext(), list);
         reShop.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         reShop.setAdapter(liveShopAdapter);
     }

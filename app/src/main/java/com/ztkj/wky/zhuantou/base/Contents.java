@@ -14,6 +14,9 @@ public class Contents {
     public static int reportReddotNum = 0;
     //打卡次数
     public static int num = 0;
+    //json
+    public static final String Json = "[{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"}]";
+
 
     /**
      * 百度地图
