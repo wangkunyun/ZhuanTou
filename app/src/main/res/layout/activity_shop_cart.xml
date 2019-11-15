@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f8"
+    tools:context=".Activity.live_shop.ShopCartActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/shop_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rela_cart"
+        android:layout_below="@+id/toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/rela_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/e5" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_is_all_selelct"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageView
+                    android:visibility="visible"
+                    android:id="@+id/is_select_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="15dp"
+                    android:src="@drawable/select" />
+
+                <TextView
+                    android:visibility="visible"
+                    android:id="@+id/all_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全选"
+                    android:textColor="@color/t4"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/total_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toLeftOf="@+id/upload_confirm"
+                    android:layout_toRightOf="@+id/ll_is_all_selelct"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/ffe8"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+
+
+            <TextView
+                android:id="@+id/upload_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/yuanjiaobtn_19dp"
+                android:gravity="center"
+                android:paddingLeft="18dp"
+                android:paddingTop="10dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="10dp"
+                android:text="立即结算"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

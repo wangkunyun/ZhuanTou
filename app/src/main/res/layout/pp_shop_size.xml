@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/rela_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/yuanjiaotop">
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="105dp"
+            android:text="¥88,000"
+            android:textColor="#ffe81717"
+            android:textSize="18sp"></TextView>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="105dp"
+            android:id="@+id/tv_select_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_price"
+            android:text="已选：蓝黑  32"
+            android:textColor="#ff999999"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/solor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_select_size"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="颜色"
+            android:textColor="#ff333333"
+            android:textSize="14sp" />
+
+        <com.ztkj.wky.zhuantou.MyUtils.MyFlowLayout
+            android:id="@+id/flowLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/solor"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="15dp">
+
+        </com.ztkj.wky.zhuantou.MyUtils.MyFlowLayout>
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/flowLayout"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="数量"
+            android:textColor="#ff333333"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_num"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/reduce_shop_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/yuanjiaobtnfours"
+                    android:gravity="center"
+                    android:text="-" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textColor="@color/f33"
+                android:textSize="14sp" />
+
+            <RelativeLayout
+                android:id="@+id/add_shop_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/yuanjiaobtnfours"
+                    android:gravity="center"
+                    android:text="+" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="15dp"
+        android:src="@mipmap/icon_clock">
+
+    </ImageView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rela_top"
+        android:background="@color/white">
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/yuanjiaobtn"
+            android:elevation="10dp"
+            android:text="确定"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

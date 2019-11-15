@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rela_address"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/confim_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="15dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/n3_headImg"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/head_portrait" />
+
+        <ImageView
+            android:id="@+id/go_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_oa_enter" />
+
+        <TextView
+            android:id="@+id/cofirm_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/n3_headImg"
+            android:text="吕秃子"
+            android:textColor="@color/f33"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/confirm_user_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toLeftOf="@+id/go_back"
+            android:layout_toRightOf="@+id/cofirm_user_name"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="138 9758 3421"
+            android:textColor="@color/t4"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cofirm_user_name"
+            android:layout_alignStart="@+id/cofirm_user_name"
+            android:layout_marginTop="8dp"
+            android:layout_toLeftOf="@+id/go_back"
+            android:layout_toRightOf="@+id/n3_headImg"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="北京市通州区世界侨商中心7号楼11011"
+            android:textColor="@color/t6"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/f8" />
+</LinearLayout>

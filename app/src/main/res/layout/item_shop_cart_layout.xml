@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_big_shop"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/f8" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
+
+        <CheckBox
+            android:id="@+id/iv_is_select_cart"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp"
+            android:button="@drawable/select" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/n3_headImg"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/head_portrait" />
+
+        <TextView
+            android:id="@+id/tv_shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="品牌店铺"
+            android:textColor="@color/f33"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/e5" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle_shop_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

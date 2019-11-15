@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/shop_detial"
     tools:context=".Activity.live_shop.ShopDetailActivity">
 
 
@@ -58,6 +59,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/get_cuopon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -119,6 +121,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:id="@+id/rela_select_size"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -156,6 +159,7 @@
                     android:layout_height="0.5dp" />
 
                 <RelativeLayout
+                    android:id="@+id/rela_selelct_param"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -342,5 +346,7 @@
                 android:textSize="14sp" />
         </RelativeLayout>
     </LinearLayout>
+
+
 
 </RelativeLayout>

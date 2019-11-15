@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/f8" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/n3_headImg"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/head_portrait" />
+
+        <TextView
+            android:id="@+id/tv_shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="品牌店铺"
+            android:textColor="@color/f33"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/e5" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle_shop_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="100dp">
+
+        <TextView
+            android:id="@+id/tv_post_way"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="配送方式"
+            android:textColor="@color/f33"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/wan_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/tv_post_way"
+            android:text="配送方式  免邮"
+            android:textColor="@color/t4"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:paddingLeft="100dp"
+        android:paddingBottom="25dp">
+
+        <TextView
+            android:id="@+id/tv_order_beizhu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单备注"
+            android:textColor="@color/f33"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/order_beizhu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/tv_order_beizhu"
+            android:text="非必填项，请先和商家沟通确认"
+            android:textColor="@color/t4"
+            android:textSize="13sp" />
+    </RelativeLayout>
+</LinearLayout>
