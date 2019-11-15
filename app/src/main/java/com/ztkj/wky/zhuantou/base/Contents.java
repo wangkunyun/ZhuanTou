@@ -24,6 +24,70 @@ public class Contents {
             "{\"title\":\"女性服装\",\"class\":[{\"shop\":\"卫衣\"},{\"shop\":\"卫衣\"},{\"shop\":\"女性服装\"}]},\n" +
             "{\"title\":\"衣服\",\"class\":[]}]}";
 
+    public static final String jsonShopList = "{\n" +
+            "\t\"errno\": \"200\",\n" +
+            "\t\"errmsg\": \"获取成功\",\n" +
+            "\t\"data\": [{\n" +
+            "\t\t\t\"cl_id\": \"1\",\n" +
+            "\t\t\t\"cl_name\": \"最新资讯\",\n" +
+            "\t\t\t\"subordinate\": [{\n" +
+            "\t\t\t\t\t\"cl_id\": \"3\",\n" +
+            "\t\t\t\t\t\"cl_name\": \"企业动态\",\n" +
+            "\t\t\t\t\t\"price\": \"1\",\n" +
+            "\t\t\t\t\t\"num\": 1\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"cl_id\": \"4\",\n" +
+            "\t\t\t\t\t\"cl_name\": \"职场资讯\",\n" +
+            "\t\t\t\t\t\"price\": \"1\",\n" +
+            "\t\t\t\t\t\"num\": 1\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"cl_id\": \"5\",\n" +
+            "\t\t\t\t\t\"cl_name\": \"能力提升\",\n" +
+            "\t\t\t\t\t\"price\": \"1\",\n" +
+            "\t\t\t\t\t\"num\": 1\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"cl_id\": \"6\",\n" +
+            "\t\t\t\t\t\"cl_name\": \"视野开阔\",\n" +
+            "\t\t\t\t\t\"price\": \"1\",\n" +
+            "\t\t\t\t\t\"num\": 1\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t]\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"cl_id\": \"2\",\n" +
+            "\t\t\t\"cl_name\": \"热门话题\",\n" +
+            "\t\t\t\"subordinate\": [{\n" +
+            "\t\t\t\t\t\"cl_id\": \"7\",\n" +
+            "\t\t\t\t\t\"cl_name\": \"言行仪表\",\n" +
+            "\t\t\t\t\t\"price\": \"1\",\n" +
+            "\t\t\t\t\t\"num\": 1\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"cl_id\": \"8\",\n" +
+            "\t\t\t\t\t\"cl_name\": \"言谈举止\",\n" +
+            "\t\t\t\t\t\"price\": \"1\",\n" +
+            "\t\t\t\t\t\"num\": 1\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"cl_id\": \"9\",\n" +
+            "\t\t\t\t\t\"cl_name\": \"没有BUG\",\n" +
+            "\t\t\t\t\t\"price\": \"1\",\n" +
+            "\t\t\t\t\t\"num\": 1\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"cl_id\": \"10\",\n" +
+            "\t\t\t\t\t\"cl_name\": \"阿弥陀佛\",\n" +
+            "\t\t\t\t\t\"price\": \"1\",\n" +
+            "\t\t\t\t\t\"num\": 1\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t]\n" +
+            "\t\t}\n" +
+            "\t]\n" +
+            "}";
+
     /**
      * 百度地图
      */

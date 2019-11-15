@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.hyphenate.easeui.utils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MainActivity;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.MPermissionUtils;
+import com.ztkj.wky.zhuantou.MyUtils.StatusBarUtil;
 import com.ztkj.wky.zhuantou.R;
 
 public class SplashActivity extends AppCompatActivity {
@@ -20,12 +23,8 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //设置全屏
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_splash);
+        StatusBarUtil.setStatusBarMode(SplashActivity.this, true, R.color.white);
         ActivityManager.getInstance().addActivity(this);
         MPermissionUtils.requestPermissionsResult(this, 1,
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -50,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
         sharedPreferencesHelper = new SharedPreferencesHelper(SplashActivity.this, "anhua");
         aBooleanid = sharedPreferencesHelper.contain("uid");
 
-        final int time = 2000;    //设置等待时间，单位为毫秒
+        final int time = 2500;    //设置等待时间，单位为毫秒
         final Handler handler = new Handler();
 
         if (aBooleanid) {

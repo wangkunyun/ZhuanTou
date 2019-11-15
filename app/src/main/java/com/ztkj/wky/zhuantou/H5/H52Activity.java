@@ -34,6 +34,7 @@ import com.ztkj.wky.zhuantou.MyUtils.Config;
 import com.ztkj.wky.zhuantou.MyUtils.ScrollWebView;
 import com.ztkj.wky.zhuantou.MyUtils.ScrollWebView.OnScrollChangeListener;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
+import com.ztkj.wky.zhuantou.MyUtils.StatusBarUtil;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
@@ -54,7 +55,6 @@ public class H52Activity extends AppCompatActivity {
     ImageView h5Goback2;
     @BindView(R.id.h5_share2)
     ImageView h5Share2;
-
     @BindView(R.id.h52xiahua)
     TextView h52xiahua;
     @BindView(R.id.h52_web)
@@ -72,6 +72,7 @@ public class H52Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_h52);
         ButterKnife.bind(this);
+        StatusBarUtil.setStatusBarMode(H52Activity.this, true, R.color.white);
         ActivityManager.getInstance().addActivity(this);
         sharedPreferencesHelper = new SharedPreferencesHelper(H52Activity.this, "anhua");
         uid = (String) sharedPreferencesHelper.getSharedPreference("uid", "");

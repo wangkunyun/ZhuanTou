@@ -30,6 +30,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.Config;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
+import com.ztkj.wky.zhuantou.MyUtils.StatusBarUtil;
 import com.ztkj.wky.zhuantou.R;
 
 import butterknife.BindView;
@@ -62,6 +63,8 @@ public class H5Activity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_h5);
         ButterKnife.bind(this);
+        StatusBarUtil.setStatusBarMode(H5Activity2.this, true, R.color.white);
+
         ActivityManager.getInstance().addActivity(this);
         intent2 = getIntent();
         aid = intent2.getStringExtra("aid");
@@ -132,7 +135,7 @@ public class H5Activity2 extends AppCompatActivity {
     private void popuinit() {
         View contentView = LayoutInflater.from(H5Activity2.this).inflate(R.layout.pp1, null);
         //设置popuwindow是在父布局的哪个地方显示
-        backgroundAlpha(0.2f);
+        backgroundAlpha(0.6f);
         //下面是p里面的东西
         Button pbutton = contentView.findViewById(R.id.pp1_btn);
         RelativeLayout pr1 = contentView.findViewById(R.id.pp1_zuijin1);
