@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.ztkj.wky.zhuantou.MyUtils.DisplayUtil;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.MyUtils.MyFlowLayout;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.adapter.CouponAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopDetailAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopListAdapter;
@@ -93,6 +95,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         shop_list.setHasFixedSize(true);
         shop_detail_img.setHasFixedSize(true);
         guess_like_list.setHasFixedSize(true);
+
+
     }
 
     public static void start(Context context) {
@@ -116,11 +120,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         Button pp1_btn = contentView.findViewById(R.id.pp1_btn);
         ShopParamAdapter shopParamAdapter = new ShopParamAdapter(ShopDetailActivity.this);
         lv.setAdapter(shopParamAdapter);
-        final PopupWindow window = new PopupWindow(contentView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
-        window.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
-        window.setOutsideTouchable(true);
-        window.setTouchable(true);
         View rootview = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.activity_shop_detail, null);
+        setViewDow(contentView, rootview);
         pp1_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +129,15 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 window.dismiss();
             }
         });
+    }
+
+    PopupWindow window;
+
+    private void setViewDow(View view, View rootview) {
+        window = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+        window.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
+        window.setOutsideTouchable(true);
+        window.setTouchable(true);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -136,7 +146,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             }
         });
         window.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
-
     }
 
     private void popuSize() {
@@ -147,11 +156,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         MyFlowLayout lv = contentView.findViewById(R.id.flowLayout);
         Button btnConfirm = contentView.findViewById(R.id.btn_confirm);
         setFlowLayout(lv);
-        final PopupWindow window = new PopupWindow(contentView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
-        window.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
-        window.setOutsideTouchable(true);
-        window.setTouchable(true);
         View rootview = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.activity_shop_detail, null);
+        setViewDow(contentView, rootview);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,15 +165,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 window.dismiss();
             }
         });
-        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                backgroundAlpha(1f);
-                window.dismiss();
-            }
-        });
-        window.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
-
     }
 
     private void setFlowLayout(MyFlowLayout myFlowLayout) {
@@ -205,7 +202,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             case R.id.add_shopping_cart:
                 ShopCartActivity.start(ShopDetailActivity.this);
                 break;
-
             case R.id.at_once_buy:
                 ConfirmOrderActivity.start(ShopDetailActivity.this);
                 break;
@@ -216,8 +212,30 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 popuSize();
                 break;
             case R.id.get_cuopon:
+//                popuCoupon();
                 RefundActivity.start(ShopDetailActivity.this);
                 break;
         }
+    }
+
+    private void popuCoupon() {
+        View contentView = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.pp_shop_coupon, null);
+        //设置popuwindow是在父布局的哪个地方显示
+        backgroundAlpha(0.6f);
+        //下面是p里面的东西
+        ListView lv = contentView.findViewById(R.id.lv);
+        Button pp1_btn = contentView.findViewById(R.id.pp1_btn);
+        CouponAdapter shopParamAdapter = new CouponAdapter(ShopDetailActivity.this);
+        lv.setAdapter(shopParamAdapter);
+        View rootview = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.activity_shop_detail, null);
+        setViewDow(contentView, rootview);
+        pp1_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backgroundAlpha(1f);
+                window.dismiss();
+            }
+        });
+
     }
 }
