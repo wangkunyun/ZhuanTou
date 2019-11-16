@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/img_youhui">
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="26dp"
+            android:paddingTop="25dp"
+            android:text="¥50"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_user_way"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="25dp"
+            android:layout_toRightOf="@+id/tv_money"
+            android:text="满300可用"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_user_way"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/tv_money"
+            android:text="2019.10.01-2019.10.31"
+            android:textColor="#ffffffff"
+            android:textSize="10sp" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:paddingRight="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="立即领取"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        />
+</RelativeLayout>
