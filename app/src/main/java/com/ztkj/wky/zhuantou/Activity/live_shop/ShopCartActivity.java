@@ -98,7 +98,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void messageEventBus(String event) {
         //刷新UI
-        Log.e("sdfafasa",event);
+        Log.e("sdfafasa", event);
         totalAmount.setText("￥" + event);
     }
 
@@ -122,7 +122,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
             case R.id.more:
 //                isSelectBuy.setVisibility(View.VISIBLE);
 //                allSelect.setVisibility(View.VISIBLE);
-
+                CollectShopActivity.start(ShopCartActivity.this);
                 break;
             case R.id.ll_is_all_selelct:
                 if (isSelectBuy.isSelected()) {

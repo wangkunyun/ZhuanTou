@@ -78,7 +78,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.live_shop.order.RefundActivity"></activity>
+        <activity android:name=".Activity.live_shop.CollectShopActivity"></activity>
+        <activity android:name=".Activity.live_shop.order.RefundActivity" />
         <activity android:name=".Activity.live_shop.EditAddressActivity" />
         <activity android:name=".Activity.live_shop.CreateAddressActivity" />
         <activity android:name=".Activity.live_shop.ShopCartActivity" />
