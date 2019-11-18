@@ -53,7 +53,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    ShopCartDentailDetailAdapter shopCartDentailDetailAdapter;
+    public ShopCartDentailDetailAdapter shopCartDentailDetailAdapter;
 
     @NonNull
     @Override
@@ -73,14 +73,23 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //更改item选中状态同时进行实体内的选中状态改变
                 list.get(i).setSelect(isChecked);
+                if (isChecked) {
+                    listSelectIS.add(list.get(i));
+                } else {
+                    if (listSelectIS != null && listSelectIS.size() > 0) {
+                        listSelectIS.remove(list.get(i));
+                    }
+                }
                 //外层选中状态改变后，要遍历改变子recyclerView内item的选中状态
                 for (ShopCartBean.DataBean.SubordinateBean cartItemResultDtoList : list.get(i).getSubordinate()) {
                     cartItemResultDtoList.setSelect(isChecked);
                 }
+                setAllShopListens.shopListen(isAllSelect());
                 notifyDataSetChanged();
                 EventBus.getDefault().post(getAllPrice());
             }
         });
+
         holder.itemView.setTag(cartBean);//传object回去
         if (list != null && list.size() > 0) {
             shopCartDentailDetailAdapter = new ShopCartDentailDetailAdapter(mContext);
@@ -88,6 +97,20 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
             holder.recycleShopDetail.setAdapter(shopCartDentailDetailAdapter);
             shopCartDentailDetailAdapter.setData(list.get(i).getSubordinate(), cartBean, this, isExpand);
             shopCartDentailDetailAdapter.notifyDataSetChanged();
+            shopCartDentailDetailAdapter.setSmallListen(new ShopCartDentailDetailAdapter.SmallShopListen() {
+                @Override
+                public void selectSmallShop(boolean select) {
+                    if(select){
+                        listSelectIS.add(list.get(i));
+                        setAllShopListens.shopListen(isAllSelect());
+                    }else{
+                        if (listSelectIS != null && listSelectIS.size() > 0) {
+                            listSelectIS.remove(list.get(i));
+                        }
+                        setAllShopListens.shopListen(isAllSelect());
+                    }
+                }
+            });
             holder.recycleShopDetail.setFocusableInTouchMode(false);
             holder.recycleShopDetail.requestFocus();
             //单个商家的商品列表不需要滑动，所以在这里禁止掉商品item的滑动事件
@@ -98,6 +121,25 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                 }
             };
             holder.recycleShopDetail.setLayoutManager(linearLayoutManager);
+        }
+    }
+
+    List<ShopCartBean.DataBean> listSelectIS = new ArrayList<>();
+    SetAllShopListen setAllShopListens;
+
+    public interface SetAllShopListen {
+        void shopListen(boolean isSlect);
+    }
+
+    public void setShopListen(SetAllShopListen setAllShopListen) {
+        this.setAllShopListens = setAllShopListen;
+    }
+
+    public boolean isAllSelect() {
+        if (list.size() == listSelectIS.size()) {
+            return true;
+        } else {
+            return false;
         }
     }
 

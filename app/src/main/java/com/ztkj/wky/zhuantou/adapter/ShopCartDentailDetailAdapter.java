@@ -85,8 +85,10 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
                     }
                 }
                 if (!noSelect) {
+                    smallListes.selectSmallShop(true);
                     shortCartBean.setSelect(!noSelect);
                 } else {
+                    smallListes.selectSmallShop(false);
                     shortCartBean.setSelect(!noSelect);
                 }
                 shopCartAdapter.notifyDataSetChanged();
@@ -139,7 +141,11 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
     }
 
     public interface SmallShopListen {
-        void selectSmallShop(int position);
+        void selectSmallShop(boolean select);
+    }
+    SmallShopListen smallListes;
+    public void setSmallListen(SmallShopListen smallListen){
+        this.smallListes=smallListen;
     }
 
     SmallShopListen smallShopListen;

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.ztkj.wky.zhuantou.Activity.live_shop.CollectShopActivity;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.bean.ShopCartBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,14 +39,21 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).isSelect()) {
                     listDelet.add(list.get(i));
-//                    list.remove(i);
-//                    notifyDataSetChanged();
                 }
             }
             list.removeAll(listDelet);
-            Log.e("Dfsfsfs", list.size() + "" + list.toString());
             notifyDataSetChanged();
         }
+    }
+
+    CollectDelete collectDelete;
+
+    public interface CollectDelete {
+        void collectDelete(boolean deleteAll);
+    }
+
+    public void setCollectListen(CollectDelete collectDeletes) {
+        this.collectDelete = collectDeletes;
     }
 
     public List<CollectShopActivity.ShopBean> getData() {
@@ -121,6 +129,19 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
                 } else {
                     viewHolder1.shop_select.setSelected(true);
                     list.get(i).setSelect(true);
+
+                }
+                boolean noSelect=false;
+                //内层item选中状态改变后要遍历判断是否全选，以改变外层item的选中状态
+                for (CollectShopActivity.ShopBean cartItemResultDtoList : list) {
+                    if (!cartItemResultDtoList.isSelect()) {
+                        noSelect = true;
+                    }
+                }
+                if (noSelect) {
+                    collectDelete.collectDelete(false);
+                } else {
+                    collectDelete.collectDelete(true);
 
                 }
                 notifyDataSetChanged();

@@ -33,7 +33,7 @@ public class Contents {
             "\t\t\t\"subordinate\": [{\n" +
             "\t\t\t\t\t\"cl_id\": \"3\",\n" +
             "\t\t\t\t\t\"cl_name\": \"企业动态\",\n" +
-            "\t\t\t\t\t\"price\": \"1\",\n" +
+            "\t\t\t\t\t\"price\": \"2\",\n" +
             "\t\t\t\t\t\"num\": 1\n" +
             "\t\t\t\t},\n" +
             "\t\t\t\t{\n" +
@@ -74,7 +74,7 @@ public class Contents {
             "\t\t\t\t{\n" +
             "\t\t\t\t\t\"cl_id\": \"9\",\n" +
             "\t\t\t\t\t\"cl_name\": \"没有BUG\",\n" +
-            "\t\t\t\t\t\"price\": \"1\",\n" +
+            "\t\t\t\t\t\"price\": \"3\",\n" +
             "\t\t\t\t\t\"num\": 1\n" +
             "\t\t\t\t},\n" +
             "\t\t\t\t{\n" +
