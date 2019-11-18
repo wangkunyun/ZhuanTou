@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/baise"
-    android:fitsSystemWindows="true"
     tools:context=".landing.SplashActivity">
 
+    <!--android:fitsSystemWindows="true"-->
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:background="@drawable/yindaoye"
-        android:scaleType="fitXY" />
+        android:background="@mipmap/yindaoye" />
 
+    <!--android:adjustViewBounds="true"-->
 </RelativeLayout>

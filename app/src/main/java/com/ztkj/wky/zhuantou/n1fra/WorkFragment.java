@@ -31,13 +31,13 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.chat.AddressTab;
 import com.ztkj.wky.zhuantou.Activity.chat.EChatConversationList;
 import com.ztkj.wky.zhuantou.Activity.enterpriseService.SendWater;
+import com.ztkj.wky.zhuantou.Activity.live_shop.order.TradeLogisticsActivity;
 import com.ztkj.wky.zhuantou.Activity.oa.AddSchedule;
 import com.ztkj.wky.zhuantou.Activity.oa.Create_Team;
 import com.ztkj.wky.zhuantou.Activity.oa.ScheduleList;
 import com.ztkj.wky.zhuantou.Activity.oa.SetTongzhi;
 import com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.ApplyFor;
 import com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.apply.Examine;
-import com.ztkj.wky.zhuantou.Activity.oa.punch.PunchInTab;
 import com.ztkj.wky.zhuantou.Activity.oa.report.ReportTab;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
@@ -244,7 +244,7 @@ public class WorkFragment extends Fragment {
                 isFirst = false;
             } else {
                 if (!StringUtils.isEmpty(uid)) {
-                    if(days!=null&&days.size()>0){
+                    if (days != null && days.size() > 0) {
                         for (int i = 0; i < days.size(); i++) {
                             if (days.contains(localDate.toString())) {
                                 intent = new Intent(getContext(), ScheduleList.class);
@@ -339,6 +339,7 @@ public class WorkFragment extends Fragment {
             @Override
             public void onError(Request request, Exception e) {
             }
+
             @Override
             public void onResponse(String response) {
                 Log.e(TAG, "onResponse: =====请求企业服务列表接口=====" + response);
@@ -406,7 +407,7 @@ public class WorkFragment extends Fragment {
                     public void onResponse(String response) {
 //                        Log.e(TAG, "onResponse: " + response);
                         ScheduleListBean scheduleListBean = new Gson().fromJson(response, ScheduleListBean.class);
-                        if(scheduleListBean.getErrno().equals("200")){
+                        if (scheduleListBean.getErrno().equals("200")) {
                             days = new ArrayList<>();
                             List<ScheduleListBean.DataBean> data = scheduleListBean.getData();
                             for (int i = 0; i < data.size(); i++) {
@@ -586,16 +587,19 @@ public class WorkFragment extends Fragment {
 //                Toast.makeText(getActivity(), "敬请期待！！！", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.n4_daka://打卡
-                if (StringUtils.isEmpty(uid)) {
-                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), NewLoginActivity.class);
-                    startActivity(intent);
-                    return;
-                }
-
-                intent = new Intent(getContext(), PunchInTab.class);
-                startActivity(intent);
+//                if (StringUtils.isEmpty(uid)) {
+//                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+//                    intent = new Intent(getActivity(), NewLoginActivity.class);
+//                    startActivity(intent);
+//                    return;
+//                }
+//
+//                intent = new Intent(getContext(), PunchInTab.class);
+//                startActivity(intent);
 //                Toast.makeText(getActivity(), "敬请期待！！！", Toast.LENGTH_SHORT).show();
+//                OrderTabActivity.start(getActivity());
+//                ApplyInvoiceActivity.start(getActivity());
+                TradeLogisticsActivity.start(getActivity());
                 break;
 
 

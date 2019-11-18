@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/sexpp_t1"
+        android:id="@+id/pp_t1"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_centerHorizontal="true"
@@ -14,7 +14,7 @@
         android:layout_marginEnd="16dp"
         android:background="@color/baise"
         android:gravity="center"
-        android:text="男"
+        android:text="企业"
         android:textColor="@color/t3"
         android:textSize="16sp" />
 
@@ -22,11 +22,11 @@
         android:id="@+id/sexpp_wy1"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_below="@+id/sexpp_t1"
+        android:layout_below="@+id/pp_t1"
         android:background="#F8F8F8" />
 
     <TextView
-        android:id="@+id/sexpp_t2"
+        android:id="@+id/pp_t2"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_below="@+id/sexpp_wy1"
@@ -35,7 +35,7 @@
         android:layout_marginEnd="16dp"
         android:background="@color/baise"
         android:gravity="center"
-        android:text="女"
+        android:text="个人"
         android:textColor="@color/t3"
         android:textSize="16sp" />
 

@@ -145,25 +145,25 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
         head = (String) sharedPreferencesHelper.getSharedPreference("head", "");
         phone = (String) sharedPreferencesHelper.getSharedPreference("phone", "");
         String name_renzheng = SPUtils.getInstance().getString("isrenzheng");
-        if ("0" .equals(username)) {
+        if ("0".equals(username)) {
             gerent1.setText("暂未填写");
         } else {
             gerent1.setText(username);
         }
         gerent2.setText(phone);
-        if ("0" .equals(sex)) {
+        if ("0".equals(sex)) {
             gerent3.setText("暂未填写");
-        } else if ("1" .equals(sex)) {
+        } else if ("1".equals(sex)) {
             gerent3.setText("男");
-        } else if ("2" .equals(sex)) {
+        } else if ("2".equals(sex)) {
             gerent3.setText("女");
         }
-        if ("0" .equals(address)) {
+        if ("0".equals(address)) {
             gerent4.setText("暂未填写");
         } else {
             gerent4.setText(address);
         }
-        if ("0" .equals(head)) {
+        if ("0".equals(head)) {
             gerenHead.setImageResource(R.drawable.head_portrait);
         } else {
             Glide.with(GeRenActivity.this).load(head).into(gerenHead);
@@ -367,9 +367,9 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
 
     private void gi() {
         int se = 0;
-        if ("男" .equals(gerent3.getText())) {
+        if ("男".equals(gerent3.getText())) {
             se = 1;
-        } else if ("女" .equals(gerent3.getText())) {
+        } else if ("女".equals(gerent3.getText())) {
             se = 2;
         }
         OkHttpUtils.post()
@@ -396,7 +396,6 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
                             finish();
                             sharedPreferencesHelper.put("realname", gerent1.getText().toString());
                             SPUtils.getInstance().put("realname", gerent1.getText().toString());
-
                             Toast.makeText(GeRenActivity.this, "上传信息成功", Toast.LENGTH_SHORT).show();
                         } else if (zcBean.getErrno().equals("666666")) {
                             Toast.makeText(GeRenActivity.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();

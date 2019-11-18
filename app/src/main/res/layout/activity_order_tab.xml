@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/baise"
     android:orientation="vertical"
     tools:context=".Activity.live_shop.order.OrderTabActivity">
 
-    <include layout="@layout/layout_toolbar_search"/>
+    <include layout="@layout/layout_toolbar_search" />
 
     <com.androidkun.xtablayout.XTabLayout
         android:id="@+id/xTablayout"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="115dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="100dp"
         app:xTabBackgroundColor="#FFFFFF"
         app:xTabDisplayNum="5"
         app:xTabDividerWidthWidthText="true"

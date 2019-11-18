@@ -89,6 +89,11 @@ dependencies {
 
     //    implementation 'com.zhy:autolayout:1.4.5'
 
+    //状态栏 基础依赖包，必须要依赖  https://www.jianshu.com/p/2a884e211a62
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+    // 状态栏 fragment快速实现（可选）
+    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
+
     //今日头条适配
     implementation 'me.jessyan:autosize:1.1.2'
 
@@ -119,6 +124,7 @@ dependencies {
 
     //时间选择器
     implementation 'com.github.codbking:PickTime:v1.0.1'
+    //光中用的城市选择器 https://github.com/CHAOHUILI/AddressPicker
     implementation 'com.github.CHAOHUILI:AddressPicker:v1.1.0'
 
     //微信支付  登录 分享 都可以用该类库
@@ -129,9 +135,10 @@ dependencies {
 
     //日期选择器 此处用了单项选择
     implementation 'cn.qqtheme.framework:WheelPicker:1.1.2'
+    //https://github.com/fishwjy/MultiType-FilePicker 文件选择器
     implementation 'cn.qqtheme.framework:FilePicker:1.1.2'
 
-    //可精确到时分秒的时间选择器
+    //可精确到时分秒的时间选择器   https://github.com/Bigkoo/Android-PickerView
     implementation 'com.contrarywind:Android-PickerView:4.1.8'
 
     //    //滚动选择器

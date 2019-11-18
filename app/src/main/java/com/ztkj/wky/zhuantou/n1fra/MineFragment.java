@@ -21,10 +21,15 @@ import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.order.OrderTabActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.MyWallet;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
@@ -32,7 +37,6 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.GetUserMessageBean;
 import com.ztkj.wky.zhuantou.isMy.GeRenActivity;
 import com.ztkj.wky.zhuantou.isMy.JiFenActivity;
-import com.ztkj.wky.zhuantou.isMy.JiLuActivity;
 import com.ztkj.wky.zhuantou.isMy.SzActivity;
 import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
@@ -47,35 +51,78 @@ import butterknife.Unbinder;
 public class MineFragment extends Fragment {
 
 
-    @BindView(R.id.n3_headImg)
-    ImageView n3HeadImg;
-    @BindView(R.id.n3_name)
-    TextView n3Name;
-    @BindView(R.id.n3_kdimg)
-    ImageView n3Kdimg;
-    @BindView(R.id.n3_grzl)
-    RelativeLayout n3Grzl;
-    @BindView(R.id.n3_jifen)
-    TextView n3Jifen;
-    @BindView(R.id.n3_wdjf)
-    RelativeLayout n3Wdjf;
-    @BindView(R.id.n3_tab1)
-    RelativeLayout n3Tab1;
-    @BindView(R.id.n3_tab2)
-    RelativeLayout n3Tab2;
+    //    @BindView(R.id.n3_headImg)
+//    ImageView n3HeadImg;
+//    @BindView(R.id.n3_name)
+//    TextView n3Name;
+//    @BindView(R.id.n3_kdimg)
+//    ImageView n3Kdimg;
+//    @BindView(R.id.n3_grzl)
+//    RelativeLayout n3Grzl;
+//    @BindView(R.id.n3_jifen)
+//    TextView n3Jifen;
+//    @BindView(R.id.n3_wdjf)
+//    RelativeLayout n3Wdjf;
+    //    @BindView(R.id.n3_tab1)
+//    RelativeLayout n3Tab1;
+//    @BindView(R.id.n3_tab2)
+//    RelativeLayout n3Tab2;
+//    @BindView(R.id.n3_tab3)
+//    RelativeLayout n3Tab3;
+    Unbinder unbinder;
+    @BindView(R.id.clickMineScan)
+    ImageView clickMineScan;
+    @BindView(R.id.clickMineTongzhi)
+    TextView clickMineTongzhi;
+    @BindView(R.id.tvMinePersonName)
+    TextView tvMinePersonName;
+    @BindView(R.id.tvMineCompanyName)
+    TextView tvMineCompanyName;
+    @BindView(R.id.imgMinePersonHead)
+    ImageView imgMinePersonHead;
+    @BindView(R.id.clickMineGeren)
+    RelativeLayout clickMineGeren;
+    @BindView(R.id.clickImgSign)
+    ImageView clickImgSign;
+    @BindView(R.id.tvMineJF)
+    TextView tvMineJF;
+    @BindView(R.id.tvMineCollect)
+    TextView tvMineCollect;
+    @BindView(R.id.clickCollect)
+    RelativeLayout clickCollect;
+    @BindView(R.id.tvMineBrowsingHis)
+    TextView tvMineBrowsingHis;
+    @BindView(R.id.clickBrowsingHis)
+    RelativeLayout clickBrowsingHis;
+    @BindView(R.id.tvMineIntegral)
+    TextView tvMineIntegral;
+    @BindView(R.id.clickJF)
+    RelativeLayout clickJF;
+    @BindView(R.id.clickAllOrder)
+    ImageView clickAllOrder;
+    @BindView(R.id.clickWaitPay)
+    ImageView clickWaitPay;
+    @BindView(R.id.clickWaitSend)
+    ImageView clickWaitSend;
+    @BindView(R.id.clickWaitReceive)
+    ImageView clickWaitReceive;
+    @BindView(R.id.click_mine_wallet)
+    RelativeLayout clickMineWallet;
     @BindView(R.id.n3_tab3)
     RelativeLayout n3Tab3;
-    Unbinder unbinder;
+    @BindView(R.id.click_mine_face)
+    RelativeLayout clickMineFace;
+    @BindView(R.id.click_mine_parking)
+    RelativeLayout clickMineParking;
+    @BindView(R.id.n3_tab2)
+    RelativeLayout n3Tab2;
 
     private Intent intent;
     private SharedPreferencesHelper sharedPreferencesHelper;
     private String uid, token;
     private String url = StringUtils.jiekouqianzui + "User/userInfo";
     private String TAG = "fragment_n3";
-
-    public MineFragment() {
-        // Required empty public constructor
-    }
+    public static final int REQUEST_CODE = 111;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,6 +137,7 @@ public class MineFragment extends Fragment {
 
         return view;
     }
+
 
     @Override
     public void onResume() {
@@ -136,22 +184,28 @@ public class MineFragment extends Fragment {
                             SPUtils.getInstance().put("realname", getUserMessageBean.getData().getName());
                             SPUtils.getInstance().put("balance", getUserMessageBean.getData().getBalance());
                             if ("0".equals(getUserMessageBean.getData().getUsername())) {
-                                n3Name.setText("暂无昵称");
+                                tvMinePersonName.setText("暂无昵称");
                             } else {
-                                n3Name.setText(getUserMessageBean.getData().getUsername());
+                                tvMinePersonName.setText(getUserMessageBean.getData().getUsername());
                             }
                             if ("0".equals(getUserMessageBean.getData().getHead())) {
-                                n3HeadImg.setImageResource(R.drawable.head_portrait);
+                                imgMinePersonHead.setImageResource(R.drawable.head_portrait);
                             } else {
-                                Glide.with(getContext()).load(getUserMessageBean.getData().getHead()).into(n3HeadImg);
+                                //设置图片圆角角度
+                                RoundedCorners roundedCorners = new RoundedCorners(96);
+                                RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
+                                Glide.with(getContext()).load(getUserMessageBean.getData().getHead())
+                                        .apply(options)
+                                        .into(imgMinePersonHead);
                             }
-                            n3Jifen.setText(getUserMessageBean.getData().getIntegral());
+//                            tvMineJF.setText(getUserMessageBean.getData().getIntegral());
 
                         }
                     }
                 });
 
     }
+
 
     @Override
     public void onDestroyView() {
@@ -160,10 +214,17 @@ public class MineFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.n3_grzl, R.id.n3_wdjf, R.id.n3_tab1, R.id.n3_tab2, R.id.n3_tab3, R.id.click_mine_face, R.id.click_mine_parking, R.id.click_mine_wallet})
+
+    @OnClick({R.id.clickMineScan, R.id.clickMineTongzhi, R.id.clickMineGeren, R.id.clickImgSign, R.id.clickCollect, R.id.clickBrowsingHis, R.id.clickJF, R.id.clickAllOrder, R.id.clickWaitPay, R.id.clickWaitSend, R.id.clickWaitReceive, R.id.click_mine_wallet, R.id.n3_tab3, R.id.click_mine_face, R.id.click_mine_parking, R.id.n3_tab2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.n3_grzl:
+            case R.id.clickMineScan:
+                intent = new Intent(getActivity(), CaptureActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+                break;
+            case R.id.clickMineTongzhi: //通知
+                break;
+            case R.id.clickMineGeren:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                     intent = new Intent(getActivity(), NewLoginActivity.class);
@@ -173,7 +234,7 @@ public class MineFragment extends Fragment {
                 intent = new Intent(getContext(), GeRenActivity.class);
                 getActivity().startActivity(intent);
                 break;
-            case R.id.n3_wdjf:
+            case R.id.clickImgSign:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                     intent = new Intent(getActivity(), NewLoginActivity.class);
@@ -183,37 +244,31 @@ public class MineFragment extends Fragment {
                 intent = new Intent(getContext(), JiFenActivity.class);
                 getActivity().startActivity(intent);
                 break;
-            case R.id.n3_tab1:
+            case R.id.clickCollect: //收藏
+                break;
+            case R.id.clickBrowsingHis: //浏览记录
+                break;
+            case R.id.clickJF:
                 if (StringUtils.isEmpty(uid)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                     intent = new Intent(getActivity(), NewLoginActivity.class);
                     startActivity(intent);
                     return;
                 }
-                intent = new Intent(getContext(), JiLuActivity.class);
+                intent = new Intent(getContext(), JiFenActivity.class);
                 getActivity().startActivity(intent);
                 break;
-            case R.id.n3_tab2:
-                if (StringUtils.isEmpty(uid)) {
-                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), NewLoginActivity.class);
-                    startActivity(intent);
-                    return;
-                }
-                intent = new Intent(getContext(), SzActivity.class);
-                getActivity().startActivity(intent);
+            case R.id.clickAllOrder:
+                OrderTabActivity.start(getActivity(), 0);
                 break;
-            case R.id.n3_tab3:
-                if (StringUtils.isEmpty(uid)) {
-                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), NewLoginActivity.class);
-                    startActivity(intent);
-                    return;
-                }
-                popuinit();
+            case R.id.clickWaitPay:
+                OrderTabActivity.start(getActivity(), 1);
                 break;
-            case R.id.click_mine_face:
-                Toast.makeText(getActivity(), "敬请期待！！！", Toast.LENGTH_SHORT).show();
+            case R.id.clickWaitSend:
+                OrderTabActivity.start(getActivity(), 2);
+                break;
+            case R.id.clickWaitReceive:
+                OrderTabActivity.start(getActivity(), 3);
                 break;
             case R.id.click_mine_wallet:
                 if (StringUtils.isEmpty(uid)) {
@@ -225,8 +280,20 @@ public class MineFragment extends Fragment {
                 intent = new Intent(getActivity(), MyWallet.class);
                 startActivity(intent);
                 break;
-            case R.id.click_mine_parking: //停车缴费
-//                if (StringUtils.isEmpty(uid)) {
+            case R.id.n3_tab3:
+                if (StringUtils.isEmpty(uid)) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                popuinit();
+                break;
+            case R.id.click_mine_face:
+                Toast.makeText(getActivity(), "敬请期待", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.click_mine_parking:
+                // if (StringUtils.isEmpty(uid)) {
 //                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
 //                    intent = new Intent(getActivity(), NewLoginActivity.class);
 //                    startActivity(intent);
@@ -235,7 +302,16 @@ public class MineFragment extends Fragment {
 //                intent = new Intent(getContext(), ParkActivity.class);
 //                getActivity().startActivity(intent);
                 Toast.makeText(getActivity(), "敬请期待！！！", Toast.LENGTH_SHORT).show();
-
+                break;
+            case R.id.n3_tab2:
+                if (StringUtils.isEmpty(uid)) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                intent = new Intent(getContext(), SzActivity.class);
+                getActivity().startActivity(intent);
                 break;
         }
     }
@@ -288,6 +364,30 @@ public class MineFragment extends Fragment {
         lp.alpha = bgAlpha; //0.0-1.0
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         getActivity().getWindow().setAttributes(lp);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /**
+         * 处理二维码扫描结果
+         */
+        if (requestCode == REQUEST_CODE) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(getActivity(), "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+
     }
 
 }

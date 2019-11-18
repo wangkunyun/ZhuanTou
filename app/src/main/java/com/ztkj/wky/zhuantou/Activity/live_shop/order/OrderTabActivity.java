@@ -1,5 +1,7 @@
 package com.ztkj.wky.zhuantou.Activity.live_shop.order;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -10,14 +12,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.androidkun.xtablayout.XTabLayout;
-import com.ztkj.wky.zhuantou.Activity.oa.report.AllReport;
-import com.ztkj.wky.zhuantou.Activity.oa.report.ReceiveReport;
-import com.ztkj.wky.zhuantou.Activity.oa.report.SubmitReport;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.XtablayoutAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +38,8 @@ public class OrderTabActivity extends AppCompatActivity {
     @BindView(R.id.more)
     ImageView more;
     List<Fragment> fragments = new ArrayList<>();
-
+    private String TAG = "OrderTabActivity";
+    private int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +50,53 @@ public class OrderTabActivity extends AppCompatActivity {
 
         List<String> titles = new ArrayList<>();
         titles.add("全部");
-        titles.add("我提交的");
-        titles.add("我收到的");
-        fragments.add(new AllReport());
-        fragments.add(new SubmitReport());
-        fragments.add(new ReceiveReport());
-
+        titles.add("待付款");
+        titles.add("待发货");
+        titles.add("待收货");
+        fragments.add(new AllOrderFragment());
+        fragments.add(new AllOrderFragment());
+        fragments.add(new AllOrderFragment());
+        fragments.add(new AllOrderFragment());
+        i = getIntent().getIntExtra("tag", 0);
         XtablayoutAdapter xtablayoutAdapter = new XtablayoutAdapter(getSupportFragmentManager(), fragments, titles);
+//        xTablayout.setxTabDisplayNum(2);
+//        xTablayout.setScrollPosition(2, 0, true);
         viewPager.setAdapter(xtablayoutAdapter);
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(4);
         //将TabLayout和ViewPager关联起来。
+        xTablayout.setupWithViewPager(viewPager);
 
-        xTablayout.setupWithViewPager(viewPager);
-        //给TabLayout设置适配器
-        xTablayout.setupWithViewPager(viewPager);
+
+        Objects.requireNonNull(xTablayout.getTabAt(i)).select();
+        //切換fragment 监听
+        xTablayout.addOnTabSelectedListener(new XTabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(XTabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(XTabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(XTabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    public static void start(Context context, int i) {
+        Intent starter = new Intent(context, OrderTabActivity.class);
+        starter.putExtra("tag", i);
+        context.startActivity(starter);
     }
 
     @OnClick({R.id.layout_back, R.id.bigsearch_edt, R.id.more})

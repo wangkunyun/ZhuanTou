@@ -21,6 +21,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.utils.SharedPreferencesHelper;
@@ -28,12 +29,12 @@ import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.MPermissionUtils;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.base.Contents;
-import com.ztkj.wky.zhuantou.n1fra.LiveTabFragment;
-import com.ztkj.wky.zhuantou.n1fra.HomeFragment;
 import com.ztkj.wky.zhuantou.n1fra.CodeFragment;
+import com.ztkj.wky.zhuantou.n1fra.HomeFragment;
+import com.ztkj.wky.zhuantou.n1fra.LiveFragment;
+import com.ztkj.wky.zhuantou.n1fra.LiveTabFragment;
 import com.ztkj.wky.zhuantou.n1fra.MineFragment;
 import com.ztkj.wky.zhuantou.n1fra.WorkFragment;
-import com.ztkj.wky.zhuantou.n1fra.LiveFragment;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -179,6 +180,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         transaction = getSupportFragmentManager().beginTransaction();
         switch (position) {
             case 0:
+                ImmersionBar.with(this)
+                        .statusBarColor(R.color.lanse)     //状态栏颜色，不写默认透明色
+                        .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
+                        .fitsSystemWindows(true)//解决状态栏和布局重叠问题
+                        .statusBarDarkFont(false)//状态栏字体是深色，不写默认为亮色
+                        .init();
                 rb1.setBackgroundResource(R.drawable.tab_icon_zhuye_sel);
                 rb3.setBackgroundResource(R.drawable.tab_icon_me_set);
                 rb4.setBackgroundResource(R.drawable.tabqifu2);
@@ -195,6 +202,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 }
                 break;
             case 1:
+                ImmersionBar.with(this)
+                        .statusBarColor(R.color.lanse)     //状态栏颜色，不写默认透明色
+                        .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
+                        .fitsSystemWindows(true)//解决状态栏和布局重叠问题
+                        .statusBarDarkFont(false)//状态栏字体是深色，不写默认为亮色
+                        .init();
                 rb1.setBackgroundResource(R.drawable.tab_icon_zhuye_default);
                 rb3.setBackgroundResource(R.drawable.tab_icon_me_set);
                 rb4.setBackgroundResource(R.drawable.tabqifu2);
@@ -211,6 +224,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 //                }
                 break;
             case 2:
+                ImmersionBar.with(this)
+                        .statusBarColor(R.color.f8)     //状态栏颜色，不写默认透明色
+                        .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
+                        .fitsSystemWindows(true)//解决状态栏和布局重叠问题
+                        .statusBarDarkFont(true)//状态栏字体是深色，不写默认为亮色
+                        .init();
                 rb1.setBackgroundResource(R.drawable.tab_icon_zhuye_default);
                 rb3.setBackgroundResource(R.drawable.tab_icon_me_default);
                 rb4.setBackgroundResource(R.drawable.tabqifu2);
@@ -227,6 +246,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 break;
 
             case 3:
+                ImmersionBar.with(this)
+                        .statusBarColor(R.color.lanse)     //状态栏颜色，不写默认透明色
+                        .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
+                        .fitsSystemWindows(true)//解决状态栏和布局重叠问题
+                        .statusBarDarkFont(false)//状态栏字体是深色，不写默认为亮色
+                        .init();
                 rb1.setBackgroundResource(R.drawable.tab_icon_zhuye_default);
                 rb3.setBackgroundResource(R.drawable.tab_icon_me_set);
                 rb4.setBackgroundResource(R.drawable.tabqifu1);
@@ -244,6 +269,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 break;
 
             case 4:
+                ImmersionBar.with(this)
+                        .statusBarColor(R.color.lanse)     //状态栏颜色，不写默认透明色
+                        .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
+                        .fitsSystemWindows(true)//解决状态栏和布局重叠问题
+                        .statusBarDarkFont(false)//状态栏字体是深色，不写默认为亮色
+                        .init();
                 rb1.setBackgroundResource(R.drawable.tab_icon_zhuye_default);
                 rb3.setBackgroundResource(R.drawable.tab_icon_me_set);
                 rb4.setBackgroundResource(R.drawable.tabqifu2);
