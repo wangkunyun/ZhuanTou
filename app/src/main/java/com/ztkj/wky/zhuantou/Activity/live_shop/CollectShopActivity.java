@@ -115,20 +115,6 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
 
     private void deleteShop() {
       collectShopAdapter.getSelectData();
-//        if(list.size()!=lists){
-//            List<ShopBean> listData=collectShopAdapter.getData();
-//            for (int i = 0; i < listData.size(); i++) {
-//                if (listData.get(i).) {
-//                    Log.e("dfsf",i+"");
-//                    ShopBean shopBean=listData.get(i);
-//                    listData.remove(shopBean);
-//                }
-//            }
-//            Log.e("dfasfs",listData.toString());
-//            collectShopAdapter.setData(listData);
-//        }else{
-//            collectShopAdapter.clearData();
-//        }
     }
 
     boolean isAll = false;
