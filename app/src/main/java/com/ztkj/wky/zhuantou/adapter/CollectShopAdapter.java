@@ -25,7 +25,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CollectShopAdapter extends RecyclerView.Adapter {
 
     private Context context;
-    List<CollectShopActivity.ShopBean> list=new ArrayList<>();
+    List<CollectShopActivity.ShopBean> list = new ArrayList<>();
+    List<CollectShopActivity.ShopBean> listDelet = new ArrayList<>();
     boolean isExpand;
 
     public CollectShopAdapter(Context context) {
@@ -36,11 +37,14 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).isSelect()) {
-                    Log.e("Dfsfsfs",list.get(i).isSelect()+"");
-                    list.remove(i);
-                    notifyDataSetChanged();
+                    listDelet.add(list.get(i));
+//                    list.remove(i);
+//                    notifyDataSetChanged();
                 }
             }
+            list.removeAll(listDelet);
+            Log.e("Dfsfsfs", list.size() + "" + list.toString());
+            notifyDataSetChanged();
         }
     }
 
