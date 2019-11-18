@@ -72,6 +72,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_shop_cart);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
+
         initView();
         initData();
     }
@@ -85,6 +86,17 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
         shop_cart.setLayoutManager(new LinearLayoutManager(ShopCartActivity.this));
         shopCartAdapter = new ShopCartAdapter(ShopCartActivity.this);
         shop_cart.setAdapter(shopCartAdapter);
+        shopCartAdapter.setShopListen(new ShopCartAdapter.SetAllShopListen() {
+            @Override
+            public void shopListen(boolean isSlect) {
+                if (isSlect) {
+                    isSelectBuy.setSelected(true);
+                } else {
+                    isSelectBuy.setSelected(false);
+                }
+            }
+        });
+
     }
 
     private void initData() {
@@ -94,6 +106,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
             shopCartAdapter.setData(list, 1);
             shopCartAdapter.notifyDataSetChanged();
         }
+
     }
 
     //这里用了eventBus来进行实时价格的UI更改。
@@ -103,6 +116,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
         Log.e("sdfafasa", event);
         totalAmount.setText("￥" + event);
     }
+
 
     @Override
     public void onClick(View view) {
@@ -147,4 +161,6 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
+
 }

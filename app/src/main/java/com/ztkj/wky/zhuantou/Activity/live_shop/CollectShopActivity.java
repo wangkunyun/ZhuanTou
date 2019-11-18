@@ -22,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CollectShopActivity extends AppCompatActivity implements View.OnClickListener {
+public class CollectShopActivity extends AppCompatActivity implements View.OnClickListener{
 
 
     @BindView(R.id.layout_back)
@@ -66,7 +66,18 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
         recyclerView.setLayoutManager(new LinearLayoutManager(CollectShopActivity.this));
         collectShopAdapter = new CollectShopAdapter(CollectShopActivity.this);
         recyclerView.setAdapter(collectShopAdapter);
+        collectShopAdapter.setCollectListen(new CollectShopAdapter.CollectDelete() {
+            @Override
+            public void collectDelete(boolean deleteAll) {
+                if (deleteAll) {
+                    is_select_buy.setSelected(true);
+                } else {
+                    is_select_buy.setSelected(false);
+                }
+            }
+        });
         initData();
+
     }
 
     private void initData() {
@@ -118,6 +129,7 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
     }
 
     boolean isAll = false;
+
 
     public class ShopBean {
         private String name;
