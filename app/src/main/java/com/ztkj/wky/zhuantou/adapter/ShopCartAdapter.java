@@ -114,6 +114,31 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         EventBus.getDefault().post(getAllPrice());
     }
 
+    List<ShopCartBean.DataBean> listGroup = new ArrayList<>();
+    List<ShopCartBean.DataBean.SubordinateBean> listChild = new ArrayList<>();
+
+    public void getSelect() {
+        if (list != null && list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).isSelect()) {
+                    listGroup.add(list.get(i));
+                } else {
+                    for (ShopCartBean.DataBean.SubordinateBean cartItemResultDtoList : list.get(i).getSubordinate()) {
+                        if (cartItemResultDtoList.isSelect()) {
+                            listChild.add(cartItemResultDtoList);
+                        }
+                    }
+                    list.get(i).getSubordinate().removeAll(listChild);
+                }
+
+            }
+            list.removeAll(listGroup);
+            notifyDataSetChanged();
+            EventBus.getDefault().post(getAllPrice());
+        }
+
+    }
+
     //获取需要商品总价格
     public String getAllPrice() {
         BigDecimal allprice = new BigDecimal("0");
@@ -125,7 +150,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                         BigDecimal interestRate = new BigDecimal(data.get(y).getNum());
                         BigDecimal interest = new BigDecimal(data.get(y).getPrice()).multiply(interestRate);
                         allprice = allprice.add(interest);
-                        Log.e( "allprice" , allprice+"");
+                        Log.e("allprice", allprice + "");
                     }
                 }
             }
@@ -146,7 +171,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
     class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.iv_is_select_cart)
-        CheckBox  ivIsSelectCart;
+        CheckBox ivIsSelectCart;
         @BindView(R.id.n3_headImg)
         CircleImageView n3HeadImg;
         @BindView(R.id.tv_shop_name)

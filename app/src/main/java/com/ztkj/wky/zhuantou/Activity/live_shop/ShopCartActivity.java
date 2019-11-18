@@ -58,6 +58,8 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.rela_cart)
     RelativeLayout relaCart;
 
+    @BindView(R.id.delete_shop)
+    TextView delete_shop;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, ShopCartActivity.class);
@@ -113,7 +115,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    @OnClick({R.id.layout_back, R.id.more, R.id.ll_is_all_selelct})
+    @OnClick({R.id.layout_back, R.id.more, R.id.ll_is_all_selelct, R.id.delete_shop})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
@@ -132,6 +134,9 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                     isSelectBuy.setSelected(true);
                     shopCartAdapter.setAllselect(true);
                 }
+                break;
+            case R.id.delete_shop:
+                shopCartAdapter.getSelect();
                 break;
         }
     }
