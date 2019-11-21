@@ -12,17 +12,22 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.JsonBean;
+import com.ztkj.wky.zhuantou.bean.ShopDetailBean;
 
 import java.util.List;
 
 public class LiveShopListAdapter extends RecyclerView.Adapter<LiveShopListAdapter.ViewHolder> {
     private Context context;
-    private List<JsonBean.ListBean> list;
+    private List<ShopDetailBean.DataBean.StoreBean> list;
 
 
-    public LiveShopListAdapter(Context context, List<JsonBean.ListBean> list) {
+    public LiveShopListAdapter(Context context) {
         this.context = context;
-        this.list = list;
+    }
+
+    public void setData(List<ShopDetailBean.DataBean.StoreBean> lists){
+        this.list=lists;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -35,22 +40,38 @@ public class LiveShopListAdapter extends RecyclerView.Adapter<LiveShopListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+        if (list.get(i).getSc_name() != null) {
+            viewHolder.tv_store_name.setText(list.get(i).getSc_name());
+        }
+        if (list.get(i).getSc_present_price() != null) {
+            viewHolder.tv_store_price.setText("¥"+list.get(i).getSc_present_price());
+        }
+        if (list.get(i).getSc_img() != null) {
+            Glide.with(context).load(list.get(i).getSc_img()).into(viewHolder.iv_store);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return list.size()-2;
+        if(list!=null){
+            return list.size();
+        }else{
+            return 0;
+        }
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView img;
+        private ImageView iv_store;
+        private TextView tv_store_name;
+        private TextView tv_store_price;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            img = itemView.findViewById(R.id.img_shopPic);
-
+            iv_store = itemView.findViewById(R.id.iv_store);
+            tv_store_name = itemView.findViewById(R.id.tv_store_name);
+            tv_store_price = itemView.findViewById(R.id.tv_store_price);
         }
     }
 }

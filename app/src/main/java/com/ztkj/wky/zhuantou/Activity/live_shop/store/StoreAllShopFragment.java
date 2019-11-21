@@ -49,11 +49,11 @@ public class StoreAllShopFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_store_all_shop, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        JsonBean jsonBean = GsonUtil.gsonToBean(Contents.Json, JsonBean.class);
-        List<JsonBean.ListBean> list = jsonBean.getList();
-        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(getContext(), list);
-        reView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        reView.setAdapter(liveShopAdapter);
+//        JsonBean jsonBean = GsonUtil.gsonToBean(Contents.Json, JsonBean.class);
+//        List<JsonBean.ListBean> list = jsonBean.getList();
+//        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(getContext(), list);
+//        reView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+//        reView.setAdapter(liveShopAdapter);
 
         return view;
     }

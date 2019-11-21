@@ -21,6 +21,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.BannerBean;
 import com.ztkj.wky.zhuantou.bean.JsonBean;
+import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
 import com.ztkj.wky.zhuantou.homepage.SearchActivity;
 
 import java.util.ArrayList;
@@ -52,6 +53,13 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     }
 
+    List<ShopHomeBean.DataBean> listShop;
+
+    public void setListShop(List<ShopHomeBean.DataBean> list) {
+        this.listShop = list;
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
@@ -70,14 +78,14 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
         if (i == 2) {
             ShopRecommendViewHolder shopRecommendViewHolder = (ShopRecommendViewHolder) viewHolder;
-            JsonBean jsonBean = GsonUtil.gsonToBean(Contents.Json, JsonBean.class);
-            List<JsonBean.ListBean> list = jsonBean.getList();
-            LiveShopAdapter liveShopAdapter = new LiveShopAdapter(mContext, list);
-            shopRecommendViewHolder.re_shop.setLayoutManager(new GridLayoutManager(mContext, 2));
-            shopRecommendViewHolder.re_shop.setAdapter(liveShopAdapter);
+            if(listShop!=null){
+                LiveShopAdapter liveShopAdapter = new LiveShopAdapter(mContext, listShop);
+                shopRecommendViewHolder.re_shop.setLayoutManager(new GridLayoutManager(mContext, 2));
+                shopRecommendViewHolder.re_shop.setAdapter(liveShopAdapter);
+            }
+
         } else if (i == 0) {
             ShopCataoryViewHolder shopCataoryViewHolder = (ShopCataoryViewHolder) viewHolder;
             shopCataoryViewHolder.n5_banner.setIndicatorGravity(BannerConfig.CENTER);
@@ -105,7 +113,6 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 SearchActivity.start(mContext);
                 break;
             case R.id.tv_click1:
-                ShopDetailActivity.start(mContext);
                 break;
             case R.id.tv_click2:
 

@@ -1,6 +1,7 @@
 package com.ztkj.wky.zhuantou.landing;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -54,6 +55,11 @@ public class NewLoginActivity extends AppCompatActivity {
     private SharedPreferencesHelper sharedPreferencesHelper;
     private SharedPreferencesHelper sp;
 
+
+    public static void start(Context context) {
+        Intent starter = new Intent(context, NewLoginActivity.class);
+        context.startActivity(starter);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

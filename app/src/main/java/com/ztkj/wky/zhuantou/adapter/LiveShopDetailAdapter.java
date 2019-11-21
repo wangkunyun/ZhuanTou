@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.R;
@@ -16,12 +17,18 @@ import java.util.List;
 
 public class LiveShopDetailAdapter extends RecyclerView.Adapter<LiveShopDetailAdapter.ViewHolder> {
     private Context context;
-    private List<JsonBean.ListBean> list;
+    private List<String> list;
 
 
-    public LiveShopDetailAdapter(Context context, List<JsonBean.ListBean> list) {
+    public LiveShopDetailAdapter(Context context) {
         this.context = context;
+
+    }
+
+
+    public void setData(List<String> list) {
         this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -34,21 +41,28 @@ public class LiveShopDetailAdapter extends RecyclerView.Adapter<LiveShopDetailAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Glide.with(context).load("https://test-other-1258996935.cos.ap-beijing.myqcloud.com/1567407703537261884.png").into(viewHolder.img);
+        if(list.get(i)!=null){
+            Glide.with(context).load(list.get(i)).into(viewHolder.iv_shop_detail);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        if (list != null) {
+            return list.size();
+        } else {
+            return 0;
+        }
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView img;
+        private ImageView iv_shop_detail;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            img = itemView.findViewById(R.id.iv_shop_detail);
+            iv_shop_detail = itemView.findViewById(R.id.iv_shop_detail);
 
         }
     }

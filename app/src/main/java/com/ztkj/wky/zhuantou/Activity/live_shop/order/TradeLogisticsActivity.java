@@ -72,9 +72,9 @@ public class TradeLogisticsActivity extends AppCompatActivity {
         reTrade.setNestedScrollingEnabled(false);
         JsonBean jsonBean = GsonUtil.gsonToBean(Contents.Json, JsonBean.class);
         List<JsonBean.ListBean> list = jsonBean.getList();
-        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(this, list);
+//        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(this, list);
         reView.setLayoutManager(new GridLayoutManager(this, 2));
-        reView.setAdapter(liveShopAdapter);
+//        reView.setAdapter(liveShopAdapter);
         TradeAdapter tradeAdapter = new TradeAdapter();
         reTrade.setLayoutManager(new LinearLayoutManager(this));
         reTrade.setAdapter(tradeAdapter);

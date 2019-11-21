@@ -2,6 +2,8 @@ package com.ztkj.wky.zhuantou.Activity.live_shop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -20,30 +23,51 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+import com.zhy.view.flowlayout.FlowLayout;
+import com.zhy.view.flowlayout.TagAdapter;
+import com.zhy.view.flowlayout.TagFlowLayout;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.RefundActivity;
 import com.ztkj.wky.zhuantou.H5.H5Activity2;
 import com.ztkj.wky.zhuantou.MyUtils.DisplayUtil;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.MyUtils.MyFlowLayout;
+import com.ztkj.wky.zhuantou.MyUtils.MyGridView;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.CouponAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopDetailAdapter;
+import com.ztkj.wky.zhuantou.adapter.LiveShopGuessAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopListAdapter;
 import com.ztkj.wky.zhuantou.adapter.ShopParamAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.GuessLikeBean;
 import com.ztkj.wky.zhuantou.bean.JsonBean;
+import com.ztkj.wky.zhuantou.bean.ShopDetailBean;
+import com.ztkj.wky.zhuantou.bean.ShopKeyBean;
+import com.ztkj.wky.zhuantou.bean.ShopSizeBean;
+import com.ztkj.wky.zhuantou.bean.SkuBean;
+import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.ztkj.wky.zhuantou.base.Contents.deleteShop;
+
 
 public class ShopDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.guess_like_list)
-    RecyclerView guess_like_list;
+    MyGridView guess_like_list;
     @BindView(R.id.shop_list)
     RecyclerView shop_list;
     LiveShopListAdapter liveShopListAdapter;
@@ -62,52 +86,327 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     RelativeLayout rela_selelct_param;
     @BindView(R.id.get_cuopon)
     LinearLayout get_cuopon;
+    @BindView(R.id.sc_name)
+    TextView sc_name;
+    @BindView(R.id.sc_present_price)
+    TextView sc_present_price;
+    @BindView(R.id.iv_cover)
+    ImageView iv_cover;
+    @BindView(R.id.collect_shop)
+    TextView collect_shop;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_detail);
         ButterKnife.bind(this);
+        shopDetailId = getIntent().getStringExtra("shopId");
+        uid = SPUtils.getInstance().getString("uid");
         initData();
+        getShopSize();
         layout_back.setOnClickListener(this);
         add_shopping_cart.setOnClickListener(this);
         at_once_buy.setOnClickListener(this);
         rela_selelct_param.setOnClickListener(this);
         rela_select_size.setOnClickListener(this);
         get_cuopon.setOnClickListener(this);
+        collect_shop.setOnClickListener(this);
     }
+
+    int pageNum = 1;
+    LiveShopGuessAdapter liveShopGuessAdapter;
 
     private void initData() {
-        JsonBean jsonBean = GsonUtil.gsonToBean(Contents.Json, JsonBean.class);
-        List<JsonBean.ListBean> list = jsonBean.getList();
-        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(ShopDetailActivity.this, list);
-        guess_like_list.setLayoutManager(new GridLayoutManager(ShopDetailActivity.this, 2));
-        guess_like_list.setAdapter(liveShopAdapter);
+//        guess_like_list.setLayoutManager(new GridLayoutManager(ShopDetailActivity.this,2));
+        liveShopGuessAdapter = new LiveShopGuessAdapter(ShopDetailActivity.this);
+//        guess_like_list.setAdapter(liveShopDetailAdapter);
+        guess_like_list.setAdapter(liveShopGuessAdapter);
         shop_list.setLayoutManager(new GridLayoutManager(ShopDetailActivity.this, 3));
-        liveShopListAdapter = new LiveShopListAdapter(ShopDetailActivity.this, list);
+        liveShopListAdapter = new LiveShopListAdapter(ShopDetailActivity.this);
         shop_list.setAdapter(liveShopListAdapter);
+
         shop_detail_img.setLayoutManager(new LinearLayoutManager(ShopDetailActivity.this));
-        liveShopDetailAdapter = new LiveShopDetailAdapter(ShopDetailActivity.this, list);
+        liveShopDetailAdapter = new LiveShopDetailAdapter(ShopDetailActivity.this);
         shop_detail_img.setAdapter(liveShopDetailAdapter);
+
         shop_detail_img.setNestedScrollingEnabled(false);
         shop_list.setNestedScrollingEnabled(false);
-        guess_like_list.setNestedScrollingEnabled(false);
+//        guess_like_list.setNestedScrollingEnabled(false);
         shop_list.setHasFixedSize(true);
         shop_detail_img.setHasFixedSize(true);
-        guess_like_list.setHasFixedSize(true);
+//        guess_like_list.setHasFixedSize(true);
+        if (shopDetailId != null) {
+            initDetailData();
+        }
+    }
 
+    ShopDetailBean shopDetailBean;
+
+    private void initDetailData() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.shopDetail)
+                .addParams("sc_id", shopDetailId)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            shopDetailBean = new Gson().fromJson(response, ShopDetailBean.class);
+                            if (shopDetailBean.getErrno().equals("200")) {
+                                setView();
+                            } else {
+                                ToastUtils.showShort(shopDetailBean.getErrmsg());
+                            }
+                        }
+                    }
+
+
+                });
 
     }
 
-    public static void start(Context context) {
+    String goodsName;
+    String goodsDetail;
+
+    private void setView() {
+        if (shopDetailBean.getData().getSc_name() != null) {
+            goodsName = shopDetailBean.getData().getSc_name();
+            goodsDetail = shopDetailBean.getData().getSc_details();
+            sc_name.setText(goodsName);
+        }
+        if (shopDetailBean.getData().getSc_present_price() != null) {
+            sc_present_price.setText(shopDetailBean.getData().getSc_present_price());
+        }
+        if (shopDetailBean.getData().getSc_img() != null) {
+            String img = shopDetailBean.getData().getSc_img();
+            Glide.with(ShopDetailActivity.this).load(img).into(iv_cover);
+        }
+        if (shopDetailBean.getData().getSc_img() != null) {
+            listShopDetail.add(shopDetailBean.getData().getSc_img());
+            liveShopDetailAdapter.setData(listShopDetail);
+        }
+        if (shopDetailBean.getData().getStore() != null && shopDetailBean.getData().getStore().size() > 0) {
+            liveShopListAdapter.setData(shopDetailBean.getData().getStore());
+            liveShopListAdapter.notifyDataSetChanged();
+        }
+        if (goodsName != null && goodsDetail != null) {
+            getKeys();
+        }
+
+    }
+
+    ShopSizeBean skuBean;
+
+    private void getShopSize() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.shopSize)
+                .addParams("sc_sku_id", 1 + "")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        ToastUtils.showShort(e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            skuBean = new Gson().fromJson(Contents.ShopSkuJson, ShopSizeBean.class);
+                            //默认展示第一条数据和拿到颜色集合
+                            getShopPop(0);
+
+                        }
+                    }
+                });
+    }
+
+    private void getShopPop(int positionColor) {
+        if (skuBean.getData().getArr().size() != 0) {
+            for (int i = 0; i < skuBean.getData().getArr().size(); i++) {
+                ShopBeanSize shopBeanSize = new ShopBeanSize();
+                shopBeanSize.setId(skuBean.getData().getArr().get(i).getSk_id());
+                shopBeanSize.setName(skuBean.getData().getArr().get(i).getSk_name());
+                listColor.add(shopBeanSize);
+                if (i == positionColor) {
+                    if (skuBean.getData().getArr().get(0).getSk_arr().getArr().size() != 0) {
+                        for (int j = 0; j < skuBean.getData().getArr().get(positionColor).getSk_arr().getArr().size(); j++) {
+                            ShopBeanSize shopBeanSize1 = new ShopBeanSize();
+                            shopBeanSize1.setId(skuBean.getData().getArr().get(positionColor).getSk_arr().getArr().get(j).getSk_id());
+                            shopBeanSize1.setName(skuBean.getData().getArr().get(positionColor).getSk_arr().getArr().get(j).getSk_name());
+                            listMateral.add(shopBeanSize1);
+                            if (skuBean.getData().getArr().get(positionColor).getSk_arr().getArr().get(j).getSk_arr().getArr().size() != 0) {
+                                for (int g = 0; g < skuBean.getData().getArr().get(positionColor).getSk_arr().getArr().get(j).getSk_arr().getArr().size(); g++) {
+                                    ShopBeanSize shopBeanSize2 = new ShopBeanSize();
+                                    shopBeanSize2.setId(skuBean.getData().getArr().get(positionColor).getSk_arr().getArr().get(j).getSk_arr().getArr().get(g).getSk_id());
+                                    shopBeanSize2.setName(skuBean.getData().getArr().get(positionColor).getSk_arr().getArr().get(j).getSk_arr().getArr().get(g).getSk_name());
+                                    listSize.add(shopBeanSize2);
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+
+    List<ShopBeanSize> listColor = new ArrayList<>();
+    List<ShopBeanSize> listMateral = new ArrayList<>();
+    List<ShopBeanSize> listSize = new ArrayList<>();
+    ShopKeyBean shopKeyBean;
+
+
+    public class ShopBeanSize {
+        private String name;
+        private String id;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+    }
+
+    private void getKeys() {
+        OkHttpUtils.get().url(Contents.getKey + goodsName + "&goods_details=" + goodsDetail)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            shopKeyBean = new Gson().fromJson(response, ShopKeyBean.class);
+                            listKey = shopKeyBean.getData();
+                            keyString = ListToString();
+                            if (keyString != null) {
+                                getGussLike();
+                            }
+                        }
+                    }
+                });
+
+    }
+
+    private void getGussLike() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.guessLike)
+                .addParams("key_word", keyString)
+                .addParams("page", String.valueOf(pageNum))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        ToastUtils.showShort(e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            guessLikeBean = new Gson().fromJson(response, GuessLikeBean.class);
+                            if (guessLikeBean != null) {
+                                listGuess = guessLikeBean.getData();
+                                setGuessData();
+                            } else {
+                                ToastUtils.showShort("解析失败");
+                            }
+                        }
+                    }
+
+
+                });
+    }
+
+
+    private void setGuessData() {
+        if (listGuess != null && listGuess.size() > 0) {
+            for (int i = 0; i < listGuess.size(); i++) {
+                for (int j = 0; j < listGuess.get(i).size(); j++) {
+                    listGuessBean.add(listGuess.get(i).get(j));
+                }
+            }
+            liveShopGuessAdapter.setGuess(listGuessBean);
+            liveShopGuessAdapter.notifyDataSetChanged();
+//            Log.e("dfasfa",liveShopGuessAdapter.getItemCount()+"");
+        }
+    }
+
+    StringBuilder stringBuilder;
+    String keyString;
+    GuessLikeBean guessLikeBean;
+    List<List<GuessLikeBean.DataBean>> listGuess = new ArrayList<>();
+    List<GuessLikeBean.DataBean> listGuessBean = new ArrayList<>();
+
+    private String ListToString() {
+
+        if (listKey != null && listKey.size() > 0) {
+            stringBuilder = new StringBuilder();
+            for (int i = 0; i < listKey.size(); i++) {
+                if (i != 0) {
+                    stringBuilder.append(",");
+                }
+                stringBuilder.append(listKey.get(i));
+            }
+        }
+
+        return stringBuilder.toString();
+
+    }
+
+    List<String> listKey = new ArrayList<>();
+    List<String> listShopDetail = new ArrayList<>();
+
+    public static void start(Context context, String shopDeitalId) {
         Intent starter = new Intent(context, ShopDetailActivity.class);
+        starter.putExtra("shopId", shopDeitalId);
         context.startActivity(starter);
     }
+
+    private String shopDetailId;
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (uid != null) {
+            recorder();
+        }
 
+
+    }
+
+    private void recorder() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.recorderUser)
+                .addParams("uid", uid)
+                .addParams("key_word", keyString)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e("keyString", e.getMessage());
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("keyString", response);
+                    }
+                });
     }
 
 
@@ -153,9 +452,13 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         //设置popuwindow是在父布局的哪个地方显示
         backgroundAlpha(0.6f);
         //下面是p里面的东西
-        MyFlowLayout lv = contentView.findViewById(R.id.flowLayout);
+        lvTagColor = contentView.findViewById(R.id.flowLayout);
+        lvTagMatarel = contentView.findViewById(R.id.flowLayout_matarel);
+        lvTagSize = contentView.findViewById(R.id.flowLayout_size);
         Button btnConfirm = contentView.findViewById(R.id.btn_confirm);
-        setFlowLayout(lv);
+        initColorAdater();
+        initMateralAdater();
+        initSizeAdater();
         View rootview = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.activity_shop_detail, null);
         setViewDow(contentView, rootview);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
@@ -167,24 +470,128 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         });
     }
 
-    private void setFlowLayout(MyFlowLayout myFlowLayout) {
-        try {
-            for (int i = 0; i < 12; i++) {
-                TextView tv = new TextView(this);
-                tv.setTextSize(14);
-                tv.setText("蓝色");
-                tv.setTextColor(getResources().getColor(R.color.t4));
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(10, 15, 15, 5);
-                tv.setLayoutParams(params);
-                tv.setMaxWidth(DisplayUtil.getScreenWidth(ShopDetailActivity.this) - 20);//这句话是为了限制过长的内容顶出屏幕而设置的
-                tv.setPadding(25, 15, 25, 15);
-                tv.setBackgroundResource(R.drawable.yuanjiaobtnfours);
-                myFlowLayout.addView(tv);
+    TagFlowLayout lvTagColor, lvTagMatarel, lvTagSize;
+    TagAdapter tagAdapter, tagMateralAdapter, tagSizeAdapter;
+
+    private void initColorAdater() {
+        tagAdapter = new TagAdapter<ShopBeanSize>(listColor) {
+            @Override
+            public View getView(FlowLayout parent, int position, ShopBeanSize shopBeanSize) {
+                View view = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.item_conlust_layout, lvTagColor, false);
+                TextView tv = view.findViewById(R.id.content);
+                tv.setText(shopBeanSize.getName());
+                return tv;
             }
-        } catch (Exception e) {
-        }
+
+            @Override
+            public void onSelected(int position, View view) {
+                super.onSelected(position, view);
+                type = 0;
+                tagSelect = position;
+                View views = view;
+                TextView tv = views.findViewById(R.id.content);
+                tv.setTextColor(getResources().getColor(R.color.white));
+                tv.setBackground(getResources().getDrawable(R.drawable.yuanjiaobtnfourseklect));
+
+            }
+
+            @Override
+            public void unSelected(int position, View view) {
+                super.unSelected(position, view);
+                View views = view;
+                TextView tv = views.findViewById(R.id.content);
+                tv.setTextColor(getResources().getColor(R.color.t2));
+                tv.setBackground(getResources().getDrawable(R.drawable.yuanjiaobtnfours));
+            }
+        };
+        lvTagColor.setAdapter(tagAdapter);
     }
+
+    int type = -1;
+
+    private void notifyAfapter() {
+        listColor.clear();
+        listMateral.clear();
+        listSize.clear();
+        tagAdapter = null;
+        tagMateralAdapter = null;
+        tagSizeAdapter = null;
+        getShopPop(tagSelect);
+        initColorAdater();
+        initMateralAdater();
+        initSizeAdater();
+    }
+
+    private void initMateralAdater() {
+        tagMateralAdapter = new TagAdapter<ShopBeanSize>(listMateral) {
+
+
+            @Override
+            public View getView(FlowLayout parent, int position, ShopBeanSize shopBeanSize) {
+                View view = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.item_conlust_layout, lvTagColor, false);
+                TextView tv = view.findViewById(R.id.content);
+                tv.setText(shopBeanSize.getName());
+                return tv;
+            }
+
+            @Override
+            public void onSelected(int position, View view) {
+                super.onSelected(position, view);
+                type = 1;
+                tagSelect = position;
+                View views = view;
+                TextView tv = views.findViewById(R.id.content);
+                tv.setTextColor(getResources().getColor(R.color.white));
+                tv.setBackground(getResources().getDrawable(R.drawable.yuanjiaobtnfourseklect));
+            }
+
+            @Override
+            public void unSelected(int position, View view) {
+                super.unSelected(position, view);
+                View views = view;
+                TextView tv = views.findViewById(R.id.content);
+                tv.setTextColor(getResources().getColor(R.color.t1));
+                tv.setBackground(getResources().getDrawable(R.drawable.yuanjiaobtnfours));
+            }
+        };
+        lvTagMatarel.setAdapter(tagMateralAdapter);
+    }
+
+    private void initSizeAdater() {
+        tagSizeAdapter = new TagAdapter<ShopBeanSize>(listSize) {
+            @Override
+            public View getView(FlowLayout parent, int position, ShopBeanSize shopBeanSize) {
+                View view = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.item_conlust_layout, lvTagColor, false);
+                TextView tv = view.findViewById(R.id.content);
+                tv.setText(shopBeanSize.getName());
+                return tv;
+            }
+
+            @Override
+            public void onSelected(int position, View view) {
+                super.onSelected(position, view);
+                type = 2;
+                tagSelect = position;
+                View views = view;
+                TextView tv = views.findViewById(R.id.content);
+                tv.setTextColor(getResources().getColor(R.color.white));
+                tv.setBackground(getResources().getDrawable(R.drawable.yuanjiaobtnfourseklect));
+            }
+
+            @Override
+            public void unSelected(int position, View view) {
+                super.unSelected(position, view);
+                View views = view;
+                TextView tv = views.findViewById(R.id.content);
+                tv.setTextColor(getResources().getColor(R.color.t1));
+                tv.setBackground(getResources().getDrawable(R.drawable.yuanjiaobtnfours));
+            }
+        };
+        lvTagSize.setAdapter(tagSizeAdapter);
+    }
+
+    int tagSelect;
+
 
     public void backgroundAlpha(float bgAlpha) {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
@@ -215,7 +622,55 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 //                popuCoupon();
                 RefundActivity.start(ShopDetailActivity.this);
                 break;
+            case R.id.collect_shop:
+                if (uid != null) {
+                    collectShop();
+                    deleteShop();
+                } else {
+                    NewLoginActivity.start(ShopDetailActivity.this);
+                }
+
+                break;
         }
+    }
+
+    //sc_id 收藏夹列表的id
+    private void deleteShop() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleteShop)
+                .addParams("sc_user_id", uid)
+                .addParams("sc_id", shopDetailId)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        collect_shop.setText("收藏");
+                    }
+                });
+
+    }
+
+    private void collectShop() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.collectShop)
+                .addParams("uid", uid)
+                .addParams("sc_commodity_id", shopDetailId)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        collect_shop.setText("已收藏");
+                    }
+                });
+
     }
 
     private void popuCoupon() {

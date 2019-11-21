@@ -78,7 +78,6 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void initView() {
-        ButterKnife.bind(this);
         layoutBack.setOnClickListener(this);
         layoutTitleTv.setText("购物车");
         more.setText("管理");

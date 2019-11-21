@@ -76,11 +76,11 @@ public class ShopClassActivity extends AppCompatActivity {
         //banner
         Banner_gi();
 
-        JsonBean jsonBean = GsonUtil.gsonToBean(Contents.Json, JsonBean.class);
-        List<JsonBean.ListBean> list = jsonBean.getList();
-        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(this, list);
-        reView.setLayoutManager(new GridLayoutManager(this, 2));
-        reView.setAdapter(liveShopAdapter);
+//        JsonBean jsonBean = GsonUtil.gsonToBean(Contents.Json, JsonBean.class);
+//        List<JsonBean.ListBean> list = jsonBean.getList();
+//        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(this, list);
+//        reView.setLayoutManager(new GridLayoutManager(this, 2));
+//        reView.setAdapter(liveShopAdapter);
 
     }
 

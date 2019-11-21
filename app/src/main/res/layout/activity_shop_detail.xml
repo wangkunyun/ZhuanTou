@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shop_detial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/shop_detial"
     tools:context=".Activity.live_shop.ShopDetailActivity">
 
 
@@ -24,17 +24,17 @@
             android:background="@color/f8"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/rela_cover"
-                android:layout_width="match_parent"
-                android:layout_height="350dp">
 
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/iv_cover"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:scaleType="center" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rela_cover"
                 android:layout_marginTop="2dp"
                 android:background="@color/white"
                 android:orientation="vertical"
@@ -42,6 +42,7 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <TextView
+                    android:id="@+id/sc_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Rolex劳力士绿水鬼手表潜航者型116610LV黑水鬼机械表男表"
@@ -49,6 +50,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/sc_present_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -194,6 +196,7 @@
             </LinearLayout>
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -220,7 +223,9 @@
                         android:textColor="@color/ff65"
                         android:textSize="12sp" />
                 </RelativeLayout>
+
                 <android.support.v7.widget.RecyclerView
+
                     android:id="@+id/shop_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -245,6 +250,7 @@
                     android:textSize="14sp" />
 
                 <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="15dp"
                     android:id="@+id/shop_detail_img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -270,13 +276,13 @@
                     android:textSize="14sp"
                     android:visibility="visible" />
 
-                <android.support.v7.widget.RecyclerView
+                <com.ztkj.wky.zhuantou.MyUtils.MyGridView
+                    android:numColumns="2"
                     android:id="@+id/guess_like_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                </android.support.v7.widget.RecyclerView>
+                   >
+                </com.ztkj.wky.zhuantou.MyUtils.MyGridView>
 
 
             </LinearLayout>
@@ -307,12 +313,15 @@
             android:paddingRight="15dp">
 
             <TextView
+                android:padding="5dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/collect_shop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="店铺"
+                android:text="收藏"
                 android:textColor="@color/t4"
                 android:textSize="10sp"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/add_shopping_cart"
@@ -346,7 +355,6 @@
                 android:textSize="14sp" />
         </RelativeLayout>
     </LinearLayout>
-
 
 
 </RelativeLayout>
