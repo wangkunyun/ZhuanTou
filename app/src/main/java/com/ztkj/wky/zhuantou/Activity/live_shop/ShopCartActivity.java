@@ -14,7 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.ShopCartAdapter;
 import com.ztkj.wky.zhuantou.adapter.ShopCartDentailDetailAdapter;
@@ -66,13 +70,15 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
         context.startActivity(starter);
     }
 
+    String uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_cart);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-
+        uid = SPUtils.getInstance().getString("uid");
         initView();
         initData();
     }
@@ -99,13 +105,37 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void initData() {
-        shopCartBean = new Gson().fromJson(Contents.jsonShopList, ShopCartBean.class);
-        if (shopCartBean.getData() != null && shopCartBean.getData().size() > 0) {
-            list = shopCartBean.getData();
-            shopCartAdapter.setData(list, 1);
-            shopCartAdapter.notifyDataSetChanged();
+
+        if (uid != null) {
+            getCart();
         }
 
+    }
+
+    private void getCart() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.cartList)
+                .addParams("page", "1")
+                .addParams("user_id", uid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e("cart", e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            Log.e("dfsf",response);
+                            shopCartBean = new Gson().fromJson(response, ShopCartBean.class);
+                            if (shopCartBean.getData() != null && shopCartBean.getData().size() > 0) {
+                                list = shopCartBean.getData();
+                                shopCartAdapter.setData(list, 1);
+                                shopCartAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                });
     }
 
     //这里用了eventBus来进行实时价格的UI更改。
@@ -150,8 +180,31 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.delete_shop:
                 shopCartAdapter.getSelect();
+                if (uid != null) {
+                    deleteCart();
+                    llIsAllSelelct.setVisibility(View.GONE);
+                    isSelectBuy.setVisibility(View.GONE);
+                }
                 break;
         }
+    }
+
+    private void deleteCart() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleltCart)
+                .addParams("ssc_id", "11")
+                .addParams("uid", uid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e("daf", e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("daf",response);
+                    }
+                });
     }
 
 

@@ -67,6 +67,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         cartBean = list.get(i);
         holder.ivIsSelectCart.setOnCheckedChangeListener(null);
         //读取实体内存储的选中状态
+        holder.tvShopName.setText(cartBean.getSs_name());
         holder.ivIsSelectCart.setChecked(cartBean.isSelect());
         holder.ivIsSelectCart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -81,7 +82,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                     }
                 }
                 //外层选中状态改变后，要遍历改变子recyclerView内item的选中状态
-                for (ShopCartBean.DataBean.SubordinateBean cartItemResultDtoList : list.get(i).getSubordinate()) {
+                for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
                     cartItemResultDtoList.setSelect(isChecked);
                 }
                 setAllShopListens.shopListen(isAllSelect());
@@ -95,7 +96,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
             shopCartDentailDetailAdapter = new ShopCartDentailDetailAdapter(mContext);
             holder.recycleShopDetail.setLayoutManager(new LinearLayoutManager(mContext));
             holder.recycleShopDetail.setAdapter(shopCartDentailDetailAdapter);
-            shopCartDentailDetailAdapter.setData(list.get(i).getSubordinate(), cartBean, this, isExpand);
+            shopCartDentailDetailAdapter.setData(list.get(i).getArr(), cartBean, this, isExpand);
             shopCartDentailDetailAdapter.notifyDataSetChanged();
             shopCartDentailDetailAdapter.setSmallListen(new ShopCartDentailDetailAdapter.SmallShopListen() {
                 @Override
@@ -147,7 +148,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
     public void setAllselect(boolean b) {
         for (int i = 0; i < list.size(); i++) {
             list.get(i).setSelect(b);
-            for (ShopCartBean.DataBean.SubordinateBean cartItemResultDtoList : list.get(i).getSubordinate()) {
+            for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
                 cartItemResultDtoList.setSelect(b);
             }
         }
@@ -157,7 +158,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
     }
 
     List<ShopCartBean.DataBean> listGroup = new ArrayList<>();
-    List<ShopCartBean.DataBean.SubordinateBean> listChild = new ArrayList<>();
+    List<ShopCartBean.DataBean.ArrBean> listChild = new ArrayList<>();
 
     public void getSelect() {
         if (list != null && list.size() > 0) {
@@ -165,12 +166,12 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                 if (list.get(i).isSelect()) {
                     listGroup.add(list.get(i));
                 } else {
-                    for (ShopCartBean.DataBean.SubordinateBean cartItemResultDtoList : list.get(i).getSubordinate()) {
+                    for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
                         if (cartItemResultDtoList.isSelect()) {
                             listChild.add(cartItemResultDtoList);
                         }
                     }
-                    list.get(i).getSubordinate().removeAll(listChild);
+                    list.get(i).getArr().removeAll(listChild);
                 }
 
             }
@@ -186,11 +187,11 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         BigDecimal allprice = new BigDecimal("0");
         if (list != null) {
             for (int i = 0; i < list.size(); i++) {
-                List<ShopCartBean.DataBean.SubordinateBean> data = list.get(i).getSubordinate();
+                List<ShopCartBean.DataBean.ArrBean> data = list.get(i).getArr();
                 for (int y = 0; y < data.size(); y++) {
                     if (data.get(y).isSelect()) {
-                        BigDecimal interestRate = new BigDecimal(data.get(y).getNum());
-                        BigDecimal interest = new BigDecimal(data.get(y).getPrice()).multiply(interestRate);
+                        BigDecimal interestRate = new BigDecimal(data.get(y).getSsc_number());
+                        BigDecimal interest = new BigDecimal(data.get(y).getSsc_unit_price()).multiply(interestRate);
                         allprice = allprice.add(interest);
                         Log.e("allprice", allprice + "");
                     }

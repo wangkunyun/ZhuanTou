@@ -8,22 +8,12 @@ public class ShopCartBean {
     /**
      * errno : 200
      * errmsg : 获取成功
-     * data : [{"cl_id":"1","cl_name":"最新资讯","subordinate":[{"cl_id":"3","cl_name":"企业动态","price":"1"},{"cl_id":"4","cl_name":"职场资讯","price":"1"}]},{"cl_id":"2","cl_name":"热门话题","subordinate":[{"cl_id":"7","cl_name":"言行仪表","price":"2"},{"cl_id":"8","cl_name":"言谈举止","price":"2"}]}]
+     * data : [{"ss_name":"砖头科技店铺","ss_logo":"0","arr":[{"ssc_id":"9","ssc_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","ssc_number":"4","ssc_unit_price":"150.00","ssc_sku_name":"蓝黑 不锈钢 5.6英寸","ssc_store_id":"1","ssc_sc_id":"1"}]}]
      */
 
     private String errno;
     private String errmsg;
     private List<DataBean> data;
-
-
-    @Override
-    public String toString() {
-        return "ShopCartBean{" +
-                "errno='" + errno + '\'' +
-                ", errmsg='" + errmsg + '\'' +
-                ", data=" + data +
-                '}';
-    }
 
     public String getErrno() {
         return errno;
@@ -50,25 +40,16 @@ public class ShopCartBean {
     }
 
     public static class DataBean {
-        @Override
-        public String toString() {
-            return "DataBean{" +
-                    "cl_id='" + cl_id + '\'' +
-                    ", cl_name='" + cl_name + '\'' +
-                    ", subordinate=" + subordinate +
-                    '}';
-        }
-
         /**
-         * cl_id : 1
-         * cl_name : 最新资讯
-         * subordinate : [{"cl_id":"3","cl_name":"企业动态","price":"1"},{"cl_id":"4","cl_name":"职场资讯","price":"1"}]
+         * ss_name : 砖头科技店铺
+         * ss_logo : 0
+         * arr : [{"ssc_id":"9","ssc_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","ssc_number":"4","ssc_unit_price":"150.00","ssc_sku_name":"蓝黑 不锈钢 5.6英寸","ssc_store_id":"1","ssc_sc_id":"1"}]
          */
 
-        private String cl_id;
+        private String ss_name;
+        private String ss_logo;
         private boolean isSelect;
-        private String cl_name;
-        private List<SubordinateBean> subordinate;
+        private List<ArrBean> arr;
 
         public boolean isSelect() {
             return isSelect;
@@ -78,60 +59,49 @@ public class ShopCartBean {
             isSelect = select;
         }
 
-        public String getCl_id() {
-            return cl_id;
+        public String getSs_name() {
+            return ss_name;
         }
 
-        public void setCl_id(String cl_id) {
-            this.cl_id = cl_id;
+        public void setSs_name(String ss_name) {
+            this.ss_name = ss_name;
         }
 
-        public String getCl_name() {
-            return cl_name;
+        public String getSs_logo() {
+            return ss_logo;
         }
 
-        public void setCl_name(String cl_name) {
-            this.cl_name = cl_name;
+        public void setSs_logo(String ss_logo) {
+            this.ss_logo = ss_logo;
         }
 
-        public List<SubordinateBean> getSubordinate() {
-            return subordinate;
+        public List<ArrBean> getArr() {
+            return arr;
         }
 
-        public void setSubordinate(List<SubordinateBean> subordinate) {
-            this.subordinate = subordinate;
+        public void setArr(List<ArrBean> arr) {
+            this.arr = arr;
         }
 
-        public static class SubordinateBean {
-            @Override
-            public String toString() {
-                return "SubordinateBean{" +
-                        "cl_id='" + cl_id + '\'' +
-                        ", cl_name='" + cl_name + '\'' +
-                        ", price='" + price + '\'' +
-                        '}';
-            }
-
+        public static class ArrBean {
             /**
-             * cl_id : 3
-             * cl_name : 企业动态
-             * price : 1
+             * ssc_id : 9
+             * ssc_name : vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x
+             * ssc_number : 4
+             * ssc_unit_price : 150.00
+             * ssc_sku_name : 蓝黑 不锈钢 5.6英寸
+             * ssc_store_id : 1
+             * ssc_sc_id : 1
              */
 
-            private String cl_id;
-            private String cl_name;
-            private String price;
-            private int num;
+            private String ssc_id;
+            private String ssc_name;
+            private String ssc_number;
+            private String ssc_unit_price;
+            private String ssc_sku_name;
+            private String ssc_store_id;
+            private String ssc_sc_id;
             private boolean isSelect;
-
-
-            public int getNum() {
-                return num;
-            }
-
-            public void setNum(int num) {
-                this.num = num;
-            }
 
             public boolean isSelect() {
                 return isSelect;
@@ -141,28 +111,60 @@ public class ShopCartBean {
                 isSelect = select;
             }
 
-            public String getCl_id() {
-                return cl_id;
+            public String getSsc_id() {
+                return ssc_id;
             }
 
-            public void setCl_id(String cl_id) {
-                this.cl_id = cl_id;
+            public void setSsc_id(String ssc_id) {
+                this.ssc_id = ssc_id;
             }
 
-            public String getCl_name() {
-                return cl_name;
+            public String getSsc_name() {
+                return ssc_name;
             }
 
-            public void setCl_name(String cl_name) {
-                this.cl_name = cl_name;
+            public void setSsc_name(String ssc_name) {
+                this.ssc_name = ssc_name;
             }
 
-            public String getPrice() {
-                return price;
+            public String getSsc_number() {
+                return ssc_number;
             }
 
-            public void setPrice(String price) {
-                this.price = price;
+            public void setSsc_number(String ssc_number) {
+                this.ssc_number = ssc_number;
+            }
+
+            public String getSsc_unit_price() {
+                return ssc_unit_price;
+            }
+
+            public void setSsc_unit_price(String ssc_unit_price) {
+                this.ssc_unit_price = ssc_unit_price;
+            }
+
+            public String getSsc_sku_name() {
+                return ssc_sku_name;
+            }
+
+            public void setSsc_sku_name(String ssc_sku_name) {
+                this.ssc_sku_name = ssc_sku_name;
+            }
+
+            public String getSsc_store_id() {
+                return ssc_store_id;
+            }
+
+            public void setSsc_store_id(String ssc_store_id) {
+                this.ssc_store_id = ssc_store_id;
+            }
+
+            public String getSsc_sc_id() {
+                return ssc_sc_id;
+            }
+
+            public void setSsc_sc_id(String ssc_sc_id) {
+                this.ssc_sc_id = ssc_sc_id;
             }
         }
     }

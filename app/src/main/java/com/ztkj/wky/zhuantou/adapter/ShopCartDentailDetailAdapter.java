@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 
 public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
 
-    List<ShopCartBean.DataBean.SubordinateBean> list = new ArrayList<>();
+    List<ShopCartBean.DataBean.ArrBean> list = new ArrayList<>();
     int isExpand;
     Context context;
     ShopCartBean.DataBean shortCartBean;
@@ -37,7 +37,7 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public void setData(List<ShopCartBean.DataBean.SubordinateBean> mList, ShopCartBean.DataBean shortCartBeans, ShopCartAdapter shopCartAdapters, int isExpand) {
+    public void setData(List<ShopCartBean.DataBean.ArrBean> mList, ShopCartBean.DataBean shortCartBeans, ShopCartAdapter shopCartAdapters, int isExpand) {
         this.list.addAll(mList);
         this.isExpand = isExpand;
         this.shortCartBean = shortCartBeans;
@@ -61,10 +61,13 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
         ViewHolder viewHolder1 = (ViewHolder) viewHolder;
 
         viewHolder1.ivIsDetailSelect.setOnCheckedChangeListener(null);
-        viewHolder1.orderPrice.setText(list.get(i).getPrice());
-        final ShopCartBean.DataBean.SubordinateBean cartBean = list.get(i);
+        viewHolder1.orderPrice.setText(list.get(i).getSsc_unit_price());
+        final ShopCartBean.DataBean.ArrBean cartBean = list.get(i);
         //读取实体内存储的选中状态
+        viewHolder1.tvOrderName.setText(cartBean.getSsc_name());
         viewHolder1.ivIsDetailSelect.setChecked(cartBean.isSelect());
+        viewHolder1.num.setText(cartBean.getSsc_number());
+        viewHolder1.typeShopCanshu.setText(cartBean.getSsc_sku_name());
         viewHolder1.ivIsDetailSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -79,7 +82,7 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
                 notifyDataSetChanged();
                 boolean noSelect = false;
                 //内层item选中状态改变后要遍历判断是否全选，以改变外层item的选中状态
-                for (ShopCartBean.DataBean.SubordinateBean cartItemResultDtoList : list) {
+                for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list) {
                     if (!cartItemResultDtoList.isSelect()) {
                         noSelect = true;
                     }
@@ -105,8 +108,8 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 int number = Integer.valueOf(viewHolder1.num.getText().toString());
                 number++;
-                list.get(i).setNum(number);
-                viewHolder1.num.setText(number + "");
+                list.get(i).setSsc_number(String.valueOf(number));
+                viewHolder1.num.setText(String.valueOf(number));
                 notifyDataSetChanged();
                 EventBus.getDefault().post(shopCartAdapter.getAllPrice());
 
@@ -122,8 +125,8 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
                 int number = Integer.valueOf(viewHolder1.num.getText().toString());
                 if (number > 1) {
                     number--;
-                    list.get(i).setNum(number);
-                    viewHolder1.num.setText(number + "");
+                    list.get(i).setSsc_number(String.valueOf(number));
+                    viewHolder1.num.setText(String.valueOf(number));
                     notifyDataSetChanged();
                     EventBus.getDefault().post(shopCartAdapter.getAllPrice());
                 }

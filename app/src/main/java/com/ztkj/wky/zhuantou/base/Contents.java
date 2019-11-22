@@ -3,7 +3,7 @@ package com.ztkj.wky.zhuantou.base;
 public class Contents {
     //后台域名
     public static final String BASE = "https://api.zhuantoukj.com/birck/index.php/Home/";
-    public static final String SHOPBASE = "http://xzshop.zhuantoukj.com/";
+    public static final String SHOPBASE = "http://xzshop.zhuantoukj.com/index.php/Home/";
     //当前版本
     public static String localVersion = " ";
     //支付宝业务
@@ -89,7 +89,7 @@ public class Contents {
             "\t]\n" +
             "}";
 
-    public static final String ShopSkuJson ="{\"errno\":\"200\",\"errmsg\":\"\\u8bf7\\u6c42\\u6210\\u529f\",\"data\":{\"name\":\"\\u989c\\u8272\",\"arr\":[{\"sk_id\":\"9\",\"sk_name\":\"\\u84dd\\u9ed1\",\"sk_price\":\"0.00\",\"sk_stock\":\"41\",\"sk_arr\":{\"name\":\"\\u6750\\u8d28\",\"arr\":[{\"sk_id\":\"10\",\"sk_name\":\"\\u4e0d\\u9508\\u94a2\",\"sk_price\":\"0.00\",\"sk_stock\":\"30\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"13\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"150.00\",\"sk_stock\":\"15\",\"sk_arr\":[]},{\"sk_id\":\"14\",\"sk_name\":\"7.5\\u82f1\\u5bf8\",\"sk_price\":\"100.00\",\"sk_stock\":\"20\",\"sk_arr\":[]},{\"sk_id\":\"17\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"30.00\",\"sk_stock\":\"0\",\"sk_arr\":[]}]}},{\"sk_id\":\"11\",\"sk_name\":\"\\u94c1\",\"sk_price\":\"0.00\",\"sk_stock\":\"11\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"23\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"12.00\",\"sk_stock\":\"0\",\"sk_arr\":[]},{\"sk_id\":\"24\",\"sk_name\":\"6.5\\u82f1\\u5bf8\",\"sk_price\":\"306.00\",\"sk_stock\":\"1\",\"sk_arr\":[]},{\"sk_id\":\"25\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"512.00\",\"sk_stock\":\"10\",\"sk_arr\":[]}]}}]}},{\"sk_id\":\"2\",\"sk_name\":\"\\u9ed1\\u8272\",\"sk_price\":\"0.00\",\"sk_stock\":\"258\",\"sk_arr\":{\"name\":\"\\u6750\\u8d28\",\"arr\":[{\"sk_id\":\"18\",\"sk_name\":\"\\u4e0d\\u9508\\u94a2\",\"sk_price\":\"0.00\",\"sk_stock\":\"135\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"26\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"122.12\",\"sk_stock\":\"123\",\"sk_arr\":[]},{\"sk_id\":\"27\",\"sk_name\":\"6.5\\u82f1\\u5bf8\",\"sk_price\":\"12.12\",\"sk_stock\":\"12\",\"sk_arr\":[]},{\"sk_id\":\"28\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"58.90\",\"sk_stock\":\"0\",\"sk_arr\":[]}]}},{\"sk_id\":\"19\",\"sk_name\":\"\\u94c1\",\"sk_price\":\"0.00\",\"sk_stock\":\"123\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"20\",\"sk_name\":\"59.6\\u82f1\\u5bf8\",\"sk_price\":\"123.00\",\"sk_stock\":\"10\",\"sk_arr\":[]},{\"sk_id\":\"21\",\"sk_name\":\"55.5\\u82f1\\u5bf8\",\"sk_price\":\"99.00\",\"sk_stock\":\"13\",\"sk_arr\":[]},{\"sk_id\":\"22\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"50.00\",\"sk_stock\":\"100\",\"sk_arr\":[]}]}}]}}]}}";
+    public static final String ShopSkuJson = "{\"errno\":\"200\",\"errmsg\":\"\\u8bf7\\u6c42\\u6210\\u529f\",\"data\":{\"name\":\"\\u989c\\u8272\",\"arr\":[{\"sk_id\":\"9\",\"sk_name\":\"\\u84dd\\u9ed1\",\"sk_price\":\"0.00\",\"sk_stock\":\"41\",\"sk_arr\":{\"name\":\"\\u6750\\u8d28\",\"arr\":[{\"sk_id\":\"10\",\"sk_name\":\"\\u4e0d\\u9508\\u94a2\",\"sk_price\":\"0.00\",\"sk_stock\":\"30\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"13\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"150.00\",\"sk_stock\":\"15\",\"sk_arr\":[]},{\"sk_id\":\"14\",\"sk_name\":\"6.5\\u82f1\\u5bf8\",\"sk_price\":\"100.00\",\"sk_stock\":\"20\",\"sk_arr\":[]},{\"sk_id\":\"17\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"30.00\",\"sk_stock\":\"0\",\"sk_arr\":[]}]}},{\"sk_id\":\"11\",\"sk_name\":\"\\u94c1\",\"sk_price\":\"0.00\",\"sk_stock\":\"11\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"23\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"12.00\",\"sk_stock\":\"0\",\"sk_arr\":[]},{\"sk_id\":\"24\",\"sk_name\":\"6.5\\u82f1\\u5bf8\",\"sk_price\":\"306.00\",\"sk_stock\":\"1\",\"sk_arr\":[]},{\"sk_id\":\"25\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"512.00\",\"sk_stock\":\"10\",\"sk_arr\":[]}]}}]}},{\"sk_id\":\"2\",\"sk_name\":\"\\u9ed1\\u8272\",\"sk_price\":\"0.00\",\"sk_stock\":\"258\",\"sk_arr\":{\"name\":\"\\u6750\\u8d28\",\"arr\":[{\"sk_id\":\"18\",\"sk_name\":\"\\u4e0d\\u9508\\u94a2\",\"sk_price\":\"0.00\",\"sk_stock\":\"135\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"26\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"122.12\",\"sk_stock\":\"123\",\"sk_arr\":[]},{\"sk_id\":\"27\",\"sk_name\":\"6.5\\u82f1\\u5bf8\",\"sk_price\":\"12.12\",\"sk_stock\":\"12\",\"sk_arr\":[]},{\"sk_id\":\"28\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"58.90\",\"sk_stock\":\"0\",\"sk_arr\":[]}]}},{\"sk_id\":\"19\",\"sk_name\":\"\\u94c1\",\"sk_price\":\"0.00\",\"sk_stock\":\"123\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"20\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"123.00\",\"sk_stock\":\"10\",\"sk_arr\":[]},{\"sk_id\":\"21\",\"sk_name\":\"6.5\\u82f1\\u5bf8\",\"sk_price\":\"99.00\",\"sk_stock\":\"13\",\"sk_arr\":[]},{\"sk_id\":\"22\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"50.00\",\"sk_stock\":\"100\",\"sk_arr\":[]}]}}]}}]}}";
     /**
      * 百度地图
      */
@@ -402,20 +402,26 @@ public class Contents {
      * 商城
      */
     // 首页智能推荐接口
-    public static final String homeShopList = "index.php/Home/Index/shopList";
+    public static final String homeShopList = "Index/shopList";
     //商品详情页面
-    public static final String shopDetail = "index.php/Home/Index/commodityDetails";
+    public static final String shopDetail = "Index/commodityDetails";
     //猜你喜欢
-    public static final String guessLike = "index.php/Home/Index/guessYouLike";
+    public static final String guessLike = "Index/guessYouLike";
     //获取关键字
     public static final String getKey = "http://apiback.zhuantoukj.com/jiefc/fc.php?token=杰哥牛逼&goods_name=";
     //收藏
-    public static final String collectShop = "index.php/Home/Index/addCollection";
+    public static final String collectShop = "Index/addCollection";
     //用户记录
-    public static final String recorderUser = "index.php/Home/Index/userTrajectory";
+    public static final String recorderUser = "Index/userTrajectory";
     //商品规格
-    public static final String shopSize = "index.php/Home/Index/skuAggregate";
+    public static final String shopSize = "Index/skuAggregate";
     //删除单个收藏
-    public static final String deleteShop = "index.php/Home/Index/collectionDelete";
+    public static final String deleteShop = "Index/collectionDelete";
+    //加入购物车
+    public static final String addCart = "Cart/addCart";
+    //购物车列表
+    public static final String cartList="Cart/selectCart";
+    //购物车删除
+    public static final String deleltCart="Cart/deleteCart";
 
 }
