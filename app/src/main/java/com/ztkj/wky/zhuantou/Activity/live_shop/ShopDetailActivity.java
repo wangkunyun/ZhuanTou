@@ -96,7 +96,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         shopDetailId = getIntent().getStringExtra("shopId");
         uid = SPUtils.getInstance().getString("uid");
         initData();
-        getShopSize();
+//        getShopSize();
         layout_back.setOnClickListener(this);
         add_shopping_cart.setOnClickListener(this);
         at_once_buy.setOnClickListener(this);
@@ -149,6 +149,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
+                            Log.e("dfsf",response);
                             shopDetailBean = new Gson().fromJson(response, ShopDetailBean.class);
                             if (shopDetailBean.getErrno().equals("200")) {
                                 setView();
@@ -190,14 +191,14 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         if (goodsName != null && goodsDetail != null) {
             getKeys();
         }
-
+        getShopSize();
     }
 
     ShopSizeBean skuBean;
 
     private void getShopSize() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.shopSize)
-                .addParams("sc_sku_id", 1 + "")
+                .addParams("sc_sku_id", shopDetailBean.getData().getSc_sku_id())
                 .build()
                 .execute(new StringCallback() {
                     @Override
