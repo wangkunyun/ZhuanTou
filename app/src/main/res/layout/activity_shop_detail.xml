@@ -315,6 +315,18 @@
             <TextView
                 android:padding="5dp"
                 android:layout_centerVertical="true"
+                android:id="@+id/cart_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="加入购物车"
+                android:textColor="@color/t4"
+                android:textSize="10sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_toRightOf="@+id/cart_shop"
+                android:padding="5dp"
+                android:layout_centerVertical="true"
                 android:id="@+id/collect_shop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
