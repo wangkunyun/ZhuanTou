@@ -11,18 +11,24 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ztkj.wky.zhuantou.Activity.live_shop.CollectShopActivity;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.bean.ShopCartBean;
+
+import java.util.List;
 
 public class ConfimOrderAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
+    private List<ShopCartBean.DataBean> list;
 
     public ConfimOrderAdapter(Context context) {
         this.mContext = context;
     }
 
-    public void setData() {
-
+    public void setData(List<ShopCartBean.DataBean> lists) {
+        this.list = lists;
+        notifyDataSetChanged();
     }
 
     ConfimOrderDetailAdapter confimOrderDetailAdapter;
@@ -36,14 +42,16 @@ public class ConfimOrderAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder viewHolder1 = (ViewHolder) viewHolder;
+        viewHolder1.tv_shop_name.setText(list.get(i).getSs_name());
         confimOrderDetailAdapter = new ConfimOrderDetailAdapter();
         viewHolder1.recycle_shop_detail.setLayoutManager(new LinearLayoutManager(mContext));
         viewHolder1.recycle_shop_detail.setAdapter(confimOrderDetailAdapter);
+        confimOrderDetailAdapter.setData(list.get(i).getArr());
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return list.size();
     }
 
 

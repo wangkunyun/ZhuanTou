@@ -33,6 +33,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
     private Context mContext;
 
     List<ShopCartBean.DataBean> list = new ArrayList<>();
+    List<ShopCartBean.DataBean> listSelect = new ArrayList<>();
     ShopCartBean.DataBean cartBean;
 
     public ShopCartAdapter(Context context) {
@@ -47,11 +48,6 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public void clearData() {
-        this.list.clear();
-        shopCartDentailDetailAdapter.clearData();
-        notifyDataSetChanged();
-    }
 
     public ShopCartDentailDetailAdapter shopCartDentailDetailAdapter;
 
@@ -101,10 +97,10 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
             shopCartDentailDetailAdapter.setSmallListen(new ShopCartDentailDetailAdapter.SmallShopListen() {
                 @Override
                 public void selectSmallShop(boolean select) {
-                    if(select){
+                    if (select) {
                         listSelectIS.add(list.get(i));
                         setAllShopListens.shopListen(isAllSelect());
-                    }else{
+                    } else {
                         if (listSelectIS != null && listSelectIS.size() > 0) {
                             listSelectIS.remove(list.get(i));
                         }
@@ -176,10 +172,27 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
 
             }
             list.removeAll(listGroup);
-            notifyDataSetChanged();
-            EventBus.getDefault().post(getAllPrice());
         }
+        notifyDataSetChanged();
 
+        EventBus.getDefault().post(getAllPrice());
+    }
+
+    public List<ShopCartBean.DataBean> getSelectList() {
+        if (list != null && list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).isSelect()) {
+                    listSelect.add(list.get(i));
+                } else {
+                    for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
+                        if (cartItemResultDtoList.isSelect()) {
+                            listSelect.get(i).getArr().add(cartItemResultDtoList);
+                        }
+                    }
+                }
+            }
+        }
+        return listSelect;
     }
 
     //获取需要商品总价格

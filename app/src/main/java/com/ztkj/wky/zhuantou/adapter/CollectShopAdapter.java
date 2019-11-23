@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.ztkj.wky.zhuantou.Activity.live_shop.CollectShopActivity;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.bean.CollecShopBean;
 import com.ztkj.wky.zhuantou.bean.ShopCartBean;
 
 import java.util.ArrayList;
@@ -26,8 +27,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CollectShopAdapter extends RecyclerView.Adapter {
 
     private Context context;
-    List<CollectShopActivity.ShopBean> list = new ArrayList<>();
-    List<CollectShopActivity.ShopBean> listDelet = new ArrayList<>();
+    List<CollecShopBean.DataBean> list = new ArrayList<>();
+    List<CollecShopBean.DataBean> listDelet = new ArrayList<>();
     boolean isExpand;
 
     public CollectShopAdapter(Context context) {
@@ -49,14 +50,14 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
     CollectDelete collectDelete;
 
     public interface CollectDelete {
-        void collectDelete(boolean deleteAll);
+        void collectDelete(boolean deleteAll,String postion);
     }
 
     public void setCollectListen(CollectDelete collectDeletes) {
         this.collectDelete = collectDeletes;
     }
 
-    public List<CollectShopActivity.ShopBean> getData() {
+    public List<CollecShopBean.DataBean> getData() {
         if (this.list != null && this.list.size() > 0) {
             return list;
         } else {
@@ -71,7 +72,7 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public void setData(List<CollectShopActivity.ShopBean> lists) {
+    public void setData(List<CollecShopBean.DataBean> lists) {
         this.list.addAll(lists);
         notifyDataSetChanged();
     }
@@ -120,28 +121,32 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
             viewHolder1.shop_select.setVisibility(View.INVISIBLE);
             viewHolder1.shop_select.setSelected(list.get(i).isSelect());
         }
+        viewHolder1.tvCollectName.setText(list.get(i).getSc_name());
+        viewHolder1.tvShopPrice.setText(list.get(i).getSc_present_price());
         viewHolder1.shop_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                for(int i=0;i<list.size();i++){
+                    list.get(i).setSelect(false);
+                }
                 if (list.get(i).isSelect()) {
                     viewHolder1.shop_select.setSelected(false);
                     list.get(i).setSelect(false);
                 } else {
                     viewHolder1.shop_select.setSelected(true);
                     list.get(i).setSelect(true);
-
                 }
-                boolean noSelect=false;
+                boolean noSelect = false;
                 //内层item选中状态改变后要遍历判断是否全选，以改变外层item的选中状态
-                for (CollectShopActivity.ShopBean cartItemResultDtoList : list) {
+                for (CollecShopBean.DataBean cartItemResultDtoList : list) {
                     if (!cartItemResultDtoList.isSelect()) {
                         noSelect = true;
                     }
                 }
                 if (noSelect) {
-                    collectDelete.collectDelete(false);
+                    collectDelete.collectDelete(false,String.valueOf(i));
                 } else {
-                    collectDelete.collectDelete(true);
+                    collectDelete.collectDelete(true,null);
 
                 }
                 notifyDataSetChanged();

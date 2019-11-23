@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -30,6 +31,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -126,7 +128,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
-                            Log.e("dfsf",response);
+                            Log.e("dfsf", response);
                             shopCartBean = new Gson().fromJson(response, ShopCartBean.class);
                             if (shopCartBean.getData() != null && shopCartBean.getData().size() > 0) {
                                 list = shopCartBean.getData();
@@ -142,11 +144,12 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void messageEventBus(String event) {
         //刷新UI
+        totalprice=event;
         Log.e("sdfafasa", event);
         totalAmount.setText("￥" + event);
     }
 
-
+    String totalprice;
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -158,7 +161,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    @OnClick({R.id.layout_back, R.id.more, R.id.ll_is_all_selelct, R.id.delete_shop})
+    @OnClick({R.id.layout_back, R.id.more, R.id.ll_is_all_selelct, R.id.delete_shop, R.id.upload_confirm})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
@@ -186,8 +189,20 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                     isSelectBuy.setVisibility(View.GONE);
                 }
                 break;
+            case R.id.upload_confirm:
+                listSelect = shopCartAdapter.getSelectList();
+                if (listSelect != null && listSelect.size() > 0) {
+                    ConfirmOrderActivity.start(ShopCartActivity.this,listSelect,totalprice);
+//                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect);
+                } else {
+                    ToastUtils.showShort("请选择商品");
+                }
+
+                break;
         }
     }
+
+    List<ShopCartBean.DataBean> listSelect = new ArrayList<>();
 
     private void deleteCart() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleltCart)
@@ -202,7 +217,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("daf",response);
+                        Log.e("daf", response);
                     }
                 });
     }

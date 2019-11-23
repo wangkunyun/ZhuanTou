@@ -420,8 +420,24 @@ public class Contents {
     //加入购物车
     public static final String addCart = "Cart/addCart";
     //购物车列表
-    public static final String cartList="Cart/selectCart";
+    public static final String cartList = "Cart/selectCart";
     //购物车删除
-    public static final String deleltCart="Cart/deleteCart";
+    public static final String deleltCart = "Cart/deleteCart";
+    //添加收货地址
+    public static final String addAddress = "Order/addAddress";
+    //收获地址列表
+    public static final String addressList = "Order/selectAddress";
+    //在购物车生成订单接口
+    public static final String cartOrder = "Order/addOrder";
+    //获取收藏夹
+    public static final String getCollectList = "Index/collectionList";
+    //清空收藏夹
+    public static final String clearCollect = "Index/emptyCollection";
+    //删除某个单个收藏夹
+    public static final String clearSingleShop = "Index/collectionDelete";
+    //获取优惠卷
+    public static final String getCoupon = "Index/collarCoupon";
+    //获取商品参数
+    public static final String getShopParam = "Index/getParameters";
 
 }

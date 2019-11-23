@@ -13,8 +13,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.CollectShopAdapter;
+import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.CollecShopBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +29,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CollectShopActivity extends AppCompatActivity implements View.OnClickListener{
+public class CollectShopActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     @BindView(R.id.layout_back)
@@ -36,7 +43,6 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
     CollectShopAdapter collectShopAdapter;
     @BindView(R.id.collectList)
     RecyclerView recyclerView;
-    List<ShopBean> list = new ArrayList<>();
     @BindView(R.id.ll_is_all_selelct)
     LinearLayout ll_is_all_selelct;
     @BindView(R.id.is_select_buy)
@@ -51,11 +57,14 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
         context.startActivity(starter);
     }
 
+    String uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect_shop);
         ButterKnife.bind(this);
+        uid = SPUtils.getInstance().getString("uid");
         layoutTitleTv.setText("收藏家");
         layoutBack.setOnClickListener(this);
         more.setOnClickListener(this);
@@ -68,10 +77,14 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
         recyclerView.setAdapter(collectShopAdapter);
         collectShopAdapter.setCollectListen(new CollectShopAdapter.CollectDelete() {
             @Override
-            public void collectDelete(boolean deleteAll) {
-                if (deleteAll) {
+            public void collectDelete(boolean deleteAll, String postion) {
+                isAllDelete = deleteAll;
+                if (isAllDelete) {
                     is_select_buy.setSelected(true);
                 } else {
+                    if (postion != null) {
+                        deleteSingleShop = list.get(Integer.parseInt(postion)).getSc_id();
+                    }
                     is_select_buy.setSelected(false);
                 }
             }
@@ -80,14 +93,35 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    String deleteSingleShop;
+    boolean isAllDelete;
+    CollecShopBean collecShopBean;
+    int page = 1;
+    List<CollecShopBean.DataBean> list = new ArrayList<>();
+
     private void initData() {
-        for (int i = 0; i < 4; i++) {
-            ShopBean shopBean = new ShopBean();
-            shopBean.setName("11111");
-            shopBean.setSelect(false);
-            list.add(shopBean);
-        }
-        collectShopAdapter.setData(list);
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.getCollectList)
+                .addParams("uid", uid)
+                .addParams("page", String.valueOf(page))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        collecShopBean = new Gson().fromJson(response, CollecShopBean.class);
+                        if (collecShopBean != null) {
+                            if (collecShopBean.getErrno().equals("200")) {
+                                list = collecShopBean.getData();
+                                collectShopAdapter.setData(list);
+                            }
+                        }
+                    }
+                });
+
     }
 
     @Override
@@ -119,44 +153,53 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
 
                 break;
             case R.id.delete_shop:
-                deleteShop();
+                collectShopAdapter.getSelectData();
+                if (isAll||isAllDelete) {
+                    deleteShop();
+                } else {
+                    delete_SinleShop();
+                }
                 break;
         }
     }
 
+    private void delete_SinleShop() {
+        Log.e("dsfas",deleteSingleShop+"");
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.clearSingleShop)
+                .addParams("sc_id", deleteSingleShop)
+                .addParams("sc_user_id", uid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e("logSingle", e.getMessage());
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("logSingle", response);
+                    }
+                });
+    }
+
     private void deleteShop() {
-      collectShopAdapter.getSelectData();
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.clearCollect)
+                .addParams("sc_user_id", uid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e("logAll", e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("logAll", response);
+                    }
+                });
     }
 
     boolean isAll = false;
 
-
-    public class ShopBean {
-        private String name;
-        private boolean isSelect;
-
-        @Override
-        public String toString() {
-            return "ShopBean{" +
-                    "name='" + name + '\'' +
-                    ", isSelect=" + isSelect +
-                    '}';
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public boolean isSelect() {
-            return isSelect;
-        }
-
-        public void setSelect(boolean select) {
-            isSelect = select;
-        }
-    }
 }

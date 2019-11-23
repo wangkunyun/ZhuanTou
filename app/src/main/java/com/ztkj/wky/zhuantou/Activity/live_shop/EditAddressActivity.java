@@ -8,8 +8,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,9 +22,15 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.GetJsonDataUtil;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.AddressBean;
 import com.ztkj.wky.zhuantou.bean.JsonBean;
 
@@ -59,11 +68,15 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
         context.startActivity(starter);
     }
 
+    String uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_address);
         ButterKnife.bind(this);
+        uid = SPUtils.getInstance().getString("uid");
+
         layoutBack.setOnClickListener(this);
         btnSaveAddress.setOnClickListener(this);
         rela_select_address.setOnClickListener(this);
@@ -211,6 +224,14 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    String nameUser, phoneUser, addreUser, addressDetailUser;
+    @BindView(R.id.edi_name)
+    EditText edi_name;
+    @BindView(R.id.edi_phone)
+    EditText edi_phone;
+    @BindView(R.id.address_detial)
+    EditText address_detial;
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -218,6 +239,30 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.btn_save_address:
+                if (uid != null) {
+                    nameUser = edi_name.getText().toString();
+                    phoneUser = edi_phone.getText().toString();
+                    addreUser = tv_address.getText().toString();
+                    addressDetailUser = address_detial.getText().toString();
+                    if (TextUtils.isEmpty(nameUser)) {
+                        ToastUtils.showShort("请填写姓名");
+                        return;
+                    }
+                    if (TextUtils.isEmpty(phoneUser)) {
+                        ToastUtils.showShort("请填写手机号");
+                        return;
+                    }
+                    if (TextUtils.isEmpty(addreUser)) {
+                        ToastUtils.showShort("请填写地址");
+                        return;
+                    }
+                    if (TextUtils.isEmpty(addressDetailUser)) {
+                        ToastUtils.showShort("请完善详细信息");
+                        return;
+                    }
+                    SaveAddress();
+                }
+
 
                 break;
             case R.id.rela_select_address:
@@ -226,5 +271,27 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    private void SaveAddress() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.addAddress)
+                .addParams("sra_username", nameUser)
+                .addParams("sra_address", addreUser)
+                .addParams("sra_phone", phoneUser)
+                .addParams("sra_user_id", uid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e("dfsaf",e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("dfsaf",response);
+                        finish();
+                    }
+                });
+
+
+    }
 
 }

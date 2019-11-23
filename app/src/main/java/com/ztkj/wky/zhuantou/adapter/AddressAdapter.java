@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.bean.AddressListBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,8 +31,11 @@ public class AddressAdapter extends RecyclerView.Adapter {
         this.mContext = context;
     }
 
-    public void setData() {
+    List<AddressListBean.DataBean> list = new ArrayList<>();
 
+    public void setData(List<AddressListBean.DataBean> lists) {
+        this.list = lists;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -39,11 +47,14 @@ public class AddressAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder viewHolder1 = (ViewHolder) viewHolder;
+        viewHolder1.cofirmUserName.setText(list.get(i).getSra_username());
+        viewHolder1.confirmUserPhone.setText(list.get(i).getSra_phone());
+        viewHolder1.tc_address.setText(list.get(i).getSra_address());
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return list.size();
     }
 
 
@@ -61,10 +72,12 @@ public class AddressAdapter extends RecyclerView.Adapter {
         RelativeLayout confimUserInfo;
         @BindView(R.id.rela_address)
         LinearLayout relaAddress;
+        @BindView(R.id.tc_address)
+        TextView tc_address;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
 
         }
     }

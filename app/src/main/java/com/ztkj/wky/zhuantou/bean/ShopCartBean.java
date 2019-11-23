@@ -1,8 +1,9 @@
 package com.ztkj.wky.zhuantou.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ShopCartBean {
+public class ShopCartBean implements Serializable {
 
 
     /**
@@ -39,7 +40,7 @@ public class ShopCartBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * ss_name : 砖头科技店铺
          * ss_logo : 0
@@ -83,7 +84,7 @@ public class ShopCartBean {
             this.arr = arr;
         }
 
-        public static class ArrBean {
+        public static class ArrBean implements Serializable{
             /**
              * ssc_id : 9
              * ssc_name : vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x

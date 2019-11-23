@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,6 +43,7 @@ import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.GuessLikeBean;
 import com.ztkj.wky.zhuantou.bean.ShopDetailBean;
 import com.ztkj.wky.zhuantou.bean.ShopKeyBean;
+import com.ztkj.wky.zhuantou.bean.ShopParamBean;
 import com.ztkj.wky.zhuantou.bean.ShopSizeBean;
 import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
@@ -52,6 +54,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.ztkj.wky.zhuantou.base.Contents.addCart;
+import static com.ztkj.wky.zhuantou.base.Contents.getCoupon;
+import static com.ztkj.wky.zhuantou.base.Contents.getShopParam;
 
 
 public class ShopDetailActivity extends AppCompatActivity implements View.OnClickListener {
@@ -131,8 +135,10 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 //        guess_like_list.setHasFixedSize(true);
         if (shopDetailId != null) {
             initDetailData();
+
         }
     }
+
 
     ShopDetailBean shopDetailBean;
 
@@ -149,7 +155,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
-                            Log.e("dfsf",response);
+                            Log.e("dfsf", response);
                             shopDetailBean = new Gson().fromJson(response, ShopDetailBean.class);
                             if (shopDetailBean.getErrno().equals("200")) {
                                 setView();
@@ -192,8 +198,36 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             getKeys();
         }
         getShopSize();
+        getShopParam();
     }
 
+    List<ShopParamBean.DataBean> listParam = new ArrayList<>();
+
+    private void getShopParam() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + getShopParam)
+                .addParams("sp_commodity_id", shopDetailBean.getData().getSc_id())
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            shopParamBean = new Gson().fromJson(response, ShopParamBean.class);
+                            if(shopParamBean.getErrmsg().equals("200")){
+                                listParam=shopParamBean.getData();
+                            }
+
+                        }
+                    }
+                });
+
+    }
+
+    ShopParamBean shopParamBean;
     ShopSizeBean skuBean;
 
     private void getShopSize() {
@@ -209,7 +243,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
-                            Log.e("sdf", response);
                             skuBean = new Gson().fromJson(Contents.ShopSkuJson, ShopSizeBean.class);
                             //默认展示第一条数据和拿到颜色集合
                             getShopPop(0);
@@ -441,6 +474,10 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         Button pp1_btn = contentView.findViewById(R.id.pp1_btn);
         ShopParamAdapter shopParamAdapter = new ShopParamAdapter(ShopDetailActivity.this);
         lv.setAdapter(shopParamAdapter);
+        if(shopParamAdapter!=null){
+            shopParamAdapter.setData(listParam);
+            shopParamAdapter.notifyDataSetChanged();
+        }
         View rootview = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.activity_shop_detail, null);
         setViewDow(contentView, rootview);
         pp1_btn.setOnClickListener(new View.OnClickListener() {
@@ -741,17 +778,28 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 ShopCartActivity.start(ShopDetailActivity.this);
                 break;
             case R.id.at_once_buy:
-                ConfirmOrderActivity.start(ShopDetailActivity.this);
+//                ConfirmOrderActivity.start(ShopDetailActivity.this);
                 break;
             case R.id.rela_selelct_param:
-                popuinit();
+                if(listParam!=null&&listParam.size()>0){
+                    popuinit();
+                }else{
+                    ToastUtils.showShort("暂无数据");
+                }
+
                 break;
             case R.id.rela_select_size:
                 popuSize();
                 break;
             case R.id.get_cuopon:
-//                popuCoupon();
-                RefundActivity.start(ShopDetailActivity.this);
+                list = shopDetailBean.getData().getCoupon();
+                if(list!=null&&list.size()>0){
+                    popuCoupon();
+                }else{
+                    ToastUtils.showShort("暂无优惠卷");
+                }
+
+//                RefundActivity.start(ShopDetailActivity.this);
                 break;
             case R.id.collect_shop:
                 if (uid != null) {
@@ -788,7 +836,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("fsadfas",response);
+                        Log.e("fsadfas", response);
                     }
                 });
     }
@@ -832,6 +880,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    List<ShopDetailBean.DataBean.CouponBean> list = new ArrayList<>();
+
     private void popuCoupon() {
         View contentView = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.pp_shop_coupon, null);
         //设置popuwindow是在父布局的哪个地方显示
@@ -839,8 +889,21 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         //下面是p里面的东西
         ListView lv = contentView.findViewById(R.id.lv);
         Button pp1_btn = contentView.findViewById(R.id.pp1_btn);
-        CouponAdapter shopParamAdapter = new CouponAdapter(ShopDetailActivity.this);
+        CouponAdapter shopParamAdapter = new CouponAdapter(ShopDetailActivity.this, list);
         lv.setAdapter(shopParamAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (list.get(i).getSc_id() != null) {
+                    String scid = list.get(i).getSc_id();
+                    if (uid != null && scid != null) {
+                        getCoupon(scid);
+                    }
+
+                }
+
+            }
+        });
         View rootview = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.activity_shop_detail, null);
         setViewDow(contentView, rootview);
         pp1_btn.setOnClickListener(new View.OnClickListener() {
@@ -851,5 +914,23 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
+    }
+
+    private void getCoupon(String id) {
+        OkHttpUtils.post().url(Contents.SHOPBASE + getCoupon)
+                .addParams("sc_id", id)
+                .addParams("uid", uid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("Dfsaf", response);
+                    }
+                });
     }
 }
