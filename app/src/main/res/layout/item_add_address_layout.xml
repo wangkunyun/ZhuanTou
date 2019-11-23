@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/n3_headImg"
-            android:text="吕秃子"
+            android:text="海荣"
             android:textColor="@color/f33"
             android:textSize="14sp" />
 
@@ -51,6 +51,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tc_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cofirm_user_name"

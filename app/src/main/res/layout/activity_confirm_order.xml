@@ -22,7 +22,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/item_add_address_layout" />
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/selct_address"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/icon_oa_enter"
+                    android:text="请选择地址" />
+            </RelativeLayout>
+
+            <include
+                layout="@layout/item_add_address_layout"
+                android:visibility="visible" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/confirm_list"
@@ -63,7 +82,8 @@
                     android:layout_height="wrap_content"
                     android:text="共1件商品"
                     android:textColor="@color/t4"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -78,6 +98,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/price_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="￥2999"

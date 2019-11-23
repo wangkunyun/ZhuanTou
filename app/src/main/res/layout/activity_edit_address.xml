@@ -32,11 +32,14 @@
                 android:textColor="@color/f33"
                 android:textSize="16sp" />
 
-            <TextView
+            <EditText
+                android:id="@+id/edi_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="吕子松"
+                android:text=""
+                android:hint="姓名"
+                android:background="@null"
                 android:textColor="@color/t4"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -55,17 +58,20 @@
             android:paddingRight="15dp">
 
             <TextView
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="联系电话"
                 android:textColor="@color/f33"
                 android:textSize="16sp" />
 
-            <TextView
+            <EditText
+                android:id="@+id/edi_phone"
+                android:background="@null"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:text="15501030414"
+                android:hint="15501030414"
                 android:textColor="@color/t4"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -131,6 +137,7 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:id="@+id/address_detial"
                 android:maxLines="3"
                 android:paddingBottom="15dp"
                 android:layout_marginTop="15dp"

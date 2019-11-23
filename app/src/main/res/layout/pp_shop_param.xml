@@ -23,7 +23,7 @@
         android:layout_marginRight="15dp"
         android:background="@drawable/yuanjiaobtn"
         android:elevation="10dp"
-        android:text="新增收货地址"
+        android:text="确定"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 
