@@ -66,12 +66,13 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/edi_phone"
                 android:background="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:hint="15501030414"
+                android:hint="手机号"
                 android:textColor="@color/t4"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -102,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/go_back"
-                android:text="通州新州北关"
+                android:text="区域"
                 android:textColor="@color/t4"
                 android:textSize="16sp" />
 
@@ -137,6 +138,7 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:gravity="top|left"
                 android:id="@+id/address_detial"
                 android:maxLines="3"
                 android:paddingBottom="15dp"

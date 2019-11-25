@@ -12,12 +12,24 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/yuanjiaotop">
 
+        <ImageView
+            android:id="@+id/close"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/oval" />
+
         <TextView
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="105dp"
-            android:text="¥88,000"
+            android:layout_marginLeft="123dp"
+            android:layout_marginTop="15dp"
+            android:text="¥0"
             android:textColor="#ffe81717"
             android:textSize="18sp"></TextView>
 
@@ -26,9 +38,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_price"
-            android:layout_marginLeft="105dp"
+            android:layout_marginLeft="123dp"
             android:layout_marginTop="5dp"
-            android:text="已选：蓝黑  32"
+            android:text=""
             android:textColor="#ff999999"
             android:textSize="14sp" />
 
@@ -163,8 +175,9 @@
     </RelativeLayout>
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:id="@+id/iv_cover"
+        android:layout_width="98dp"
+        android:layout_height="98dp"
         android:layout_marginLeft="15dp"
         android:src="@mipmap/icon_clock">
 

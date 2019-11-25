@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/selct_address"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -41,7 +41,7 @@
 
             <include
                 layout="@layout/item_add_address_layout"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/confirm_list"
