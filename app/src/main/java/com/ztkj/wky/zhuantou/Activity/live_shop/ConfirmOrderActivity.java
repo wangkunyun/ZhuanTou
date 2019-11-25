@@ -23,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -31,6 +32,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.ConfimOrderAdapter;
 import com.ztkj.wky.zhuantou.adapter.ResuseWayAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.AdressUpdateBean;
 import com.ztkj.wky.zhuantou.bean.ShopCartBean;
 
 import java.io.Serializable;
@@ -118,13 +120,17 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 //                CreateAddressActivity.start(ConfirmOrderActivity.this);
                 break;
             case R.id.upload_confirm:
+                if (adressUpdateBean == null) {
+                    ToastUtils.showShort("请完善地址");
+                    return;
+                }
+
                 createOrderCart();
 //                popuCoupon();
                 break;
             case R.id.selct_address:
                 Intent intent = new Intent(ConfirmOrderActivity.this, EditAddressActivity.class);
                 startActivityForResult(intent, 1);
-
 //                EditAddressActivity.start(ConfirmOrderActivity.this);
 
                 break;
@@ -134,19 +140,21 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     private void createOrderCart() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.cartOrder)
                 .addParams("uid", uid)
-                .addParams("so_order_address", "北京市北京市东城区")
+                .addParams("so_order_address", adressUpdateBean.getUseraddress())
                 .addParams("so_order_total_price", totalPrice)
                 .addParams("ssc_id", serInfos.get(0).getArr().get(0).getSsc_id())
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-                        Log.e("dfaf",e.getMessage());
+                        ToastUtils.showShort(e.getMessage());
                     }
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("dfaf",response);
+                        if (response != null) {
+                            popuCoupon();
+                        }
                     }
                 });
     }
@@ -167,14 +175,14 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onClick(View v) {
                 wx_iv.setVisibility(View.VISIBLE);
-                zfb_iv.setVisibility(View.GONE);
+                zfb_iv.setVisibility(View.INVISIBLE);
 
             }
         });
         zfb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                wx_iv.setVisibility(View.GONE);
+                wx_iv.setVisibility(View.INVISIBLE);
                 zfb_iv.setVisibility(View.VISIBLE);
             }
         });
@@ -182,6 +190,12 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
 
     PopupWindow window;
+    @BindView(R.id.cofirm_user_name)
+    TextView cofirm_user_name;
+    @BindView(R.id.confirm_user_phone)
+    TextView confirm_user_phone;
+    @BindView(R.id.tc_address)
+    TextView tc_address;
 
     private void setViewDow(View view, View rootview) {
         window = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
@@ -205,19 +219,31 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         getWindow().setAttributes(lp);
     }
 
+    AdressUpdateBean adressUpdateBean;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
+        switch (resultCode) {
             case 1:
-
+                selct_address.setVisibility(View.GONE);
+                rela_address.setVisibility(View.VISIBLE);
+                setDataUser(data);
                 break;
-
             case 2:
-
+                setDataUser(data);
                 break;
 
 
+        }
+    }
+
+    private void setDataUser(Intent data) {
+        adressUpdateBean = (AdressUpdateBean) data.getSerializableExtra("user");
+        if (adressUpdateBean != null) {
+            confirm_user_phone.setText(adressUpdateBean.getUserphone());
+            tc_address.setText(adressUpdateBean.getUseraddress());
+            cofirm_user_name.setText(adressUpdateBean.getUsername());
         }
     }
 

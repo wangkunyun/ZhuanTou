@@ -439,5 +439,7 @@ public class Contents {
     public static final String getCoupon = "Index/collarCoupon";
     //获取商品参数
     public static final String getShopParam = "Index/getParameters";
+    //关联sku
+    public static final String getSku = "Index/skuRelation";
 
 }

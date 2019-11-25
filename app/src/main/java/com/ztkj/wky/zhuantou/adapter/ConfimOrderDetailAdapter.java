@@ -1,5 +1,6 @@
 package com.ztkj.wky.zhuantou.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.ShopCartBean;
 
@@ -16,6 +18,14 @@ import java.util.List;
 
 public class ConfimOrderDetailAdapter extends RecyclerView.Adapter {
 
+    private Context mContext;
+    public ConfimOrderDetailAdapter(Context context) {
+        this.mContext = context;
+    }
+
+    public void setList(List<ShopCartBean.DataBean.ArrBean> list) {
+        this.list = list;
+    }
 
     public List<ShopCartBean.DataBean.ArrBean> list = new ArrayList<>();
 
@@ -37,7 +47,6 @@ public class ConfimOrderDetailAdapter extends RecyclerView.Adapter {
         viewHolder1.tv_order_size.setText(list.get(i).getSsc_sku_name());
         viewHolder1.num_shop.setText(list.get(i).getSsc_number());
         viewHolder1.price.setText(list.get(i).getSsc_unit_price());
-
 
     }
 

@@ -155,6 +155,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
 
     List<ShopCartBean.DataBean> listGroup = new ArrayList<>();
     List<ShopCartBean.DataBean.ArrBean> listChild = new ArrayList<>();
+    public static String ssc_id;
 
     public void getSelect() {
         if (list != null && list.size() > 0) {
@@ -162,27 +163,46 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                 if (list.get(i).isSelect()) {
                     listGroup.add(list.get(i));
                 } else {
-                    for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
-                        if (cartItemResultDtoList.isSelect()) {
-                            listChild.add(cartItemResultDtoList);
+                    for (int j = 0; j < list.get(i).getArr().size(); j++) {
+                        if (list.get(i).getArr().get(j).isSelect()) {
+                            listChild.add(list.get(i).getArr().get(j));
+                            if (j != 0) {
+                                stringBuilder.append(",");
+                            }
+                         ssc_id= stringBuilder.append(listChild.get(i).getSsc_id()).toString();
                         }
                     }
+//                    for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
+//                        if (cartItemResultDtoList.isSelect()) {
+//                            listChild.add(cartItemResultDtoList);
+//                        }
+//                    }
                     list.get(i).getArr().removeAll(listChild);
                 }
-
             }
+//            selectShopCart();
+//            if (listChild != null && listChild.size() > 0) {
+//                if (selectShopCart() != null) {
+//                    ssc_id =
+//                } else {
+//                    ssc_id = null;
+//                }
+//            } else {
+//                ssc_id = null;
+//            }
             list.removeAll(listGroup);
         }
         notifyDataSetChanged();
-
         EventBus.getDefault().post(getAllPrice());
     }
+
 
     public List<ShopCartBean.DataBean> getSelectList() {
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).isSelect()) {
                     listSelect.add(list.get(i));
+
                 } else {
                     for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
                         if (cartItemResultDtoList.isSelect()) {
@@ -191,8 +211,22 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                     }
                 }
             }
+
         }
         return listSelect;
+    }
+
+    StringBuilder stringBuilder = new StringBuilder();
+
+    public String selectShopCart() {
+        for (int i = 0; i < listChild.size(); i++) {
+            if (i != 0) {
+                stringBuilder.append(",");
+            }
+            stringBuilder.append(listChild.get(i).getSsc_id());
+        }
+        return stringBuilder.toString();
+
     }
 
     //获取需要商品总价格

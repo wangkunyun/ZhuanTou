@@ -32,6 +32,7 @@ import com.ztkj.wky.zhuantou.MyUtils.GetJsonDataUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.AddressBean;
+import com.ztkj.wky.zhuantou.bean.AdressUpdateBean;
 import com.ztkj.wky.zhuantou.bean.JsonBean;
 
 import org.json.JSONArray;
@@ -62,6 +63,7 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
     @BindView(R.id.tv_address)
     TextView tv_address;
     private static boolean isLoaded = false;
+    int type;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, EditAddressActivity.class);
@@ -76,7 +78,7 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_edit_address);
         ButterKnife.bind(this);
         uid = SPUtils.getInstance().getString("uid");
-
+        type = getIntent().getIntExtra("type", 0);
         layoutBack.setOnClickListener(this);
         btnSaveAddress.setOnClickListener(this);
         rela_select_address.setOnClickListener(this);
@@ -260,6 +262,7 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
                         ToastUtils.showShort("请完善详细信息");
                         return;
                     }
+                    allAddress = addreUser + addressDetailUser;
                     SaveAddress();
                 }
 
@@ -271,23 +274,34 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    String allAddress;
+
     private void SaveAddress() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.addAddress)
                 .addParams("sra_username", nameUser)
-                .addParams("sra_address", addreUser)
+                .addParams("sra_address", allAddress)
                 .addParams("sra_phone", phoneUser)
                 .addParams("sra_user_id", uid)
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-                        Log.e("dfsaf",e.getMessage());
+                        ToastUtils.showShort(e.getMessage());
                     }
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("dfsaf",response);
-                        finish();
+                        if (response != null) {
+                            AdressUpdateBean address = new AdressUpdateBean();
+                            address.setUsername(nameUser);
+                            address.setUserphone(phoneUser);
+                            address.setUseraddress(allAddress);
+                            Intent intent = new Intent();
+                            intent.putExtra("user", address);
+                            setResult(1, intent);
+                            finish();
+                        }
+
                     }
                 });
 

@@ -43,7 +43,7 @@ public class ConfimOrderAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder viewHolder1 = (ViewHolder) viewHolder;
         viewHolder1.tv_shop_name.setText(list.get(i).getSs_name());
-        confimOrderDetailAdapter = new ConfimOrderDetailAdapter();
+        confimOrderDetailAdapter = new ConfimOrderDetailAdapter(mContext);
         viewHolder1.recycle_shop_detail.setLayoutManager(new LinearLayoutManager(mContext));
         viewHolder1.recycle_shop_detail.setAdapter(confimOrderDetailAdapter);
         confimOrderDetailAdapter.setData(list.get(i).getArr());

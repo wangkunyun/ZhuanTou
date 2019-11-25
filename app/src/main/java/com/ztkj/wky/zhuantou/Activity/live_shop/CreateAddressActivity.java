@@ -2,6 +2,7 @@ package com.ztkj.wky.zhuantou.Activity.live_shop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.AddressAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.AddressListBean;
+import com.ztkj.wky.zhuantou.bean.AdressUpdateBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CreateAddressActivity extends AppCompatActivity implements View.OnClickListener {
+public class CreateAddressActivity extends AppCompatActivity implements View.OnClickListener, AddressAdapter.AdressListen {
 
     @BindView(R.id.layout_back)
     ImageView layoutBack;
@@ -96,9 +98,40 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
                 finish();
                 break;
             case R.id.btn_add_address:
-                EditAddressActivity.start(CreateAddressActivity.this);
+                Intent intent1 = new Intent(CreateAddressActivity.this, EditAddressActivity.class);
+                startActivityForResult(intent1, 2);
+//                EditAddressActivity.start(CreateAddressActivity.this);
                 break;
 
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        updateBean = (AdressUpdateBean) data.getSerializableExtra("user");
+        if (updateBean != null) {
+            if (addressAdapter != null) {
+                addressAdapter.clearData();
+            }
+            initData();
+        } else {
+
+        }
+    }
+
+    AdressUpdateBean updateBean;
+
+    @Override
+    public void setDataBean(AddressListBean.DataBean dataBean) {
+        updateBean = new AdressUpdateBean();
+        updateBean.setUserphone(dataBean.getSra_phone());
+        updateBean.setUsername(dataBean.getSra_username());
+        updateBean.setUseraddress(dataBean.getSra_address());
+        Intent intent = new Intent();
+        intent.putExtra("user", updateBean);
+        setResult(2, intent);
+        finish();
+
     }
 }

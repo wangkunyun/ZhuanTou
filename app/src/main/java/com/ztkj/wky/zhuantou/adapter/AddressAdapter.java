@@ -29,12 +29,18 @@ public class AddressAdapter extends RecyclerView.Adapter {
 
     public AddressAdapter(Context context) {
         this.mContext = context;
+        adressListen = (AdressListen) mContext;
     }
 
     List<AddressListBean.DataBean> list = new ArrayList<>();
 
     public void setData(List<AddressListBean.DataBean> lists) {
         this.list = lists;
+        notifyDataSetChanged();
+    }
+
+    public void clearData() {
+        this.list.clear();
         notifyDataSetChanged();
     }
 
@@ -50,6 +56,18 @@ public class AddressAdapter extends RecyclerView.Adapter {
         viewHolder1.cofirmUserName.setText(list.get(i).getSra_username());
         viewHolder1.confirmUserPhone.setText(list.get(i).getSra_phone());
         viewHolder1.tc_address.setText(list.get(i).getSra_address());
+        viewHolder1.relaAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adressListen.setDataBean(list.get(i));
+            }
+        });
+    }
+
+    AdressListen adressListen;
+
+    public interface AdressListen {
+        void setDataBean(AddressListBean.DataBean dataBean);
     }
 
     @Override

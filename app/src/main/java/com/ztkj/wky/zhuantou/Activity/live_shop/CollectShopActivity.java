@@ -86,6 +86,7 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                         deleteSingleShop = list.get(Integer.parseInt(postion)).getSc_id();
                     }
                     is_select_buy.setSelected(false);
+
                 }
             }
         });
@@ -143,10 +144,12 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
             case R.id.ll_is_all_selelct:
                 if (isAll) {
                     isAll = false;
+                    isAllDelete=false;
                     is_select_buy.setSelected(false);
                     collectShopAdapter.cancelSelectAll();
                 } else {
                     isAll = true;
+                    isAllDelete=true;
                     is_select_buy.setSelected(true);
                     collectShopAdapter.selectAll();
                 }
@@ -154,7 +157,7 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.delete_shop:
                 collectShopAdapter.getSelectData();
-                if (isAll||isAllDelete) {
+                if (isAll&&isAllDelete) {
                     deleteShop();
                 } else {
                     delete_SinleShop();
@@ -164,7 +167,7 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void delete_SinleShop() {
-        Log.e("dsfas",deleteSingleShop+"");
+        Log.e("dsfas",deleteSingleShop+""+uid);
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.clearSingleShop)
                 .addParams("sc_id", deleteSingleShop)
                 .addParams("sc_user_id", uid)

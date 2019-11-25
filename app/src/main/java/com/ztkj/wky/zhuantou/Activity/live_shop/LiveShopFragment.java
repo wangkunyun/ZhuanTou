@@ -134,9 +134,7 @@ public class LiveShopFragment extends Fragment {
 
                     @Override
                     public void onResponse(String response) {
-                        Gson gson = new Gson();
-                        Log.d("repres", response);
-                        BannerBean bannerBean = gson.fromJson(response, BannerBean.class);
+                        BannerBean bannerBean = new Gson().fromJson(response, BannerBean.class);
                         if (bannerBean.getErrno().equals("200")) {
                             liveShopFragAdapter.setBannerData(bannerBean);
                             liveShopFragAdapter.notifyDataSetChanged();

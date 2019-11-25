@@ -122,13 +122,12 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-                        Log.e("cart", e.getMessage());
+                        ToastUtils.showShort(e.getMessage());
                     }
 
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
-                            Log.e("dfsf", response);
                             shopCartBean = new Gson().fromJson(response, ShopCartBean.class);
                             if (shopCartBean.getData() != null && shopCartBean.getData().size() > 0) {
                                 list = shopCartBean.getData();
@@ -144,12 +143,13 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void messageEventBus(String event) {
         //刷新UI
-        totalprice=event;
+        totalprice = event;
         Log.e("sdfafasa", event);
         totalAmount.setText("￥" + event);
     }
 
     String totalprice;
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -183,16 +183,22 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.delete_shop:
                 shopCartAdapter.getSelect();
+//              ssc_id= shopCartAdapter.selectShopCart();
                 if (uid != null) {
-                    deleteCart();
-                    llIsAllSelelct.setVisibility(View.GONE);
-                    isSelectBuy.setVisibility(View.GONE);
+                    if (ssc_id != null) {
+                        deleteCart();
+                        llIsAllSelelct.setVisibility(View.GONE);
+                        isSelectBuy.setVisibility(View.GONE);
+                    } else {
+                        ToastUtils.showShort("请选择删除的商品");
+                    }
+
                 }
                 break;
             case R.id.upload_confirm:
                 listSelect = shopCartAdapter.getSelectList();
                 if (listSelect != null && listSelect.size() > 0) {
-                    ConfirmOrderActivity.start(ShopCartActivity.this,listSelect,totalprice);
+                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect, totalprice);
 //                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect);
                 } else {
                     ToastUtils.showShort("请选择商品");
@@ -203,16 +209,17 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     }
 
     List<ShopCartBean.DataBean> listSelect = new ArrayList<>();
+    String ssc_id;
 
     private void deleteCart() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleltCart)
-                .addParams("ssc_id", "11")
+                .addParams("ssc_id", ssc_id)
                 .addParams("uid", uid)
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-                        Log.e("daf", e.getMessage());
+                        ToastUtils.showShort(e.getMessage());
                     }
 
                     @Override
