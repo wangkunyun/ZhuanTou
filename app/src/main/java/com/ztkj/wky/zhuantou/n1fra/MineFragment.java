@@ -31,6 +31,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.OrderTabActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.MyWallet;
+import com.ztkj.wky.zhuantou.Activity.mine.NotificationActivity;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
@@ -223,6 +224,7 @@ public class MineFragment extends Fragment {
                 startActivityForResult(intent, REQUEST_CODE);
                 break;
             case R.id.clickMineTongzhi: //通知
+                NotificationActivity.start(getActivity());
                 break;
             case R.id.clickMineGeren:
                 if (StringUtils.isEmpty(uid)) {

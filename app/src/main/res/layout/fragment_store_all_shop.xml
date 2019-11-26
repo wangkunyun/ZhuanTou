@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/baise"
+    android:background="@color/f8"
     android:orientation="vertical"
     tools:context=".Activity.live_shop.store.StoreAllShopFragment">
 
@@ -54,23 +54,16 @@
         <TextView
             android:id="@+id/clickFiltrate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:paddingEnd="24dp"
             android:text="筛选"
             android:textColor="#ff999999"
             android:textSize="16sp" />
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="商家推荐"
-        android:textColor="#ff333333"
-        android:textSize="16sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/reView"

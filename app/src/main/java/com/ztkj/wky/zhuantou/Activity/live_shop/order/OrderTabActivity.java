@@ -47,7 +47,6 @@ public class OrderTabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_tab);
         ButterKnife.bind(this);
         layoutTvSearch.setText("搜索订单");
-
         List<String> titles = new ArrayList<>();
         titles.add("全部");
         titles.add("待付款");

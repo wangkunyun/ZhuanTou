@@ -212,7 +212,7 @@ dependencies {
     //Eventbus
     implementation 'org.greenrobot:eventbus:3.0.0'
     //选择器
-    compile 'com.hyman:flowlayout-lib:1.1.2'
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
 
 
 }

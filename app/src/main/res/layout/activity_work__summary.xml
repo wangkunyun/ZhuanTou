@@ -205,9 +205,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
-                        android:background="@null"
                         android:hint="请输入本周完成内容"
                         android:imeOptions="actionNext"
+                        android:background="@null"
                         android:textCursorDrawable="@drawable/edittext_color"
                         android:textSize="16sp" />
 
