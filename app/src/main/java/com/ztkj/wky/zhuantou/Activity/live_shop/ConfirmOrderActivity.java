@@ -86,11 +86,30 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         if (totalPrice != null) {
             price_total.setText("¥ " + totalPrice);
         }
+        selct_address.setVisibility(View.GONE);
+        rela_address.setVisibility(View.VISIBLE);
         initData();
     }
 
+    String ssc_id;
+    StringBuilder stringBuilder;
+
     private void initData() {
         if (serInfos != null) {
+            stringBuilder = new StringBuilder();
+            if (serInfos.size() > 0) {
+                for (int i = 0; i < serInfos.size(); i++) {
+                    for(int j=0;j<serInfos.get(i).getArr().size();j++){
+                        if (j != 0) {
+                            stringBuilder.append(",");
+                        }
+                        stringBuilder.append(serInfos.get(i).getArr().get(j).getSsc_id());
+                    }
+
+                }
+                ssc_id = stringBuilder.toString();
+            }
+            Log.e("fdfa",ssc_id);
             confimOrderAdapter.setData(serInfos);
             confimOrderAdapter.notifyDataSetChanged();
         }
@@ -141,8 +160,9 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.cartOrder)
                 .addParams("uid", uid)
                 .addParams("so_order_address", adressUpdateBean.getUseraddress())
+                .addParams("so_order_address_id", adressUpdateBean.getAddressId())
                 .addParams("so_order_total_price", totalPrice)
-                .addParams("ssc_id", serInfos.get(0).getArr().get(0).getSsc_id())
+                .addParams("ssc_id", ssc_id)
                 .build()
                 .execute(new StringCallback() {
                     @Override
