@@ -125,6 +125,7 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
     @Override
     public void setDataBean(AddressListBean.DataBean dataBean) {
         updateBean = new AdressUpdateBean();
+        updateBean.setAddressId(dataBean.getSra_id());
         updateBean.setUserphone(dataBean.getSra_phone());
         updateBean.setUsername(dataBean.getSra_username());
         updateBean.setUseraddress(dataBean.getSra_address());

@@ -146,11 +146,14 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     public void onResponse(String response) {
                         if (response != null) {
                             shopDetailBean = new Gson().fromJson(response, ShopDetailBean.class);
-                            if (shopDetailBean.getErrno().equals("200")) {
-                                setView();
-                            } else {
-                                ToastUtils.showShort(shopDetailBean.getErrmsg());
+                            if(shopDetailBean!=null){
+                                if (shopDetailBean.getErrno().equals("200")) {
+                                    setView();
+                                } else {
+                                    ToastUtils.showShort(shopDetailBean.getErrmsg());
+                                }
                             }
+
                         }
                     }
 
@@ -424,8 +427,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     private void setViewDow(View view, View rootview) {
         window = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
         window.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
-        window.setOutsideTouchable(true);
-        window.setTouchable(true);
+        window.setOutsideTouchable(false);
+        window.setFocusable(false);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
