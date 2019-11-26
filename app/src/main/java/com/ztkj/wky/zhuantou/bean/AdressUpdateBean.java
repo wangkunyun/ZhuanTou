@@ -4,9 +4,19 @@ import java.io.Serializable;
 
 public class AdressUpdateBean implements Serializable {
 
+    private String addressId;
     private String username;
     private String userphone;
     private String useraddress;
+
+
+    public String getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
+    }
 
     public String getUsername() {
         return username;
