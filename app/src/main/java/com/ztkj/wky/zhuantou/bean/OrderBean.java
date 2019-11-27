@@ -1,15 +1,14 @@
 package com.ztkj.wky.zhuantou.bean;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class OrderBean implements Serializable {
+public class OrderBean {
 
 
     /**
      * errno : 200
-     * errmsg : 生成订单成功
-     * data : [{"sso_sub_order_number":"ZX82bc76a6c2b22054","so_addtime":"1970-01-01 08:00:00","so_state":"0","ss_name":"砖头科技店铺","ss_logo":"0","arr":[{"sog_id":"30","sog_sub_order_id":"ZX82bc76a6c2b22054","sog_commodity_id":"8","sog_name":"【最高优惠300】Huawei/华为 nova 4 自拍极点全面屏超广角三摄正品易烊千玺代言智能手机","sog_sku_id":"1","sog_sku_name":"红色 橘色 蓝色","sog_number":"1","sog_unit_price":"50.00","sog_total_price":"50.00"}]}]
+     * errmsg : 获取成功
+     * data : [{"ss_name":"砖头科技店铺","ss_logo":"0","sso_state":"0","sso_sub_order_number":"ZXd9e968ba31c73a000","arr":[{"sog_id":"47","sog_sub_order_id":"ZXd9e968ba31c73a000","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"},{"sog_id":"48","sog_sub_order_id":"ZXd9e968ba31c73a000","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"}]},{"ss_name":"砖头科技店铺","ss_logo":"0","sso_state":"0","sso_sub_order_number":"ZX83064451b71bcce40","arr":[{"sog_id":"47","sog_sub_order_id":"ZXd9e968ba31c73a000","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"},{"sog_id":"48","sog_sub_order_id":"ZXd9e968ba31c73a000","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"},{"sog_id":"42","sog_sub_order_id":"ZX83064451b71bcce40","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"}]},{"ss_name":"砖头科技店铺","ss_logo":"0","sso_state":"0","sso_sub_order_number":"ZX0ff78a1c872585e30","arr":[{"sog_id":"47","sog_sub_order_id":"ZXd9e968ba31c73a000","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"},{"sog_id":"48","sog_sub_order_id":"ZXd9e968ba31c73a000","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"},{"sog_id":"42","sog_sub_order_id":"ZX83064451b71bcce40","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"},{"sog_id":"41","sog_sub_order_id":"ZX0ff78a1c872585e30","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"}]}]
      */
 
     private String errno;
@@ -42,52 +41,18 @@ public class OrderBean implements Serializable {
 
     public static class DataBean {
         /**
-         * sso_sub_order_number : ZX82bc76a6c2b22054
-         * so_addtime : 1970-01-01 08:00:00
-         * so_state : 0
          * ss_name : 砖头科技店铺
          * ss_logo : 0
-         * arr : [{"sog_id":"30","sog_sub_order_id":"ZX82bc76a6c2b22054","sog_commodity_id":"8","sog_name":"【最高优惠300】Huawei/华为 nova 4 自拍极点全面屏超广角三摄正品易烊千玺代言智能手机","sog_sku_id":"1","sog_sku_name":"红色 橘色 蓝色","sog_number":"1","sog_unit_price":"50.00","sog_total_price":"50.00"}]
+         * sso_state : 0
+         * sso_sub_order_number : ZXd9e968ba31c73a000
+         * arr : [{"sog_id":"47","sog_sub_order_id":"ZXd9e968ba31c73a000","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"},{"sog_id":"48","sog_sub_order_id":"ZXd9e968ba31c73a000","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"}]
          */
-        private String so_order_number;
-        private String sso_sub_order_number;
-        private String so_addtime;
-        private String so_state;
+
         private String ss_name;
         private String ss_logo;
+        private String sso_state;
+        private String sso_sub_order_number;
         private List<ArrBean> arr;
-
-        public String getSo_order_number() {
-            return so_order_number;
-        }
-
-        public void setSo_order_number(String so_order_number) {
-            this.so_order_number = so_order_number;
-        }
-
-        public String getSso_sub_order_number() {
-            return sso_sub_order_number;
-        }
-
-        public void setSso_sub_order_number(String sso_sub_order_number) {
-            this.sso_sub_order_number = sso_sub_order_number;
-        }
-
-        public String getSo_addtime() {
-            return so_addtime;
-        }
-
-        public void setSo_addtime(String so_addtime) {
-            this.so_addtime = so_addtime;
-        }
-
-        public String getSo_state() {
-            return so_state;
-        }
-
-        public void setSo_state(String so_state) {
-            this.so_state = so_state;
-        }
 
         public String getSs_name() {
             return ss_name;
@@ -105,6 +70,22 @@ public class OrderBean implements Serializable {
             this.ss_logo = ss_logo;
         }
 
+        public String getSso_state() {
+            return sso_state;
+        }
+
+        public void setSso_state(String sso_state) {
+            this.sso_state = sso_state;
+        }
+
+        public String getSso_sub_order_number() {
+            return sso_sub_order_number;
+        }
+
+        public void setSso_sub_order_number(String sso_sub_order_number) {
+            this.sso_sub_order_number = sso_sub_order_number;
+        }
+
         public List<ArrBean> getArr() {
             return arr;
         }
@@ -115,15 +96,17 @@ public class OrderBean implements Serializable {
 
         public static class ArrBean {
             /**
-             * sog_id : 30
-             * sog_sub_order_id : ZX82bc76a6c2b22054
-             * sog_commodity_id : 8
-             * sog_name : 【最高优惠300】Huawei/华为 nova 4 自拍极点全面屏超广角三摄正品易烊千玺代言智能手机
+             * sog_id : 47
+             * sog_sub_order_id : ZXd9e968ba31c73a000
+             * sog_commodity_id : 1
+             * sog_name : vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x
              * sog_sku_id : 1
-             * sog_sku_name : 红色 橘色 蓝色
+             * sog_sku_name : 蓝黑 不锈钢 6.5英寸
              * sog_number : 1
-             * sog_unit_price : 50.00
-             * sog_total_price : 50.00
+             * sog_unit_price : 100.00
+             * sog_total_price : 100.00
+             * sc_img : https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg
+             * sog_refund_type : 0
              */
 
             private String sog_id;
@@ -135,6 +118,8 @@ public class OrderBean implements Serializable {
             private String sog_number;
             private String sog_unit_price;
             private String sog_total_price;
+            private String sc_img;
+            private String sog_refund_type;
 
             public String getSog_id() {
                 return sog_id;
@@ -206,6 +191,22 @@ public class OrderBean implements Serializable {
 
             public void setSog_total_price(String sog_total_price) {
                 this.sog_total_price = sog_total_price;
+            }
+
+            public String getSc_img() {
+                return sc_img;
+            }
+
+            public void setSc_img(String sc_img) {
+                this.sc_img = sc_img;
+            }
+
+            public String getSog_refund_type() {
+                return sog_refund_type;
+            }
+
+            public void setSog_refund_type(String sog_refund_type) {
+                this.sog_refund_type = sog_refund_type;
             }
         }
     }
