@@ -52,6 +52,7 @@ public class OrderBean {
         private String ss_logo;
         private String sso_state;
         private String sso_sub_order_number;
+        private String so_order_number;
         private List<ArrBean> arr;
 
         public String getSs_name() {
@@ -84,6 +85,14 @@ public class OrderBean {
 
         public void setSso_sub_order_number(String sso_sub_order_number) {
             this.sso_sub_order_number = sso_sub_order_number;
+        }
+
+        public String getSo_order_number() {
+            return so_order_number;
+        }
+
+        public void setSo_order_number(String so_order_number) {
+            this.so_order_number = so_order_number;
         }
 
         public List<ArrBean> getArr() {

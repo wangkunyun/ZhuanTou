@@ -455,6 +455,6 @@ public class Contents {
     public static final String addRefundCetifi = "Order/refundSaveVoucher";
     //生成退款id
     public static final String createRefundId = "Order/refundAddid";
-
-
+    //订单列表
+    public static final String getOrderList = "Order/selectOrderList";
 }

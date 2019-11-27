@@ -3,11 +3,11 @@ package com.ztkj.wky.zhuantou.Activity.live_shop;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -34,7 +34,6 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-import com.ztkj.wky.zhuantou.Activity.mine.RechargeActivity;
 import com.ztkj.wky.zhuantou.MyUtils.PayResult;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.ConfimOrderAdapter;
@@ -199,10 +198,11 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onResponse(String response) {
+                        Log.e("222", "onResponse: " + response);
                         BaseStatusBean baseStatusBean = new Gson().fromJson(response, BaseStatusBean.class);
                         if (baseStatusBean.getErrno().equals("200")) {
                             orderBean = new Gson().fromJson(response, OrderBean.class);
-                            if (orderBean != null && orderBean.getData().get(0).getSso_sub_order_number() != null) {
+                            if (orderBean != null && orderBean.getData().get(0).getSo_order_number() != null) {
                                 orderId = orderBean.getData().get(0).getSo_order_number();
                                 popuCoupon();
                             }
@@ -230,7 +230,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("fdfafdsafs",response);
+                        Log.e("fdfafdsafs", response);
                         BaseStatusBean baseStatusBean = new Gson().fromJson(response, BaseStatusBean.class);
                         if (baseStatusBean.getErrno().equals("200")) {
                             orderBean = new Gson().fromJson(response, OrderBean.class);
@@ -291,6 +291,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             }
         });
     }
+
     private static final int SDK_ALI_PAY_FLAG = 1;
     //支付宝返回数据handler
     @SuppressLint("HandlerLeak")
@@ -338,6 +339,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             mHandler.sendMessage(msg);
         }
     };
+
     private void getZfbPay() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.zfbPayOrder)
                 .addParams("order_id", orderId)
@@ -367,6 +369,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     WxPayBean wxPayBean;
 
     private void getWxPay() {
+        Log.e("111", "getWxPay: " + orderId + " +++ " + uid + " +++ " + totalPrice);
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.wxpayOrder)
                 .addParams("order_id", orderId)
                 .addParams("uid", uid)
@@ -379,6 +382,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onResponse(String response) {
+                        Log.e("111", "onResponse: " + response);
                         wxPayBean = new Gson().fromJson(response, WxPayBean.class);
                         if (wxPayBean.getErrno().equals("200")) {
                             //通过IWXAPI 获取到其对象  然后将自己的应用注册到微信
