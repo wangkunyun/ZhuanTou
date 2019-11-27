@@ -57,6 +57,24 @@ public class WxPayBean {
         private String prepayid;
         private int timestamp;
         private String sign;
+        private String response;
+        private String sr_id;
+
+        public String getSr_id() {
+            return sr_id;
+        }
+
+        public void setSr_id(String sr_id) {
+            this.sr_id = sr_id;
+        }
+
+        public String getResponse() {
+            return response;
+        }
+
+        public void setResponse(String response) {
+            this.response = response;
+        }
 
         public String getAppid() {
             return appid;

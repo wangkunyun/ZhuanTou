@@ -441,5 +441,20 @@ public class Contents {
     public static final String getShopParam = "Index/getParameters";
     //关联sku
     public static final String getSku = "Index/skuRelation";
+    //商品详情直接下单
+    public static final String orderImmediatePurchase = "Order/immediatePurchase";
+    //购物车和直接下单微信支付
+    public static final String wxpayOrder = "Wxpay/dopay";
+    //购物车和直接下单支付宝支付
+    public static final String zfbPayOrder = "Zfb/zfbPay";
+    //子订单支付支付宝
+    public static final String childZfbOrder = "Zfb/zfbPay_son";
+    //添加退款信息接口
+    public static final String addRefundInfo = "Order/refundSave";
+    //添加退款凭证接口
+    public static final String addRefundCetifi = "Order/refundSaveVoucher";
+    //生成退款id
+    public static final String createRefundId = "Order/refundAddid";
+
 
 }

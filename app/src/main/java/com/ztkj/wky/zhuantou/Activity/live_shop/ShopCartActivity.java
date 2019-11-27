@@ -198,7 +198,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
             case R.id.upload_confirm:
                 listSelect = shopCartAdapter.getSelectList();
                 if (listSelect != null && listSelect.size() > 0) {
-                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect, totalprice);
+                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect, totalprice,2);
 //                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect);
                 } else {
                     ToastUtils.showShort("请选择商品");

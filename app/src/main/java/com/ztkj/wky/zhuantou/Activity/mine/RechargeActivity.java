@@ -300,7 +300,6 @@ public class RechargeActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.e(TAG, "onResponse: " + response);
-
                 //支付宝支付请求所需的签名字符串
                 final String orderInfo = response;
                 Runnable payRunnable = new Runnable() {
@@ -309,7 +308,6 @@ public class RechargeActivity extends AppCompatActivity {
                         PayTask alipay = new PayTask(RechargeActivity.this);
                         Map<String, String> result = alipay.payV2(orderInfo, true);
                         Log.i("msp", result.toString());
-
                         Message msg = new Message();
                         msg.what = SDK_ALI_PAY_FLAG;
                         msg.obj = result;

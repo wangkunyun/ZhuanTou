@@ -9,24 +9,31 @@ import android.widget.TextView;
 
 import com.ztkj.wky.zhuantou.R;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ResuseWayAdapter extends BaseAdapter {
     private Context context;
+    private List<String> list;
 
-    public ResuseWayAdapter(Context context) {
+    public ResuseWayAdapter(Context context, List<String> lists) {
         this.context = context;
+        this.list = lists;
     }
 
     @Override
     public int getCount() {
-        return 5;
+        if (list != null) {
+            return list.size();
+        }
+        return 0;
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return list.get(i);
     }
 
     @Override
@@ -39,11 +46,12 @@ public class ResuseWayAdapter extends BaseAdapter {
         ViewHolder viewHolder;
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.item_reason_layout, null);
-            viewHolder=new ViewHolder(view);
+            viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
-        }else{
-            viewHolder= (ViewHolder) view.getTag();
+        } else {
+            viewHolder = (ViewHolder) view.getTag();
         }
+        viewHolder.shop_tv_reason.setText(list.get(i));
         return view;
     }
 
