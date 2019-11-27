@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.order.RefundActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.JsonBean;
 import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
@@ -53,7 +54,8 @@ public class LiveShopAdapter extends RecyclerView.Adapter<LiveShopAdapter.ViewHo
         viewHolder.item_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShopDetailActivity.start(context, list.get(i).getSc_id());
+                RefundActivity.start(context,"");
+//                ShopDetailActivity.start(context, list.get(i).getSc_id());
             }
         });
     }

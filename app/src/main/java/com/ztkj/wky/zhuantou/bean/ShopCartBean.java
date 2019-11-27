@@ -95,6 +95,19 @@ public class ShopCartBean implements Serializable {
              * ssc_sc_id : 1
              */
 
+
+            private String ssc_sku_id;
+
+
+
+            public String getSsc_sku_id() {
+                return ssc_sku_id;
+            }
+
+            public void setSsc_sku_id(String ssc_sku_id) {
+                this.ssc_sku_id = ssc_sku_id;
+            }
+
             private String ssc_id;
             private String ssc_name;
             private String ssc_number;

@@ -194,8 +194,6 @@ public class WriteReport extends AppCompatActivity {
                 .openGallery(PictureMimeType.ofImage())
                 .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
                 .forResult(PictureConfig.CHOOSE_REQUEST);
-
-
     }
 
     /**
