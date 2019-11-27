@@ -12,10 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.GuessLikeBean;
-import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
 
 import java.util.ArrayList;
 import java.util.List;

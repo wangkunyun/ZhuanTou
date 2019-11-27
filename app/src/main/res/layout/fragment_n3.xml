@@ -701,6 +701,7 @@
                 android:id="@+id/n3_tab3"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/yuanjiaobtn_8dp">
 
                 <TextView
@@ -739,6 +740,7 @@
                 android:id="@+id/click_mine_face"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/yuanjiaobtn_8dp">
 
                 <TextView

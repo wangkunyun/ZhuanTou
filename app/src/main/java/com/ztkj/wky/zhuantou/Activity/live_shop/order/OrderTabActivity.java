@@ -47,15 +47,16 @@ public class OrderTabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_tab);
         ButterKnife.bind(this);
         layoutTvSearch.setText("搜索订单");
+        more.setVisibility(View.GONE);
         List<String> titles = new ArrayList<>();
         titles.add("全部");
         titles.add("待付款");
         titles.add("待发货");
         titles.add("待收货");
         fragments.add(new AllOrderFragment());
-        fragments.add(new AllOrderFragment());
-        fragments.add(new AllOrderFragment());
-        fragments.add(new AllOrderFragment());
+        fragments.add(new WaitPayFragment());
+        fragments.add(new WaitDeliverFragment());
+        fragments.add(new WaitReceiveFragment());
         i = getIntent().getIntExtra("tag", 0);
         XtablayoutAdapter xtablayoutAdapter = new XtablayoutAdapter(getSupportFragmentManager(), fragments, titles);
 //        xTablayout.setxTabDisplayNum(2);
@@ -102,6 +103,7 @@ public class OrderTabActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
+                finish();
                 break;
             case R.id.bigsearch_edt:
                 break;

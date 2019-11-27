@@ -25,7 +25,6 @@ import android.widget.TextView;
 import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
-import com.ztkj.wky.zhuantou.adapter.LiveShopAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.JsonBean;
 

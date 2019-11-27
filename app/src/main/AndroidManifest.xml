@@ -79,15 +79,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.mine.NotificationActivity"></activity>
-        <activity android:name=".Activity.live_shop.order.OrderDetailsActivity" />
+        <activity android:name=".Activity.live_shop.order.orderdetails.AlreadySendDetailsActivity"></activity>
+        <activity android:name=".Activity.live_shop.order.orderdetails.AlreadyPayDetailsActivity" />
+        <activity android:name=".Activity.live_shop.order.orderdetails.WaitPayDetailsActivity" />
+        <activity android:name=".Activity.mine.NotificationActivity" />
         <activity android:name=".Activity.live_shop.order.RefundActivity" />
         <activity android:name=".Activity.live_shop.CollectShopActivity" />
         <activity android:name=".Activity.live_shop.EditAddressActivity" />
         <activity android:name=".Activity.live_shop.CreateAddressActivity" />
         <activity android:name=".Activity.live_shop.ShopCartActivity" />
-        <activity android:name=".Activity.live_shop.ConfirmOrderActivity" />
-        <activity android:name=".Activity.live_shop.ShopDetailActivity" />
         <activity android:name=".Activity.live_shop.order.TradeLogisticsActivity" />
         <activity android:name=".Activity.live_shop.invoice.InvoiceDetailsFinishActivity" />
         <activity android:name=".Activity.live_shop.invoice.InvoiceDetailsWaitActivity" />
@@ -523,6 +523,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.oa.punch.SearchLoacaltionActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.live_shop.ConfirmOrderActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.live_shop.ShopDetailActivity"
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator" />
         <activity

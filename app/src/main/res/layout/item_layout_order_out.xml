@@ -33,6 +33,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/item_tvOrderOutState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -53,7 +54,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/item_reOrderOut"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
 
 
     <RelativeLayout
@@ -61,6 +64,7 @@
         android:layout_height="45dp">
 
         <TextView
+            android:id="@+id/item_tvOrderOutShopUnm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -81,6 +85,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/itemOrderOutPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -101,6 +106,7 @@
             android:background="@color/f8" />
 
         <TextView
+            android:id="@+id/item_clickOrderOutDel"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -112,6 +118,7 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/item_clickOrderOutRefund"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"

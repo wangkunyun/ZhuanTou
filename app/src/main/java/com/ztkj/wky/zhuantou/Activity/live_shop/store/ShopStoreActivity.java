@@ -60,11 +60,11 @@ public class ShopStoreActivity extends AppCompatActivity {
         reView.setLayoutManager(new LinearLayoutManager(this));
         reView.setAdapter(new mAdapter());
         bottomTabBar.init(getSupportFragmentManager())
-                .setImgSize(80, 80)
+                .setImgSize(250, 120)
                 .setFontSize(0)
-                .addTabItem("写申请1", R.mipmap.icon_wrt_select, StoreHomePageFragment.class)
-                .addTabItem("写申请2", R.mipmap.icon_wrt_select, StoreAllShopFragment.class)
-                .addTabItem("写申请3", R.mipmap.icon_wrt_select, StoreShopClassFragment.class)
+                .addTabItem("写申请1", R.mipmap.icon_store_home, R.mipmap.icon_store_home2, StoreHomePageFragment.class)
+                .addTabItem("写申请2", R.mipmap.icon_store_allshop, R.mipmap.icon_store_allshop2, StoreAllShopFragment.class)
+                .addTabItem("写申请3", R.mipmap.icon_store_classiy, StoreShopClassFragment.class)
                 .setTabBarBackgroundColor(Color.WHITE)
                 .isShowDivider(true);
     }

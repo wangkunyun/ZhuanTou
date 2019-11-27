@@ -144,7 +144,8 @@ public class NewLoginActivity extends AppCompatActivity {
                             intent.putExtra("phone", psEdt1.getText().toString());
                             startActivity(intent);
                         } else {
-                        }
+
+                       }
                     }
                 });
     }

@@ -14,10 +14,7 @@ import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.RefundActivity;
 import com.ztkj.wky.zhuantou.R;
-import com.ztkj.wky.zhuantou.bean.JsonBean;
 import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 

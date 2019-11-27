@@ -127,8 +127,7 @@
                     android:id="@+id/three"
                     android:layout_width="match_parent"
                     android:layout_height="108dp"
-                    android:gravity="center_vertical"
-                    android:visibility="gone">
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:id="@+id/click_takeOutCode"
@@ -164,7 +163,6 @@
                         android:textColor="@color/baise"
                         android:textSize="14sp" />
 
-
                 </LinearLayout>
 
 
@@ -176,7 +174,8 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="16dp"
                     android:background="@drawable/circle_n1_relative"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="64dp"
@@ -207,7 +206,7 @@
                     android:id="@+id/cardview_banner"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
-                    android:layout_below="@id/n1_work_rl"
+                    android:layout_below="@id/three"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="16dp"

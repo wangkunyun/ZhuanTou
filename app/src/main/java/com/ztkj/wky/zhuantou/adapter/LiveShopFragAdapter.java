@@ -15,13 +15,9 @@ import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
-import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.store.ShopStoreActivity;
-import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
-import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.BannerBean;
-import com.ztkj.wky.zhuantou.bean.JsonBean;
 import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
 import com.ztkj.wky.zhuantou.homepage.SearchActivity;
 
@@ -81,7 +77,7 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         if (i == 2) {
             ShopRecommendViewHolder shopRecommendViewHolder = (ShopRecommendViewHolder) viewHolder;
-            if(listShop!=null){
+            if (listShop != null) {
                 LiveShopAdapter liveShopAdapter = new LiveShopAdapter(mContext, listShop);
                 shopRecommendViewHolder.re_shop.setLayoutManager(new GridLayoutManager(mContext, 2));
                 shopRecommendViewHolder.re_shop.setAdapter(liveShopAdapter);
@@ -113,16 +109,16 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             case R.id.live_search:
                 SearchActivity.start(mContext);
                 break;
-            case R.id.tv_click1:
+            case R.id.tv_click1: //零食
                 break;
-            case R.id.tv_click2:
+            case R.id.tv_click2: //文具
                 ShopStoreActivity.start(mContext);
                 break;
-            case R.id.tv_click3:
+            case R.id.tv_click3: //书籍
                 break;
-            case R.id.tv_click4:
+            case R.id.tv_click4: //ins新品
                 break;
-            case R.id.tv_click5:
+            case R.id.tv_click5: //数码
                 break;
         }
     }

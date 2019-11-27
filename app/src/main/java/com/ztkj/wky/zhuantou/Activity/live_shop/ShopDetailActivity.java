@@ -2,8 +2,8 @@ package com.ztkj.wky.zhuantou.Activity.live_shop;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,18 +34,15 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
-import com.ztkj.wky.zhuantou.Activity.live_shop.order.RefundActivity;
 import com.ztkj.wky.zhuantou.MyUtils.MyGridView;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.CouponAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopDetailAdapter;
-import com.ztkj.wky.zhuantou.adapter.LiveShopFragAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopGuessAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopListAdapter;
 import com.ztkj.wky.zhuantou.adapter.ShopParamAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.GuessLikeBean;
-import com.ztkj.wky.zhuantou.bean.ShopCartBean;
 import com.ztkj.wky.zhuantou.bean.ShopDetailBean;
 import com.ztkj.wky.zhuantou.bean.ShopKeyBean;
 import com.ztkj.wky.zhuantou.bean.ShopParamBean;
@@ -162,8 +159,9 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
+                            Log.e("dfsf", response);
                             shopDetailBean = new Gson().fromJson(response, ShopDetailBean.class);
-                            if (shopDetailBean != null) {
+                            if(shopDetailBean!=null){
                                 if (shopDetailBean.getErrno().equals("200")) {
                                     setView();
                                 } else {
@@ -396,10 +394,10 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                         if (response != null) {
                             shopKeyBean = new Gson().fromJson(response, ShopKeyBean.class);
                             listKey = shopKeyBean.getData();
-//                            keyString = ListToString();
-//                            if (keyString != null) {
-//                                getGussLike();
-//                            }
+                            keyString = ListToString();
+                            if (keyString != null) {
+                                getGussLike();
+                            }
                         }
                     }
                 });
@@ -484,7 +482,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     protected void onDestroy() {
         super.onDestroy();
         if (uid != null) {
-//            recorder();
+            recorder();
         }
 
 
@@ -845,9 +843,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         getWindow().setAttributes(lp);
     }
 
-    List<ShopCartBean.DataBean> listShopCart = new ArrayList<>();
-    List<ShopCartBean.DataBean.ArrBean> arrBeanList = new ArrayList<>();
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -856,36 +851,14 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.add_shopping_cart:
                 if (sku_name != null && sku_price != null && ssc_sku_id != null) {
-                    ssc_sku_id = shopDetailBean.getData().getSc_sku_id() + "," + ssc_sku_id;
+                    ssc_sku_id = shopDetailBean.getData().getSc_sku_id() +"," +ssc_sku_id;
                     addCart();
                 } else {
                     ToastUtils.showShort("请检查商品参数");
                 }
                 break;
             case R.id.at_once_buy:
-                if (sku_name != null && sku_price != null && ssc_sku_id != null) {
-                    ssc_sku_id = shopDetailBean.getData().getSc_sku_id() + "," + ssc_sku_id;
-                    ShopCartBean.DataBean shopCart = new ShopCartBean.DataBean();
-                    shopCart.setSs_logo(shopDetailBean.getData().getSc_img());
-                    shopCart.setSs_name(shopDetailBean.getData().getSc_name());
-                    listShopCart.add(shopCart);
-                    ShopCartBean.DataBean.ArrBean arrBean = new ShopCartBean.DataBean.ArrBean();
-                    arrBean.setSsc_id(shopDetailBean.getData().getSc_id());
-                    arrBean.setSsc_name(shopDetailBean.getData().getSc_name());
-                    arrBean.setSsc_sku_name(sku_name);
-                    arrBean.setSsc_sku_id(ssc_sku_id);
-                    arrBean.setSsc_store_id(shopDetailBean.getData().getSc_store_id());
-                    arrBean.setSsc_number(String.valueOf(num));
-                    arrBean.setSsc_unit_price(sku_price);
-                    arrBeanList.add(arrBean);
-                    listShopCart.get(0).setArr(arrBeanList);
-                }
-                if (num > 0 && sku_price != null) {
-                    String totalPrice = String.valueOf(num * Double.parseDouble(sku_price));
-                    ConfirmOrderActivity.start(ShopDetailActivity.this, listShopCart, totalPrice,1);
-                }
-
-
+//                ConfirmOrderActivity.start(ShopDetailActivity.this);
                 break;
             case R.id.rela_selelct_param:
                 if (listParam != null && listParam.size() > 0) {
@@ -928,7 +901,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-
 
     String sku_name;
     String sku_price;

@@ -61,9 +61,9 @@
             app:tab_bar_background="#FFFFFF"
             app:tab_divider_background="#FFE5E5E5"
             app:tab_img_font_padding="0px"
-            app:tab_padding_top="10dp"
             hjm:tab_selected_color="@color/lanse"
             hjm:tab_unselected_color="#FF999999" />
+        <!--app:tab_padding_top="10dp"-->
 
     </LinearLayout>
 
