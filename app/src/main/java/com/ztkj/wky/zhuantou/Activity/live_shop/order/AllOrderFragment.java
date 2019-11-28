@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.WaitPayDetailsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
@@ -101,7 +102,8 @@ public class AllOrderFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-            List<OrderBean.DataBean.ArrBean> arr; arr = data.get(i).getArr();
+            List<OrderBean.DataBean.ArrBean> arr;
+            arr = data.get(i).getArr();
             viewHolder.item_reOrderOut.setLayoutManager(new LinearLayoutManager(getActivity()));
             AdapterIn adapterIn = new AdapterIn(arr);
             viewHolder.item_reOrderOut.setAdapter(adapterIn);
@@ -119,6 +121,31 @@ public class AllOrderFragment extends Fragment {
                 sum += sog_total_price;
             }
             viewHolder.itemOrderOutPrice.setText(sum + "");
+
+            //点击进入详情页
+            viewHolder.item_reOrderOut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //设置订单状态
+                    switch (data.get(i).getSso_state()) {
+                        case "0":
+                            WaitPayDetailsActivity.start(getActivity(), data.get(i).getSso_state(), data.get(i).getSso_sub_order_number());
+                            break;
+                        case "1":
+                            viewHolder.item_tvOrderOutState.setText("待发货");
+                            break;
+                        case "2":
+                            viewHolder.item_tvOrderOutState.setText("待收货");
+                            break;
+                        case "3":
+                            viewHolder.item_tvOrderOutState.setText("交易成功");
+                            break;
+                        case "4":
+                            viewHolder.item_tvOrderOutState.setText("交易关闭");
+                            break;
+                    }
+                }
+            });
             //设置订单状态
             switch (data.get(i).getSso_state()) {
                 case "0":
@@ -136,7 +163,6 @@ public class AllOrderFragment extends Fragment {
                 case "4":
                     viewHolder.item_tvOrderOutState.setText("交易关闭");
                     break;
-
             }
 
         }
