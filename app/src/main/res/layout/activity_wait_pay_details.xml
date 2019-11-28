@@ -40,6 +40,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tv_FinishOrderTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="161dp"
@@ -63,6 +64,7 @@
                     android:src="@mipmap/icon_order_location" />
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
@@ -72,6 +74,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="136dp"
@@ -81,6 +84,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_Address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
@@ -96,7 +100,7 @@
                 android:background="@color/baise">
 
                 <ImageView
-                    android:id="@+id/item_imgOrderOutStoreHead"
+                    android:id="@+id/img_StoreHead"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_centerVertical="true"
@@ -104,13 +108,13 @@
                     android:src="@mipmap/zhanweitu_shop" />
 
                 <TextView
-                    android:id="@+id/item_tvOrderOutStoreName"
+                    android:id="@+id/tv_StoreName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="6dp"
-                    android:layout_toRightOf="@id/item_imgOrderOutStoreHead"
+                    android:layout_toRightOf="@id/img_StoreHead"
                     android:drawableEnd="@mipmap/icon_oa_enter"
                     android:gravity="center"
                     android:text="品牌店铺"
@@ -127,7 +131,7 @@
             </RelativeLayout>
             <!--列表-->
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/item_reOrderOut"
+                android:id="@+id/reView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/baise"
@@ -143,6 +147,7 @@
                 android:background="@color/baise">
 
                 <TextView
+                    android:id="@+id/tv_orderNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
@@ -151,6 +156,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tv_addOrderTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -160,6 +166,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tv_clickCopy"
                     android:layout_width="48dp"
                     android:layout_height="22dp"
                     android:layout_alignParentEnd="true"
@@ -179,6 +186,7 @@
                 android:textSize="16sp" />
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/reViewGuess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -196,6 +204,7 @@
             android:paddingEnd="16dp">
 
             <TextView
+                android:id="@+id/tv_ShopNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
@@ -212,6 +221,7 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/tv_shopPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
@@ -221,6 +231,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/tv_ClickCancelOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -230,13 +241,13 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tv_clickPay"
                 android:layout_width="102dp"
                 android:layout_height="38dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/bg_yuanjiao_kongxin_blue"
                 android:gravity="center"
-
                 android:text="立即付款"
                 android:textColor="#65C9D2" />
         </RelativeLayout>
