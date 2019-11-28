@@ -457,4 +457,7 @@ public class Contents {
     public static final String createRefundId = "Order/refundAddid";
     //订单列表
     public static final String getOrderList = "Order/selectOrderList";
+    //订单详情接口
+    public static final String OrderDetails = "Order/orderDetails";
+
 }
