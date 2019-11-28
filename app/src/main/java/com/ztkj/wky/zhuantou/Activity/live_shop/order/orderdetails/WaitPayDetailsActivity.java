@@ -14,7 +14,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.OrderDetailsBean;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,12 +78,30 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
         String orderState = getIntent().getStringExtra("orderState");
         String orderNum = getIntent().getStringExtra("orderNum");
 
-        request();
+        request(orderState, orderNum);
 
     }
 
-    private void request() {
-//        OkHttpUtils.post().url(Contents.SHOPBASE)
+    private void request(String orderState, String orderNum) {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.OrderDetails)
+                .addParams("so_state", orderState)
+                .addParams("sso_sub_order_number", orderNum)
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                OrderDetailsBean orderDetailsBean = GsonUtil.gsonToBean(response, OrderDetailsBean.class);
+                if (orderDetailsBean.getErrno().equals("200")) {
+                    List<OrderDetailsBean.DataBean> data = orderDetailsBean.getData();
+//                    tvStoreName.setText(data.get);
+                }
+            }
+        });
+
     }
 
     public static void start(Context context, String orderState, String orderNum) {
