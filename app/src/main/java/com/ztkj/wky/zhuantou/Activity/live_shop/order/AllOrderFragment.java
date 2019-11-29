@@ -31,7 +31,6 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
