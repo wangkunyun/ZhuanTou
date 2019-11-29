@@ -8,12 +8,12 @@ public class OrderDetailsBean {
     /**
      * errno : 200
      * errmsg : 请求成功
-     * data : [{"sso_sub_order_number":"ZXccfca8dad41aa46c0","so_addtime":"2019-11-23 11:34:31","so_state":"0","ss_name":"砖头科技店铺","ss_logo":"0","sra_username":"王鹏杰","sra_phone":"15313947598","sra_address":"北京市","express":[{"time":"2019-11-25 05:24:35","context":"离开【黄村站】,下一站【北京综合邮件处理中心】","ftime":"2019-11-25 05:24:35","areaCode":"CN111515005000","areaName":"北京,大兴区,大兴区,黄村","status":"在途"},{"time":"2019-11-25 01:47:01","context":"到达【黄村站】","ftime":"2019-11-25 01:47:01","areaCode":null,"areaName":null,"status":"在途"},{"time":"2019-11-23 17:01:59","context":"离开【邮政广州广州棠溪转运站】,下一站【黄村站】","ftime":"2019-11-23 17:01:59","areaCode":"CN440100000000","areaName":"广东,广州市","status":"在途"},{"time":"2019-11-23 03:31:05","context":"到达【广州机北】","ftime":"2019-11-23 03:31:05","areaCode":"CN440100000000","areaName":"广东,广州市","status":"在途"},{"time":"2019-11-23 03:23:31","context":"离开【穗北集包中心】,下一站【广州机北】","ftime":"2019-11-23 03:23:31","areaCode":null,"areaName":null,"status":"在途"},{"time":"2019-11-23 01:31:24","context":"广州市 【穗北集包中心】已收件,揽投员:王翠玲,电话:13422316950","ftime":"2019-11-23 01:31:24","areaCode":"CN440100000000","areaName":"广东,广州市","status":"揽收"},{"time":"2019-11-22 21:04:58","context":"[穗北集包中心]客户交接,发往:广州市","ftime":"2019-11-22 21:04:58","areaCode":null,"areaName":null,"status":"在途"}],"arr":[{"sog_id":"36","sog_sub_order_id":"ZXccfca8dad41aa46c0","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 5.6英寸","sog_number":"2","sog_unit_price":"150.00","sog_total_price":"300.00"}]}]
+     * data : {"sso_sub_order_number":"ZX83064451b71bcce40","so_addtime":"2019-11-26 10:29:23","so_state":"0","ss_name":"砖头科技店铺","ss_logo":"0","sra_username":"","sra_phone":"","sra_address":"","express":[{"time":"2019-11-25 05:24:35","context":"离开【黄村站】,下一站【北京综合邮件处理中心】","ftime":"2019-11-25 05:24:35","areaCode":"CN111515005000","areaName":"北京,大兴区,大兴区,黄村","status":"在途"},{"time":"2019-11-25 01:47:01","context":"到达【黄村站】","ftime":"2019-11-25 01:47:01","areaCode":null,"areaName":null,"status":"在途"},{"time":"2019-11-23 17:01:59","context":"离开【邮政广州广州棠溪转运站】,下一站【黄村站】","ftime":"2019-11-23 17:01:59","areaCode":"CN440100000000","areaName":"广东,广州市","status":"在途"},{"time":"2019-11-23 03:31:05","context":"到达【广州机北】","ftime":"2019-11-23 03:31:05","areaCode":"CN440100000000","areaName":"广东,广州市","status":"在途"},{"time":"2019-11-23 03:23:31","context":"离开【穗北集包中心】,下一站【广州机北】","ftime":"2019-11-23 03:23:31","areaCode":null,"areaName":null,"status":"在途"},{"time":"2019-11-23 01:31:24","context":"广州市 【穗北集包中心】已收件,揽投员:王翠玲,电话:13422316950","ftime":"2019-11-23 01:31:24","areaCode":"CN440100000000","areaName":"广东,广州市","status":"揽收"},{"time":"2019-11-22 21:04:58","context":"[穗北集包中心]客户交接,发往:广州市","ftime":"2019-11-22 21:04:58","areaCode":null,"areaName":null,"status":"在途"}],"arr":[{"sog_id":"42","sog_sub_order_id":"ZX83064451b71bcce40","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"}]}
      */
 
     private String errno;
     private String errmsg;
-    private List<DataBean> data;
+    private DataBean data;
 
     public String getErrno() {
         return errno;
@@ -31,26 +31,26 @@ public class OrderDetailsBean {
         this.errmsg = errmsg;
     }
 
-    public List<DataBean> getData() {
+    public DataBean getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(DataBean data) {
         this.data = data;
     }
 
     public static class DataBean {
         /**
-         * sso_sub_order_number : ZXccfca8dad41aa46c0
-         * so_addtime : 2019-11-23 11:34:31
+         * sso_sub_order_number : ZX83064451b71bcce40
+         * so_addtime : 2019-11-26 10:29:23
          * so_state : 0
          * ss_name : 砖头科技店铺
          * ss_logo : 0
-         * sra_username : 王鹏杰
-         * sra_phone : 15313947598
-         * sra_address : 北京市
+         * sra_username :
+         * sra_phone :
+         * sra_address :
          * express : [{"time":"2019-11-25 05:24:35","context":"离开【黄村站】,下一站【北京综合邮件处理中心】","ftime":"2019-11-25 05:24:35","areaCode":"CN111515005000","areaName":"北京,大兴区,大兴区,黄村","status":"在途"},{"time":"2019-11-25 01:47:01","context":"到达【黄村站】","ftime":"2019-11-25 01:47:01","areaCode":null,"areaName":null,"status":"在途"},{"time":"2019-11-23 17:01:59","context":"离开【邮政广州广州棠溪转运站】,下一站【黄村站】","ftime":"2019-11-23 17:01:59","areaCode":"CN440100000000","areaName":"广东,广州市","status":"在途"},{"time":"2019-11-23 03:31:05","context":"到达【广州机北】","ftime":"2019-11-23 03:31:05","areaCode":"CN440100000000","areaName":"广东,广州市","status":"在途"},{"time":"2019-11-23 03:23:31","context":"离开【穗北集包中心】,下一站【广州机北】","ftime":"2019-11-23 03:23:31","areaCode":null,"areaName":null,"status":"在途"},{"time":"2019-11-23 01:31:24","context":"广州市 【穗北集包中心】已收件,揽投员:王翠玲,电话:13422316950","ftime":"2019-11-23 01:31:24","areaCode":"CN440100000000","areaName":"广东,广州市","status":"揽收"},{"time":"2019-11-22 21:04:58","context":"[穗北集包中心]客户交接,发往:广州市","ftime":"2019-11-22 21:04:58","areaCode":null,"areaName":null,"status":"在途"}]
-         * arr : [{"sog_id":"36","sog_sub_order_id":"ZXccfca8dad41aa46c0","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 5.6英寸","sog_number":"2","sog_unit_price":"150.00","sog_total_price":"300.00"}]
+         * arr : [{"sog_id":"42","sog_sub_order_id":"ZX83064451b71bcce40","sog_commodity_id":"1","sog_name":"vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x","sog_sku_id":"1","sog_sku_name":"蓝黑 不锈钢 6.5英寸","sog_number":"1","sog_unit_price":"100.00","sog_total_price":"100.00","sc_img":"https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg","sog_refund_type":"0"}]
          */
 
         private String sso_sub_order_number;
@@ -212,15 +212,17 @@ public class OrderDetailsBean {
 
         public static class ArrBean {
             /**
-             * sog_id : 36
-             * sog_sub_order_id : ZXccfca8dad41aa46c0
+             * sog_id : 42
+             * sog_sub_order_id : ZX83064451b71bcce40
              * sog_commodity_id : 1
              * sog_name : vivo Z5x极点全面屏高通骁龙710大电池智能手机官方正品手机新品vivoz5x限量版 z3x
              * sog_sku_id : 1
-             * sog_sku_name : 蓝黑 不锈钢 5.6英寸
-             * sog_number : 2
-             * sog_unit_price : 150.00
-             * sog_total_price : 300.00
+             * sog_sku_name : 蓝黑 不锈钢 6.5英寸
+             * sog_number : 1
+             * sog_unit_price : 100.00
+             * sog_total_price : 100.00
+             * sc_img : https://img.alicdn.com/imgextra/i2/883737303/O1CN012EpdOH23op2aAdpFH_!!883737303.jpg_430x430q90.jpg
+             * sog_refund_type : 0
              */
 
             private String sog_id;
@@ -232,6 +234,8 @@ public class OrderDetailsBean {
             private String sog_number;
             private String sog_unit_price;
             private String sog_total_price;
+            private String sc_img;
+            private String sog_refund_type;
 
             public String getSog_id() {
                 return sog_id;
@@ -303,6 +307,22 @@ public class OrderDetailsBean {
 
             public void setSog_total_price(String sog_total_price) {
                 this.sog_total_price = sog_total_price;
+            }
+
+            public String getSc_img() {
+                return sc_img;
+            }
+
+            public void setSc_img(String sc_img) {
+                this.sc_img = sc_img;
+            }
+
+            public String getSog_refund_type() {
+                return sog_refund_type;
+            }
+
+            public void setSog_refund_type(String sog_refund_type) {
+                this.sog_refund_type = sog_refund_type;
             }
         }
     }

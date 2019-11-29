@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="102dp"
+    android:layout_marginTop="15dp">
+
+    <ImageView
+        android:id="@+id/item_imgOrderDetailsPic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/icon_clock" />
+
+    <TextView
+        android:id="@+id/item_tvOrderDetailsTitle"
+        android:layout_width="196dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Rolex劳力士绿水鬼手表潜航者116610LV黑水鬼机械表男表"
+        android:textColor="#ff333333"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/item_tvOrderDetailsSku"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="88dp"
+        android:layout_marginBottom="26dp"
+        android:text="蓝黑 32"
+        android:textColor="#ff999999"
+        android:textSize="14sp" />
+
+
+    <TextView
+        android:id="@+id/item_tvOrderDetailsBuyNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:text="1件"
+        android:textColor="#ff999999"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_itemOrderDetailsPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:text="¥88,000"
+        android:textColor="#ff666666"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/item_tvClickRefund"
+        android:layout_width="60dp"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_marginEnd="16dp"
+        android:text="退款"
+        android:background="@drawable/bg_yuanjiao_is_state_grey"
+        android:textSize="14sp" />
+
+
+</RelativeLayout>

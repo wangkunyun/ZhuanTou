@@ -4,16 +4,24 @@ package com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails;
  * 功能描述：待付款详情
  */
 
+import android.annotation.SuppressLint;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -68,6 +76,8 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
     TextView tvClickCancelOrder;
     @BindView(R.id.tv_clickPay)
     TextView tvClickPay;
+    private OrderDetailsBean.DataBean data;
+    private List<OrderDetailsBean.DataBean.ArrBean> arr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +102,33 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
 
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(String response) {
                 OrderDetailsBean orderDetailsBean = GsonUtil.gsonToBean(response, OrderDetailsBean.class);
                 if (orderDetailsBean.getErrno().equals("200")) {
-                    List<OrderDetailsBean.DataBean> data = orderDetailsBean.getData();
-//                    tvStoreName.setText(data.get);
+                    data = orderDetailsBean.getData();
+                    arr = data.getArr();
+                    tvName.setText(data.getSra_username());
+                    tvPhone.setText(data.getSra_phone());
+                    tvAddress.setText(data.getSra_address());
+                    tvStoreName.setText(data.getSs_name());
+                    if (!data.getSs_logo().equals("0")) {
+                        Glide.with(WaitPayDetailsActivity.this).load(data.getSs_logo()).into(imgStoreHead);
+                    }
+                    tvOrderNum.setText("订单编号: " + data.getSso_sub_order_number());
+                    tvAddOrderTime.setText("下单时间: " + data.getSo_addtime());
+                    tvShopNum.setText("共" + data.getArr().size() + "件商品");
+                    float sum = 0;
+                    for (int j = 0; j < arr.size(); j++) {
+                        float sog_total_price = Float.parseFloat(arr.get(j).getSog_total_price());
+                        sum += sog_total_price;
+                    }
+                    tvShopPrice.setText("￥" + sum);
+
+                    Adapter adapter = new Adapter();
+                    reView.setLayoutManager(new LinearLayoutManager(WaitPayDetailsActivity.this));
+                    reView.setAdapter(adapter);
                 }
             }
         });
@@ -117,11 +148,70 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
             case R.id.layout_back:
                 break;
             case R.id.tv_clickCopy: //复制
+                // 从API11开始android推荐使用android.content.ClipboardManager
+                // 为了兼容低版本我们这里使用旧版的android.text.ClipboardManager，虽然提示deprecated，但不影响使用。
+                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                // 将文本内容放到系统剪贴板里。
+                cm.setText(data.getSso_sub_order_number());
+                Toast.makeText(this, "复制成功!", Toast.LENGTH_LONG).show();
+
                 break;
             case R.id.tv_ClickCancelOrder: //取消订单
                 break;
             case R.id.tv_clickPay: //立即付款
                 break;
+        }
+    }
+
+    class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+//        private List<OrderBean.DataBean.ArrBean> arr;
+//
+//        public Adapter(List<OrderBean.DataBean.ArrBean> arr) {
+//            this.arr = arr;
+//        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            View view = LayoutInflater.from(WaitPayDetailsActivity.this).inflate(R.layout.item_layout_order_details, viewGroup, false);
+
+            return new ViewHolder(view);
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+            Glide.with(WaitPayDetailsActivity.this).load(arr.get(i).getSc_img()).into(viewHolder.item_imgOrderDetailsPic);
+            viewHolder.item_tvOrderDetailsTitle.setText(arr.get(i).getSog_name());
+            viewHolder.item_tvOrderDetailsSku.setText(arr.get(i).getSog_sku_name());
+            viewHolder.item_tvOrderDetailsBuyNum.setText(arr.get(i).getSog_number() + "件");
+            viewHolder.tv_itemOrderDetailsPrice.setText(arr.get(i).getSog_total_price());
+            viewHolder.item_tvClickRefund.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return arr.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            private ImageView item_imgOrderDetailsPic;
+            private TextView item_tvOrderDetailsTitle, item_tvOrderDetailsSku, item_tvOrderDetailsBuyNum, tv_itemOrderDetailsPrice, item_tvClickRefund;
+
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                item_imgOrderDetailsPic = itemView.findViewById(R.id.item_imgOrderDetailsPic);
+                item_tvOrderDetailsTitle = itemView.findViewById(R.id.item_tvOrderDetailsTitle);
+                item_tvOrderDetailsSku = itemView.findViewById(R.id.item_tvOrderDetailsSku);
+                item_tvOrderDetailsBuyNum = itemView.findViewById(R.id.item_tvOrderDetailsBuyNum);
+                tv_itemOrderDetailsPrice = itemView.findViewById(R.id.tv_itemOrderDetailsPrice);
+                item_tvClickRefund = itemView.findViewById(R.id.item_tvClickRefund);
+            }
         }
     }
 }

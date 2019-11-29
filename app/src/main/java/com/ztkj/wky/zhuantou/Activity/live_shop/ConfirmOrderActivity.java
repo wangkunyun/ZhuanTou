@@ -181,9 +181,9 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
     private void atOnceBuy() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.orderImmediatePurchase)
-                .addParams("uid", "369")
-                .addParams("so_order_address", "北京市北京市东城区")
-                .addParams("so_order_address_id", "2")
+                .addParams("uid", SPUtils.getInstance().getString("uid"))
+                .addParams("so_order_address", adressUpdateBean.getUseraddress())
+                .addParams("so_order_address_id", adressUpdateBean.getAddressId())
                 .addParams("so_order_total_price", totalPrice)
                 .addParams("sc_id", serInfos.get(0).getArr().get(0).getSsc_id())
                 .addParams("ssc_sku_id", serInfos.get(0).getArr().get(0).getSsc_sku_id())
