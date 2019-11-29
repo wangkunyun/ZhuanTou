@@ -16,7 +16,14 @@
 
         <include layout="@layout/layout_toolbar" />
 
-        <include layout="@layout/item_confirm_order_detail_layout" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_refund"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:visibility="gone"
+            layout="@layout/item_confirm_order_detail_layout" />
 
         <View
             android:layout_width="match_parent"
@@ -147,35 +154,35 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
                     android:id="@+id/iv_refund_one"
                     android:layout_width="94dp"
                     android:layout_height="123dp"
                     android:layout_marginTop="15dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/icon_most_three" />
 
                 <ImageView
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
-                    android:visibility="gone"
-                    android:layout_marginLeft="15dp"
                     android:id="@+id/iv_refund_two"
                     android:layout_width="94dp"
                     android:layout_height="123dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/icon_most_three"
-                    android:layout_marginTop="15dp" />
+                    android:visibility="gone" />
 
                 <ImageView
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
-                    android:visibility="gone"
-                    android:layout_marginLeft="15dp"
                     android:id="@+id/iv_refund_three"
                     android:layout_width="94dp"
                     android:layout_height="123dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/icon_most_three"
-                    android:layout_marginTop="15dp" />
+                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>
