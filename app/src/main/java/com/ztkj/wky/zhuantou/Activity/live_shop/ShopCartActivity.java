@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,10 +21,8 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.ShopCartAdapter;
-import com.ztkj.wky.zhuantou.adapter.ShopCartDentailDetailAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
-import com.ztkj.wky.zhuantou.bean.MallShopCartBean;
-import com.ztkj.wky.zhuantou.bean.ShopCartBean;
+import com.ztkj.wky.zhuantou.bean.OrderBean;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -49,8 +46,8 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     ShopCartAdapter shopCartAdapter;
     @BindView(R.id.shop_cart)
     RecyclerView shop_cart;
-    ShopCartBean shopCartBean;
-    List<ShopCartBean.DataBean> list;
+    OrderBean OrderBean;
+    List<OrderBean.DataBean> list;
     @BindView(R.id.is_select_buy)
     ImageView isSelectBuy;
     @BindView(R.id.all_select)
@@ -66,6 +63,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
 
     @BindView(R.id.delete_shop)
     TextView delete_shop;
+
 
     public static void start(Context context) {
         Intent starter = new Intent(context, ShopCartActivity.class);
@@ -128,9 +126,9 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
-                            shopCartBean = new Gson().fromJson(response, ShopCartBean.class);
-                            if (shopCartBean.getData() != null && shopCartBean.getData().size() > 0) {
-                                list = shopCartBean.getData();
+                            OrderBean = new Gson().fromJson(response, OrderBean.class);
+                            if (OrderBean.getData() != null && OrderBean.getData().size() > 0) {
+                                list = OrderBean.getData();
                                 shopCartAdapter.setData(list, 1);
                                 shopCartAdapter.notifyDataSetChanged();
                             }
@@ -198,7 +196,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
             case R.id.upload_confirm:
                 listSelect = shopCartAdapter.getSelectList();
                 if (listSelect != null && listSelect.size() > 0) {
-                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect, totalprice,2);
+                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect, totalprice, 2);
 //                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect);
                 } else {
                     ToastUtils.showShort("请选择商品");
@@ -208,7 +206,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    List<ShopCartBean.DataBean> listSelect = new ArrayList<>();
+    List<OrderBean.DataBean> listSelect = new ArrayList<>();
     String ssc_id;
 
     private void deleteCart() {

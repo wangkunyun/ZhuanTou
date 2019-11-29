@@ -24,12 +24,14 @@ import com.bumptech.glide.Glide;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ConfirmOrderActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.WaitPayDetailsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -49,13 +51,11 @@ public class AllOrderFragment extends Fragment {
     private String TAG = "AllOrderFragment";
     private List<OrderBean.DataBean> data;
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_all_order, container, false);
         unbinder = ButterKnife.bind(this, view);
-
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.getOrderList)
                 .addParams("uid", SPUtils.getInstance().getString("uid"))
                 .addParams("page", "1")
@@ -88,7 +88,6 @@ public class AllOrderFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
 
     class AdapterOut extends RecyclerView.Adapter<AdapterOut.ViewHolder> {
 
@@ -143,6 +142,32 @@ public class AllOrderFragment extends Fragment {
                         case "4":
                             viewHolder.item_tvOrderOutState.setText("交易关闭");
                             break;
+                    }
+                }
+            });
+            viewHolder.item_clickOrderOutRefund.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch (data.get(i).getSso_state()) {
+                        case "1":
+                            if (getActivity() != null) {
+                                RefundActivity.start(getActivity(), data.get(i));
+                            }
+                            break;
+                    }
+                }
+            });
+            viewHolder.item_tvOrderOutState.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //设置订单状态
+                    switch (data.get(i).getSso_state()) {
+                        case "0":
+                            if (getActivity() != null) {
+                                ConfirmOrderActivity.startConfim(getActivity(), data.get(i));
+                            }
+                            break;
+
                     }
                 }
             });

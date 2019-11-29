@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.R;
-import com.ztkj.wky.zhuantou.bean.ShopCartBean;
+import com.ztkj.wky.zhuantou.bean.OrderBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,18 +19,21 @@ import java.util.List;
 public class ConfimOrderDetailAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
+    private int type;
+
     public ConfimOrderDetailAdapter(Context context) {
         this.mContext = context;
     }
 
-    public void setList(List<ShopCartBean.DataBean.ArrBean> list) {
+    public void setList(List<OrderBean.DataBean.ArrBean> list) {
         this.list = list;
     }
 
-    public List<ShopCartBean.DataBean.ArrBean> list = new ArrayList<>();
+    public List<OrderBean.DataBean.ArrBean> list = new ArrayList<>();
 
-    public void setData(List<ShopCartBean.DataBean.ArrBean> lists) {
+    public void setData(List<OrderBean.DataBean.ArrBean> lists, int type) {
         this.list = lists;
+        this.type = type;
         notifyDataSetChanged();
     }
 
@@ -43,16 +46,32 @@ public class ConfimOrderDetailAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder viewHolder1 = (ViewHolder) viewHolder;
-        viewHolder1.tv_order_name.setText(list.get(i).getSsc_name());
-        viewHolder1.tv_order_size.setText(list.get(i).getSsc_sku_name());
-        viewHolder1.num_shop.setText(list.get(i).getSsc_number());
-        viewHolder1.price.setText(list.get(i).getSsc_unit_price());
+        Glide.with(mContext).load(list.get(i).getSc_img()).into(((ViewHolder) viewHolder).order_pic);
+        switch (type){
+            case 1:
+                viewHolder1.tv_order_name.setText(list.get(i).getSsc_name());
+                viewHolder1.tv_order_size.setText(list.get(i).getSsc_sku_name());
+                viewHolder1.num_shop.setText(list.get(i).getSsc_number());
+                viewHolder1.price.setText(list.get(i).getSsc_unit_price());
+                break;
+            case 2:
+                viewHolder1.tv_order_name.setText(list.get(i).getSog_name());
+                viewHolder1.tv_order_size.setText(list.get(i).getSog_sku_name());
+                viewHolder1.num_shop.setText(list.get(i).getSog_number());
+                viewHolder1.price.setText(list.get(i).getSog_total_price());
+                break;
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        if(list!=null){
+           return list.size();
+        }else{
+            return 0;
+        }
+
     }
 
 

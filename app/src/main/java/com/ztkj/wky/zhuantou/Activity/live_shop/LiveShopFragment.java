@@ -83,9 +83,6 @@ public class LiveShopFragment extends Fragment {
     int pageNum = 1;
     String uid;
 
-
-
-
     private void initShopList(String userUid) {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.homeShopList)
                 .addParams("uid", userUid)

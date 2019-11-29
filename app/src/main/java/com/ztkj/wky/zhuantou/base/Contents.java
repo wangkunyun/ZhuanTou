@@ -25,71 +25,6 @@ public class Contents {
             "{\"title\":\"女性服装\",\"class\":[{\"shop\":\"卫衣\"},{\"shop\":\"卫衣\"},{\"shop\":\"女性服装\"}]},\n" +
             "{\"title\":\"衣服\",\"class\":[]}]}";
 
-    public static final String jsonShopList = "{\n" +
-            "\t\"errno\": \"200\",\n" +
-            "\t\"errmsg\": \"获取成功\",\n" +
-            "\t\"data\": [{\n" +
-            "\t\t\t\"cl_id\": \"1\",\n" +
-            "\t\t\t\"cl_name\": \"最新资讯\",\n" +
-            "\t\t\t\"subordinate\": [{\n" +
-            "\t\t\t\t\t\"cl_id\": \"3\",\n" +
-            "\t\t\t\t\t\"cl_name\": \"企业动态\",\n" +
-            "\t\t\t\t\t\"price\": \"2\",\n" +
-            "\t\t\t\t\t\"num\": 1\n" +
-            "\t\t\t\t},\n" +
-            "\t\t\t\t{\n" +
-            "\t\t\t\t\t\"cl_id\": \"4\",\n" +
-            "\t\t\t\t\t\"cl_name\": \"职场资讯\",\n" +
-            "\t\t\t\t\t\"price\": \"1\",\n" +
-            "\t\t\t\t\t\"num\": 1\n" +
-            "\t\t\t\t},\n" +
-            "\t\t\t\t{\n" +
-            "\t\t\t\t\t\"cl_id\": \"5\",\n" +
-            "\t\t\t\t\t\"cl_name\": \"能力提升\",\n" +
-            "\t\t\t\t\t\"price\": \"1\",\n" +
-            "\t\t\t\t\t\"num\": 1\n" +
-            "\t\t\t\t},\n" +
-            "\t\t\t\t{\n" +
-            "\t\t\t\t\t\"cl_id\": \"6\",\n" +
-            "\t\t\t\t\t\"cl_name\": \"视野开阔\",\n" +
-            "\t\t\t\t\t\"price\": \"1\",\n" +
-            "\t\t\t\t\t\"num\": 1\n" +
-            "\t\t\t\t}\n" +
-            "\t\t\t]\n" +
-            "\t\t},\n" +
-            "\t\t{\n" +
-            "\t\t\t\"cl_id\": \"2\",\n" +
-            "\t\t\t\"cl_name\": \"热门话题\",\n" +
-            "\t\t\t\"subordinate\": [{\n" +
-            "\t\t\t\t\t\"cl_id\": \"7\",\n" +
-            "\t\t\t\t\t\"cl_name\": \"言行仪表\",\n" +
-            "\t\t\t\t\t\"price\": \"1\",\n" +
-            "\t\t\t\t\t\"num\": 1\n" +
-            "\t\t\t\t},\n" +
-            "\t\t\t\t{\n" +
-            "\t\t\t\t\t\"cl_id\": \"8\",\n" +
-            "\t\t\t\t\t\"cl_name\": \"言谈举止\",\n" +
-            "\t\t\t\t\t\"price\": \"1\",\n" +
-            "\t\t\t\t\t\"num\": 1\n" +
-            "\t\t\t\t},\n" +
-            "\t\t\t\t{\n" +
-            "\t\t\t\t\t\"cl_id\": \"9\",\n" +
-            "\t\t\t\t\t\"cl_name\": \"没有BUG\",\n" +
-            "\t\t\t\t\t\"price\": \"3\",\n" +
-            "\t\t\t\t\t\"num\": 1\n" +
-            "\t\t\t\t},\n" +
-            "\t\t\t\t{\n" +
-            "\t\t\t\t\t\"cl_id\": \"10\",\n" +
-            "\t\t\t\t\t\"cl_name\": \"阿弥陀佛\",\n" +
-            "\t\t\t\t\t\"price\": \"1\",\n" +
-            "\t\t\t\t\t\"num\": 1\n" +
-            "\t\t\t\t}\n" +
-            "\t\t\t]\n" +
-            "\t\t}\n" +
-            "\t]\n" +
-            "}";
-
-    public static final String ShopSkuJson = "{\"errno\":\"200\",\"errmsg\":\"\\u8bf7\\u6c42\\u6210\\u529f\",\"data\":{\"name\":\"\\u989c\\u8272\",\"arr\":[{\"sk_id\":\"9\",\"sk_name\":\"\\u84dd\\u9ed1\",\"sk_price\":\"0.00\",\"sk_stock\":\"41\",\"sk_arr\":{\"name\":\"\\u6750\\u8d28\",\"arr\":[{\"sk_id\":\"10\",\"sk_name\":\"\\u4e0d\\u9508\\u94a2\",\"sk_price\":\"0.00\",\"sk_stock\":\"30\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"13\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"150.00\",\"sk_stock\":\"15\",\"sk_arr\":[]},{\"sk_id\":\"14\",\"sk_name\":\"6.5\\u82f1\\u5bf8\",\"sk_price\":\"100.00\",\"sk_stock\":\"20\",\"sk_arr\":[]},{\"sk_id\":\"17\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"30.00\",\"sk_stock\":\"0\",\"sk_arr\":[]}]}},{\"sk_id\":\"11\",\"sk_name\":\"\\u94c1\",\"sk_price\":\"0.00\",\"sk_stock\":\"11\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"23\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"12.00\",\"sk_stock\":\"0\",\"sk_arr\":[]},{\"sk_id\":\"24\",\"sk_name\":\"6.5\\u82f1\\u5bf8\",\"sk_price\":\"306.00\",\"sk_stock\":\"1\",\"sk_arr\":[]},{\"sk_id\":\"25\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"512.00\",\"sk_stock\":\"10\",\"sk_arr\":[]}]}}]}},{\"sk_id\":\"2\",\"sk_name\":\"\\u9ed1\\u8272\",\"sk_price\":\"0.00\",\"sk_stock\":\"258\",\"sk_arr\":{\"name\":\"\\u6750\\u8d28\",\"arr\":[{\"sk_id\":\"18\",\"sk_name\":\"\\u4e0d\\u9508\\u94a2\",\"sk_price\":\"0.00\",\"sk_stock\":\"135\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"26\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"122.12\",\"sk_stock\":\"123\",\"sk_arr\":[]},{\"sk_id\":\"27\",\"sk_name\":\"6.5\\u82f1\\u5bf8\",\"sk_price\":\"12.12\",\"sk_stock\":\"12\",\"sk_arr\":[]},{\"sk_id\":\"28\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"58.90\",\"sk_stock\":\"0\",\"sk_arr\":[]}]}},{\"sk_id\":\"19\",\"sk_name\":\"\\u94c1\",\"sk_price\":\"0.00\",\"sk_stock\":\"123\",\"sk_arr\":{\"name\":\"\\u5c3a\\u5bf8\",\"arr\":[{\"sk_id\":\"20\",\"sk_name\":\"5.6\\u82f1\\u5bf8\",\"sk_price\":\"123.00\",\"sk_stock\":\"10\",\"sk_arr\":[]},{\"sk_id\":\"21\",\"sk_name\":\"6.5\\u82f1\\u5bf8\",\"sk_price\":\"99.00\",\"sk_stock\":\"13\",\"sk_arr\":[]},{\"sk_id\":\"22\",\"sk_name\":\"8.0\\u82f1\\u5bf8\",\"sk_price\":\"50.00\",\"sk_stock\":\"100\",\"sk_arr\":[]}]}}]}}]}}";
     /**
      * 百度地图
      */
@@ -449,6 +384,8 @@ public class Contents {
     public static final String zfbPayOrder = "Zfb/zfbPay";
     //子订单支付支付宝
     public static final String childZfbOrder = "Zfb/zfbPay_son";
+    //子订单支付微信
+    public static final String childWxOrder = "Wxpay/dopay_son";
     //添加退款信息接口
     public static final String addRefundInfo = "Order/refundSave";
     //添加退款凭证接口
