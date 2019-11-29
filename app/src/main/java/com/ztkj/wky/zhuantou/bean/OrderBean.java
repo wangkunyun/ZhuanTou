@@ -1,8 +1,9 @@
 package com.ztkj.wky.zhuantou.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class OrderBean {
+public class OrderBean implements Serializable {
 
 
     /**
@@ -39,7 +40,7 @@ public class OrderBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * ss_name : 砖头科技店铺
          * ss_logo : 0
@@ -53,6 +54,25 @@ public class OrderBean {
         private String sso_state;
         private String sso_sub_order_number;
         private String so_order_number;
+        private boolean isSelect;
+        private String so_addtime;
+
+        public String getSo_addtime() {
+            return so_addtime;
+        }
+
+        public void setSo_addtime(String so_addtime) {
+            this.so_addtime = so_addtime;
+        }
+
+        public boolean isSelect() {
+            return isSelect;
+        }
+
+        public void setSelect(boolean select) {
+            isSelect = select;
+        }
+
         private List<ArrBean> arr;
 
         public String getSs_name() {
@@ -103,7 +123,7 @@ public class OrderBean {
             this.arr = arr;
         }
 
-        public static class ArrBean {
+        public static class ArrBean implements Serializable{
             /**
              * sog_id : 47
              * sog_sub_order_id : ZXd9e968ba31c73a000
@@ -129,6 +149,88 @@ public class OrderBean {
             private String sog_total_price;
             private String sc_img;
             private String sog_refund_type;
+            private boolean isSelect;
+
+            private String ssc_sku_id;
+            private String ssc_id;
+            private String ssc_name;
+            private String ssc_number;
+            private String ssc_unit_price;
+            private String ssc_sku_name;
+            private String ssc_store_id;
+            private String ssc_sc_id;
+
+            public String getSsc_sku_id() {
+                return ssc_sku_id;
+            }
+
+            public void setSsc_sku_id(String ssc_sku_id) {
+                this.ssc_sku_id = ssc_sku_id;
+            }
+
+            public String getSsc_id() {
+                return ssc_id;
+            }
+
+            public void setSsc_id(String ssc_id) {
+                this.ssc_id = ssc_id;
+            }
+
+            public String getSsc_name() {
+                return ssc_name;
+            }
+
+            public void setSsc_name(String ssc_name) {
+                this.ssc_name = ssc_name;
+            }
+
+            public String getSsc_number() {
+                return ssc_number;
+            }
+
+            public void setSsc_number(String ssc_number) {
+                this.ssc_number = ssc_number;
+            }
+
+            public String getSsc_unit_price() {
+                return ssc_unit_price;
+            }
+
+            public void setSsc_unit_price(String ssc_unit_price) {
+                this.ssc_unit_price = ssc_unit_price;
+            }
+
+            public String getSsc_sku_name() {
+                return ssc_sku_name;
+            }
+
+            public void setSsc_sku_name(String ssc_sku_name) {
+                this.ssc_sku_name = ssc_sku_name;
+            }
+
+            public String getSsc_store_id() {
+                return ssc_store_id;
+            }
+
+            public void setSsc_store_id(String ssc_store_id) {
+                this.ssc_store_id = ssc_store_id;
+            }
+
+            public String getSsc_sc_id() {
+                return ssc_sc_id;
+            }
+
+            public void setSsc_sc_id(String ssc_sc_id) {
+                this.ssc_sc_id = ssc_sc_id;
+            }
+
+            public boolean isSelect() {
+                return isSelect;
+            }
+
+            public void setSelect(boolean select) {
+                isSelect = select;
+            }
 
             public String getSog_id() {
                 return sog_id;

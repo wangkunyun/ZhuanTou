@@ -10,12 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ztkj.wky.zhuantou.R;
-import com.ztkj.wky.zhuantou.bean.ShopCartBean;
+import com.ztkj.wky.zhuantou.bean.OrderBean;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -32,9 +31,9 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
 
-    List<ShopCartBean.DataBean> list = new ArrayList<>();
-    List<ShopCartBean.DataBean> listSelect = new ArrayList<>();
-    ShopCartBean.DataBean cartBean;
+    List<OrderBean.DataBean> list = new ArrayList<>();
+    List<OrderBean.DataBean> listSelect = new ArrayList<>();
+    OrderBean.DataBean cartBean;
 
     public ShopCartAdapter(Context context) {
         this.mContext = context;
@@ -42,7 +41,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
 
     int isExpand;
 
-    public void setData(List<ShopCartBean.DataBean> mList, int isExpand) {
+    public void setData(List<OrderBean.DataBean> mList, int isExpand) {
         this.list.addAll(mList);
         this.isExpand = isExpand;
         notifyDataSetChanged();
@@ -78,7 +77,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                     }
                 }
                 //外层选中状态改变后，要遍历改变子recyclerView内item的选中状态
-                for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
+                for (OrderBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
                     cartItemResultDtoList.setSelect(isChecked);
                 }
                 setAllShopListens.shopListen(isAllSelect());
@@ -121,7 +120,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         }
     }
 
-    List<ShopCartBean.DataBean> listSelectIS = new ArrayList<>();
+    List<OrderBean.DataBean> listSelectIS = new ArrayList<>();
     SetAllShopListen setAllShopListens;
 
     public interface SetAllShopListen {
@@ -144,7 +143,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
     public void setAllselect(boolean b) {
         for (int i = 0; i < list.size(); i++) {
             list.get(i).setSelect(b);
-            for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
+            for (OrderBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
                 cartItemResultDtoList.setSelect(b);
             }
         }
@@ -153,8 +152,8 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         EventBus.getDefault().post(getAllPrice());
     }
 
-    List<ShopCartBean.DataBean> listGroup = new ArrayList<>();
-    List<ShopCartBean.DataBean.ArrBean> listChild = new ArrayList<>();
+    List<OrderBean.DataBean> listGroup = new ArrayList<>();
+    List<OrderBean.DataBean.ArrBean> listChild = new ArrayList<>();
     public static String ssc_id;
 
     public void getSelect() {
@@ -172,7 +171,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                          ssc_id= stringBuilder.append(listChild.get(i).getSsc_id()).toString();
                         }
                     }
-//                    for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
+//                    for (OrderBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
 //                        if (cartItemResultDtoList.isSelect()) {
 //                            listChild.add(cartItemResultDtoList);
 //                        }
@@ -197,14 +196,14 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
     }
 
 
-    public List<ShopCartBean.DataBean> getSelectList() {
+    public List<OrderBean.DataBean> getSelectList() {
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).isSelect()) {
                     listSelect.add(list.get(i));
 
                 } else {
-                    for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
+                    for (OrderBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
                         if (cartItemResultDtoList.isSelect()) {
                             listSelect.get(i).getArr().add(cartItemResultDtoList);
                         }
@@ -234,7 +233,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         BigDecimal allprice = new BigDecimal("0");
         if (list != null) {
             for (int i = 0; i < list.size(); i++) {
-                List<ShopCartBean.DataBean.ArrBean> data = list.get(i).getArr();
+                List<OrderBean.DataBean.ArrBean> data = list.get(i).getArr();
                 for (int y = 0; y < data.size(); y++) {
                     if (data.get(y).isSelect()) {
                         BigDecimal interestRate = new BigDecimal(data.get(y).getSsc_number());

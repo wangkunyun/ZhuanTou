@@ -43,7 +43,7 @@ import com.ztkj.wky.zhuantou.adapter.LiveShopListAdapter;
 import com.ztkj.wky.zhuantou.adapter.ShopParamAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.GuessLikeBean;
-import com.ztkj.wky.zhuantou.bean.ShopCartBean;
+import com.ztkj.wky.zhuantou.bean.OrderBean;
 import com.ztkj.wky.zhuantou.bean.ShopDetailBean;
 import com.ztkj.wky.zhuantou.bean.ShopKeyBean;
 import com.ztkj.wky.zhuantou.bean.ShopParamBean;
@@ -843,8 +843,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         getWindow().setAttributes(lp);
     }
 
-    List<ShopCartBean.DataBean> listShopCart = new ArrayList<>();
-    List<ShopCartBean.DataBean.ArrBean> arrBeanList = new ArrayList<>();
+    List<OrderBean.DataBean> listShopCart = new ArrayList<>();
+    List<OrderBean.DataBean.ArrBean> arrBeanList = new ArrayList<>();
 
     @Override
     public void onClick(View view) {
@@ -863,11 +863,11 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             case R.id.at_once_buy:
                 if (sku_name != null && sku_price != null && ssc_sku_id != null) {
                     ssc_sku_id = shopDetailBean.getData().getSc_sku_id() + "," + ssc_sku_id;
-                    ShopCartBean.DataBean shopCart = new ShopCartBean.DataBean();
+                    OrderBean.DataBean shopCart = new OrderBean.DataBean();
                     shopCart.setSs_logo(shopDetailBean.getData().getSc_img());
                     shopCart.setSs_name(shopDetailBean.getData().getSc_name());
                     listShopCart.add(shopCart);
-                    ShopCartBean.DataBean.ArrBean arrBean = new ShopCartBean.DataBean.ArrBean();
+                    OrderBean.DataBean.ArrBean arrBean = new OrderBean.DataBean.ArrBean();
                     arrBean.setSsc_id(shopDetailBean.getData().getSc_id());
                     arrBean.setSsc_name(shopDetailBean.getData().getSc_name());
                     arrBean.setSsc_sku_name(sku_name);

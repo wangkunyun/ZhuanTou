@@ -24,12 +24,14 @@ import com.bumptech.glide.Glide;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ConfirmOrderActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.WaitPayDetailsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -49,13 +51,11 @@ public class AllOrderFragment extends Fragment {
     private String TAG = "AllOrderFragment";
     private List<OrderBean.DataBean> data;
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_all_order, container, false);
         unbinder = ButterKnife.bind(this, view);
-
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.getOrderList)
                 .addParams("uid", SPUtils.getInstance().getString("uid"))
                 .addParams("page", "1")
@@ -68,7 +68,7 @@ public class AllOrderFragment extends Fragment {
 
             @Override
             public void onResponse(String response) {
-                Log.e(TAG, "onResponse: 订单列表" + response);
+                Log.e(TAG, "onResponse: " + response);
                 OrderBean orderBean = GsonUtil.gsonToBean(response, OrderBean.class);
                 if (orderBean.getErrno().equals("200")) {
                     data = orderBean.getData();
@@ -89,7 +89,6 @@ public class AllOrderFragment extends Fragment {
         unbinder.unbind();
     }
 
-
     class AdapterOut extends RecyclerView.Adapter<AdapterOut.ViewHolder> {
 
         @NonNull
@@ -105,7 +104,7 @@ public class AllOrderFragment extends Fragment {
             List<OrderBean.DataBean.ArrBean> arr;
             arr = data.get(i).getArr();
             viewHolder.item_reOrderOut.setLayoutManager(new LinearLayoutManager(getActivity()));
-            AdapterIn adapterIn = new AdapterIn(arr, data.get(i).getSso_state(), data.get(i).getSso_sub_order_number());
+            AdapterIn adapterIn = new AdapterIn(arr);
             viewHolder.item_reOrderOut.setAdapter(adapterIn);
             //设置店铺logo
             if (!data.get(i).getSs_logo().equals("0")) {
@@ -122,6 +121,56 @@ public class AllOrderFragment extends Fragment {
             }
             viewHolder.itemOrderOutPrice.setText(sum + "");
 
+            //点击进入详情页
+            viewHolder.item_reOrderOut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //设置订单状态
+                    switch (data.get(i).getSso_state()) {
+                        case "0":
+                            WaitPayDetailsActivity.start(getActivity(), data.get(i).getSso_state(), data.get(i).getSso_sub_order_number());
+                            break;
+                        case "1":
+                            viewHolder.item_tvOrderOutState.setText("待发货");
+                            break;
+                        case "2":
+                            viewHolder.item_tvOrderOutState.setText("待收货");
+                            break;
+                        case "3":
+                            viewHolder.item_tvOrderOutState.setText("交易成功");
+                            break;
+                        case "4":
+                            viewHolder.item_tvOrderOutState.setText("交易关闭");
+                            break;
+                    }
+                }
+            });
+            viewHolder.item_clickOrderOutRefund.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch (data.get(i).getSso_state()) {
+                        case "1":
+                            if (getActivity() != null) {
+                                RefundActivity.start(getActivity(), data.get(i));
+                            }
+                            break;
+                    }
+                }
+            });
+            viewHolder.item_tvOrderOutState.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //设置订单状态
+                    switch (data.get(i).getSso_state()) {
+                        case "0":
+                            if (getActivity() != null) {
+                                ConfirmOrderActivity.startConfim(getActivity(), data.get(i));
+                            }
+                            break;
+
+                    }
+                }
+            });
             //设置订单状态
             switch (data.get(i).getSso_state()) {
                 case "0":
@@ -167,18 +216,11 @@ public class AllOrderFragment extends Fragment {
         }
     }
 
-    /**
-     * 里面一层
-     */
     class AdapterIn extends RecyclerView.Adapter<AdapterIn.ViewHolder> {
         private List<OrderBean.DataBean.ArrBean> arr;
-        private String state;
-        private String num;
 
-        public AdapterIn(List<OrderBean.DataBean.ArrBean> arr, String state, String num) {
+        public AdapterIn(List<OrderBean.DataBean.ArrBean> arr) {
             this.arr = arr;
-            this.state = state;
-            this.num = num;
         }
 
         @NonNull
@@ -197,25 +239,6 @@ public class AllOrderFragment extends Fragment {
             viewHolder.item_tvOrderInSku.setText(arr.get(i).getSog_sku_name());
             viewHolder.item_tvOrderInBuyNum.setText(arr.get(i).getSog_number() + "件");
             viewHolder.tv_itemOrderInPrice.setText(arr.get(i).getSog_total_price());
-            viewHolder.rl_clickOrderIn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //设置订单状态
-                    switch (data.get(i).getSso_state()) {
-                        case "0":
-                            WaitPayDetailsActivity.start(getActivity(), state, num);
-                            break;
-                        case "1":
-                            break;
-                        case "2":
-                            break;
-                        case "3":
-                            break;
-                        case "4":
-                            break;
-                    }
-                }
-            });
             switch (arr.get(i).getSog_refund_type()) {
                 case "0":
                     viewHolder.item_tvOrderInIsRefund.setVisibility(View.GONE);

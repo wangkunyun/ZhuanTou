@@ -3,7 +3,6 @@ package com.ztkj.wky.zhuantou.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ztkj.wky.zhuantou.R;
-import com.ztkj.wky.zhuantou.bean.ShopCartBean;
+import com.ztkj.wky.zhuantou.bean.OrderBean;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -26,10 +25,10 @@ import butterknife.ButterKnife;
 
 public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
 
-    List<ShopCartBean.DataBean.ArrBean> list = new ArrayList<>();
+    List<OrderBean.DataBean.ArrBean> list = new ArrayList<>();
     int isExpand;
     Context context;
-    ShopCartBean.DataBean shortCartBean;
+    OrderBean.DataBean shortCartBean;
     ShopCartAdapter shopCartAdapter;
 
     public ShopCartDentailDetailAdapter(Context context) {
@@ -37,7 +36,7 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public void setData(List<ShopCartBean.DataBean.ArrBean> mList, ShopCartBean.DataBean shortCartBeans, ShopCartAdapter shopCartAdapters, int isExpand) {
+    public void setData(List<OrderBean.DataBean.ArrBean> mList, OrderBean.DataBean shortCartBeans, ShopCartAdapter shopCartAdapters, int isExpand) {
         this.list.addAll(mList);
         this.isExpand = isExpand;
         this.shortCartBean = shortCartBeans;
@@ -62,7 +61,7 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
 
         viewHolder1.ivIsDetailSelect.setOnCheckedChangeListener(null);
         viewHolder1.orderPrice.setText(list.get(i).getSsc_unit_price());
-        final ShopCartBean.DataBean.ArrBean cartBean = list.get(i);
+        final OrderBean.DataBean.ArrBean cartBean = list.get(i);
         //读取实体内存储的选中状态
         viewHolder1.tvOrderName.setText(cartBean.getSsc_name());
         viewHolder1.ivIsDetailSelect.setChecked(cartBean.isSelect());
@@ -82,7 +81,7 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
                 notifyDataSetChanged();
                 boolean noSelect = false;
                 //内层item选中状态改变后要遍历判断是否全选，以改变外层item的选中状态
-                for (ShopCartBean.DataBean.ArrBean cartItemResultDtoList : list) {
+                for (OrderBean.DataBean.ArrBean cartItemResultDtoList : list) {
                     if (!cartItemResultDtoList.isSelect()) {
                         noSelect = true;
                     }

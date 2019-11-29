@@ -3,11 +3,11 @@ package com.ztkj.wky.zhuantou.Activity.live_shop;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -41,7 +41,7 @@ import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.AdressUpdateBean;
 import com.ztkj.wky.zhuantou.bean.BaseStatusBean;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
-import com.ztkj.wky.zhuantou.bean.ShopCartBean;
+import com.ztkj.wky.zhuantou.bean.OrderInfo;
 import com.ztkj.wky.zhuantou.bean.WxPayBean;
 
 import java.io.Serializable;
@@ -81,7 +81,8 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         type = getIntent().getIntExtra("type", 0);
         uid = SPUtils.getInstance().getString("uid");
         totalPrice = getIntent().getStringExtra("totalPrice");
-        serInfos = (List<ShopCartBean.DataBean>) getIntent().getSerializableExtra("listobj");
+        orderDataBeans = (OrderBean.DataBean) getIntent().getSerializableExtra("order");
+        serInfos = (List<OrderBean.DataBean>) getIntent().getSerializableExtra("listobj");
         ButterKnife.bind(this);
         layoutTitleTv.setText("确认订单");
         view_divider.setVisibility(View.GONE);
@@ -94,14 +95,26 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         rela_address.setOnClickListener(this);
         uploadConfirm.setOnClickListener(this);
         selct_address.setOnClickListener(this);
-        if (totalPrice != null) {
-            price_total.setText("¥ " + totalPrice);
+        if (orderDataBeans == null && serInfos.size() > 0) {
+            if (totalPrice != null) {
+                price_total.setText("¥ " + totalPrice);
+            }
+            initData();
+            confimOrderAdapter.setData(serInfos);
+        } else {
+            type = 3;
+            for (int i = 0; i < orderDataBeans.getArr().size(); i++) {
+                doublePeice += Double.parseDouble(orderDataBeans.getArr().get(i).getSog_total_price());
+            }
+            totalPrice=String.valueOf(doublePeice);
+            serInfos.add(orderDataBeans);
+            confimOrderAdapter.setData(serInfos);
         }
+        confimOrderAdapter.notifyDataSetChanged();
         selct_address.setVisibility(View.GONE);
         rela_address.setVisibility(View.VISIBLE);
-        initData();
     }
-
+    Double  doublePeice;
     String ssc_id;
     StringBuilder stringBuilder;
 
@@ -120,15 +133,14 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                 }
                 ssc_id = stringBuilder.toString();
             }
-            confimOrderAdapter.setData(serInfos);
-            confimOrderAdapter.notifyDataSetChanged();
+
         }
     }
 
 
-    List<ShopCartBean.DataBean> serInfos = new ArrayList<>();
+    List<OrderBean.DataBean> serInfos = new ArrayList<>();
 
-    public static void start(Context context, List<ShopCartBean.DataBean> list, String totalPrice, int type) {
+    public static void start(Context context, List<OrderBean.DataBean> list, String totalPrice, int type) {
         Intent starter = new Intent(context, ConfirmOrderActivity.class);
         starter.putExtra("listobj", (Serializable) list);
         starter.putExtra("totalPrice", totalPrice);
@@ -136,8 +148,15 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         context.startActivity(starter);
     }
 
-    int type;
+    public static void startConfim(Context context, OrderBean.DataBean order) {
+        Intent starter = new Intent(context, ConfirmOrderActivity.class);
+        starter.putExtra("order", order);
+        context.startActivity(starter);
+    }
 
+
+    int type;
+    OrderBean.DataBean orderDataBeans;
     String totalPrice;
 
     @Override
@@ -163,9 +182,11 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                     case 2:
                         createOrderCart();
                         break;
+                    case 3:
+                        popuCoupon();
+                        break;
+
                 }
-
-
 //                popuCoupon();
                 break;
             case R.id.selct_address:
@@ -177,11 +198,81 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    private void createChildZfbOrder() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.childZfbOrder)
+                .addParams("order_id", orderId)
+                .addParams("uid", uid)//totalPrice
+                .addParams("total", "0.01")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        wxPayBean = new Gson().fromJson(response, WxPayBean.class);
+                        if (wxPayBean.getErrno().equals("200")) {
+                            // 必须异步调用
+                            Thread payThread = new Thread(payRunnable);
+                            payThread.start();
+                        } else {
+                            ToastUtils.showShort(wxPayBean.getErrmsg());
+                        }
+                    }
+                });
+
+    }
+
+    private void createChildWxOrder() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.childWxOrder)
+                .addParams("order_id", orderId)
+                .addParams("uid", uid)
+                .addParams("total", "0.01")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        ToastUtils.showShort(e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        wxPayBean = new Gson().fromJson(response, WxPayBean.class);
+                        if (wxPayBean != null) {
+                            setWxPayBean(wxPayBean);
+                        }
+
+                    }
+                });
+
+    }
+
+    private void setWxPayBean(WxPayBean wxPay) {
+        if (wxPay.getErrno().equals("200")) {
+            //通过IWXAPI 获取到其对象  然后将自己的应用注册到微信
+            IWXAPI api = WXAPIFactory.createWXAPI(ConfirmOrderActivity.this, wxPay.getData().getAppid(), true);
+            api.registerApp(wxPay.getData().getAppid());
+            //通过如下代码调起微信支付
+            PayReq request = new PayReq();
+            request.appId = wxPay.getData().getAppid();
+            request.partnerId = wxPay.getData().getPartnerid();
+            request.prepayId = wxPay.getData().getPrepayid();
+            request.packageValue = "Sign=WXPay";
+            request.nonceStr = wxPay.getData().getNoncestr();
+            request.timeStamp = String.valueOf(wxPay.getData().getTimestamp());
+            request.sign = wxPay.getData().getSign();
+            api.sendReq(request);
+        } else {
+            ToastUtils.showShort(wxPay.getErrmsg());
+        }
+    }
+
     OrderBean orderBean;
 
     private void atOnceBuy() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.orderImmediatePurchase)
-                .addParams("uid", SPUtils.getInstance().getString("uid"))
+                .addParams("uid", uid)
                 .addParams("so_order_address", adressUpdateBean.getUseraddress())
                 .addParams("so_order_address_id", adressUpdateBean.getAddressId())
                 .addParams("so_order_total_price", totalPrice)
@@ -198,7 +289,6 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("222", "onResponse: " + response);
                         BaseStatusBean baseStatusBean = new Gson().fromJson(response, BaseStatusBean.class);
                         if (baseStatusBean.getErrno().equals("200")) {
                             orderBean = new Gson().fromJson(response, OrderBean.class);
@@ -213,6 +303,8 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                     }
                 });
     }
+
+    OrderInfo orderInfo;
 
     private void createOrderCart() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.cartOrder)
@@ -230,12 +322,12 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("fdfafdsafs", response);
+                        Log.e("dfaf", response);
                         BaseStatusBean baseStatusBean = new Gson().fromJson(response, BaseStatusBean.class);
                         if (baseStatusBean.getErrno().equals("200")) {
-                            orderBean = new Gson().fromJson(response, OrderBean.class);
-                            if (orderBean != null && orderBean.getData().get(0).getSo_order_number() != null) {
-                                orderId = orderBean.getData().get(0).getSo_order_number();
+                            orderInfo = new Gson().fromJson(response, OrderInfo.class);
+                            if (orderInfo != null && orderInfo.getData().getOrder_number() != null) {
+                                orderId = orderInfo.getData().getOrder_number();
                                 popuCoupon();
                             }
                         } else {
@@ -257,8 +349,12 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         Button pp1_btn = contentView.findViewById(R.id.pp1_btn);
         ImageView wx_iv = contentView.findViewById(R.id.iv_pay_wx);
         ImageView zfb_iv = contentView.findViewById(R.id.iv_pay_zfb);
+        TextView total_price = contentView.findViewById(R.id.total_price);
         View rootview = LayoutInflater.from(ConfirmOrderActivity.this).inflate(R.layout.activity_confirm_order, null);
         setViewDow(contentView, rootview);
+        if (totalPrice != null) {
+            total_price.setText("¥" + totalPrice);
+        }
         wx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -280,14 +376,27 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         pp1_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (pay_default) {
-                    case 1:
-                        getWxPay();
-                        break;
-                    case 2:
-                        getZfbPay();
-                        break;
+                if (orderBean == null) {
+                    switch (pay_default) {
+                        case 1:
+                            getWxPay();
+                            break;
+                        case 2:
+                            getZfbPay();
+                            break;
+                    }
+                } else {
+                    orderId = orderBean.getData().get(0).getSso_sub_order_number();
+                    switch (pay_default) {
+                        case 1:
+                            createChildWxOrder();
+                            break;
+                        case 2:
+                            createChildZfbOrder();
+                            break;
+                    }
                 }
+
             }
         });
     }
@@ -343,8 +452,8 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     private void getZfbPay() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.zfbPayOrder)
                 .addParams("order_id", orderId)
-                .addParams("uid", uid)
-                .addParams("total", totalPrice)
+                .addParams("uid", uid)//totalPrice
+                .addParams("total", "0.01")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -368,12 +477,12 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
     WxPayBean wxPayBean;
 
+    //totalPrice
     private void getWxPay() {
-        Log.e("111", "getWxPay: " + orderId + " +++ " + uid + " +++ " + totalPrice);
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.wxpayOrder)
                 .addParams("order_id", orderId)
                 .addParams("uid", uid)
-                .addParams("total", totalPrice)
+                .addParams("total", "0.01")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -382,24 +491,9 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("111", "onResponse: " + response);
                         wxPayBean = new Gson().fromJson(response, WxPayBean.class);
-                        if (wxPayBean.getErrno().equals("200")) {
-                            //通过IWXAPI 获取到其对象  然后将自己的应用注册到微信
-                            IWXAPI api = WXAPIFactory.createWXAPI(ConfirmOrderActivity.this, wxPayBean.getData().getAppid(), true);
-                            api.registerApp(wxPayBean.getData().getAppid());
-                            //通过如下代码调起微信支付
-                            PayReq request = new PayReq();
-                            request.appId = wxPayBean.getData().getAppid();
-                            request.partnerId = wxPayBean.getData().getPartnerid();
-                            request.prepayId = wxPayBean.getData().getPrepayid();
-                            request.packageValue = "Sign=WXPay";
-                            request.nonceStr = wxPayBean.getData().getNoncestr();
-                            request.timeStamp = String.valueOf(wxPayBean.getData().getTimestamp());
-                            request.sign = wxPayBean.getData().getSign();
-                            api.sendReq(request);
-                        } else {
-                            ToastUtils.showShort(wxPayBean.getErrmsg());
+                        if (wxPayBean != null) {
+                            setWxPayBean(wxPayBean);
                         }
                     }
                 });

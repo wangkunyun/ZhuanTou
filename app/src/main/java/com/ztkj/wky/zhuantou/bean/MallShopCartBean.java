@@ -1,11 +1,9 @@
 package com.ztkj.wky.zhuantou.bean;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 public class MallShopCartBean {
-
 
     /**
      * status : true
@@ -54,7 +52,7 @@ public class MallShopCartBean {
         private String store_id;
         private List<ListBean> list;
         private boolean data_tag;
-        private  boolean isSelect;
+        private boolean isSelect;
 
         public boolean isData_tag() {
             return data_tag;
@@ -108,7 +106,7 @@ public class MallShopCartBean {
             this.list = list;
         }
 
-        public static class ListBean implements Serializable{
+        public static class ListBean implements Serializable {
             /**
              * goods_price : 2798
              * cart_id : 15206697631223840000
@@ -145,7 +143,7 @@ public class MallShopCartBean {
             private String is_have_point;
             private String model_id;
             private boolean isSelect;
-            private  String user_id;
+            private String user_id;
 
             public void setUser_id(String user_id) {
                 this.user_id = user_id;
@@ -302,5 +300,4 @@ public class MallShopCartBean {
             }
         }
     }
-
 }

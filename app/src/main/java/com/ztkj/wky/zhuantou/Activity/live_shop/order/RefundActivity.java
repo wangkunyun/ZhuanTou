@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,9 +34,11 @@ import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.adapter.ConfimOrderDetailAdapter;
 import com.ztkj.wky.zhuantou.adapter.ResuseWayAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.BaseStatusBean;
+import com.ztkj.wky.zhuantou.bean.OrderBean;
 import com.ztkj.wky.zhuantou.bean.WxPayBean;
 
 import java.io.File;
@@ -72,7 +76,6 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
     Button btnSaveAddress;
     @BindView(R.id.rela_select_address)
     RelativeLayout rela_select_address;
-    String orderId;
     @BindView(R.id.edi_sr_explain)
     EditText edi_sr_explain;
     @BindView(R.id.iv_refund_one)
@@ -81,10 +84,20 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
     ImageView iv_refund_two;
     @BindView(R.id.iv_refund_three)
     ImageView iv_refund_three;
+    OrderBean.DataBean oreder;
+    @BindView(R.id.tv_order_size)
+    TextView tv_order_size;
+    @BindView(R.id.price)
+    TextView price;
+    @BindView(R.id.num_shop)
+    TextView num_shop;
+    @BindView(R.id.recycle_refund)
+    RecyclerView recyleListRefund;
+    ConfimOrderDetailAdapter confimOrderDetailAdapter;
 
-    public static void start(Context context, String orerId) {
+    public static void start(Context context, OrderBean.DataBean orderbean) {
         Intent starter = new Intent(context, RefundActivity.class);
-        starter.putExtra("orderId", orerId);
+        starter.putExtra("order", orderbean);
         context.startActivity(starter);
     }
 
@@ -95,15 +108,53 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refund);
         ButterKnife.bind(this);
-        orderId = getIntent().getStringExtra("orderId");
+        recyleListRefund.setLayoutManager(new LinearLayoutManager(RefundActivity.this));
+        confimOrderDetailAdapter = new ConfimOrderDetailAdapter(RefundActivity.this);
+        recyleListRefund.setAdapter(confimOrderDetailAdapter);
+        oreder = (OrderBean.DataBean) getIntent().getSerializableExtra("order");
         uid = SPUtils.getInstance().getString("uid");
         iv_refund_one.setOnClickListener(this);
         rela_select_address.setOnClickListener(this);
         btnSaveAddress.setOnClickListener(this);
         iv_refund_two.setOnClickListener(this);
         iv_refund_three.setOnClickListener(this);
+        if (oreder != null && oreder.getArr().size() > 0) {
+            confimOrderDetailAdapter.setData(oreder.getArr(), 2);
+//            sog_id = oreder.getArr().get(0).getSog_id();
+            sr_order_id = oreder.getSso_sub_order_number();
+//            Glide.with(RefundActivity.this).load(oreder.getArr().get(0).getSc_img()).into(orderPic);
+//            if (oreder.getArr().get(0).getSog_name() != null) {
+//                orderName = oreder.getArr().get(0).getSog_name();
+//                tvOrderName.setText(orderName);
+//            }
+//            if (oreder.getArr().get(0).getSog_sku_name() != null) {
+//                orderSkuName = oreder.getArr().get(0).getSog_sku_name();
+//                tv_order_size.setText(orderSkuName);
+//            }
+//            if (oreder.getArr().get(0).getSog_unit_price() != null) {
+//                orderPrice = oreder.getArr().get(0).getSog_unit_price();
+//                price.setText(orderPrice);
+//            }
+//            if (oreder.getArr().get(0).getSog_number() != null) {
+//                orderNum = oreder.getArr().get(0).getSog_number();
+//                num_shop.setText(orderNum);
+//            }
+//            if (oreder.getArr().get(0).getSog_total_price() != null) {
+//                refundMoney = oredergetArr().get(0).getSog_total_price();
+//
+//            }
+            for (int i = 0; i < oreder.getArr().size(); i++) {
+                orderPriceDouble += Double.parseDouble(oreder.getArr().get(i).getSog_total_price());
+            }
+
+            tv_sr_money.setText(String.valueOf(orderPriceDouble));
+
+        }
         initReason();
     }
+
+    Double orderPriceDouble=0.0;
+    String sr_order_id;
 
     @OnClick({R.id.layout_back,})
     public void onViewClicked() {
@@ -121,6 +172,66 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
                 .forResult(PictureConfig.CHOOSE_REQUEST);
     }
 
+
+    private void createRefundId() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.createRefundId)
+                .addParams("uid", uid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        wxPayBean = new Gson().fromJson(response, WxPayBean.class);
+                        if (wxPayBean.getErrno().equals("200")) {
+                            if (wxPayBean.getData().getSr_id() != null) {
+                                if (oreder != null && oreder.getArr().size() > 0) {
+                                    for (int i = 0; i < oreder.getArr().size(); i++) {
+                                        createRefundInfo(oreder.getArr().get(i).getSog_id());
+                                    }
+                                }
+                                createRefundCetifi();
+                            }
+                        } else {
+                            ToastUtils.showShort(wxPayBean.getErrmsg());
+                        }
+
+                    }
+                });
+    }
+
+    private void createRefundInfo(String sog_id) {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.addRefundInfo)
+                .addParams("sr_id", wxPayBean.getData().getSr_id())
+                .addParams("sr_money", String.valueOf(orderPriceDouble))
+                .addParams("sr_reason", infoReson)
+                .addParams("sr_explain", infodetail)
+                .addParams("sog_id", sog_id)
+                .addParams("sr_order_id", sr_order_id)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        BaseStatusBean statusBean = new Gson().fromJson(response, BaseStatusBean.class);
+                        if (statusBean.getErrno().equals("200")) {
+
+                        } else {
+                            ToastUtils.showShort(statusBean.getErrmsg());
+                        }
+                    }
+                });
+
+
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -129,8 +240,12 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btn_save_address:
                 infoMoney = tv_sr_money.getText().toString();
-                if (infoReson != null && infoMoney != null) {
+                if (infoReson == null || infoMoney == null || oreder == null) {
                     ToastUtils.showShort("请完善信息");
+                    return;
+                }
+                if (listPath != null && listPath.size() < 1) {
+                    ToastUtils.showShort("请上传凭证");
                     return;
                 }
                 infodetail = edi_sr_explain.getText().toString();
@@ -197,60 +312,6 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
 
     WxPayBean wxPayBean;
 
-    private void createRefundId() {
-        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.createRefundId)
-                .addParams("uid", uid)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        wxPayBean = new Gson().fromJson(response, WxPayBean.class);
-                        if (wxPayBean.getErrno().equals("200")) {
-                            if (wxPayBean.getData().getSr_id() != null) {
-                                createRefundCetifi();
-//                                createRefundInfo();
-                            }
-                        } else {
-                            ToastUtils.showShort(wxPayBean.getErrmsg());
-                        }
-
-                    }
-                });
-    }
-
-    private void createRefundInfo() {
-        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.addRefundInfo)
-                .addParams("sr_id", wxPayBean.getData().getSr_id())
-                .addParams("sr_money", "")
-                .addParams("sr_reason", infoReson)
-                .addParams("sr_explain", infodetail)
-                .addParams("sog_id", "")
-                .addParams("sr_order_id", "")
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        BaseStatusBean statusBean = new Gson().fromJson(response, BaseStatusBean.class);
-                        if (statusBean.getErrno().equals("200")) {
-                            createRefundCetifi();
-                        } else {
-                            ToastUtils.showShort(statusBean.getErrmsg());
-                        }
-                    }
-                });
-
-
-    }
 
     private void createRefundCetifi() {
         for (int i = 0; i < listPath.size(); i++) {
@@ -306,7 +367,7 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 infoReson = listInfo.get(i);
                 tvSelectReason.setText(infoReson);
-                shopParamAdapter=null;
+                shopParamAdapter = null;
                 backgroundAlpha(1f);
                 window.dismiss();
             }

@@ -7,26 +7,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ztkj.wky.zhuantou.Activity.live_shop.CollectShopActivity;
 import com.ztkj.wky.zhuantou.R;
-import com.ztkj.wky.zhuantou.bean.ShopCartBean;
+import com.ztkj.wky.zhuantou.bean.OrderBean;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class ConfimOrderAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
-    private List<ShopCartBean.DataBean> list;
+    private List<OrderBean.DataBean> list;
 
     public ConfimOrderAdapter(Context context) {
         this.mContext = context;
     }
 
-    public void setData(List<ShopCartBean.DataBean> lists) {
+    public void setData(List<OrderBean.DataBean> lists) {
         this.list = lists;
         notifyDataSetChanged();
     }
@@ -46,7 +44,7 @@ public class ConfimOrderAdapter extends RecyclerView.Adapter {
         confimOrderDetailAdapter = new ConfimOrderDetailAdapter(mContext);
         viewHolder1.recycle_shop_detail.setLayoutManager(new LinearLayoutManager(mContext));
         viewHolder1.recycle_shop_detail.setAdapter(confimOrderDetailAdapter);
-        confimOrderDetailAdapter.setData(list.get(i).getArr());
+        confimOrderDetailAdapter.setData(list.get(i).getArr(),1);
     }
 
     @Override
@@ -68,3 +66,5 @@ public class ConfimOrderAdapter extends RecyclerView.Adapter {
         }
     }
 }
+
+
