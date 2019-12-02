@@ -102,8 +102,9 @@ public class AllOrderFragment extends Fragment {
         public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
             List<OrderBean.DataBean.ArrBean> arr;
             arr = data.get(i).getArr();
+
             viewHolder.item_reOrderOut.setLayoutManager(new LinearLayoutManager(getActivity()));
-            AdapterIn adapterIn = new AdapterIn(arr, data.get(i).getSso_state(), data.get(i).getSso_sub_order_number());
+            AdapterIn adapterIn = new AdapterIn(data.get(i), arr, data.get(i).getSso_state(), data.get(i).getSso_sub_order_number());
             viewHolder.item_reOrderOut.setAdapter(adapterIn);
             //设置店铺logo
             if (!data.get(i).getSs_logo().equals("0")) {
@@ -120,30 +121,6 @@ public class AllOrderFragment extends Fragment {
             }
             viewHolder.itemOrderOutPrice.setText(sum + "");
 
-            //点击进入详情页
-//            viewHolder.item_reOrderOut.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    //设置订单状态
-//                    switch (data.get(i).getSso_state()) {
-//                        case "0":
-//                            WaitPayDetailsActivity.start(getActivity(), data.get(i).getSso_state(), data.get(i).getSso_sub_order_number());
-//                            break;
-//                        case "1":
-//                            viewHolder.item_tvOrderOutState.setText("待发货");
-//                            break;
-//                        case "2":
-//                            viewHolder.item_tvOrderOutState.setText("待收货");
-//                            break;
-//                        case "3":
-//                            viewHolder.item_tvOrderOutState.setText("交易成功");
-//                            break;
-//                        case "4":
-//                            viewHolder.item_tvOrderOutState.setText("交易关闭");
-//                            break;
-//                    }
-//                }
-//            });
             viewHolder.item_clickOrderOutRefund.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -219,11 +196,13 @@ public class AllOrderFragment extends Fragment {
      * 里面一层
      */
     class AdapterIn extends RecyclerView.Adapter<AdapterIn.ViewHolder> {
+        private OrderBean.DataBean dataBean;
         private List<OrderBean.DataBean.ArrBean> arr;
         private String state;
         private String num;
 
-        public AdapterIn(List<OrderBean.DataBean.ArrBean> arr, String state, String num) {
+        public AdapterIn(OrderBean.DataBean dataBean, List<OrderBean.DataBean.ArrBean> arr, String state, String num) {
+            this.dataBean = dataBean;
             this.arr = arr;
             this.state = state;
             this.num = num;
@@ -260,7 +239,7 @@ public class AllOrderFragment extends Fragment {
             viewHolder.rl_clickOrderIn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    WaitPayDetailsActivity.start(getActivity(), state, num);
+                    WaitPayDetailsActivity.start(getActivity(), state, num, dataBean);
                 }
             });
         }

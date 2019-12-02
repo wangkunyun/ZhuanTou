@@ -25,9 +25,11 @@ import com.bumptech.glide.Glide;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.order.RefundActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.OrderBean;
 import com.ztkj.wky.zhuantou.bean.OrderDetailsBean;
 
 import java.util.List;
@@ -78,16 +80,19 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
     TextView tvClickPay;
     private OrderDetailsBean.DataBean data;
     private List<OrderDetailsBean.DataBean.ArrBean> arr;
+    private OrderBean.DataBean dataBean;
+    private String sso_state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wait_pay_details);
         ButterKnife.bind(this);
-
+        layoutTitleTv.setText("订单详情");
         String orderState = getIntent().getStringExtra("orderState");
         String orderNum = getIntent().getStringExtra("orderNum");
-
+        dataBean = (OrderBean.DataBean) getIntent().getSerializableExtra("dataBean");
+        sso_state = dataBean.getSso_state();
         request(orderState, orderNum);
 
     }
@@ -135,10 +140,11 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
 
     }
 
-    public static void start(Context context, String orderState, String orderNum) {
+    public static void start(Context context, String orderState, String orderNum, OrderBean.DataBean dataBean) {
         Intent starter = new Intent(context, WaitPayDetailsActivity.class);
         starter.putExtra("orderState", orderState);
         starter.putExtra("orderNum", orderNum);
+        starter.putExtra("dataBean", dataBean);
         context.startActivity(starter);
     }
 
@@ -164,11 +170,6 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
     }
 
     class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
-//        private List<OrderBean.DataBean.ArrBean> arr;
-//
-//        public Adapter(List<OrderBean.DataBean.ArrBean> arr) {
-//            this.arr = arr;
-//        }
 
         @NonNull
         @Override
@@ -186,10 +187,14 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
             viewHolder.item_tvOrderDetailsSku.setText(arr.get(i).getSog_sku_name());
             viewHolder.item_tvOrderDetailsBuyNum.setText(arr.get(i).getSog_number() + "件");
             viewHolder.tv_itemOrderDetailsPrice.setText(arr.get(i).getSog_total_price());
+            if (sso_state.equals("0")) {
+                viewHolder.item_tvClickRefund.setVisibility(View.GONE);
+            }
+            //退款
             viewHolder.item_tvClickRefund.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    RefundActivity.start(WaitPayDetailsActivity.this, dataBean);
                 }
             });
         }

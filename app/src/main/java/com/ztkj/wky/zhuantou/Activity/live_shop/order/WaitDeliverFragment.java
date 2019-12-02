@@ -25,6 +25,8 @@ import com.bumptech.glide.Glide;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ConfirmOrderActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.AlreadyPayDetailsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
@@ -88,7 +90,6 @@ public class WaitDeliverFragment extends Fragment {
         unbinder.unbind();
     }
 
-
     class AdapterOut extends RecyclerView.Adapter<AdapterOut.ViewHolder> {
 
         @NonNull
@@ -101,9 +102,11 @@ public class WaitDeliverFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-            List<OrderBean.DataBean.ArrBean> arr; arr = data.get(i).getArr();
+            List<OrderBean.DataBean.ArrBean> arr;
+            arr = data.get(i).getArr();
+
             viewHolder.item_reOrderOut.setLayoutManager(new LinearLayoutManager(getActivity()));
-            AdapterIn adapterIn = new AdapterIn(arr);
+            AdapterIn adapterIn = new AdapterIn(data.get(i), arr, data.get(i).getSso_state(), data.get(i).getSso_sub_order_number());
             viewHolder.item_reOrderOut.setAdapter(adapterIn);
             //设置店铺logo
             if (!data.get(i).getSs_logo().equals("0")) {
@@ -119,6 +122,33 @@ public class WaitDeliverFragment extends Fragment {
                 sum += sog_total_price;
             }
             viewHolder.itemOrderOutPrice.setText(sum + "");
+
+            viewHolder.item_clickOrderOutRefund.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch (data.get(i).getSso_state()) {
+                        case "1":
+                            if (getActivity() != null) {
+                                RefundActivity.start(getActivity(), data.get(i));
+                            }
+                            break;
+                    }
+                }
+            });
+            viewHolder.item_tvOrderOutState.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //设置订单状态
+                    switch (data.get(i).getSso_state()) {
+                        case "0":
+                            if (getActivity() != null) {
+                                ConfirmOrderActivity.startConfim(getActivity(), data.get(i));
+                            }
+                            break;
+
+                    }
+                }
+            });
             //设置订单状态
             switch (data.get(i).getSso_state()) {
                 case "0":
@@ -136,7 +166,6 @@ public class WaitDeliverFragment extends Fragment {
                 case "4":
                     viewHolder.item_tvOrderOutState.setText("交易关闭");
                     break;
-
             }
 
         }
@@ -165,11 +194,20 @@ public class WaitDeliverFragment extends Fragment {
         }
     }
 
+    /**
+     * 里面一层
+     */
     class AdapterIn extends RecyclerView.Adapter<AdapterIn.ViewHolder> {
+        private OrderBean.DataBean dataBean;
         private List<OrderBean.DataBean.ArrBean> arr;
+        private String state;
+        private String num;
 
-        public AdapterIn(List<OrderBean.DataBean.ArrBean> arr) {
+        public AdapterIn(OrderBean.DataBean dataBean, List<OrderBean.DataBean.ArrBean> arr, String state, String num) {
+            this.dataBean = dataBean;
             this.arr = arr;
+            this.state = state;
+            this.num = num;
         }
 
         @NonNull
@@ -199,6 +237,13 @@ public class WaitDeliverFragment extends Fragment {
                     viewHolder.item_tvOrderInIsRefund.setVisibility(View.VISIBLE);
                     viewHolder.item_tvOrderInIsRefund.setText("退款中");
             }
+            //点击进入详情页
+            viewHolder.rl_clickOrderIn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlreadyPayDetailsActivity.start(getActivity(), state, num, dataBean);
+                }
+            });
         }
 
         @Override

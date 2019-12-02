@@ -108,6 +108,7 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refund);
         ButterKnife.bind(this);
+        layoutTitleTv.setText("申请退款");
         recyleListRefund.setLayoutManager(new LinearLayoutManager(RefundActivity.this));
         confimOrderDetailAdapter = new ConfimOrderDetailAdapter(RefundActivity.this);
         recyleListRefund.setAdapter(confimOrderDetailAdapter);
@@ -153,7 +154,7 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
         initReason();
     }
 
-    Double orderPriceDouble=0.0;
+    Double orderPriceDouble = 0.0;
     String sr_order_id;
 
     @OnClick({R.id.layout_back,})

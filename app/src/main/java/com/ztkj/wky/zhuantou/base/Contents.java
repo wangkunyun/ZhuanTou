@@ -396,5 +396,6 @@ public class Contents {
     public static final String getOrderList = "Order/selectOrderList";
     //订单详情接口
     public static final String OrderDetails = "Order/orderDetails";
-
+    //获取物流接口
+    public static final String getLogistics = "Order/logistics";
 }

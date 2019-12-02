@@ -22,11 +22,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
-import com.ztkj.wky.zhuantou.bean.JsonBean;
+import com.ztkj.wky.zhuantou.bean.TradeLogisticsBean;
 
 import java.util.List;
 
@@ -56,8 +58,11 @@ public class TradeLogisticsActivity extends AppCompatActivity {
     LinearLayout toolbar;
     @BindView(R.id.rl_out)
     RelativeLayout rlOut;
-    private String TAG = "activity_trade_logistics";
+    private String TAG = "TradeLogisticsActivity";
     private int height;
+    private List<TradeLogisticsBean.DataBeanX.DataBean> Tradedata;
+    private int TradeSize = 2;
+    private boolean isClick = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,26 +74,50 @@ public class TradeLogisticsActivity extends AppCompatActivity {
         reView.setNestedScrollingEnabled(false);
         reTrade.setHasFixedSize(true);
         reTrade.setNestedScrollingEnabled(false);
-        JsonBean jsonBean = GsonUtil.gsonToBean(Contents.Json, JsonBean.class);
-        List<JsonBean.ListBean> list = jsonBean.getList();
-//        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(this, list);
         reView.setLayoutManager(new GridLayoutManager(this, 2));
-//        reView.setAdapter(liveShopAdapter);
-        TradeAdapter tradeAdapter = new TradeAdapter();
-        reTrade.setLayoutManager(new LinearLayoutManager(this));
-        reTrade.setAdapter(tradeAdapter);
-        reTrade.post(new Runnable() {
+        request();
+
+
+//        TradeAdapter tradeAdapter = new TradeAdapter();
+//        reTrade.setLayoutManager(new LinearLayoutManager(TradeLogisticsActivity.this));
+//        reTrade.setAdapter(tradeAdapter);
+    }
+
+    private void request() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.getLogistics)
+                .addParams("sso_courier_number", "4302557768029")
+                .addParams("sso_express_number", "yunda")
+                .build().execute(new StringCallback() {
             @Override
-            public void run() {
-                height = reTrade.getHeight();
-                Log.e(TAG, "run: " + height);
-                ViewGroup.LayoutParams layoutParams = underColor.getLayoutParams();
-                Log.e(TAG, "onCreate: " + height);
-                layoutParams.height = height - 72;
-                underColor.setLayoutParams(layoutParams);
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "onResponse: " + response);
+                TradeLogisticsBean tradeLogisticsBean = GsonUtil.gsonToBean(response, TradeLogisticsBean.class);
+                if (tradeLogisticsBean.getErrno().equals("200")) {
+                    TradeLogisticsBean.DataBeanX data = tradeLogisticsBean.getData();
+                    Tradedata = data.getData();
+                    TradeAdapter tradeAdapter = new TradeAdapter();
+                    reTrade.setLayoutManager(new LinearLayoutManager(TradeLogisticsActivity.this));
+                    reTrade.setAdapter(tradeAdapter);
+                    //设置高度
+                    reTrade.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            height = reTrade.getHeight();
+                            Log.e(TAG, "run: " + height);
+                            ViewGroup.LayoutParams layoutParams = underColor.getLayoutParams();
+                            Log.e(TAG, "onCreate: " + height);
+                            layoutParams.height = height - 72;
+                            underColor.setLayoutParams(layoutParams);
+                        }
+                    });
+                }
             }
         });
-
     }
 
 
@@ -101,11 +130,18 @@ public class TradeLogisticsActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
-                Intent intent = new Intent(TradeLogisticsActivity.this, ShopDetailActivity.class);
-                startActivity(intent);
+                finish();
                 break;
             case R.id.click_showMoreMessage:
-
+                if (isClick) {
+                    TradeSize = Tradedata.size();
+                    isClick = false;
+                    request();
+                } else {
+                    TradeSize = 2;
+                    isClick = true;
+                    request();
+                }
                 break;
         }
     }
@@ -121,19 +157,26 @@ public class TradeLogisticsActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder viewHoder, int i) {
-
+        public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+            viewHolder.tv_trade.setText(Tradedata.get(i).getContext());
+            if (i != 0) {
+                viewHolder.tv_bgStatic.setBackgroundResource(R.drawable.bg_trade_grey);
+            }
         }
 
         @Override
         public int getItemCount() {
-            return 2;
+            return TradeSize;
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
+            private TextView tv_trade, tv_bgStatic;
+
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
+                tv_trade = itemView.findViewById(R.id.tv_trade);
+                tv_bgStatic = itemView.findViewById(R.id.tv_bgStatic);
             }
         }
     }
