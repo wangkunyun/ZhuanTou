@@ -46,29 +46,32 @@
                     android:src="@mipmap/icon_order_location" />
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
                     android:layout_marginTop="20dp"
-                    android:text="吕秃子"
+                    android:text=""
                     android:textColor="#ff333333"
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="136dp"
                     android:layout_marginTop="20dp"
-                    android:text="138 9758 3421"
+                    android:text=""
                     android:textColor="#ff999999"
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_Address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
                     android:layout_marginTop="44dp"
-                    android:text="北京市通州区世界侨商中心7号楼1101"
+                    android:text=""
                     android:textColor="#ff666666"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -79,7 +82,7 @@
                 android:background="@color/baise">
 
                 <ImageView
-                    android:id="@+id/item_imgOrderOutStoreHead"
+                    android:id="@+id/img_StoreHead"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_centerVertical="true"
@@ -87,13 +90,13 @@
                     android:src="@mipmap/zhanweitu_shop" />
 
                 <TextView
-                    android:id="@+id/item_tvOrderOutStoreName"
+                    android:id="@+id/tv_StoreName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="6dp"
-                    android:layout_toRightOf="@id/item_imgOrderOutStoreHead"
+                    android:layout_toRightOf="@id/img_StoreHead"
                     android:drawableEnd="@mipmap/icon_oa_enter"
                     android:gravity="center"
                     android:text="品牌店铺"
@@ -110,7 +113,7 @@
             </RelativeLayout>
             <!--列表-->
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/item_reOrderOut"
+                android:id="@+id/reView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/baise"
@@ -126,23 +129,26 @@
                 android:background="@color/baise">
 
                 <TextView
+                    android:id="@+id/tv_orderNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="订单编号：83737398272"
+                    android:text=""
                     android:textColor="#ff333333"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tv_addOrderTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="48dp"
-                    android:text="下单时间：2019-11.11 01:11:00"
+                    android:text=""
                     android:textColor="#ff333333"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tv_clickCopy"
                     android:layout_width="48dp"
                     android:layout_height="22dp"
                     android:layout_alignParentEnd="true"
@@ -162,6 +168,7 @@
                 android:textSize="16sp" />
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/reViewGuess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -177,14 +184,16 @@
             android:background="@color/baise"
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
+
             <TextView
+                android:id="@+id/tv_clickRefundAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:text="批量退款"
                 android:textColor="#ff666666"
-                android:textSize="14sp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"/>
+                android:textSize="14sp" />
         </RelativeLayout>
     </RelativeLayout>
 

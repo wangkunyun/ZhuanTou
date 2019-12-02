@@ -17,13 +17,14 @@
         <TextView
             android:id="@+id/tv_bgStatic"
             android:layout_width="4dp"
-            android:layout_height="match_parent"
+            android:layout_height="35dp"
             android:background="@drawable/bg_trade_green" />
 
         <TextView
             android:id="@+id/tv_trade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginStart="20dp"
             android:text="[自提柜]您的快件已从【“丰巢“的永顺快递服务站]取回，如有问题请致电：17898782819 ..."
             android:textColor="#ff333333"
