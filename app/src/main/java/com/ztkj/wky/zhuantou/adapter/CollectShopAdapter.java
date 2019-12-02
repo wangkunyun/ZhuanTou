@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.CollecShopBean;
 
@@ -44,7 +46,7 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
     CollectDelete collectDelete;
 
     public interface CollectDelete {
-        void collectDelete(boolean deleteAll,String postion);
+        void collectDelete(boolean deleteAll, String postion);
     }
 
     public void setCollectListen(CollectDelete collectDeletes) {
@@ -103,11 +105,6 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder viewHolder1 = (ViewHolder) viewHolder;
-        if (i == 0) {
-            viewHolder1.view.setVisibility(View.VISIBLE);
-        } else {
-            viewHolder1.view.setVisibility(View.GONE);
-        }
         if (isExpand) {
             viewHolder1.shop_select.setVisibility(View.VISIBLE);
             viewHolder1.shop_select.setSelected(list.get(i).isSelect());
@@ -115,12 +112,13 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
             viewHolder1.shop_select.setVisibility(View.INVISIBLE);
             viewHolder1.shop_select.setSelected(list.get(i).isSelect());
         }
+        Glide.with(context).load(list.get(i).getSc_img()).into(viewHolder1.ivCollect);
         viewHolder1.tvCollectName.setText(list.get(i).getSc_name());
         viewHolder1.tvShopPrice.setText(list.get(i).getSc_present_price());
-        viewHolder1.shop_select.setOnClickListener(new View.OnClickListener() {
+        viewHolder1.rela_collect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for(int i=0;i<list.size();i++){
+                for (int i = 0; i < list.size(); i++) {
                     list.get(i).setSelect(false);
                 }
                 if (list.get(i).isSelect()) {
@@ -138,10 +136,9 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
                     }
                 }
                 if (noSelect) {
-                    collectDelete.collectDelete(false,String.valueOf(i));
+                    collectDelete.collectDelete(false, String.valueOf(i));
                 } else {
-                    collectDelete.collectDelete(true,null);
-
+                    collectDelete.collectDelete(true, null);
                 }
                 notifyDataSetChanged();
             }
@@ -172,6 +169,8 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
         View view;
         @BindView(R.id.shop_select)
         ImageView shop_select;
+        @BindView(R.id.rela_collect)
+        RelativeLayout rela_collect;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

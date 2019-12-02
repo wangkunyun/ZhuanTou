@@ -39,30 +39,21 @@ public class MyApplication extends Application {
         applicationContext = this;
         instance = this;
 //        RxTool.init(this);
-
         //网络请求可以设置全局 设置请求头
         BaseOkHttp.serviceUrl = "";
         //打开log日志
         BaseOkHttp.DEBUGMODE = true;
-
-//================================== bugly =====================================
         bugly();
-
-//================================== bugly =====================================
-
 //================================== 极光 =====================================
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
         ZXingLibrary.initDisplayOpinion(this);
 //================================== 极光 =====================================
-
 //================================== 百度地图 =====================================
         SDKInitializer.initialize(this);
         bdLocationUtils = new BDLocationUtils(instance);
         bdLocationUtils.doLocation();//开启定位
 //================================== 百度地图 =====================================
-
-
         huanxin();
     }
 
@@ -86,9 +77,7 @@ public class MyApplication extends Application {
             每一条Crash都会被立即上报；
             自定义日志将会在Logcat中输出。
             建议在测试阶段建议设置成true，发布时设置为false。*/
-
         CrashReport.initCrashReport(getApplicationContext(), "9e14c1ee99", true, strategy);
-
         //Bugly.init(getApplicationContext(), "1374455732", false);
 
     }
@@ -99,7 +88,6 @@ public class MyApplication extends Application {
     private void huanxin() {
         //init demo helper
         DemoHelper.getInstance().init(applicationContext);
-
         // 请确保环信SDK相关方法运行在主进程，子进程不会初始化环信SDK（该逻辑在EaseUI.java中）
         if (EaseUI.getInstance().isMainProcess(this)) {
             // 初始化华为 HMS 推送服务, 需要在SDK初始化后执行

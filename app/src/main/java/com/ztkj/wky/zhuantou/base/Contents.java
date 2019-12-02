@@ -343,7 +343,7 @@ public class Contents {
     //猜你喜欢
     public static final String guessLike = "Index/guessYouLike";
     //获取关键字
-    public static final String getKey = "http://apiback.zhuantoukj.com/jiefc/fc.php?token=杰哥牛逼&goods_name=";
+    public static final String getKey = "http://apiback.zhuantoukj.com/jiefc/fc.php";
     //收藏
     public static final String collectShop = "Index/addCollection";
     //用户记录

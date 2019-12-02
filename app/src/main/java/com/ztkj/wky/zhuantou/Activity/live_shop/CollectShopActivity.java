@@ -122,7 +122,6 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                         }
                     }
                 });
-
     }
 
     @Override
@@ -135,7 +134,6 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                 if (more.getText().toString().equals("管理")) {
                     rela_confirm_shop.setVisibility(View.VISIBLE);
                     more.setText("取消");
-
                 } else {
                     more.setText("管理");
                     rela_confirm_shop.setVisibility(View.GONE);
@@ -158,6 +156,7 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
             case R.id.delete_shop:
                 collectShopAdapter.getSelectData();
                 if (isAll&&isAllDelete) {
+                    rela_confirm_shop.setVisibility(View.GONE);
                     deleteShop();
                 } else {
                     delete_SinleShop();

@@ -13,7 +13,13 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 
 import org.greenrobot.eventbus.EventBus;
@@ -154,47 +160,62 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
 
     List<OrderBean.DataBean> listGroup = new ArrayList<>();
     List<OrderBean.DataBean.ArrBean> listChild = new ArrayList<>();
-    public static String ssc_id;
+    public String ssc_id;
 
     public void getSelect() {
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).isSelect()) {
                     listGroup.add(list.get(i));
+                    for (int j = 0; j < list.get(i).getArr().size(); j++) {
+                        if (list.get(i).getArr().get(j).isSelect()) {
+                            if (j != 0) {
+                                stringBuilder.append(",");
+                            }
+                            ssc_id = stringBuilder.append(list.get(i).getArr().get(j).getSsc_id()).toString();
+                        }
+                    }
                 } else {
                     for (int j = 0; j < list.get(i).getArr().size(); j++) {
                         if (list.get(i).getArr().get(j).isSelect()) {
                             listChild.add(list.get(i).getArr().get(j));
-                            if (j != 0) {
+                            ssc_id = stringBuilder.append(list.get(i).getArr().get(j).getSsc_id()).toString();
+                            if (j != list.get(i).getArr().size() - 1) {
                                 stringBuilder.append(",");
                             }
-                         ssc_id= stringBuilder.append(listChild.get(i).getSsc_id()).toString();
                         }
                     }
-//                    for (OrderBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
-//                        if (cartItemResultDtoList.isSelect()) {
-//                            listChild.add(cartItemResultDtoList);
-//                        }
-//                    }
                     list.get(i).getArr().removeAll(listChild);
                 }
             }
-//            selectShopCart();
-//            if (listChild != null && listChild.size() > 0) {
-//                if (selectShopCart() != null) {
-//                    ssc_id =
-//                } else {
-//                    ssc_id = null;
-//                }
-//            } else {
-//                ssc_id = null;
-//            }
             list.removeAll(listGroup);
         }
+        if (ssc_id != null) {
+            Log.e("dsfa", ssc_id);
+            deleteCart();
+        }
+
         notifyDataSetChanged();
         EventBus.getDefault().post(getAllPrice());
     }
 
+    private void deleteCart() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleltCart)
+                .addParams("ssc_id", ssc_id)
+                .addParams("uid", SPUtils.getInstance().getString("uid"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        ToastUtils.showShort(e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                       ToastUtils.showShort("删除成功");
+                    }
+                });
+    }
 
     public List<OrderBean.DataBean> getSelectList() {
         if (list != null && list.size() > 0) {
@@ -216,17 +237,6 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
     }
 
     StringBuilder stringBuilder = new StringBuilder();
-
-    public String selectShopCart() {
-        for (int i = 0; i < listChild.size(); i++) {
-            if (i != 0) {
-                stringBuilder.append(",");
-            }
-            stringBuilder.append(listChild.get(i).getSsc_id());
-        }
-        return stringBuilder.toString();
-
-    }
 
     //获取需要商品总价格
     public String getAllPrice() {

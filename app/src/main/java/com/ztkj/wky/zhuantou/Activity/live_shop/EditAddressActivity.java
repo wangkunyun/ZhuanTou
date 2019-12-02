@@ -238,6 +238,8 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
+                Intent intent = new Intent();
+                setResult(1, intent);
                 finish();
                 break;
             case R.id.btn_save_address:

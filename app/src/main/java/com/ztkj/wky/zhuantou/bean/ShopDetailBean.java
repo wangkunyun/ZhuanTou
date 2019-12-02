@@ -195,6 +195,15 @@ public class ShopDetailBean implements Serializable {
             private String sc_surplus_quantity;
             private String suc_full_money;
             private String suc_reduce_money;
+            private String WhetherToReceive;
+
+            public String getWhetherToReceive() {
+                return WhetherToReceive;
+            }
+
+            public void setWhetherToReceive(String whetherToReceive) {
+                WhetherToReceive = whetherToReceive;
+            }
 
             public String getSc_id() {
                 return sc_id;

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 
@@ -58,7 +59,7 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder viewHolder1 = (ViewHolder) viewHolder;
-
+        Glide.with(context).load(list.get(i).getSc_img()).into(((ViewHolder) viewHolder).orderPic);
         viewHolder1.ivIsDetailSelect.setOnCheckedChangeListener(null);
         viewHolder1.orderPrice.setText(list.get(i).getSsc_unit_price());
         final OrderBean.DataBean.ArrBean cartBean = list.get(i);

@@ -60,7 +60,6 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     TextView uploadConfirm;
     @BindView(R.id.rela_cart)
     RelativeLayout relaCart;
-
     @BindView(R.id.delete_shop)
     TextView delete_shop;
 
@@ -105,11 +104,9 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void initData() {
-
         if (uid != null) {
             getCart();
         }
-
     }
 
     private void getCart() {
@@ -142,7 +139,6 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     public void messageEventBus(String event) {
         //刷新UI
         totalprice = event;
-        Log.e("sdfafasa", event);
         totalAmount.setText("￥" + event);
     }
 
@@ -158,17 +154,30 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    @BindView(R.id.add_collect)
+    TextView add_collect;
 
-    @OnClick({R.id.layout_back, R.id.more, R.id.ll_is_all_selelct, R.id.delete_shop, R.id.upload_confirm})
+    @OnClick({R.id.layout_back, R.id.more, R.id.ll_is_all_selelct, R.id.delete_shop, R.id.upload_confirm, R.id.add_collect})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.add_collect:
+                CollectShopActivity.start(ShopCartActivity.this);
+                break;
             case R.id.layout_back:
                 finish();
                 break;
             case R.id.more:
-//                isSelectBuy.setVisibility(View.VISIBLE);
-//                allSelect.setVisibility(View.VISIBLE);
-                CollectShopActivity.start(ShopCartActivity.this);
+                if (more.getText().toString().equals("管理")) {
+                    add_collect.setVisibility(View.VISIBLE);
+                    uploadConfirm.setVisibility(View.INVISIBLE);
+                    delete_shop.setVisibility(View.VISIBLE);
+                    more.setText("完成");
+                } else {
+                    add_collect.setVisibility(View.INVISIBLE);
+                    uploadConfirm.setVisibility(View.VISIBLE);
+                    delete_shop.setVisibility(View.INVISIBLE);
+                    more.setText("管理");
+                }
                 break;
             case R.id.ll_is_all_selelct:
                 if (isSelectBuy.isSelected()) {
@@ -181,16 +190,14 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.delete_shop:
                 shopCartAdapter.getSelect();
-//              ssc_id= shopCartAdapter.selectShopCart();
+                ssc_id = shopCartAdapter.ssc_id;
                 if (uid != null) {
                     if (ssc_id != null) {
-                        deleteCart();
                         llIsAllSelelct.setVisibility(View.GONE);
                         isSelectBuy.setVisibility(View.GONE);
                     } else {
                         ToastUtils.showShort("请选择删除的商品");
                     }
-
                 }
                 break;
             case R.id.upload_confirm:
@@ -208,24 +215,6 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
 
     List<OrderBean.DataBean> listSelect = new ArrayList<>();
     String ssc_id;
-
-    private void deleteCart() {
-        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleltCart)
-                .addParams("ssc_id", ssc_id)
-                .addParams("uid", uid)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-                        ToastUtils.showShort(e.getMessage());
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        Log.e("daf", response);
-                    }
-                });
-    }
 
 
     @Override

@@ -104,17 +104,20 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         } else {
             type = 3;
             for (int i = 0; i < orderDataBeans.getArr().size(); i++) {
-                doublePeice += Double.parseDouble(orderDataBeans.getArr().get(i).getSog_total_price());
+                if (orderDataBeans.getArr().get(i).getSog_total_price() != null) {
+                    doublePeice += Double.parseDouble(orderDataBeans.getArr().get(i).getSog_total_price());
+                }
             }
-            totalPrice=String.valueOf(doublePeice);
+            totalPrice = String.valueOf(doublePeice);
             serInfos.add(orderDataBeans);
             confimOrderAdapter.setData(serInfos);
         }
         confimOrderAdapter.notifyDataSetChanged();
-        selct_address.setVisibility(View.GONE);
-        rela_address.setVisibility(View.VISIBLE);
+        selct_address.setVisibility(View.VISIBLE);
+        rela_address.setVisibility(View.GONE);
     }
-    Double  doublePeice;
+
+    Double doublePeice;
     String ssc_id;
     StringBuilder stringBuilder;
 
@@ -159,6 +162,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     OrderBean.DataBean orderDataBeans;
     String totalPrice;
 
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -166,9 +170,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                 finish();
                 break;
             case R.id.rela_address:
-                Intent intent1 = new Intent(ConfirmOrderActivity.this, CreateAddressActivity.class);
-                startActivityForResult(intent1, 2);
-//                CreateAddressActivity.start(ConfirmOrderActivity.this);
+                setIntent();
                 break;
             case R.id.upload_confirm:
                 if (adressUpdateBean == null) {
@@ -190,12 +192,14 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 //                popuCoupon();
                 break;
             case R.id.selct_address:
-                Intent intent = new Intent(ConfirmOrderActivity.this, EditAddressActivity.class);
-                startActivityForResult(intent, 1);
-//                EditAddressActivity.start(ConfirmOrderActivity.this);
-
+                setIntent();
                 break;
         }
+    }
+
+    private void setIntent() {
+        Intent intent = new Intent(ConfirmOrderActivity.this, CreateAddressActivity.class);
+        startActivityForResult(intent, 2);
     }
 
     private void createChildZfbOrder() {
@@ -535,27 +539,33 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (resultCode) {
-            case 1:
-                selct_address.setVisibility(View.GONE);
-                rela_address.setVisibility(View.VISIBLE);
-                setDataUser(data);
-                break;
-            case 2:
-                setDataUser(data);
-                break;
-
-
-        }
-    }
-
-    private void setDataUser(Intent data) {
         adressUpdateBean = (AdressUpdateBean) data.getSerializableExtra("user");
-        if (adressUpdateBean != null) {
+        if (adressUpdateBean == null) {
+            selct_address.setVisibility(View.VISIBLE);
+            rela_address.setVisibility(View.GONE);
+
+        }else{
+            selct_address.setVisibility(View.GONE);
+            rela_address.setVisibility(View.VISIBLE);
             confirm_user_phone.setText(adressUpdateBean.getUserphone());
             tc_address.setText(adressUpdateBean.getUseraddress());
             cofirm_user_name.setText(adressUpdateBean.getUsername());
         }
+//        switch (resultCode) {
+//            case 1:
+//
+//                setDataUser(data);
+//                break;
+//            case 2:
+//                setDataUser(data);
+//                break;
+//
+//
+//        }
+    }
+
+    private void setDataUser(Intent data) {
+
     }
 
 }

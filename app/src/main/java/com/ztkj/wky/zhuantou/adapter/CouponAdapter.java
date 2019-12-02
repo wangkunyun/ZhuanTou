@@ -50,9 +50,16 @@ public class CouponAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.tvMoney.setText("¥"+list.get(i).getSuc_reduce_money());
-        viewHolder.tvUserWay.setText("满"+list.get(i).getSuc_full_money()+"可用");
-        viewHolder.time.setText(list.get(i).getSc_start_time()+"-"+list.get(i).getSc_end_time());
+        if (list.get(i).getWhetherToReceive().equals("0")) {
+            viewHolder.at_once_get.setText("立即领取");
+            viewHolder.at_once_get.setTextColor(context.getResources().getColor(R.color.baise));
+        } else {
+            viewHolder.at_once_get.setText("已领取");
+            viewHolder.at_once_get.setTextColor(context.getResources().getColor(R.color.whitepercentfour));
+        }
+        viewHolder.tvMoney.setText("¥" + list.get(i).getSuc_reduce_money());
+        viewHolder.tvUserWay.setText("满" + list.get(i).getSuc_full_money() + "可用");
+        viewHolder.time.setText(list.get(i).getSc_start_time() + "-" + list.get(i).getSc_end_time());
         return view;
     }
 
@@ -64,6 +71,8 @@ public class CouponAdapter extends BaseAdapter {
         TextView tvUserWay;
         @BindView(R.id.time)
         TextView time;
+        @BindView(R.id.at_once_get)
+        TextView at_once_get;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);

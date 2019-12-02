@@ -71,6 +71,7 @@ public class ShopParamAdapter extends BaseAdapter {
         @BindView(R.id.left_param)
         TextView left_param;
 
+
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }

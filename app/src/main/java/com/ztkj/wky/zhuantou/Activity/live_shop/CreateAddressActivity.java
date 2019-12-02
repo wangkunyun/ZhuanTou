@@ -42,11 +42,6 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
     @BindView(R.id.btn_add_address)
     Button btn_add_address;
 
-    public static void start(Context context) {
-        Intent starter = new Intent(context, CreateAddressActivity.class);
-        context.startActivity(starter);
-    }
-
     String uid;
 
     @Override
@@ -95,6 +90,8 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
+                Intent intent = new Intent();
+                setResult(2, intent);
                 finish();
                 break;
             case R.id.btn_add_address:
