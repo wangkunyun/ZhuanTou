@@ -3,8 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/yuanjiaotop">
-
+    <TextView
+        android:layout_marginLeft="16dp"
+        android:id="@+id/top"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="活动优惠"
+        android:textColor="#ff333333"
+        android:textSize="16sp"
+        />
     <ListView
+        android:layout_below="@+id/top"
         android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

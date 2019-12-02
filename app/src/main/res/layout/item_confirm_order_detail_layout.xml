@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/order_pic"
@@ -44,7 +44,7 @@
             android:id="@+id/num_shop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="16dp"
             android:text="32"
             android:textColor="@color/t4"
             android:textSize="14sp" />

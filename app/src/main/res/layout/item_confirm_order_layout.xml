@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="15dp"
+        android:paddingLeft="16dp"
         android:paddingTop="6dp"
         android:paddingBottom="6dp">
 
@@ -49,7 +49,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="16dp"
         android:paddingLeft="100dp">
 
         <TextView

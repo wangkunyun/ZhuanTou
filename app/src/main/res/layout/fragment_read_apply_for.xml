@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="115dp"
+                android:layout_marginRight="116dp"
                 app:xTabBackgroundColor="#FFFFFF"
                 app:xTabDisplayNum="5"
                 app:xTabDividerWidthWidthText="true"

@@ -46,10 +46,10 @@
                     android:id="@+id/is_select_buy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="15dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="16dp"
                     android:paddingRight="8dp"
-                    android:paddingBottom="15dp"
+                    android:paddingBottom="16dp"
                     android:src="@drawable/select" />
 
                 <TextView
@@ -72,31 +72,30 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:singleLine="true"
-                    android:text="0"
+                    android:text="¥0"
                     android:textColor="@color/ffe8"
                     android:textSize="18sp" />
             </LinearLayout>
 
             <TextView
-                android:layout_marginRight="15dp"
+                android:visibility="invisible"
+                android:layout_marginRight="16dp"
                 android:layout_toLeftOf="@+id/upload_confirm"
                 android:id="@+id/delete_shop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:background="@drawable/yuanjiaobtn_19dp"
                 android:gravity="center"
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
-                android:paddingRight="20dp"
+                android:paddingRight="10dp"
                 android:paddingBottom="10dp"
                 android:text="删除"
-                android:textColor="@color/white"
+                android:textColor="@color/ffe8"
                 android:textSize="14sp" />
 
-
-
             <TextView
+                android:layout_marginRight="16dp"
                 android:id="@+id/upload_confirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,6 +109,24 @@
                 android:paddingBottom="10dp"
                 android:text="立即结算"
                 android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_marginRight="16dp"
+                android:id="@+id/add_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/yuanjiaobtn_origin19dp"
+                android:gravity="center"
+                android:paddingLeft="18dp"
+                android:paddingTop="10dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="10dp"
+                android:text="放进收藏夹"
+                android:textColor="#E86817"
                 android:textSize="14sp" />
         </RelativeLayout>
     </RelativeLayout>

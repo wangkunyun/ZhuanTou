@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/rela_collect"
     android:layout_height="wrap_content"
     android:background="@color/f8">
 
@@ -16,14 +17,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/view"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/yuanjiaobtn_8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="16dp">
 
         <ImageView
-            android:paddingLeft="5dp"
-             android:id="@+id/shop_select"
+            android:id="@+id/shop_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="35dp"
@@ -43,14 +43,13 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="8dp"
-                android:background="@color/grey"
-                 />
+                android:background="@color/grey" />
 
             <TextView
                 android:id="@+id/tv_collect_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+
                 android:layout_toRightOf="@+id/iv_collect"
                 android:paddingLeft="8dp"
                 android:text="Rolex劳力士绿水鬼手表潜116610LV黑水鬼机械表男表"
@@ -80,6 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_marginTop="3dp"
                     android:background="@drawable/yuanjiaobtn_grey9dp"
                     android:paddingLeft="8dp"
                     android:paddingTop="1dp"
