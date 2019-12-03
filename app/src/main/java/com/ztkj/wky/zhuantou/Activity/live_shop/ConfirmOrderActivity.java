@@ -95,7 +95,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         rela_address.setOnClickListener(this);
         uploadConfirm.setOnClickListener(this);
         selct_address.setOnClickListener(this);
-        if (orderDataBeans == null && serInfos.size() > 0) {
+        if (orderDataBeans == null && serInfos!=null&&serInfos.size() > 0) {
             if (totalPrice != null) {
                 price_total.setText("¥ " + totalPrice);
             }
@@ -109,6 +109,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                 }
             }
             totalPrice = String.valueOf(doublePeice);
+            serInfos=new ArrayList<>();
             serInfos.add(orderDataBeans);
             confimOrderAdapter.setData(serInfos);
         }
@@ -117,7 +118,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         rela_address.setVisibility(View.GONE);
     }
 
-    Double doublePeice;
+    Double doublePeice=0.0;
     String ssc_id;
     StringBuilder stringBuilder;
 
@@ -141,7 +142,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-    List<OrderBean.DataBean> serInfos = new ArrayList<>();
+    List<OrderBean.DataBean> serInfos ;
 
     public static void start(Context context, List<OrderBean.DataBean> list, String totalPrice, int type) {
         Intent starter = new Intent(context, ConfirmOrderActivity.class);
