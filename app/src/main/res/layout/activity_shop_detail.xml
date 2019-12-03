@@ -27,12 +27,12 @@
             <com.youth.banner.Banner
                 android:id="@+id/shopdetail_banner"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                app:indicator_drawable_selected="@drawable/rectangle2"
-                app:indicator_drawable_unselected="@drawable/rectangle2copy"
+                android:layout_height="375dp"
+                app:indicator_drawable_selected="@mipmap/rect_banner"
+                app:indicator_drawable_unselected="@mipmap/banner_unselect"
                 app:indicator_height="3dp"
-                app:indicator_margin="8dp"
-                app:indicator_width="18dp" />
+                app:indicator_margin="2dp"
+                app:indicator_width="10dp" />
 
 
             <LinearLayout
@@ -52,14 +52,30 @@
                     android:textColor="@color/f33"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/sc_present_price"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="¥88,000"
-                    android:textColor="@color/ffe8"
-                    android:textSize="16sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/sc_present_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¥88,000"
+                        android:textColor="@color/ffe8"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_origin_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="¥88,000"
+                        android:textColor="#ff999999"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -205,15 +221,28 @@
                 android:layout_marginTop="8dp"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:padding="15dp">
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_shop"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/zhanweitu_shop" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/iv_shop"
                         android:text="品牌店铺"
                         android:textColor="@color/f33"
                         android:textSize="14sp" />
@@ -222,17 +251,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
                         android:text="进入店铺>>"
                         android:textColor="@color/ff65"
                         android:textSize="12sp" />
                 </RelativeLayout>
 
                 <android.support.v7.widget.RecyclerView
-
                     android:id="@+id/shop_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="10dp">
 
                 </android.support.v7.widget.RecyclerView>
             </LinearLayout>

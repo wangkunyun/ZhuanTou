@@ -2,17 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingBottom="5dp"
+    android:paddingBottom="16dp"
     android:background="@color/white"
     android:orientation="vertical">
 
     <ImageView
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         android:id="@+id/iv_store"
         android:layout_width="108dp"
         android:layout_height="108dp"
         android:src="@mipmap/icon_clock" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:maxLines="2"
         android:ellipsize="end"
         android:id="@+id/tv_store_name"
