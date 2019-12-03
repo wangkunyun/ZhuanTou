@@ -120,30 +120,8 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
         iv_refund_two.setOnClickListener(this);
         iv_refund_three.setOnClickListener(this);
         if (oreder != null && oreder.getArr().size() > 0) {
-            confimOrderDetailAdapter.setData(oreder.getArr(), 2);
-//            sog_id = oreder.getArr().get(0).getSog_id();
+            confimOrderDetailAdapter.setData(oreder.getArr(), 1);
             sr_order_id = oreder.getSso_sub_order_number();
-//            Glide.with(RefundActivity.this).load(oreder.getArr().get(0).getSc_img()).into(orderPic);
-//            if (oreder.getArr().get(0).getSog_name() != null) {
-//                orderName = oreder.getArr().get(0).getSog_name();
-//                tvOrderName.setText(orderName);
-//            }
-//            if (oreder.getArr().get(0).getSog_sku_name() != null) {
-//                orderSkuName = oreder.getArr().get(0).getSog_sku_name();
-//                tv_order_size.setText(orderSkuName);
-//            }
-//            if (oreder.getArr().get(0).getSog_unit_price() != null) {
-//                orderPrice = oreder.getArr().get(0).getSog_unit_price();
-//                price.setText(orderPrice);
-//            }
-//            if (oreder.getArr().get(0).getSog_number() != null) {
-//                orderNum = oreder.getArr().get(0).getSog_number();
-//                num_shop.setText(orderNum);
-//            }
-//            if (oreder.getArr().get(0).getSog_total_price() != null) {
-//                refundMoney = oredergetArr().get(0).getSog_total_price();
-//
-//            }
             for (int i = 0; i < oreder.getArr().size(); i++) {
                 orderPriceDouble += Double.parseDouble(oreder.getArr().get(i).getSog_total_price());
             }

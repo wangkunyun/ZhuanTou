@@ -15,8 +15,6 @@ public class Contents {
     public static int reportReddotNum = 0;
     //打卡次数
     public static int num = 0;
-    //json
-    public static final String Json = "{\"list\":[{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"},{\"title\":\"原创设计女装【隐侠】秋冬新款 高领百…\",\"img\":\"https://api.zhuantoukj.com/birck/Public/heard/2019-08-02/5d44029fa3c69.png\",\"money\":\"1457\"}]}";
     //json2
     public static final String Json2 = "{\"data\":[\n" +
             "{\"title\":\"男性服装\",\"class\":[{\"shop\":\"卫衣\"},{\"shop\":\"羽绒服\"},{\"shop\":\"紧身裤\"},{\"shop\":\"豆豆鞋\"}]},\n" +
@@ -24,7 +22,7 @@ public class Contents {
             "{\"title\":\"女性饰品\",\"class\":[{\"shop\":\"卫衣\"},{\"shop\":\"卫衣\"},{\"shop\":\"卫衣\"},{\"shop\":\"卫衣\"}]},\n" +
             "{\"title\":\"女性服装\",\"class\":[{\"shop\":\"卫衣\"},{\"shop\":\"卫衣\"},{\"shop\":\"女性服装\"}]},\n" +
             "{\"title\":\"衣服\",\"class\":[]}]}";
-
+    public static final String moneyTag = "¥";
     /**
      * 百度地图
      */
@@ -398,4 +396,10 @@ public class Contents {
     public static final String OrderDetails = "Order/orderDetails";
     //获取物流接口
     public static final String getLogistics = "Order/logistics";
+    //录入用户记录
+    public static final String trajectoryAdd = "Index/trajectoryAdd";
+    //用户足部记录列表
+    public static final String trajectoryList = "Index/trajectoryList";
+    //清空用户记录
+    public static final String deleteRecoder = "";
 }

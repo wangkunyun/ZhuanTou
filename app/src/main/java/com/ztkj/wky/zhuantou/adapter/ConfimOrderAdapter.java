@@ -24,8 +24,11 @@ public class ConfimOrderAdapter extends RecyclerView.Adapter {
         this.mContext = context;
     }
 
-    public void setData(List<OrderBean.DataBean> lists) {
+    int type;
+
+    public void setData(List<OrderBean.DataBean> lists, int type) {
         this.list = lists;
+        this.type = type;
         notifyDataSetChanged();
     }
 
@@ -44,7 +47,12 @@ public class ConfimOrderAdapter extends RecyclerView.Adapter {
         confimOrderDetailAdapter = new ConfimOrderDetailAdapter(mContext);
         viewHolder1.recycle_shop_detail.setLayoutManager(new LinearLayoutManager(mContext));
         viewHolder1.recycle_shop_detail.setAdapter(confimOrderDetailAdapter);
-        confimOrderDetailAdapter.setData(list.get(i).getArr(),1);
+        if(type==1){
+            confimOrderDetailAdapter.setData(list.get(i).getArr(), 2);
+        }else{
+            confimOrderDetailAdapter.setData(list.get(i).getArr(), 1);
+        }
+
     }
 
     @Override

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -29,13 +30,18 @@ import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.CollectShopActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.RecorderActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.OrderTabActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.MyWallet;
 import com.ztkj.wky.zhuantou.Activity.mine.NotificationActivity;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.CollecShopBean;
 import com.ztkj.wky.zhuantou.bean.GetUserMessageBean;
+import com.ztkj.wky.zhuantou.bean.RecorderBean;
 import com.ztkj.wky.zhuantou.isMy.GeRenActivity;
 import com.ztkj.wky.zhuantou.isMy.JiFenActivity;
 import com.ztkj.wky.zhuantou.isMy.SzActivity;
@@ -149,11 +155,78 @@ public class MineFragment extends Fragment {
 
         if (!StringUtils.isEmpty(uid)) {
             gi(token);
+            initReorder();
+            initCollectData();
         } else {
             gi("");
         }
 
     }
+
+    RecorderBean recorderBean;
+    int page = 1;
+    CollecShopBean collecShopBean;
+
+    private void initCollectData() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.getCollectList)
+                .addParams("uid", uid)
+                .addParams("page", String.valueOf(page))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        collecShopBean = new Gson().fromJson(response, CollecShopBean.class);
+                        if (collecShopBean != null) {
+                            if (collecShopBean.getErrno().equals("200")) {
+                                if (collecShopBean.getData() != null) {
+                                    int num = collecShopBean.getData().size();
+                                    tvMineCollect.setText(String.valueOf(num));
+                                } else {
+                                    tvMineCollect.setText("0");
+                                }
+
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void initReorder() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.trajectoryList)
+                .addParams("sf_user_id", uid)
+                .addParams("page", String.valueOf(page))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            recorderBean = new Gson().fromJson(response, RecorderBean.class);
+                            if (recorderBean.getErrno().equals("200")) {
+                                if (recorderBean.getData() != null) {
+                                    int num = recorderBean.getData().size();
+                                    tvMineBrowsingHis.setText(String.valueOf(num));
+                                } else {
+                                    tvMineBrowsingHis.setText("0");
+                                }
+
+                            } else {
+                                ToastUtils.showShort(recorderBean.getErrmsg());
+                            }
+                        }
+                    }
+                });
+    }
+
 
     private void gi(String token) {
         Log.e(TAG, "gi: " + uid);
@@ -247,8 +320,31 @@ public class MineFragment extends Fragment {
                 getActivity().startActivity(intent);
                 break;
             case R.id.clickCollect: //收藏
+                if (StringUtils.isEmpty(uid)) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
+                    startActivity(intent);
+                    return;
+                } else {
+                    if (getActivity() != null) {
+                        CollectShopActivity.start(getActivity());
+                    }
+
+                }
                 break;
             case R.id.clickBrowsingHis: //浏览记录
+                if (StringUtils.isEmpty(uid)) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
+                    startActivity(intent);
+                    return;
+                } else {
+                    if (getActivity() != null) {
+                        if (recorderBean != null) {
+                            RecorderActivity.start(getActivity(), recorderBean);
+                        }
+                    }
+                }
                 break;
             case R.id.clickJF:
                 if (StringUtils.isEmpty(uid)) {

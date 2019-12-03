@@ -79,7 +79,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.live_shop.order.orderdetails.AlreadySendDetailsActivity"></activity>
+        <activity android:name=".Activity.live_shop.RecorderActivity"></activity>
+        <activity android:name=".Activity.live_shop.order.orderdetails.AlreadySendDetailsActivity" />
         <activity android:name=".Activity.live_shop.order.orderdetails.AlreadyPayDetailsActivity" />
         <activity android:name=".Activity.live_shop.order.orderdetails.WaitPayDetailsActivity" />
         <activity android:name=".Activity.mine.NotificationActivity" />

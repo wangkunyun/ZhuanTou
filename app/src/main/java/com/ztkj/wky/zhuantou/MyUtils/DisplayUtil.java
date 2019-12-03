@@ -1,7 +1,14 @@
 package com.ztkj.wky.zhuantou.MyUtils;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Rect;
+import android.os.Build;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -46,4 +53,10 @@ public class DisplayUtil {
         }
         return context.getResources().getDisplayMetrics().density;
     }
+
+
+
+
+
+
 }

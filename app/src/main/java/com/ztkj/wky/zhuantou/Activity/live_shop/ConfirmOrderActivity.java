@@ -100,7 +100,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                 price_total.setText("¥ " + totalPrice);
             }
             initData();
-            confimOrderAdapter.setData(serInfos);
+            confimOrderAdapter.setData(serInfos,1);
         } else {
             type = 3;
             for (int i = 0; i < orderDataBeans.getArr().size(); i++) {
@@ -111,7 +111,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             totalPrice = String.valueOf(doublePeice);
             serInfos=new ArrayList<>();
             serInfos.add(orderDataBeans);
-            confimOrderAdapter.setData(serInfos);
+            confimOrderAdapter.setData(serInfos,2);
         }
         confimOrderAdapter.notifyDataSetChanged();
         selct_address.setVisibility(View.VISIBLE);

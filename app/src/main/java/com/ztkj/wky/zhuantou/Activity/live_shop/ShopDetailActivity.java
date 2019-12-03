@@ -2,6 +2,7 @@ package com.ztkj.wky.zhuantou.Activity.live_shop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -60,6 +61,7 @@ import butterknife.ButterKnife;
 import static com.ztkj.wky.zhuantou.base.Contents.addCart;
 import static com.ztkj.wky.zhuantou.base.Contents.getCoupon;
 import static com.ztkj.wky.zhuantou.base.Contents.getShopParam;
+import static com.ztkj.wky.zhuantou.base.Contents.recorderUser;
 
 
 public class ShopDetailActivity extends AppCompatActivity implements View.OnClickListener {
@@ -95,6 +97,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     TextView cart_shop;
     @BindView(R.id.shop)
     TextView shop;
+    @BindView(R.id.tv_origin_price)
+    TextView tv_origin_price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +138,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         if (shopDetailId != null) {
             initDetailData();
         }
+
     }
 
 
@@ -183,7 +188,11 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             sc_name.setText(goodsName);
         }
         if (shopDetailBean.getData().getSc_present_price() != null) {
-            sc_present_price.setText(shopDetailBean.getData().getSc_present_price());
+            sc_present_price.setText(Contents.moneyTag+shopDetailBean.getData().getSc_present_price());
+        }
+        if (shopDetailBean.getData().getSc_original_price() != null) {
+            tv_origin_price.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG);
+            tv_origin_price.setText(Contents.moneyTag+shopDetailBean.getData().getSc_original_price());
         }
 
         if (shopDetailBean.getData().getSc_img() != null) {
@@ -213,6 +222,29 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         }
         getShopSize();
         getShopParam();
+        if (uid != null) {
+            recorderUser();
+        }
+    }
+
+    private void recorderUser() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.trajectoryAdd)
+                .addParams("sf_user_id", uid)
+                .addParams("sf_commodity_id", shopDetailId)
+                .addParams("sf_trade_price", shopDetailBean.getData().getSc_present_price())
+                .addParams("sf_trade_img", shopDetailBean.getData().getSc_img())
+                .addParams("sf_trade_name", shopDetailBean.getData().getSc_name())
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                    }
+                });
     }
 
     String[] listBanner;
@@ -220,7 +252,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
     private void setBannerDetial() {
         shopdetail_banner.setIndicatorGravity(BannerConfig.CENTER);
-        shopdetail_banner.setDelayTime(3000);
+        shopdetail_banner.setDelayTime(5000);
         shopdetail_banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         shopdetail_banner.setImageLoader(new GlideImageLoader());
         shopdetail_banner.setImages(listImages);
@@ -466,7 +498,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
 
     private void recorder() {
-        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.recorderUser)
+        OkHttpUtils.post().url(Contents.SHOPBASE + recorderUser)
                 .addParams("uid", uid)
                 .addParams("key_word", keyString)
                 .build()
@@ -504,8 +536,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         pp1_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backgroundAlpha(1f);
-                window.dismiss();
+                windowDissMiss();
             }
         });
     }
@@ -520,8 +551,10 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                backgroundAlpha(1f);
-                window.dismiss();
+                if (tagAdapter != null) {
+                    closePopu();
+                }
+                windowDissMiss();
             }
         });
         window.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
@@ -598,6 +631,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View view) {
                 closePopu();
+                windowDissMiss();
             }
         });
     }
@@ -611,7 +645,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         }
         tagSelect = -1;
         notifyAfapter();
-        window.dismiss();
+        windowDissMiss();
     }
 
     int num;
@@ -632,6 +666,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     tv.setText(shopBeanSize.getSk_name());
                     return tv;
                 }
+
                 @Override
                 public void onSelected(int position, View view) {
                     super.onSelected(position, view);
@@ -643,6 +678,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     String sizeId = listColor.get(position).getSk_id();
                     getForSize(sizeId);
                 }
+
                 @Override
                 public void unSelected(int position, View view) {
                     super.unSelected(position, view);
@@ -881,13 +917,19 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 } else {
                     ToastUtils.showShort("暂无数据");
                 }
+                rela_select_size.setFocusable(false);
+                get_cuopon.setFocusable(false);
                 break;
             case R.id.rela_select_size:
                 popuSize();
+                rela_selelct_param.setFocusable(false);
+                get_cuopon.setFocusable(false);
                 break;
             case R.id.get_cuopon:
                 list = shopDetailBean.getData().getCoupon();
                 if (list != null && list.size() > 0) {
+                    rela_select_size.setFocusable(false);
+                    rela_selelct_param.setFocusable(false);
                     popuCoupon();
                 } else {
                     ToastUtils.showShort("暂无优惠卷");
@@ -1023,11 +1065,18 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         pp1_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backgroundAlpha(1f);
-                window.dismiss();
+                windowDissMiss();
             }
         });
 
+    }
+
+    private void windowDissMiss() {
+        backgroundAlpha(1f);
+        window.dismiss();
+        get_cuopon.setFocusable(true);
+        rela_select_size.setFocusable(true);
+        rela_selelct_param.setFocusable(true);
     }
 
     private void getCoupon(String id) {
