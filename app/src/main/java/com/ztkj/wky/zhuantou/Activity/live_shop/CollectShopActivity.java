@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -51,6 +52,10 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
     TextView all_select;
     @BindView(R.id.delete_shop)
     TextView delete_shop;
+    @BindView(R.id.relaEmpty)
+    RelativeLayout relaEmpty;
+    @BindView(R.id.empty)
+    ImageView empty;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, CollectShopActivity.class);
@@ -70,6 +75,7 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
         more.setOnClickListener(this);
         delete_shop.setOnClickListener(this);
         more.setText("管理");
+        empty.setImageDrawable(getResources().getDrawable(R.mipmap.empty_img_col));
         more.setVisibility(View.VISIBLE);
         ll_is_all_selelct.setOnClickListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(CollectShopActivity.this));
@@ -117,11 +123,27 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                         if (collecShopBean != null) {
                             if (collecShopBean.getErrno().equals("200")) {
                                 list = collecShopBean.getData();
-                                collectShopAdapter.setData(list);
+                                if (list != null && list.size() > 0) {
+                                    isHidden(false);
+                                    collectShopAdapter.setData(list);
+                                } else {
+                                    isHidden(true);
+                                }
+
                             }
                         }
                     }
                 });
+    }
+
+    private void isHidden(boolean isHidden) {
+        if (isHidden) {
+            recyclerView.setVisibility(View.GONE);
+            relaEmpty.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            relaEmpty.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -131,42 +153,57 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.more:
-                if (more.getText().toString().equals("管理")) {
-                    rela_confirm_shop.setVisibility(View.VISIBLE);
-                    more.setText("取消");
+                if (collectShopAdapter.getData() != null && collectShopAdapter.getData().size() > 0) {
+                    if (more.getText().toString().equals("管理")) {
+                        rela_confirm_shop.setVisibility(View.VISIBLE);
+                        more.setText("取消");
+                    } else {
+                        more.setText("管理");
+                        rela_confirm_shop.setVisibility(View.GONE);
+                    }
                 } else {
-                    more.setText("管理");
-                    rela_confirm_shop.setVisibility(View.GONE);
+                    ToastUtils.showShort("收藏夹暂无数据");
                 }
                 break;
             case R.id.ll_is_all_selelct:
-                if (isAll) {
-                    isAll = false;
-                    isAllDelete=false;
-                    is_select_buy.setSelected(false);
-                    collectShopAdapter.cancelSelectAll();
-                } else {
-                    isAll = true;
-                    isAllDelete=true;
-                    is_select_buy.setSelected(true);
-                    collectShopAdapter.selectAll();
+                if (collectShopAdapter.getData() != null && collectShopAdapter.getData().size() > 0) {
+                    if (isAll) {
+                        isAll = false;
+                        isAllDelete = false;
+                        is_select_buy.setSelected(false);
+                        collectShopAdapter.cancelSelectAll();
+                    } else {
+                        isAll = true;
+                        isAllDelete = true;
+                        is_select_buy.setSelected(true);
+                        collectShopAdapter.selectAll();
+                    }
+                }else{
+                    ToastUtils.showShort("收藏夹暂无数据");
                 }
+
 
                 break;
             case R.id.delete_shop:
-                collectShopAdapter.getSelectData();
-                if (isAll&&isAllDelete) {
-                    rela_confirm_shop.setVisibility(View.GONE);
-                    deleteShop();
-                } else {
-                    delete_SinleShop();
+                if (collectShopAdapter.getData() != null && collectShopAdapter.getData().size() > 0) {
+                    collectShopAdapter.getSelectData();
+                    if (isAll && isAllDelete) {
+                        rela_confirm_shop.setVisibility(View.GONE);
+                        deleteShop();
+                        isHidden(true);
+                    } else {
+                        delete_SinleShop();
+                    }
+                }else{
+                    ToastUtils.showShort("收藏夹暂无数据");
                 }
+
                 break;
         }
     }
 
     private void delete_SinleShop() {
-        Log.e("dsfas",deleteSingleShop+""+uid);
+        Log.e("dsfas", deleteSingleShop + "" + uid);
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.clearSingleShop)
                 .addParams("sc_id", deleteSingleShop)
                 .addParams("sc_user_id", uid)

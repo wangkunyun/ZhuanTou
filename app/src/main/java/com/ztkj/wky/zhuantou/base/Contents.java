@@ -401,5 +401,5 @@ public class Contents {
     //用户足部记录列表
     public static final String trajectoryList = "Index/trajectoryList";
     //清空用户记录
-    public static final String deleteRecoder = "";
+    public static final String deleteRecoder = "Index/emptyTrack";
 }

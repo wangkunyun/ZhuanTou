@@ -62,7 +62,8 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     RelativeLayout relaCart;
     @BindView(R.id.delete_shop)
     TextView delete_shop;
-
+    @BindView(R.id.relaEmpty)
+    RelativeLayout relaEmpty;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, ShopCartActivity.class);
@@ -126,12 +127,29 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                             OrderBean = new Gson().fromJson(response, OrderBean.class);
                             if (OrderBean.getData() != null && OrderBean.getData().size() > 0) {
                                 list = OrderBean.getData();
-                                shopCartAdapter.setData(list, 1);
-                                shopCartAdapter.notifyDataSetChanged();
+                                if (list != null && list.size() > 0) {
+                                    isHidden(false);
+                                    shopCartAdapter.setData(list, 1);
+                                    shopCartAdapter.notifyDataSetChanged();
+                                } else {
+                                    isHidden(true);
+
+                                }
+
                             }
                         }
                     }
                 });
+    }
+
+    private void isHidden(boolean isHidden) {
+        if(isHidden){
+            shop_cart.setVisibility(View.GONE);
+            relaEmpty.setVisibility(View.VISIBLE);
+        }else{
+            shop_cart.setVisibility(View.VISIBLE);
+            relaEmpty.setVisibility(View.GONE);
+        }
     }
 
     //这里用了eventBus来进行实时价格的UI更改。
@@ -161,31 +179,44 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.add_collect:
-                CollectShopActivity.start(ShopCartActivity.this);
+                if(shopCartAdapter.getData()>0){
+                    CollectShopActivity.start(ShopCartActivity.this);
+                }else{
+                    ToastUtils.showShort("购物车暂无数据");
+                }
                 break;
             case R.id.layout_back:
                 finish();
                 break;
             case R.id.more:
-                if (more.getText().toString().equals("管理")) {
-                    add_collect.setVisibility(View.VISIBLE);
-                    uploadConfirm.setVisibility(View.INVISIBLE);
-                    delete_shop.setVisibility(View.VISIBLE);
-                    more.setText("完成");
-                } else {
-                    add_collect.setVisibility(View.INVISIBLE);
-                    uploadConfirm.setVisibility(View.VISIBLE);
-                    delete_shop.setVisibility(View.INVISIBLE);
-                    more.setText("管理");
+                if(shopCartAdapter.getData()>0){
+                    if (more.getText().toString().equals("管理")) {
+                        add_collect.setVisibility(View.VISIBLE);
+                        uploadConfirm.setVisibility(View.INVISIBLE);
+                        delete_shop.setVisibility(View.VISIBLE);
+                        more.setText("完成");
+                    } else {
+                        add_collect.setVisibility(View.INVISIBLE);
+                        uploadConfirm.setVisibility(View.VISIBLE);
+                        delete_shop.setVisibility(View.INVISIBLE);
+                        more.setText("管理");
+                    }
+                }else{
+                    ToastUtils.showShort("购物车暂无数据");
                 }
+
                 break;
             case R.id.ll_is_all_selelct:
-                if (isSelectBuy.isSelected()) {
-                    isSelectBuy.setSelected(false);
-                    shopCartAdapter.setAllselect(false);
-                } else {
-                    isSelectBuy.setSelected(true);
-                    shopCartAdapter.setAllselect(true);
+                if(shopCartAdapter!=null&&shopCartAdapter.getData()>0){
+                    if (isSelectBuy.isSelected()) {
+                        isSelectBuy.setSelected(false);
+                        shopCartAdapter.setAllselect(false);
+                    } else {
+                        isSelectBuy.setSelected(true);
+                        shopCartAdapter.setAllselect(true);
+                    }
+                }else{
+                    ToastUtils.showShort("购物车暂无数据");
                 }
                 break;
             case R.id.delete_shop:
@@ -193,8 +224,16 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 ssc_id = shopCartAdapter.ssc_id;
                 if (uid != null) {
                     if (ssc_id != null) {
-                        llIsAllSelelct.setVisibility(View.GONE);
-                        isSelectBuy.setVisibility(View.GONE);
+                        if(shopCartAdapter.getData()>0){
+
+                        }else{
+                            isHidden(true);
+                            delete_shop.setVisibility(View.INVISIBLE);
+                            add_collect.setVisibility(View.INVISIBLE);
+                            totalAmount.setText(Contents.moneyTag+"0");
+                            isSelectBuy.setSelected(false);
+                        }
+
                     } else {
                         ToastUtils.showShort("请选择删除的商品");
                     }
@@ -206,7 +245,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                     ConfirmOrderActivity.start(ShopCartActivity.this, listSelect, totalprice, 2);
 //                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect);
                 } else {
-                    ToastUtils.showShort("请选择商品");
+                    ToastUtils.showShort("购物车暂无数据");
                 }
 
                 break;

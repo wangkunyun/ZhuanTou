@@ -61,7 +61,6 @@ public class ConfimOrderDetailAdapter extends RecyclerView.Adapter {
                 viewHolder1.price.setText(list.get(i).getSog_total_price());
                 break;
         }
-
     }
 
     @Override

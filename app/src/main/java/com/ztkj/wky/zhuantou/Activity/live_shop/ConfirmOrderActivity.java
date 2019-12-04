@@ -127,13 +127,14 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             stringBuilder = new StringBuilder();
             if (serInfos.size() > 0) {
                 for (int i = 0; i < serInfos.size(); i++) {
-                    for (int j = 0; j < serInfos.get(i).getArr().size(); j++) {
-                        if (j != 0) {
-                            stringBuilder.append(",");
+                    if(serInfos.get(i).getArr()!=null){
+                        for (int j = 0; j < serInfos.get(i).getArr().size(); j++) {
+                            if (j != 0) {
+                                stringBuilder.append(",");
+                            }
+                            stringBuilder.append(serInfos.get(i).getArr().get(j).getSsc_id());
                         }
-                        stringBuilder.append(serInfos.get(i).getArr().get(j).getSsc_id());
                     }
-
                 }
                 ssc_id = stringBuilder.toString();
             }
@@ -366,8 +367,6 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                 pay_default = 1;
                 wx_iv.setVisibility(View.VISIBLE);
                 zfb_iv.setVisibility(View.INVISIBLE);
-
-
             }
         });
         zfb.setOnClickListener(new View.OnClickListener() {
@@ -381,7 +380,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         pp1_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (orderBean == null) {
+                if (orderDataBeans == null) {
                     switch (pay_default) {
                         case 1:
                             getWxPay();
@@ -391,7 +390,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                             break;
                     }
                 } else {
-                    orderId = orderBean.getData().get(0).getSso_sub_order_number();
+                    orderId = orderDataBeans.getSso_sub_order_number();
                     switch (pay_default) {
                         case 1:
                             createChildWxOrder();

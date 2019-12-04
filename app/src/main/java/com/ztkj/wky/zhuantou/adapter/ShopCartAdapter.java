@@ -53,6 +53,14 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
+    public int getData() {
+        if (list != null && list.size() > 0) {
+            return list.size();
+        } else {
+            return 0;
+        }
+    }
+
 
     public ShopCartDentailDetailAdapter shopCartDentailDetailAdapter;
 
@@ -191,7 +199,6 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
             list.removeAll(listGroup);
         }
         if (ssc_id != null) {
-            Log.e("dsfa", ssc_id);
             deleteCart();
         }
 
@@ -212,7 +219,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
 
                     @Override
                     public void onResponse(String response) {
-                       ToastUtils.showShort("删除成功");
+                        ToastUtils.showShort("删除成功");
                     }
                 });
     }

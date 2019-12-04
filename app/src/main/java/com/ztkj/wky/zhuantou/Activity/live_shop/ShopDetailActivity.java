@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,18 +34,17 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
-import com.ztkj.wky.zhuantou.MyUtils.MyGridView;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.CouponAdapter;
+import com.ztkj.wky.zhuantou.adapter.LiveShopAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopDetailAdapter;
-import com.ztkj.wky.zhuantou.adapter.LiveShopGuessAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopListAdapter;
 import com.ztkj.wky.zhuantou.adapter.ShopParamAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.BaseStatusBean;
-import com.ztkj.wky.zhuantou.bean.GuessLikeBean;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 import com.ztkj.wky.zhuantou.bean.ShopDetailBean;
+import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
 import com.ztkj.wky.zhuantou.bean.ShopKeyBean;
 import com.ztkj.wky.zhuantou.bean.ShopParamBean;
 import com.ztkj.wky.zhuantou.bean.ShopSizeBean;
@@ -67,7 +65,7 @@ import static com.ztkj.wky.zhuantou.base.Contents.recorderUser;
 public class ShopDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.guess_like_list)
-    MyGridView guess_like_list;
+    RecyclerView guess_like_list;
     @BindView(R.id.shop_list)
     RecyclerView shop_list;
     LiveShopListAdapter liveShopListAdapter;
@@ -99,6 +97,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     TextView shop;
     @BindView(R.id.tv_origin_price)
     TextView tv_origin_price;
+    @BindView(R.id.more)
+    ImageView more;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,14 +117,12 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         collect_shop.setOnClickListener(this);
         cart_shop.setOnClickListener(this);
         shop.setOnClickListener(this);
+        more.setOnClickListener(this);
     }
 
     int pageNum = 1;
-    LiveShopGuessAdapter liveShopGuessAdapter;
 
     private void initData() {
-        liveShopGuessAdapter = new LiveShopGuessAdapter(ShopDetailActivity.this);
-        guess_like_list.setAdapter(liveShopGuessAdapter);
         shop_list.setLayoutManager(new GridLayoutManager(ShopDetailActivity.this, 3));
         liveShopListAdapter = new LiveShopListAdapter(ShopDetailActivity.this);
         shop_list.setAdapter(liveShopListAdapter);
@@ -135,6 +133,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         shop_list.setNestedScrollingEnabled(false);
         shop_list.setHasFixedSize(true);
         shop_detail_img.setHasFixedSize(true);
+        guess_like_list.setHasFixedSize(true);
+        guess_like_list.setNestedScrollingEnabled(false);
         if (shopDetailId != null) {
             initDetailData();
         }
@@ -188,11 +188,11 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             sc_name.setText(goodsName);
         }
         if (shopDetailBean.getData().getSc_present_price() != null) {
-            sc_present_price.setText(Contents.moneyTag+shopDetailBean.getData().getSc_present_price());
+            sc_present_price.setText(Contents.moneyTag + shopDetailBean.getData().getSc_present_price());
         }
         if (shopDetailBean.getData().getSc_original_price() != null) {
-            tv_origin_price.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG);
-            tv_origin_price.setText(Contents.moneyTag+shopDetailBean.getData().getSc_original_price());
+            tv_origin_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            tv_origin_price.setText(Contents.moneyTag + shopDetailBean.getData().getSc_original_price());
         }
 
         if (shopDetailBean.getData().getSc_img() != null) {
@@ -275,9 +275,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-
                     }
-
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
@@ -285,11 +283,9 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                             if (shopParamBean.getErrmsg().equals("200")) {
                                 listParam = shopParamBean.getData();
                             }
-
                         }
                     }
                 });
-
     }
 
     ShopParamBean shopParamBean;
@@ -345,7 +341,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                                         shopBeanSize2.setSk_price(skuBean.getData().getArr().get(postion).getSk_arr().getArr().get(j).getSk_arr().getArr().get(g).getSk_price());
                                         listSize.add(shopBeanSize2);
                                     }
-
                                 }
                             }
 
@@ -445,7 +440,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
-                            guessLikeBean = new Gson().fromJson(response, GuessLikeBean.class);
+                            guessLikeBean = new Gson().fromJson(response, ShopHomeBean.class);
                             if (guessLikeBean != null) {
                                 listGuessBean = guessLikeBean.getData();
                                 setGuessData();
@@ -461,14 +456,17 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
 
     private void setGuessData() {
-        liveShopGuessAdapter.setGuess(listGuessBean);
-        liveShopGuessAdapter.notifyDataSetChanged();
+        LiveShopAdapter liveShopAdapter = new LiveShopAdapter(ShopDetailActivity.this, listGuessBean);
+        guess_like_list.setLayoutManager(new GridLayoutManager(ShopDetailActivity.this, 2));
+        guess_like_list.setAdapter(liveShopAdapter);
+//        liveShopGuessAdapter.setGuess(listGuessBean);
+//        liveShopGuessAdapter.notifyDataSetChanged();
     }
 
     StringBuilder stringBuilder;
     String keyString;
-    GuessLikeBean guessLikeBean;
-    List<GuessLikeBean.DataBean> listGuessBean = new ArrayList<>();
+    ShopHomeBean guessLikeBean;
+    List<ShopHomeBean.DataBean> listGuessBean = new ArrayList<>();
 
     private String ListToString() {
         if (listKey != null && listKey.size() > 0) {
@@ -506,7 +504,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onError(Request request, Exception e) {
                         ToastUtils.showShort(e.getMessage());
-
                     }
 
                     @Override
@@ -562,8 +559,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
     TextView numTv;
     Button btnConfirm;
-    String money = "¥";
-
     private void popuSize() {
         View contentView = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.pp_shop_size, null);
         //设置popuwindow是在父布局的哪个地方显示
@@ -582,7 +577,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         numTv = contentView.findViewById(R.id.num);
         Glide.with(ShopDetailActivity.this).load(shopDetailBean.getData().getSc_img()).into(iv_cover);
         if (shopDetailBean.getData().getSc_present_price() != null) {
-            tv_price.setText(money + shopDetailBean.getData().getSc_present_price());
+            tv_price.setText(Contents.moneyTag + shopDetailBean.getData().getSc_present_price());
         }
         initColorAdater();
         initMateralAdater();
@@ -796,7 +791,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             for (int i = 0; i < skuBean.getData().getArr().size(); i++) {
                 if (skuBean.getData().getArr().get(i).getSk_arr().getArr().size() != 0) {
                     if (sizeId.equals(skuBean.getData().getArr().get(i).getSk_id())) {
-                        tv_price.setText(money + skuBean.getData().getArr().get(i).getSk_price());
+                        tv_price.setText(Contents.moneyTag + skuBean.getData().getArr().get(i).getSk_price());
                         tv_select_size.setText("已选  " + skuBean.getData().getArr().get(i).getSk_name() + " " + skuBean.getData().getArr().get(i).getSk_stock());
                         return;
                     }
@@ -807,7 +802,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                             if (skuLast == null) {
                                 stock = skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_stock();
                                 if (stock != null) {
-                                    tv_price.setText(money + skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_price());
+                                    tv_price.setText(Contents.moneyTag  + skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_price());
                                     tv_select_size.setText("已选  " + skuLastName + " " + skuMiddlename + " " + stock);
                                 }
                             } else {
@@ -816,7 +811,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                                     String skuId = skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_arr().getArr().get(tagLastSelect).getSk_id();
                                     ssc_sku_id = skuBean.getData().getArr().get(tagSelect).getSk_id() + "," + skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_id() + "," + skuId;
                                     sku_price = skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_arr().getArr().get(tagLastSelect).getSk_price();
-                                    tv_price.setText(money + sku_price);
+                                    tv_price.setText(Contents.moneyTag  + sku_price);
                                     sku_name = skuLastName + " " + skuMiddlename + " " + skuLast;
                                     tv_select_size.setText("已选  " + " " + sku_name + " " + stock);
                                 }
@@ -833,7 +828,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                                     skuLast = skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_arr().getArr().get(g).getSk_name();
                                     stock = skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_arr().getArr().get(g).getSk_stock();
                                     sku_price = skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_arr().getArr().get(g).getSk_price();
-                                    tv_price.setText(money + sku_price);
+                                    tv_price.setText(Contents.moneyTag + sku_price);
                                     sku_name = skuLastLastName + " " + skuLastName + " " + skuLast;
                                     tv_select_size.setText("已选  " + sku_name + " " + stock);
                                 }
@@ -903,12 +898,15 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     arrBean.setSsc_store_id(shopDetailBean.getData().getSc_store_id());
                     arrBean.setSsc_number(String.valueOf(num));
                     arrBean.setSsc_unit_price(sku_price);
+                    arrBean.setSc_img(shopDetailBean.getData().getSc_img());
                     arrBeanList.add(arrBean);
                     listShopCart.get(0).setArr(arrBeanList);
                 }
                 if (num > 0 && sku_price != null) {
                     String totalPrice = String.valueOf(num * Double.parseDouble(sku_price));
                     ConfirmOrderActivity.start(ShopDetailActivity.this, listShopCart, totalPrice, 1);
+                }else{
+                    ToastUtils.showShort("请选择商品");
                 }
                 break;
             case R.id.rela_selelct_param:
@@ -957,9 +955,50 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             case R.id.shop:
 
                 break;
+            case R.id.more:
+                popuShare(view);
+                break;
         }
     }
 
+
+    private void popuShare(View v) {
+        View contentView = LayoutInflater.from(this).inflate(R.layout.pp_shop, null);
+        //设置popuwindow是在父布局的哪个地方显示
+        backgroundAlpha(0.7f);
+        //下面是p里面的东西lin_pp3_btn1
+        LinearLayout lin_pp3_btn1 = contentView.findViewById(R.id.lin_pp3_btn1);
+        LinearLayout lin_pp3_btn2 = contentView.findViewById(R.id.lin_pp3_btn2);
+        final PopupWindow window = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+        window.setOutsideTouchable(true);
+        window.setTouchable(true);
+        lin_pp3_btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backgroundAlpha(1f);
+                window.dismiss();
+                finish();
+
+            }
+        });
+
+        lin_pp3_btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backgroundAlpha(1f);
+                window.dismiss();
+            }
+        });
+
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                backgroundAlpha(1f);
+                window.dismiss();
+            }
+        });
+        window.showAsDropDown(v);
+    }
 
     String sku_name;
     String sku_price;
