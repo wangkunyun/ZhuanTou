@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,246 +7,256 @@
     android:background="@color/f8"
     tools:context=".Activity.live_shop.order.orderdetails.AlreadySendDetailsActivity">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <include layout="@layout/layout_toolbar" />
-            <!--订单状态-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:background="@color/lanse">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="25dp"
-                    android:text="卖家已发货"
-                    android:textColor="#ffffffff"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tv_AutoReceiver"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="51dp"
-                    android:text="还剩15天0时自动确认"
-                    android:textColor="#ffffffff"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-            <!--物流-->
-            <LinearLayout
-                android:id="@+id/lin_clickLogisticsDetails"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/baise"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/icon_order_logistics" />
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="[自提柜]您的快件已从【“丰巢“的永顺快递服务站]取回，如有问题请致电：17898782819 ..."
-                    android:textColor="#ff333333"
-                    android:textSize="12sp" />
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="8dp"
-                    android:src="@mipmap/icon_oa_enter" />
-            </LinearLayout>
-            <!--收货地址-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/baise">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:src="@mipmap/icon_order_location" />
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginTop="20dp"
-                    android:text="吕秃子"
-                    android:textColor="#ff333333"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="136dp"
-                    android:layout_marginTop="20dp"
-                    android:text="138 9758 3421"
-                    android:textColor="#ff999999"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_Address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginTop="44dp"
-                    android:text="北京市通州区世界侨商中心7号楼1101"
-                    android:textColor="#ff666666"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-            <!--店铺-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/baise">
-
-                <ImageView
-                    android:id="@+id/img_StoreHead"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:src="@mipmap/zhanweitu_shop" />
-
-                <TextView
-                    android:id="@+id/tv_StoreName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_toRightOf="@id/img_StoreHead"
-                    android:drawableEnd="@mipmap/icon_oa_enter"
-                    android:gravity="center"
-                    android:text="品牌店铺"
-                    android:textColor="#ff333333"
-                    android:textSize="14sp" />
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="6dp"
-                    android:background="@color/f8" />
-            </RelativeLayout>
-            <!--列表-->
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/reView"
-                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/baise"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp" />
-
-            <!--订单编号-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="88dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/baise">
-
-                <TextView
-                    android:id="@+id/tv_orderNum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="订单编号：83737398272"
-                    android:textColor="#ff333333"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/tv_addOrderTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="48dp"
-                    android:text="下单时间：2019-11.11 01:11:00"
-                    android:textColor="#ff333333"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/tv_clickCopy"
-                    android:layout_width="48dp"
-                    android:layout_height="22dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/bg_is_state_grey"
-                    android:gravity="center"
-                    android:text="复制" />
-            </RelativeLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="猜你喜欢"
-                android:textColor="#ff333333"
-                android:textSize="16sp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/reViewGuess"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="60dp" />
-        </LinearLayout>
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/baise"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/layout_toolbar" />
+                <!--订单状态-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:background="@color/lanse">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="25dp"
+                        android:text="卖家已发货"
+                        android:textColor="#ffffffff"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_AutoReceiver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="51dp"
+                        android:text="还剩15天0时自动确认"
+                        android:textColor="#ffffffff"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+                <!--物流-->
+                <LinearLayout
+                    android:id="@+id/lin_clickLogisticsDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/baise"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/icon_order_logistics" />
 
 
-            <TextView
-                android:id="@+id/tv_clickAffirmReceive"
-                android:layout_width="102dp"
-                android:layout_height="38dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/bg_yuanjiao_kongxin_orange"
-                android:gravity="center"
-                android:text="确认收货"
-                android:textColor="#ffe86817"
-                android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="[自提柜]您的快件已从【“丰巢“的永顺快递服务站]取回，如有问题请致电：17898782819 ..."
+                        android:textColor="#ff333333"
+                        android:textSize="12sp" />
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:src="@mipmap/icon_oa_enter" />
+                </LinearLayout>
+                <!--收货地址-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/baise">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="16dp"
+                        android:src="@mipmap/icon_order_location" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="20dp"
+                        android:text="吕秃子"
+                        android:textColor="#ff333333"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="136dp"
+                        android:layout_marginTop="20dp"
+                        android:text="138 9758 3421"
+                        android:textColor="#ff999999"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_Address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="44dp"
+                        android:text="北京市通州区世界侨商中心7号楼1101"
+                        android:textColor="#ff666666"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+                <!--店铺-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/baise">
+
+                    <ImageView
+                        android:id="@+id/img_StoreHead"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="16dp"
+                        android:src="@mipmap/zhanweitu_shop" />
+
+                    <TextView
+                        android:id="@+id/tv_StoreName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_toRightOf="@id/img_StoreHead"
+                        android:drawableEnd="@mipmap/icon_oa_enter"
+                        android:gravity="center"
+                        android:text="品牌店铺"
+                        android:textColor="#ff333333"
+                        android:textSize="14sp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="6dp"
+                        android:background="@color/f8" />
+                </RelativeLayout>
+                <!--列表-->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/reView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/baise"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp" />
+
+                <!--订单编号-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/baise">
+
+                    <TextView
+                        android:id="@+id/tv_orderNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:text="订单编号：83737398272"
+                        android:textColor="#ff333333"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_addOrderTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="48dp"
+                        android:text="下单时间：2019-11.11 01:11:00"
+                        android:textColor="#ff333333"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_clickCopy"
+                        android:layout_width="48dp"
+                        android:layout_height="22dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/bg_is_state_grey"
+                        android:gravity="center"
+                        android:text="复制" />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="猜你喜欢"
+                    android:textColor="#ff333333"
+                    android:textSize="16sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/reViewGuess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+            </LinearLayout>
         </RelativeLayout>
-    </RelativeLayout>
+    </ScrollView>
 
-</ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/baise"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+
+        <TextView
+            android:id="@+id/tv_clickAffirmReceive"
+            android:layout_width="102dp"
+            android:layout_height="38dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_yuanjiao_kongxin_orange"
+            android:gravity="center"
+            android:text="确认收货"
+            android:textColor="#ffe86817"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E5E5E5" />
+    </RelativeLayout>
+</RelativeLayout>
