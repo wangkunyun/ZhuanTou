@@ -1,22 +1,33 @@
 package com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails;
 
 import android.annotation.SuppressLint;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -25,9 +36,13 @@ import com.ztkj.wky.zhuantou.Activity.live_shop.order.TradeLogisticsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.GuessLikeBean;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 import com.ztkj.wky.zhuantou.bean.OrderDetailsBean;
+import com.ztkj.wky.zhuantou.bean.ShopKeyBean;
+import com.ztkj.wky.zhuantou.bean.ToastBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -76,12 +91,31 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
     private List<OrderDetailsBean.DataBean.ArrBean> arr;
     private OrderBean.DataBean dataBean;
     private String sso_state;
+    private ShopKeyBean shopKeyBean;
+    private String keyString;
+    private List<String> listKey = new ArrayList<>();
+    private StringBuilder stringBuilder;
+    private GuessLikeBean guessLikeBean;
+    private List<GuessLikeBean.DataBean> GuessData;
+    private String TAG = "AlreadySendDetailsActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_already_send_details);
         ButterKnife.bind(this);
+        layoutTitleTv.setText("订单详情");
+        reViewGuess.setHasFixedSize(true);
+        reViewGuess.setNestedScrollingEnabled(false);
+        reView.setHasFixedSize(true);
+        reView.setNestedScrollingEnabled(false);
+        String orderState = getIntent().getStringExtra("orderState");
+        String orderNum = getIntent().getStringExtra("orderNum");
+        dataBean = (OrderBean.DataBean) getIntent().getSerializableExtra("dataBean");
+        sso_state = dataBean.getSso_state();
+        request(orderState, orderNum);
+        getKeys();
     }
 
     private void request(String orderState, String orderNum) {
@@ -110,11 +144,6 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
                     }
                     tvOrderNum.setText("订单编号: " + data.getSso_sub_order_number());
                     tvAddOrderTime.setText("下单时间: " + data.getSo_addtime());
-                    float sum = 0;
-                    for (int j = 0; j < arr.size(); j++) {
-                        float sog_total_price = Float.parseFloat(arr.get(j).getSog_total_price());
-                        sum += sog_total_price;
-                    }
 
                     Adapter adapter = new Adapter();
                     reView.setLayoutManager(new LinearLayoutManager(AlreadySendDetailsActivity.this));
@@ -122,6 +151,97 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    private void getKeys() {
+        OkHttpUtils.post().url(Contents.getKey)
+                .addParams("goods_name", dataBean.getArr().get(0).getSog_name())
+                .addParams("goods_details", dataBean.getArr().get(0).getSog_name())
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            shopKeyBean = new Gson().fromJson(response, ShopKeyBean.class);
+                            listKey = shopKeyBean.getData();
+                            keyString = ListToString();
+                            if (keyString != null) {
+                                getGussLike();
+                                if (SPUtils.getInstance().getString("uid") != null) {
+                                    recorder();
+                                }
+                            }
+                        }
+                    }
+                });
+
+    }
+
+    private void getGussLike() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.guessLike)
+                .addParams("key_word", keyString)
+                .addParams("page", "1")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        ToastUtils.showShort(e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e(TAG, "onResponse: +猜你喜欢：" + response);
+                        if (response != null) {
+                            guessLikeBean = new Gson().fromJson(response, GuessLikeBean.class);
+                            if (guessLikeBean != null) {
+                                GuessData = guessLikeBean.getData();
+                                reViewGuess.setLayoutManager(new GridLayoutManager(AlreadySendDetailsActivity.this, 2));
+                                reViewGuess.setAdapter(new GuessAdapter());
+                            } else {
+                                ToastUtils.showShort("解析失败");
+                            }
+                        }
+                    }
+
+
+                });
+    }
+
+    private void recorder() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.recorderUser)
+                .addParams("uid", SPUtils.getInstance().getString("uid"))
+                .addParams("key_word", keyString)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        ToastUtils.showShort(e.getMessage());
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                    }
+                });
+    }
+
+    private String ListToString() {
+        if (listKey != null && listKey.size() > 0) {
+            stringBuilder = new StringBuilder();
+            for (int i = 0; i < listKey.size(); i++) {
+                if (i != 0) {
+                    stringBuilder.append(",");
+                }
+                stringBuilder.append(listKey.get(i));
+            }
+        }
+
+        return stringBuilder.toString();
 
     }
 
@@ -137,23 +257,26 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
+                finish();
                 break;
             case R.id.lin_clickLogisticsDetails://物流信息
                 TradeLogisticsActivity.start(AlreadySendDetailsActivity.this);
                 break;
             case R.id.tv_clickCopy:
+                // 从API11开始android推荐使用android.content.ClipboardManager
+                // 为了兼容低版本我们这里使用旧版的android.text.ClipboardManager，虽然提示deprecated，但不影响使用。
+                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                // 将文本内容放到系统剪贴板里。
+                cm.setText(data.getSso_sub_order_number());
+                Toast.makeText(this, "复制成功!", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.tv_clickAffirmReceive:
+            case R.id.tv_clickAffirmReceive://确认收货
+                popuinit("确认收货后钱款将打入卖家账户，您无法发起退款。", "取消", "确认", data.getSso_sub_order_number(), "确认收货");
                 break;
         }
     }
 
     class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
-//        private List<OrderBean.DataBean.ArrBean> arr;
-//
-//        public Adapter(List<OrderBean.DataBean.ArrBean> arr) {
-//            this.arr = arr;
-//        }
 
         @NonNull
         @Override
@@ -204,4 +327,158 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
         }
     }
 
+    class GuessAdapter extends RecyclerView.Adapter<GuessAdapter.ViewHolder> {
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            View view = LayoutInflater.from(AlreadySendDetailsActivity.this).inflate(R.layout.layout_item_live_shop_waterfall, viewGroup, false);
+
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+            Glide.with(AlreadySendDetailsActivity.this).load(GuessData.get(i).getSc_img()).into(viewHolder.img_shopPic);
+            viewHolder.tv_shop_des.setText(GuessData.get(i).getSc_name());
+            viewHolder.tv_shopPrice.setText(GuessData.get(i).getSc_present_price());
+        }
+
+        @Override
+        public int getItemCount() {
+            return GuessData.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            private ImageView img_shopPic;
+            private TextView tv_shop_des, tv_shopPrice;
+
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                img_shopPic = itemView.findViewById(R.id.img_shopPic);
+                tv_shop_des = itemView.findViewById(R.id.tv_shop_des);
+                tv_shopPrice = itemView.findViewById(R.id.tv_shopPrice);
+            }
+        }
+    }
+
+    private void popuinit(String s, String s1, final String s2, String id, String orderState) {
+        View contentView = LayoutInflater.from(AlreadySendDetailsActivity.this).inflate(R.layout.pp_telephone, null);
+        //设置popuwindow是在父布局的哪个地方显示
+        backgroundAlpha(0.2f);
+        //下面是p里面的东西
+        TextView ptextView = contentView.findViewById(R.id.ppt_tv1);
+        Button pbutton = contentView.findViewById(R.id.ppt_btn1);
+        Button pbutton2 = contentView.findViewById(R.id.ppt_btn2);
+        ptextView.setText(s);
+        pbutton.setText(s1);
+        pbutton2.setText(s2);
+        final PopupWindow window = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+        window.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
+        window.setOutsideTouchable(true);
+        window.setTouchable(true);
+        View rootview = LayoutInflater.from(AlreadySendDetailsActivity.this).inflate(R.layout.activity_sz, null);
+
+        pbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backgroundAlpha(1f);
+                window.dismiss();
+            }
+        });
+        pbutton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (orderState) {
+                    case "取消订单":
+                        requestCancelOrder();
+                        break;
+                    case "确认收货":
+                        requestconfirmReceipt();
+                        break;
+                    case "删除订单":
+                        requestDelOrder();
+                        break;
+                }
+
+                window.dismiss();
+            }
+
+            private void requestconfirmReceipt() {
+                OkHttpUtils.post().url(Contents.SHOPBASE + Contents.confirmReceipt)
+                        .addParams("sso_sub_order_number", id)
+                        .build().execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
+                        if (toastBean.getErrno().equals("200")) {
+
+                            ToastUtils.showLong("已确认收货");
+                        }
+                    }
+                });
+            }
+
+            private void requestDelOrder() {
+                OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleteOrder)
+                        .addParams("sso_sub_order_number", id)
+                        .build().execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
+                        if (toastBean.getErrno().equals("200")) {
+
+                            ToastUtils.showLong("订单删除成功");
+                        }
+                    }
+                });
+            }
+
+            private void requestCancelOrder() {
+                OkHttpUtils.post().url(Contents.SHOPBASE + Contents.cancelOrder)
+                        .addParams("sso_sub_order_number", id)
+                        .build().execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
+                        if (toastBean.getErrno().equals("200")) {
+
+                            ToastUtils.showLong("订单取消成功");
+                        }
+                    }
+                });
+            }
+        });
+
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                backgroundAlpha(1f);
+                window.dismiss();
+            }
+        });
+        window.showAtLocation(rootview, Gravity.CENTER, 0, 0);
+    }
+
+    public void backgroundAlpha(float bgAlpha) {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getWindow().setAttributes(lp);
+    }
 }

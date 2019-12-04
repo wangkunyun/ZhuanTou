@@ -439,6 +439,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
                     @Override
                     public void onResponse(String response) {
+                        Log.e("wky", "onResponse: " + response);
                         if (response != null) {
                             guessLikeBean = new Gson().fromJson(response, ShopHomeBean.class);
                             if (guessLikeBean != null) {

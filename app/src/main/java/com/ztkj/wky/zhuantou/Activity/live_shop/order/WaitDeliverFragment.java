@@ -3,10 +3,10 @@ package com.ztkj.wky.zhuantou.Activity.live_shop.order;
 /**
  * 作者：wky
  * 功能描述： 待发货页面
- *
  */
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -25,7 +25,6 @@ import com.bumptech.glide.Glide;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-import com.ztkj.wky.zhuantou.Activity.live_shop.ConfirmOrderActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.AlreadyPayDetailsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
@@ -123,51 +122,19 @@ public class WaitDeliverFragment extends Fragment {
             }
             viewHolder.itemOrderOutPrice.setText(sum + "");
 
-            viewHolder.item_clickOrderOutRefund.setOnClickListener(new View.OnClickListener() {
+            viewHolder.item_tvOrderOutState.setText("已付款");
+            viewHolder.item_clickOrderButton1.setText("批量退款");
+
+            viewHolder.item_clickOrderButton1.setTextColor(Color.parseColor("#65C9D2"));
+            viewHolder.item_clickOrderButton1.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    switch (data.get(i).getSso_state()) {
-                        case "1":
-                            if (getActivity() != null) {
-                                RefundActivity.start(getActivity(), data.get(i));
-                            }
-                            break;
+                public void onClick(View v) {
+                    //退款
+                    if (getActivity() != null) {
+                        RefundActivity.start(getActivity(), data.get(i));
                     }
                 }
             });
-            viewHolder.item_tvOrderOutState.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //设置订单状态
-                    switch (data.get(i).getSso_state()) {
-                        case "0":
-                            if (getActivity() != null) {
-                                ConfirmOrderActivity.startConfim(getActivity(), data.get(i));
-                            }
-                            break;
-
-                    }
-                }
-            });
-            //设置订单状态
-            switch (data.get(i).getSso_state()) {
-                case "0":
-                    viewHolder.item_tvOrderOutState.setText("待付款");
-                    break;
-                case "1":
-                    viewHolder.item_tvOrderOutState.setText("待发货");
-                    break;
-                case "2":
-                    viewHolder.item_tvOrderOutState.setText("待收货");
-                    break;
-                case "3":
-                    viewHolder.item_tvOrderOutState.setText("交易成功");
-                    break;
-                case "4":
-                    viewHolder.item_tvOrderOutState.setText("交易关闭");
-                    break;
-            }
-
         }
 
         @Override
@@ -178,7 +145,7 @@ public class WaitDeliverFragment extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder {
             private RecyclerView item_reOrderOut;
             private ImageView item_imgOrderOutStoreHead;
-            private TextView item_tvOrderOutStoreName, item_tvOrderOutState, item_tvOrderOutShopUnm, itemOrderOutPrice, item_clickOrderOutDel, item_clickOrderOutRefund;
+            private TextView item_tvOrderOutStoreName, item_tvOrderOutState, item_tvOrderOutShopUnm, itemOrderOutPrice, item_clickOrderButton1, item_clickOrderButton2, item_clickOrderButton3;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -188,8 +155,9 @@ public class WaitDeliverFragment extends Fragment {
                 item_tvOrderOutState = itemView.findViewById(R.id.item_tvOrderOutState);
                 item_tvOrderOutShopUnm = itemView.findViewById(R.id.item_tvOrderOutShopUnm);
                 itemOrderOutPrice = itemView.findViewById(R.id.itemOrderOutPrice);
-                item_clickOrderOutDel = itemView.findViewById(R.id.item_clickOrderOutDel);
-                item_clickOrderOutRefund = itemView.findViewById(R.id.item_clickOrderOutRefund);
+                item_clickOrderButton1 = itemView.findViewById(R.id.item_clickOrderButton1);
+                item_clickOrderButton2 = itemView.findViewById(R.id.item_clickOrderButton2);
+                item_clickOrderButton3 = itemView.findViewById(R.id.item_clickOrderButton3);
             }
         }
     }

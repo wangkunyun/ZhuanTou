@@ -6,30 +6,36 @@ package com.ztkj.wky.zhuantou.Activity.live_shop.order;
  */
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-import com.ztkj.wky.zhuantou.Activity.live_shop.ConfirmOrderActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.AlreadySendDetailsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
+import com.ztkj.wky.zhuantou.bean.ToastBean;
 
 import java.util.List;
 import java.util.Objects;
@@ -122,51 +128,38 @@ public class WaitReceiveFragment extends Fragment {
             }
             viewHolder.itemOrderOutPrice.setText(sum + "");
 
-            viewHolder.item_clickOrderOutRefund.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    switch (data.get(i).getSso_state()) {
-                        case "1":
-                            if (getActivity() != null) {
-                                RefundActivity.start(getActivity(), data.get(i));
-                            }
-                            break;
-                    }
-                }
-            });
-            viewHolder.item_tvOrderOutState.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //设置订单状态
-                    switch (data.get(i).getSso_state()) {
-                        case "0":
-                            if (getActivity() != null) {
-                                ConfirmOrderActivity.startConfim(getActivity(), data.get(i));
-                            }
-                            break;
 
-                    }
-                }
-            });
             //设置订单状态
-            switch (data.get(i).getSso_state()) {
-                case "0":
-                    viewHolder.item_tvOrderOutState.setText("待付款");
-                    break;
-                case "1":
-                    viewHolder.item_tvOrderOutState.setText("待发货");
-                    break;
-                case "2":
-                    viewHolder.item_tvOrderOutState.setText("待收货");
-                    break;
-                case "3":
-                    viewHolder.item_tvOrderOutState.setText("交易成功");
-                    break;
-                case "4":
-                    viewHolder.item_tvOrderOutState.setText("交易关闭");
-                    break;
-            }
-
+            viewHolder.item_tvOrderOutState.setText("待收货");
+            viewHolder.item_clickOrderButton1.setText("确认收货");
+            viewHolder.item_clickOrderButton2.setText("查看物流");
+            viewHolder.item_clickOrderButton3.setText("批量退款");
+            viewHolder.item_clickOrderButton1.setTextColor(Color.parseColor("#65C9D2"));
+            viewHolder.item_clickOrderButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //确认收货
+                    popuinit("确认收货后钱款将打入卖家账户，您无法发起退款。", "取消", "确认", data.get(i).getSso_sub_order_number(), "确认收货");
+                }
+            });
+            viewHolder.item_clickOrderButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //查看物流
+                    if (getActivity() != null) {
+                        TradeLogisticsActivity.start(getActivity());
+                    }
+                }
+            });
+            viewHolder.item_clickOrderButton3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //批量退款
+                    if (getActivity() != null) {
+                        RefundActivity.start(getActivity(), data.get(i));
+                    }
+                }
+            });
         }
 
         @Override
@@ -177,7 +170,7 @@ public class WaitReceiveFragment extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder {
             private RecyclerView item_reOrderOut;
             private ImageView item_imgOrderOutStoreHead;
-            private TextView item_tvOrderOutStoreName, item_tvOrderOutState, item_tvOrderOutShopUnm, itemOrderOutPrice, item_clickOrderOutDel, item_clickOrderOutRefund;
+            private TextView item_tvOrderOutStoreName, item_tvOrderOutState, item_tvOrderOutShopUnm, itemOrderOutPrice, item_clickOrderButton1, item_clickOrderButton2, item_clickOrderButton3;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -187,8 +180,9 @@ public class WaitReceiveFragment extends Fragment {
                 item_tvOrderOutState = itemView.findViewById(R.id.item_tvOrderOutState);
                 item_tvOrderOutShopUnm = itemView.findViewById(R.id.item_tvOrderOutShopUnm);
                 itemOrderOutPrice = itemView.findViewById(R.id.itemOrderOutPrice);
-                item_clickOrderOutDel = itemView.findViewById(R.id.item_clickOrderOutDel);
-                item_clickOrderOutRefund = itemView.findViewById(R.id.item_clickOrderOutRefund);
+                item_clickOrderButton1 = itemView.findViewById(R.id.item_clickOrderButton1);
+                item_clickOrderButton2 = itemView.findViewById(R.id.item_clickOrderButton2);
+                item_clickOrderButton3 = itemView.findViewById(R.id.item_clickOrderButton3);
             }
         }
     }
@@ -266,5 +260,114 @@ public class WaitReceiveFragment extends Fragment {
                 rl_clickOrderIn = itemView.findViewById(R.id.rl_clickOrderIn);
             }
         }
+    }
+
+    private void popuinit(String s, String s1, final String s2, String id, String orderState) {
+        View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.pp_telephone, null);
+        //设置popuwindow是在父布局的哪个地方显示
+        backgroundAlpha(0.2f);
+        //下面是p里面的东西
+        TextView ptextView = contentView.findViewById(R.id.ppt_tv1);
+        Button pbutton = contentView.findViewById(R.id.ppt_btn1);
+        Button pbutton2 = contentView.findViewById(R.id.ppt_btn2);
+        ptextView.setText(s);
+        pbutton.setText(s1);
+        pbutton2.setText(s2);
+        final PopupWindow window = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+        window.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
+        window.setOutsideTouchable(true);
+        window.setTouchable(true);
+        View rootview = LayoutInflater.from(getActivity()).inflate(R.layout.activity_sz, null);
+
+        pbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backgroundAlpha(1f);
+                window.dismiss();
+            }
+        });
+        pbutton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestconfirmReceipt();
+                window.dismiss();
+            }
+
+            private void requestconfirmReceipt() {
+                OkHttpUtils.post().url(Contents.SHOPBASE + Contents.confirmReceipt)
+                        .addParams("sso_sub_order_number", id)
+                        .build().execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
+                        if (toastBean.getErrno().equals("200")) {
+
+                            ToastUtils.showLong("已确认收货");
+                        }
+                    }
+                });
+            }
+
+            private void requestDelOrder() {
+                OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleteOrder)
+                        .addParams("sso_sub_order_number", id)
+                        .build().execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
+                        if (toastBean.getErrno().equals("200")) {
+
+                            ToastUtils.showLong("订单删除成功");
+                        }
+                    }
+                });
+            }
+
+            private void requestCancelOrder() {
+                OkHttpUtils.post().url(Contents.SHOPBASE + Contents.cancelOrder)
+                        .addParams("sso_sub_order_number", id)
+                        .build().execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
+                        if (toastBean.getErrno().equals("200")) {
+
+                            ToastUtils.showLong("订单取消成功");
+                        }
+                    }
+                });
+            }
+        });
+
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                backgroundAlpha(1f);
+                window.dismiss();
+            }
+        });
+        window.showAtLocation(rootview, Gravity.CENTER, 0, 0);
+    }
+
+    public void backgroundAlpha(float bgAlpha) {
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getActivity().getWindow().setAttributes(lp);
     }
 }

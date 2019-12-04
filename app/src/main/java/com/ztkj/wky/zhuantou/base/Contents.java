@@ -402,4 +402,11 @@ public class Contents {
     public static final String trajectoryList = "Index/trajectoryList";
     //清空用户记录
     public static final String deleteRecoder = "Index/emptyTrack";
+    //取消订单接口
+    public static final String cancelOrder = "Order/cancelOrder";
+    //删除订单接口
+    public static final String deleteOrder = "Order/deleteOrder";
+    //确认订单
+    public static final String confirmReceipt = "Order/confirmReceipt";
+
 }

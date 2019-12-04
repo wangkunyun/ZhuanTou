@@ -82,6 +82,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         uid = SPUtils.getInstance().getString("uid");
         totalPrice = getIntent().getStringExtra("totalPrice");
         orderDataBeans = (OrderBean.DataBean) getIntent().getSerializableExtra("order");
+        Log.e("wky", "onCreate: " + orderDataBeans.getSs_name());
         serInfos = (List<OrderBean.DataBean>) getIntent().getSerializableExtra("listobj");
         ButterKnife.bind(this);
         layoutTitleTv.setText("确认订单");
@@ -95,12 +96,12 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         rela_address.setOnClickListener(this);
         uploadConfirm.setOnClickListener(this);
         selct_address.setOnClickListener(this);
-        if (orderDataBeans == null && serInfos!=null&&serInfos.size() > 0) {
+        if (orderDataBeans == null && serInfos != null && serInfos.size() > 0) {
             if (totalPrice != null) {
                 price_total.setText("¥ " + totalPrice);
             }
             initData();
-            confimOrderAdapter.setData(serInfos,1);
+            confimOrderAdapter.setData(serInfos, 1);
         } else {
             type = 3;
             for (int i = 0; i < orderDataBeans.getArr().size(); i++) {
@@ -109,16 +110,16 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                 }
             }
             totalPrice = String.valueOf(doublePeice);
-            serInfos=new ArrayList<>();
+            serInfos = new ArrayList<>();
             serInfos.add(orderDataBeans);
-            confimOrderAdapter.setData(serInfos,2);
+            confimOrderAdapter.setData(serInfos, 2);
         }
         confimOrderAdapter.notifyDataSetChanged();
         selct_address.setVisibility(View.VISIBLE);
         rela_address.setVisibility(View.GONE);
     }
 
-    Double doublePeice=0.0;
+    Double doublePeice = 0.0;
     String ssc_id;
     StringBuilder stringBuilder;
 
@@ -143,7 +144,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-    List<OrderBean.DataBean> serInfos ;
+    List<OrderBean.DataBean> serInfos;
 
     public static void start(Context context, List<OrderBean.DataBean> list, String totalPrice, int type) {
         Intent starter = new Intent(context, ConfirmOrderActivity.class);
@@ -483,6 +484,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
     //totalPrice
     private void getWxPay() {
+        Log.e("wky", "getWxPay: " + orderId + uid );
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.wxpayOrder)
                 .addParams("order_id", orderId)
                 .addParams("uid", uid)
@@ -544,7 +546,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             selct_address.setVisibility(View.VISIBLE);
             rela_address.setVisibility(View.GONE);
 
-        }else{
+        } else {
             selct_address.setVisibility(View.GONE);
             rela_address.setVisibility(View.VISIBLE);
             confirm_user_phone.setText(adressUpdateBean.getUserphone());
