@@ -29,7 +29,7 @@
             android:paddingTop="35dp"
             android:paddingBottom="35dp"
             android:src="@drawable/select"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/rela_shop_top"

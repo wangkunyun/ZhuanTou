@@ -308,11 +308,14 @@
                     android:textSize="14sp"
                     android:visibility="visible" />
 
-                <com.ztkj.wky.zhuantou.MyUtils.MyGridView
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="16dp"
                     android:id="@+id/guess_like_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:numColumns="2"></com.ztkj.wky.zhuantou.MyUtils.MyGridView>
+                    >
+
+                </android.support.v7.widget.RecyclerView>
 
 
             </LinearLayout>

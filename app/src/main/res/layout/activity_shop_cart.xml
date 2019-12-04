@@ -9,12 +9,21 @@
 
     <include layout="@layout/layout_toolbar" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/shop_cart"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@+id/rela_cart"
-        android:layout_below="@+id/toolbar" />
+        android:layout_below="@+id/toolbar">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/shop_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include layout="@layout/item_empty_layout"
+            />
+    </RelativeLayout>
+
 
     <RelativeLayout
         android:id="@+id/rela_cart"
@@ -42,7 +51,6 @@
                 android:visibility="visible">
 
                 <ImageView
-                    android:visibility="visible"
                     android:id="@+id/is_select_buy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -50,16 +58,17 @@
                     android:paddingTop="16dp"
                     android:paddingRight="8dp"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/select" />
+                    android:src="@drawable/select"
+                    android:visibility="visible" />
 
                 <TextView
-                    android:visibility="visible"
                     android:id="@+id/all_select"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="全选"
                     android:textColor="@color/t4"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/total_amount"
@@ -78,13 +87,12 @@
             </LinearLayout>
 
             <TextView
-                android:visibility="invisible"
-                android:layout_marginRight="16dp"
-                android:layout_toLeftOf="@+id/upload_confirm"
                 android:id="@+id/delete_shop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:layout_toLeftOf="@+id/upload_confirm"
                 android:gravity="center"
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
@@ -92,15 +100,16 @@
                 android:paddingBottom="10dp"
                 android:text="删除"
                 android:textColor="@color/ffe8"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="invisible" />
 
             <TextView
-                android:layout_marginRight="16dp"
                 android:id="@+id/upload_confirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
                 android:background="@drawable/yuanjiaobtn_19dp"
                 android:gravity="center"
                 android:paddingLeft="18dp"
@@ -112,13 +121,12 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:visibility="invisible"
-                android:layout_marginRight="16dp"
                 android:id="@+id/add_collect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
                 android:background="@drawable/yuanjiaobtn_origin19dp"
                 android:gravity="center"
                 android:paddingLeft="18dp"
@@ -127,7 +135,8 @@
                 android:paddingBottom="10dp"
                 android:text="放进收藏夹"
                 android:textColor="#E86817"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="invisible" />
         </RelativeLayout>
     </RelativeLayout>
 

@@ -39,7 +39,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/fxedt"
                     android:gravity="center_vertical"
-                    android:hint="ins 新品"
+                    android:hint="搜索"
                     android:singleLine="true"
                     android:textColor="@color/baise"
                     android:textColorHint="#CCFBFF"

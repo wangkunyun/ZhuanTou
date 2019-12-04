@@ -3,28 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/f8"
     android:layout_height="match_parent"
+    android:background="@color/f8"
     tools:context=".Activity.live_shop.CollectShopActivity">
 
     <include layout="@layout/layout_toolbar" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/collectList"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/rela_confirm_shop"
-        android:layout_below="@+id/toolbar" />
+        android:layout_below="@+id/toolbar">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/collectList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <include
+            layout="@layout/item_empty_layout"
+            android:visibility="gone" />
+    </RelativeLayout>
 
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/rela_confirm_shop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
-        android:paddingRight="15dp">
+        android:paddingRight="15dp"
+        android:visibility="gone">
 
         <View
             android:id="@+id/view"
