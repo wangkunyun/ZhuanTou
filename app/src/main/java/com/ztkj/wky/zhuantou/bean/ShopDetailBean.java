@@ -72,6 +72,24 @@ public class ShopDetailBean implements Serializable {
         private String judgementCollection;
         private List<CouponBean> coupon;
         private List<StoreBean> store;
+        private String ss_name;
+        private String ss_logo;
+
+        public String getSs_name() {
+            return ss_name;
+        }
+
+        public void setSs_name(String ss_name) {
+            this.ss_name = ss_name;
+        }
+
+        public String getSs_logo() {
+            return ss_logo;
+        }
+
+        public void setSs_logo(String ss_logo) {
+            this.ss_logo = ss_logo;
+        }
 
         public String getJudgementCollection() {
             return judgementCollection;

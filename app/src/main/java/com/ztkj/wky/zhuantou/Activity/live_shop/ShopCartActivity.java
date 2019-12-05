@@ -133,7 +133,6 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                                     shopCartAdapter.notifyDataSetChanged();
                                 } else {
                                     isHidden(true);
-
                                 }
 
                             }
@@ -204,7 +203,6 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 }else{
                     ToastUtils.showShort("购物车暂无数据");
                 }
-
                 break;
             case R.id.ll_is_all_selelct:
                 if(shopCartAdapter!=null&&shopCartAdapter.getData()>0){

@@ -114,21 +114,26 @@ public class WaitPayFragment extends Fragment {
             AdapterIn adapterIn = new AdapterIn(data.get(i), arr, data.get(i).getSso_state(), data.get(i).getSso_sub_order_number());
             viewHolder.item_reOrderOut.setAdapter(adapterIn);
             //设置店铺logo
-            if (!data.get(i).getSs_logo().equals("0")) {
+            if (data.get(i).getSs_logo() != null) {
                 Glide.with(Objects.requireNonNull(getActivity())).load(data.get(i).getSs_logo()).into(viewHolder.item_imgOrderOutStoreHead);
             }
-            //设置店铺名称
-            viewHolder.item_tvOrderOutStoreName.setText(data.get(i).getSs_name());
-            //商品数量
-            viewHolder.item_tvOrderOutShopUnm.setText("共" + data.get(i).getArr().size() + "件商品");
-            float sum = 0;
-            for (int j = 0; j < data.get(i).getArr().size(); j++) {
-                float sog_total_price = Float.parseFloat(arr.get(j).getSog_total_price());
-                sum += sog_total_price;
+            if (data.get(i).getSs_name() != null) {
+                //设置店铺名称
+                viewHolder.item_tvOrderOutStoreName.setText(data.get(i).getSs_name());
             }
-            viewHolder.itemOrderOutPrice.setText(sum + "");
 
-
+            //商品数量
+            if (data.get(i).getArr() != null) {
+                viewHolder.item_tvOrderOutShopUnm.setText("共" + data.get(i).getArr().size() + "件商品");
+            }
+            float sum = 0;
+            if (data.get(i).getArr() != null) {
+                for (int j = 0; j < data.get(i).getArr().size(); j++) {
+                    float sog_total_price = Float.parseFloat(arr.get(j).getSog_total_price());
+                    sum += sog_total_price;
+                }
+                viewHolder.itemOrderOutPrice.setText(sum + "");
+            }
             //设置订单状态
             viewHolder.item_tvOrderOutState.setText("待付款");
             viewHolder.item_clickOrderButton1.setText("立即付款");
@@ -155,7 +160,12 @@ public class WaitPayFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return data.size();
+            if(data!=null){
+                return data.size();
+            }else{
+                return 0;
+            }
+
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
@@ -234,7 +244,12 @@ public class WaitPayFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return arr.size();
+            if (arr != null) {
+                return arr.size();
+            } else {
+                return 0;
+            }
+
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {

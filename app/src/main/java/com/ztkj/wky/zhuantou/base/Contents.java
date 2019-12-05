@@ -15,6 +15,8 @@ public class Contents {
     public static int reportReddotNum = 0;
     //打卡次数
     public static int num = 0;
+    //购物车数量
+    public static int numCart = 0;
     //json2
     public static final String Json2 = "{\"data\":[\n" +
             "{\"title\":\"男性服装\",\"class\":[{\"shop\":\"卫衣\"},{\"shop\":\"羽绒服\"},{\"shop\":\"紧身裤\"},{\"shop\":\"豆豆鞋\"}]},\n" +

@@ -73,6 +73,8 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     @BindView(R.id.selct_address)
     RelativeLayout selct_address;
     String uid;
+    @BindView(R.id.cofirm_avatar_user_name)
+    TextView cofirm_avatar_user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,6 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         uid = SPUtils.getInstance().getString("uid");
         totalPrice = getIntent().getStringExtra("totalPrice");
         orderDataBeans = (OrderBean.DataBean) getIntent().getSerializableExtra("order");
-        Log.e("wky", "onCreate: " + orderDataBeans.getSs_name());
         serInfos = (List<OrderBean.DataBean>) getIntent().getSerializableExtra("listobj");
         ButterKnife.bind(this);
         layoutTitleTv.setText("确认订单");
@@ -128,7 +129,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             stringBuilder = new StringBuilder();
             if (serInfos.size() > 0) {
                 for (int i = 0; i < serInfos.size(); i++) {
-                    if(serInfos.get(i).getArr()!=null){
+                    if (serInfos.get(i).getArr() != null) {
                         for (int j = 0; j < serInfos.get(i).getArr().size(); j++) {
                             if (j != 0) {
                                 stringBuilder.append(",");
@@ -329,7 +330,6 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("dfaf", response);
                         BaseStatusBean baseStatusBean = new Gson().fromJson(response, BaseStatusBean.class);
                         if (baseStatusBean.getErrno().equals("200")) {
                             orderInfo = new Gson().fromJson(response, OrderInfo.class);
@@ -484,7 +484,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
     //totalPrice
     private void getWxPay() {
-        Log.e("wky", "getWxPay: " + orderId + uid );
+        Log.e("wky", "getWxPay: " + orderId + uid);
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.wxpayOrder)
                 .addParams("order_id", orderId)
                 .addParams("uid", uid)
@@ -552,6 +552,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             confirm_user_phone.setText(adressUpdateBean.getUserphone());
             tc_address.setText(adressUpdateBean.getUseraddress());
             cofirm_user_name.setText(adressUpdateBean.getUsername());
+            cofirm_avatar_user_name.setText(adressUpdateBean.getUsername());
         }
 //        switch (resultCode) {
 //            case 1:

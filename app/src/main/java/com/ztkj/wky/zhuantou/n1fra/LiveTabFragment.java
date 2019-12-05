@@ -17,9 +17,19 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.google.gson.Gson;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.live_shop.LiveShopFragment;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ShopCartActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.OrderBean;
 import com.ztkj.wky.zhuantou.homepage.SearchNearActivity;
 
 import java.util.ArrayList;
@@ -69,13 +79,15 @@ public class LiveTabFragment extends Fragment {
     private String co_id, co_address;
     private SharedPreferencesHelper sharedPreferencesHelper;
     private String first = "1";
+    String uid;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_live_tab, container, false);
         unbinder = ButterKnife.bind(this, view);
-
+        uid = SPUtils.getInstance().getString("uid");
         sharedPreferencesHelper = new SharedPreferencesHelper(getContext(), "anhua");
         if (!(sharedPreferencesHelper.contain("co_id"))) {
             sharedPreferencesHelper.put("co_id", "1");
@@ -155,7 +167,7 @@ public class LiveTabFragment extends Fragment {
         transaction.commit();
     }
 
-    @OnClick({R.id.jd_sy, R.id.jd_sy2, R.id.click_live_chat, R.id.click_live_gouwuche,R.id.rl_live})
+    @OnClick({R.id.jd_sy, R.id.jd_sy2, R.id.click_live_chat, R.id.click_live_gouwuche, R.id.rl_live})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.jd_sy:
@@ -177,8 +189,54 @@ public class LiveTabFragment extends Fragment {
             case R.id.click_live_chat:
                 break;
             case R.id.click_live_gouwuche:
+                if (getActivity() != null) {
+                    ShopCartActivity.start(getActivity());
+                }
                 break;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (uid != null) {
+            getCart();
+        }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (uid != null) {
+            getCart();
+        }
+    }
+
+    @BindView(R.id.tv_msg)
+    TextView tv_msg;
+    OrderBean orderBean;
+
+    private void getCart() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.cartList)
+                .addParams("page", "1")
+                .addParams("user_id", uid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        ToastUtils.showShort(e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            orderBean = new Gson().fromJson(response, OrderBean.class);
+                            if (orderBean.getData() != null) {
+                                tv_msg.setText(String.valueOf(orderBean.getData().size()));
+                            }
+                        }
+                    }
+                });
     }
 
     @OnClick()

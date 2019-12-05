@@ -51,13 +51,13 @@ public class ConfimOrderDetailAdapter extends RecyclerView.Adapter {
             case 2:
                 viewHolder1.tv_order_name.setText(list.get(i).getSsc_name());
                 viewHolder1.tv_order_size.setText(list.get(i).getSsc_sku_name());
-                viewHolder1.num_shop.setText(list.get(i).getSsc_number());
+                viewHolder1.num_shop.setText(list.get(i).getSsc_number()+"件");
                 viewHolder1.price.setText(list.get(i).getSsc_unit_price());
                 break;
             case 1:
                 viewHolder1.tv_order_name.setText(list.get(i).getSog_name());
                 viewHolder1.tv_order_size.setText(list.get(i).getSog_sku_name());
-                viewHolder1.num_shop.setText(list.get(i).getSog_number());
+                viewHolder1.num_shop.setText(list.get(i).getSog_number()+"件");
                 viewHolder1.price.setText(list.get(i).getSog_total_price());
                 break;
         }
