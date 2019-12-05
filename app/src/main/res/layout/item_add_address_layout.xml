@@ -13,11 +13,32 @@
         android:background="@color/white"
         android:padding="15dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/n3_headImg"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/head_portrait" />
+
+        <RelativeLayout
+            android:id="@+id/rela_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/n3_headImg"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@mipmap/zhanweitu_shop" />
+
+            <TextView
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:id="@+id/cofirm_avatar_user_name"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#ffffffff"
+                android:textSize="14sp"
+                />
+        </RelativeLayout>
+
 
         <ImageView
             android:id="@+id/go_back"
@@ -31,9 +52,9 @@
             android:id="@+id/cofirm_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/n3_headImg"
-            android:text="海荣"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/rela_avatar"
+            android:text=""
             android:textColor="@color/f33"
             android:textSize="14sp" />
 
@@ -46,7 +67,7 @@
             android:layout_toRightOf="@+id/cofirm_user_name"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="138 9758 3421"
+            android:text=""
             android:textColor="@color/t4"
             android:textSize="14sp" />
 
@@ -58,10 +79,10 @@
             android:layout_alignStart="@+id/cofirm_user_name"
             android:layout_marginTop="8dp"
             android:layout_toLeftOf="@+id/go_back"
-            android:layout_toRightOf="@+id/n3_headImg"
+            android:layout_toRightOf="@+id/rela_avatar"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="北京市通州区世界侨商中心7号楼11011"
+            android:text=""
             android:textColor="@color/t6"
             android:textSize="14sp" />
 

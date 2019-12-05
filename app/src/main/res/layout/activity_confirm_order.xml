@@ -23,19 +23,27 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:visibility="visible"
                 android:id="@+id/selct_address"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:padding="15dp"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/iv_location"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@mipmap/icon_order_location" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_location"
                     android:drawableRight="@mipmap/icon_oa_enter"
+                    android:paddingLeft="16dp"
                     android:text="请选择地址" />
             </RelativeLayout>
 

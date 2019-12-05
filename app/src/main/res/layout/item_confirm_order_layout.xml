@@ -86,13 +86,14 @@
             android:textColor="@color/f33"
             android:textSize="13sp" />
 
-        <TextView
+        <EditText
+            android:background="@null"
             android:id="@+id/order_beizhu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="13dp"
             android:layout_toRightOf="@+id/tv_order_beizhu"
-            android:text="非必填项，请先和商家沟通确认"
+            android:hint="非必填项，请先和商家沟通确认"
             android:textColor="@color/t4"
             android:textSize="13sp" />
     </RelativeLayout>

@@ -290,7 +290,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/yuanjiaobtnmeaage"
-                        android:visibility="gone" />
+                        android:visibility="invisible" />
                 </RelativeLayout>
 
                 <RelativeLayout

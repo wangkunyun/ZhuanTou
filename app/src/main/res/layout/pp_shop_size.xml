@@ -14,13 +14,13 @@
 
         <ImageView
             android:id="@+id/close"
-            android:paddingBottom="10dp"
-            android:paddingLeft="15dp"
-            android:paddingTop="10dp"
-            android:paddingRight="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="10dp"
             android:src="@mipmap/oval" />
 
         <TextView
@@ -29,9 +29,22 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="123dp"
             android:layout_marginTop="15dp"
-            android:text="¥0"
+            android:text="¥12333"
             android:textColor="#ffe81717"
-            android:textSize="18sp"></TextView>
+            android:textSize="18sp">
+
+        </TextView>
+
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="18dp"
+            android:layout_toRightOf="@+id/tv_price"
+            android:id="@+id/origin_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥98,000"
+            android:textColor="#ff999999"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_select_size"
