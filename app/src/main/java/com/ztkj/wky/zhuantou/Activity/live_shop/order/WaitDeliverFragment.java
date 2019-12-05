@@ -56,6 +56,14 @@ public class WaitDeliverFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_all_order, container, false);
         unbinder = ButterKnife.bind(this, view);
 
+        requestData();
+
+
+
+        return view;
+    }
+
+    private void requestData() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.getOrderList)
                 .addParams("uid", SPUtils.getInstance().getString("uid"))
                 .addParams("page", "1")
@@ -78,9 +86,6 @@ public class WaitDeliverFragment extends Fragment {
                 }
             }
         });
-
-
-        return view;
     }
 
     @Override

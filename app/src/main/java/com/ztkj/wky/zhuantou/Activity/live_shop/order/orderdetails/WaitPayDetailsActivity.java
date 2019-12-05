@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,11 +35,13 @@ import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ConfirmOrderActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.RefundActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.GuessLikeBean;
+import com.ztkj.wky.zhuantou.bean.JudgmentTimeBean;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 import com.ztkj.wky.zhuantou.bean.OrderDetailsBean;
 import com.ztkj.wky.zhuantou.bean.ShopKeyBean;
@@ -90,6 +94,12 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
     TextView tvClickCancelOrder;
     @BindView(R.id.tv_clickPay)
     TextView tvClickPay;
+    @BindView(R.id.tv_payDetails1)
+    TextView tvPayDetails1;
+    @BindView(R.id.tv_payDetails2)
+    TextView tvPayDetails2;
+    @BindView(R.id.rl_payDetailsBottom)
+    RelativeLayout rlPayDetailsBottom;
     private OrderDetailsBean.DataBean data;
     private List<OrderDetailsBean.DataBean.ArrBean> arr;
     private OrderBean.DataBean dataBean;
@@ -100,6 +110,7 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
     private StringBuilder stringBuilder;
     private GuessLikeBean guessLikeBean;
     private List<GuessLikeBean.DataBean> GuessData;
+    private String TAG = "WaitPayDetailsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,8 +126,38 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
         String orderNum = getIntent().getStringExtra("orderNum");
         dataBean = (OrderBean.DataBean) getIntent().getSerializableExtra("dataBean");
         sso_state = dataBean.getSso_state();
-        request(orderState, orderNum);
+
+//        request(orderState, orderNum);
+        requestJudgementTime(orderState, orderNum);
         getKeys();
+    }
+
+    private void requestJudgementTime(String orderState, String orderNum) {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.judgementTime)
+                .addParams("sso_sub_order_number", orderNum)
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "onResponse: " + response);
+                JudgmentTimeBean judgmentTimeBean = GsonUtil.gsonToBean(response, JudgmentTimeBean.class);
+                if (judgmentTimeBean.getErrno().equals("200")) {
+                    tvFinishOrderTime.setText(judgmentTimeBean.getData().getTime() + "分钟内后自动关闭");
+                    request(orderState, orderNum);
+                } else if (judgmentTimeBean.getErrno().equals("201")) {
+                    tvPayDetails1.setVisibility(View.GONE);
+                    tvFinishOrderTime.setVisibility(View.GONE);
+                    rlPayDetailsBottom.setVisibility(View.GONE);
+                    tvPayDetails2.setVisibility(View.VISIBLE);
+                    request("4", orderNum);
+                }
+            }
+        });
     }
 
     private void request(String orderState, String orderNum) {
@@ -132,8 +173,10 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(String response) {
+                Log.e(TAG, "onResponse: " + response);
                 OrderDetailsBean orderDetailsBean = GsonUtil.gsonToBean(response, OrderDetailsBean.class);
                 if (orderDetailsBean.getErrno().equals("200")) {
+
                     data = orderDetailsBean.getData();
                     arr = data.getArr();
                     tvName.setText(data.getSra_username());
@@ -280,6 +323,7 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
                 popuinit("是否确定取消订单吗？", "取消", "确认", data.getSso_sub_order_number(), "取消订单");
                 break;
             case R.id.tv_clickPay: //立即付款
+                ConfirmOrderActivity.startConfim(WaitPayDetailsActivity.this, dataBean);
                 break;
         }
     }

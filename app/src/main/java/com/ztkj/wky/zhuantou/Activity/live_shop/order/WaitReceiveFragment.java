@@ -62,6 +62,13 @@ public class WaitReceiveFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_all_order, container, false);
         unbinder = ButterKnife.bind(this, view);
 
+        requestData();
+
+
+        return view;
+    }
+
+    private void requestData() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.getOrderList)
                 .addParams("uid", SPUtils.getInstance().getString("uid"))
                 .addParams("page", "1")
@@ -84,9 +91,6 @@ public class WaitReceiveFragment extends Fragment {
                 }
             }
         });
-
-
-        return view;
     }
 
     @Override
@@ -306,7 +310,7 @@ public class WaitReceiveFragment extends Fragment {
                     public void onResponse(String response) {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
-
+                            requestData();
                             ToastUtils.showLong("已确认收货");
                         }
                     }

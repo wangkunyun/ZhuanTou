@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
-import com.ztkj.wky.zhuantou.Activity.live_shop.store.ShopStoreActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.BannerBean;
 import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
@@ -112,7 +111,7 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             case R.id.tv_click1: //零食
                 break;
             case R.id.tv_click2: //文具
-                ShopStoreActivity.start(mContext);
+
                 break;
             case R.id.tv_click3: //书籍
                 break;

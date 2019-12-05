@@ -32,6 +32,8 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.live_shop.ConfirmOrderActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.invoice.ApplyInvoiceActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.AlreadyPayDetailsActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.AlreadySendDetailsActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.WaitPayDetailsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
@@ -63,6 +65,13 @@ public class AllOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_all_order, container, false);
         unbinder = ButterKnife.bind(this, view);
+        requestData();
+
+
+        return view;
+    }
+
+    private void requestData() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.getOrderList)
                 .addParams("uid", SPUtils.getInstance().getString("uid"))
                 .addParams("page", "1")
@@ -85,9 +94,6 @@ public class AllOrderFragment extends Fragment {
                 }
             }
         });
-
-
-        return view;
     }
 
     @Override
@@ -177,8 +183,8 @@ public class AllOrderFragment extends Fragment {
                     switch (data.get(i).getSso_state()) {
                         case "0": //立即付款
                             if (getActivity() != null) {
-                                Log.e(TAG, "onClick: " + data.get(i).getSs_name());
                                 ConfirmOrderActivity.startConfim(getActivity(), data.get(i));
+
                             }
                             break;
                         case "1": //退款
@@ -187,7 +193,7 @@ public class AllOrderFragment extends Fragment {
                             }
                             break;
                         case "2": //确认收货
-                            popuinit("确认收货后钱款将打入卖家账户，您无法发起退款。", "取消", "确认", data.get(i).getSso_sub_order_number(), "确认收货");
+                            popuinit("确认收货后钱款将打入卖家账户，您无法发起退款。", "取消", "确认", data.get(i).getSso_sub_order_number(), "确认收货", i);
                             break;
                         case "3"://查看物流
                             if (getActivity() != null) {
@@ -195,7 +201,7 @@ public class AllOrderFragment extends Fragment {
                             }
                             break;
                         case "4": //删除订单
-                            popuinit("删除后将无法恢复，确认删除？", "取消", "确认", data.get(i).getSso_sub_order_number(), "删除订单");
+                            popuinit("删除后将无法恢复，确认删除？", "取消", "确认", data.get(i).getSso_sub_order_number(), "删除订单", i);
                             break;
                     }
                 }
@@ -207,7 +213,7 @@ public class AllOrderFragment extends Fragment {
                 public void onClick(View v) {
                     switch (data.get(i).getSso_state()) {
                         case "0": //取消订单
-                            popuinit("是否确定取消订单吗？", "取消", "确认", data.get(i).getSso_sub_order_number(), "取消订单");
+                            popuinit("是否确定取消订单吗？", "取消", "确认", data.get(i).getSso_sub_order_number(), "取消订单", i);
                             break;
                         case "2": //查看物流
                             if (getActivity() != null) {
@@ -234,7 +240,7 @@ public class AllOrderFragment extends Fragment {
                             }
                             break;
                         case "3"://删除订单
-                            popuinit("删除后将无法恢复，确认删除？", "取消", "确认", data.get(i).getSso_sub_order_number(), "删除订单");
+                            popuinit("删除后将无法恢复，确认删除？", "取消", "确认", data.get(i).getSso_sub_order_number(), "删除订单", i);
                             break;
                     }
                 }
@@ -315,7 +321,24 @@ public class AllOrderFragment extends Fragment {
             viewHolder.rl_clickOrderIn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    WaitPayDetailsActivity.start(getActivity(), state, num, dataBean);
+                    switch (state) {
+                        case "0": //代付款
+                            WaitPayDetailsActivity.start(getActivity(), state, num, dataBean);
+                            break;
+                        case "1": //代发货
+                            AlreadyPayDetailsActivity.start(getActivity(), state, num, dataBean);
+                            break;
+                        case "2": //待收货
+                            AlreadySendDetailsActivity.start(getActivity(), state, num, dataBean);
+                            break;
+                        case "3": //交易成功
+                            WaitPayDetailsActivity.start(getActivity(), state, num, dataBean);
+                            break;
+                        case "4": //交易关闭
+                            WaitPayDetailsActivity.start(getActivity(), state, num, dataBean);
+                            break;
+                    }
+
                 }
             });
         }
@@ -344,7 +367,7 @@ public class AllOrderFragment extends Fragment {
     }
 
 
-    private void popuinit(String s, String s1, final String s2, String id, String orderState) {
+    private void popuinit(String s, String s1, final String s2, String id, String orderState, int i) {
         View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.pp_telephone, null);
         //设置popuwindow是在父布局的哪个地方显示
         backgroundAlpha(0.2f);
@@ -373,20 +396,20 @@ public class AllOrderFragment extends Fragment {
             public void onClick(View v) {
                 switch (orderState) {
                     case "取消订单":
-                        requestCancelOrder();
+                        requestCancelOrder(i);
                         break;
                     case "确认收货":
-                        requestconfirmReceipt();
+                        requestconfirmReceipt(i);
                         break;
                     case "删除订单":
-                        requestDelOrder();
+                        requestDelOrder(i);
                         break;
                 }
 
                 window.dismiss();
             }
 
-            private void requestconfirmReceipt() {
+            private void requestconfirmReceipt(int i) {
                 OkHttpUtils.post().url(Contents.SHOPBASE + Contents.confirmReceipt)
                         .addParams("sso_sub_order_number", id)
                         .build().execute(new StringCallback() {
@@ -399,14 +422,14 @@ public class AllOrderFragment extends Fragment {
                     public void onResponse(String response) {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
-
+                            requestData();
                             ToastUtils.showLong("已确认收货");
                         }
                     }
                 });
             }
 
-            private void requestDelOrder() {
+            private void requestDelOrder(int i) {
                 OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleteOrder)
                         .addParams("sso_sub_order_number", id)
                         .build().execute(new StringCallback() {
@@ -419,14 +442,14 @@ public class AllOrderFragment extends Fragment {
                     public void onResponse(String response) {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
-
+                            requestData();
                             ToastUtils.showLong("订单删除成功");
                         }
                     }
                 });
             }
 
-            private void requestCancelOrder() {
+            private void requestCancelOrder(int i) {
                 OkHttpUtils.post().url(Contents.SHOPBASE + Contents.cancelOrder)
                         .addParams("sso_sub_order_number", id)
                         .build().execute(new StringCallback() {
@@ -439,7 +462,7 @@ public class AllOrderFragment extends Fragment {
                     public void onResponse(String response) {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
-
+                            requestData();
                             ToastUtils.showLong("订单取消成功");
                         }
                     }

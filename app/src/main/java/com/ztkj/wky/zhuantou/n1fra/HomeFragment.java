@@ -607,7 +607,6 @@ public class HomeFragment extends Fragment {
         //设置popuwindow是在父布局的哪个地方显示
         backgroundAlpha(0.2f);
         //下面是p里面的东西
-        Log.d("tag", "想打出来的东西");
         TextView ptextView1 = contentView.findViewById(R.id.ppt_tv1);
         TextView ptextView = contentView.findViewById(R.id.ppt_tv2);
         Button pbutton = contentView.findViewById(R.id.ppt_btn1);

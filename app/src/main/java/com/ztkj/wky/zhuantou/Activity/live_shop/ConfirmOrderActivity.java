@@ -246,6 +246,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onResponse(String response) {
+                        Log.e("wky", "onResponse: " + response);
                         wxPayBean = new Gson().fromJson(response, WxPayBean.class);
                         if (wxPayBean != null) {
                             setWxPayBean(wxPayBean);
@@ -497,6 +498,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onResponse(String response) {
+                        Log.e("wky", "onResponse: " + response);
                         wxPayBean = new Gson().fromJson(response, WxPayBean.class);
                         if (wxPayBean != null) {
                             setWxPayBean(wxPayBean);

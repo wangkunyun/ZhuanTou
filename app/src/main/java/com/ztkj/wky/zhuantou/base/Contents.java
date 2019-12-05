@@ -410,5 +410,7 @@ public class Contents {
     public static final String deleteOrder = "Order/deleteOrder";
     //确认订单
     public static final String confirmReceipt = "Order/confirmReceipt";
+    //判断超时的订单
+    public static final String judgementTime = "Order/judgementTime";
 
 }
