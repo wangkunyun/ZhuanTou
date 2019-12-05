@@ -35,6 +35,7 @@
                         android:src="@mipmap/icon_order_clock" />
 
                     <TextView
+                        android:id="@+id/tv_payDetails1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="161dp"
@@ -42,6 +43,17 @@
                         android:text="等待付款"
                         android:textColor="#ffffffff"
                         android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_payDetails2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="161dp"
+                        android:text="订单已超时失效"
+                        android:textColor="#ffffffff"
+                        android:textSize="18sp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/tv_FinishOrderTime"
@@ -212,6 +224,7 @@
     </ScrollView>
 
     <RelativeLayout
+        android:id="@+id/rl_payDetailsBottom"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
