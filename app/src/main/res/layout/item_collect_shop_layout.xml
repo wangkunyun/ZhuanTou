@@ -20,7 +20,11 @@
         android:layout_marginRight="16dp"
         android:background="@drawable/yuanjiaobtn_8dp"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="5dp"
+        >
 
         <ImageView
             android:id="@+id/shop_select"

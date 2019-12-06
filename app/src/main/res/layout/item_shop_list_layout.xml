@@ -32,5 +32,5 @@
         android:layout_height="wrap_content"
         android:text="¥4832"
         android:textColor="@color/ffe8"
-        android:textSize="10sp" />
+        android:textSize="12sp" />
 </LinearLayout>

@@ -5,6 +5,7 @@
     android:id="@+id/shop_detial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".Activity.live_shop.ShopDetailActivity">
 
 
@@ -374,40 +375,20 @@
                 android:textSize="10sp"
                 android:visibility="visible" />
 
-            <RelativeLayout
+            <TextView
+                android:layout_toRightOf="@+id/collect_shop"
+                android:id="@+id/cart_shop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/collect_shop">
-
-                <TextView
-                    android:id="@+id/cart_shop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="6dp"
-                    android:drawableTop="@mipmap/bar_icon_shing"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="购物车"
-                    android:textColor="@color/t4"
-                    android:textSize="10sp"
-                    android:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/tv_msg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="16dp"
-                    android:layout_marginLeft="35dp"
-                    android:background="@drawable/bg_yuanjiao_kongxin_red"
-                   android:gravity="center"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:visibility="gone"
-                    android:textColor="@color/ffe8"
-                    android:textSize="10sp"
-                    android:text="5" />
-            </RelativeLayout>
-
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:drawableTop="@mipmap/bar_icon_shing"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="购物车"
+                android:textColor="@color/t4"
+                android:textSize="10sp"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/add_shopping_cart"
