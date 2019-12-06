@@ -133,29 +133,13 @@
                 android:src="@mipmap/icon_live_chat"
                 android:visibility="visible" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/click_live_gouwuche"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@mipmap/icon_live_gouwuche" />
-                <TextView
-                    android:visibility="gone"
-                    android:layout_marginLeft="20dp"
-                    android:id="@+id/tv_msg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="16dp"
-                    android:background="@drawable/bg_yuanjiao_shixin_red"
-                    android:gravity="center"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:textColor="@color/ffe8"
-                    android:textSize="10sp"
-                    android:text="5"  />
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/click_live_gouwuche"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@mipmap/icon_live_gouwuche" />
+
 
 
         </LinearLayout>
