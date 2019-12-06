@@ -196,49 +196,9 @@ public class LiveTabFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (uid != null) {
-            getCart();
-        }
-    }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (uid != null) {
-            getCart();
-        }
-    }
 
-    @BindView(R.id.tv_msg)
-    TextView tv_msg;
-    OrderBean orderBean;
 
-    private void getCart() {
-        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.cartList)
-                .addParams("page", "1")
-                .addParams("user_id", uid)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-                        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
-                        ToastUtils.showShort(e.getMessage());
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        if (response != null) {
-                            orderBean = new Gson().fromJson(response, OrderBean.class);
-                            if (orderBean.getData() != null) {
-                                tv_msg.setText(String.valueOf(orderBean.getData().size()));
-                            }
-                        }
-                    }
-                });
-    }
 
     @OnClick()
     public void onViewClicked() {
