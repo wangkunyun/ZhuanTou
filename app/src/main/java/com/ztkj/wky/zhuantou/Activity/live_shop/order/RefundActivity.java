@@ -220,10 +220,12 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btn_save_address:
                 infoMoney = tv_sr_money.getText().toString();
                 if (infoReson == null || infoMoney == null || oreder == null) {
+                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                     ToastUtils.showShort("请完善信息");
                     return;
                 }
                 if (listPath != null && listPath.size() < 1) {
+                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                     ToastUtils.showShort("请上传凭证");
                     return;
                 }
@@ -308,6 +310,7 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
                         public void onResponse(String response) {
                             BaseStatusBean statusBean = new Gson().fromJson(response, BaseStatusBean.class);
                             if (statusBean.getErrno().equals("200")) {
+                                ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                                 ToastUtils.showShort("上传成功");
                             } else {
                                 ToastUtils.showShort(statusBean.getErrmsg());

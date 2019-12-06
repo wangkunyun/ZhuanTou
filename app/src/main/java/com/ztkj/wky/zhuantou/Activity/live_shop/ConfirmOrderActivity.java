@@ -178,6 +178,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.upload_confirm:
                 if (adressUpdateBean == null) {
+                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                     ToastUtils.showShort("请完善地址");
                     return;
                 }

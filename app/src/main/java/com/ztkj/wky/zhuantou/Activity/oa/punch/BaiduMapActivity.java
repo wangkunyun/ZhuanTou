@@ -3,6 +3,7 @@ package com.ztkj.wky.zhuantou.Activity.oa.punch;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -99,6 +100,7 @@ public class BaiduMapActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 poiInfo = mAllPoi.get(i);
                 if (poiInfo.getLocation() == null) {
+                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                     ToastUtils.showShort("无");
                     return;
                 } else {
@@ -237,6 +239,7 @@ public class BaiduMapActivity extends AppCompatActivity
                 break;
             case R.id.confirm:
                 if (address == null) {
+                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                     ToastUtils.showShort("请选择地址");
                 } else {
                     initMsg(address);

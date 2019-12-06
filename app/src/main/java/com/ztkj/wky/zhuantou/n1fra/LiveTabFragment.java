@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextPaint;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,6 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.live_shop.LiveShopFragment;
 import com.ztkj.wky.zhuantou.Activity.live_shop.ShopCartActivity;
-import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
@@ -224,6 +224,7 @@ public class LiveTabFragment extends Fragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
+                        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                         ToastUtils.showShort(e.getMessage());
                     }
 

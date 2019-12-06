@@ -203,6 +203,7 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
                                 reViewGuess.setLayoutManager(new GridLayoutManager(AlreadySendDetailsActivity.this, 2));
                                 reViewGuess.setAdapter(new GuessAdapter());
                             } else {
+                                ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                                 ToastUtils.showShort("解析失败");
                             }
                         }
@@ -417,7 +418,7 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
-
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                             ToastUtils.showLong("已确认收货");
                         }
                     }
@@ -437,7 +438,7 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
-
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                             ToastUtils.showLong("订单删除成功");
                         }
                     }
@@ -457,7 +458,7 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
-
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                             ToastUtils.showLong("订单取消成功");
                         }
                     }

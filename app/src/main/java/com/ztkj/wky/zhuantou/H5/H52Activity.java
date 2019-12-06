@@ -22,8 +22,8 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
@@ -150,7 +150,8 @@ public class H52Activity extends AppCompatActivity {
                     return true;
                 } else if (url.contains("dianzan")) {
                     if (StringUtils.isEmpty(uid)) {
-                        Toast.makeText(H52Activity.this, "请先登录", Toast.LENGTH_SHORT).show();
+                        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                        ToastUtils.showShort("请先登录");
                         intent = new Intent(H52Activity.this, NewLoginActivity.class);
                         startActivity(intent);
                     }

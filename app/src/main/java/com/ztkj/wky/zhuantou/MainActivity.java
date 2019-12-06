@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,8 +20,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
@@ -353,7 +354,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             finish();
             System.exit(0);
         } else {
-            Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+            ToastUtils.showShort("再按一次退出");
             firstPressedTime = System.currentTimeMillis();
         }
     }

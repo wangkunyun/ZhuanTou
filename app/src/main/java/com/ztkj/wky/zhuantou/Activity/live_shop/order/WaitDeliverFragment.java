@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -114,7 +116,10 @@ public class WaitDeliverFragment extends Fragment {
             viewHolder.item_reOrderOut.setAdapter(adapterIn);
             //设置店铺logo
             if (!data.get(i).getSs_logo().equals("0")) {
-                Glide.with(Objects.requireNonNull(getActivity())).load(data.get(i).getSs_logo()).into(viewHolder.item_imgOrderOutStoreHead);
+                RoundedCorners roundedCorners = new RoundedCorners(96);
+                RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
+                Glide.with(Objects.requireNonNull(getActivity())).load(data.get(i).getSs_logo())
+                        .apply(options).into(viewHolder.item_imgOrderOutStoreHead);
             }
             //设置店铺名称
             viewHolder.item_tvOrderOutStoreName.setText(data.get(i).getSs_name());

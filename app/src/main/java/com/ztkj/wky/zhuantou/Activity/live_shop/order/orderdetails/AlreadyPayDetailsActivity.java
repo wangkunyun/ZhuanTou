@@ -11,6 +11,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -153,6 +154,7 @@ public class AlreadyPayDetailsActivity extends AppCompatActivity {
                                 reViewGuess.setLayoutManager(new GridLayoutManager(AlreadyPayDetailsActivity.this, 2));
                                 reViewGuess.setAdapter(new GuessAdapter());
                             } else {
+                                ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                                 ToastUtils.showShort("解析失败");
                             }
                         }

@@ -16,9 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
 import com.maning.updatelibrary.InstallUtils;
 import com.squareup.okhttp.Request;
@@ -315,12 +315,15 @@ public class SzActivity extends AppCompatActivity {
             public void onSuccess() {
                 //onSuccess：表示系统的安装界面被打开
                 //防止用户取消安装，在这里可以关闭当前应用，以免出现安装被取消
-                Toast.makeText(SzActivity.this, "正在安装程序", Toast.LENGTH_SHORT).show();
+                ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                ToastUtils.showShort("正在安装程序");
             }
 
             @Override
             public void onFail(Exception e) {
-                Toast.makeText(SzActivity.this, "安装失败:" + e.toString(), Toast.LENGTH_SHORT).show();
+
+                ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                ToastUtils.showShort("安装失败");
                 InstallUtils.installAPKWithBrower(SzActivity.this, s2);
             }
         });
@@ -423,7 +426,8 @@ public class SzActivity extends AppCompatActivity {
                                         popuinit("当前非最新版本，是否需要更新", "取消 ", "立即更新", updateBean.getData().getAndroid_address());
                                     }
                                 } else if (updateBean.getErrno().equals("666666")) {
-                                    Toast.makeText(SzActivity.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
+                                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                                    ToastUtils.showShort("您的账号已在其他手机登录，如非本人操作，请修改密码");
                                     JPushInterface.deleteAlias(SzActivity.this, Integer.parseInt(uid));
                                     sharedPreferencesHelper.clear();
                                     SPUtils.getInstance().clear();

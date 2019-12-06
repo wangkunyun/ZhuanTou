@@ -40,7 +40,7 @@ public class OrderBean implements Serializable {
         this.data = data;
     }
 
-    public static class DataBean implements Serializable{
+    public static class DataBean implements Serializable {
         /**
          * ss_name : 砖头科技店铺
          * ss_logo : 0
@@ -56,6 +56,23 @@ public class OrderBean implements Serializable {
         private String so_order_number;
         private boolean isSelect;
         private String so_addtime;
+        private String ss_id;
+
+        public DataBean(String ss_id) {
+            this.ss_id = ss_id;
+        }
+
+        public DataBean() {
+
+        }
+
+        public String getSs_id() {
+            return ss_id;
+        }
+
+        public void setSs_id(String ss_id) {
+            this.ss_id = ss_id;
+        }
 
         public String getSo_addtime() {
             return so_addtime;
@@ -123,7 +140,7 @@ public class OrderBean implements Serializable {
             this.arr = arr;
         }
 
-        public static class ArrBean implements Serializable{
+        public static class ArrBean implements Serializable {
             /**
              * sog_id : 47
              * sog_sub_order_id : ZXd9e968ba31c73a000

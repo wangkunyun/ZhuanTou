@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +20,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.ToastBean;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,6 +75,10 @@ public class ApplyInvoiceActivity extends AppCompatActivity {
     LinearLayout viewCompany;
     @BindView(R.id.et_InvoiceEmilPerson)
     EditText etInvoiceEmilPerson;
+    private String shopMoney, shopNum, shopID;
+    private String InvoiceType = "1";
+    private String email;
+    private String TAG = "ApplyInvoiceActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +86,16 @@ public class ApplyInvoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_apply_invoice);
         ButterKnife.bind(this);
         layoutTitleTv.setText("申请开票");
+        etInvoiceEmil.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        etInvoiceEmilPerson.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
+        shopMoney = getIntent().getStringExtra("shopMoney");
+        shopNum = getIntent().getStringExtra("shopNum");
+        shopID = getIntent().getStringExtra("shopID");
+
+        tvInvoicePrice.setText("￥" + shopMoney);
+        tvOrderNum.setText(shopNum);
+        email = etInvoiceEmilPerson.getText().toString();
     }
 
     @OnClick({R.id.layout_back, R.id.rl_clickChooseInvoiceType, R.id.btnSubmit})
@@ -82,31 +109,36 @@ public class ApplyInvoiceActivity extends AppCompatActivity {
                 break;
             case R.id.btnSubmit:
                 if (tvInvoiceType.getText().toString().equals("个人")) {
-                    if (etInvoiceEmilPerson.getText().toString().equals("请输入")) {
+                    if (etInvoiceEmilPerson.getText().toString().equals("")) {
                         Toast.makeText(this, "请输入邮箱", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    popuinit2("是否确定提交该发票申请？", "取消 ", "确定");
                 } else if (tvInvoiceType.getText().toString().equals("企业")) {
-                    if (etInvoiceCompanyName.getText().toString().equals("请输入")) {
+                    if (etInvoiceCompanyName.getText().toString().equals("")) {
                         Toast.makeText(this, "请输入企业名称", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (etInvoiceCompanyDutyNum.getText().toString().equals("请输入")) {
+                    if (etInvoiceCompanyDutyNum.getText().toString().equals("")) {
                         Toast.makeText(this, "请输入企业税号", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (etInvoiceEmil.getText().toString().equals("请输入")) {
+                    if (etInvoiceEmil.getText().toString().equals("")) {
                         Toast.makeText(this, "请输入企业税号", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    popuinit2("是否确定提交该发票申请？", "取消 ", "确定");
                 }
-                popuinit2("是否确定提交该发票申请？", "取消 ", "确定");
+
                 break;
         }
     }
 
-    public static void start(Context context) {
+    public static void start(Context context, String shopMoney, String shopNum, String shopID) {
         Intent starter = new Intent(context, ApplyInvoiceActivity.class);
+        starter.putExtra("shopMoney", shopMoney);
+        starter.putExtra("shopNum", shopNum);
+        starter.putExtra("shopID", shopID);
         context.startActivity(starter);
     }
 
@@ -130,6 +162,8 @@ public class ApplyInvoiceActivity extends AppCompatActivity {
                 tvInvoiceType.setText(pbutton.getText().toString());
                 viewCompany.setVisibility(View.VISIBLE);
                 viewPerson.setVisibility(View.GONE);
+                email = etInvoiceEmil.getText().toString();
+                InvoiceType = "2";
                 backgroundAlpha(1f);
                 window.dismiss();
             }
@@ -140,6 +174,8 @@ public class ApplyInvoiceActivity extends AppCompatActivity {
                 tvInvoiceType.setText(pbutton2.getText().toString());
                 viewPerson.setVisibility(View.VISIBLE);
                 viewCompany.setVisibility(View.GONE);
+                email = etInvoiceEmilPerson.getText().toString();
+                InvoiceType = "1";
                 backgroundAlpha(1f);
                 window.dismiss();
             }
@@ -185,7 +221,41 @@ public class ApplyInvoiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) { //确定按钮
                 //确认提交发票
-                InvoiceDetailsWaitActivity.start(ApplyInvoiceActivity.this);
+                OkHttpUtils.post().url(Contents.SHOPBASE + Contents.ApplyInvoice)
+                        .addParams("si_user_id", SPUtils.getInstance().getString("uid"))
+                        .addParams("si_store_id", shopID)
+                        .addParams("si_invoice_amount", shopMoney)
+                        .addParams("si_order_number", shopNum)
+                        .addParams("si_header_type", InvoiceType)
+                        .addParams("si_header", tvInvoiceType.getText().toString())
+                        .addParams("si_ticket_collection_box", email)
+                        .addParams("si_enterprise_name", etInvoiceCompanyName.getText().toString())
+                        .addParams("si_enterprise_tax_number", etInvoiceCompanyDutyNum.getText().toString())
+                        .addParams("si_bank_of_deposit", etInvoiceBank.getText().toString())
+                        .addParams("si_bank_account", etInvoiceBankNum.getText().toString())
+                        .addParams("si_enterprise_address", etInvoiceCompanyAdress.getText().toString())
+                        .addParams("si_invoice_address", etInvoiceCompanyAdress.getText().toString())
+                        .build().execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e(TAG, "onResponse: " + response);
+                        ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
+                        if (toastBean.getErrno().equals("200")) {
+                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                            long time = new Date().getTime();
+                            String format = formatter.format(time);
+                            InvoiceDetailsWaitActivity.start(ApplyInvoiceActivity.this, etInvoiceCompanyName.getText().toString(), etInvoiceCompanyDutyNum.getText().toString(), shopMoney, email, format);
+                        } else {
+                            ToastUtils.showLong("开票请求异常");
+                        }
+
+                    }
+                });
 
 
                 backgroundAlpha(1f);

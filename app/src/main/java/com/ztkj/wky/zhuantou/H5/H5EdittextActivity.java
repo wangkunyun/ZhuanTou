@@ -3,6 +3,7 @@ package com.ztkj.wky.zhuantou.H5;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -65,7 +67,8 @@ public class H5EdittextActivity extends AppCompatActivity {
                 break;
             case R.id.h5edt_btn:
                 if (StringUtils.isEmpty(uid)) {
-                    Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                    ToastUtils.showShort("请先登录");
                     intent = new Intent(H5EdittextActivity.this, NewLoginActivity.class);
                     startActivity(intent);
                     return;
@@ -77,7 +80,8 @@ public class H5EdittextActivity extends AppCompatActivity {
 
     private void register() {
         if (h5edtEdt.getText().length() < 11 || h5edtEdt.getText().length() > 150) {
-            Toast.makeText(H5EdittextActivity.this, "发表言论必须在10-150字之间", Toast.LENGTH_SHORT).show();
+            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+            ToastUtils.showShort("发表言论必须在10-150字之间");
         } else {
             OkHttpUtils.post()
                     .url(url)
@@ -100,11 +104,13 @@ public class H5EdittextActivity extends AppCompatActivity {
                                 if (geRenBean.getData().getAddNumber().equals("1")) {
                                     Toast.makeText(H5EdittextActivity.this, geRenBean.getErrmsg(), Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(H5EdittextActivity.this, "发表成功", Toast.LENGTH_SHORT).show();
+                                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                                    ToastUtils.showShort("发表成功");
                                 }
                                 finish();
                             } else if (geRenBean.getErrno().equals("666666")) {
-                                Toast.makeText(H5EdittextActivity.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
+                                ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                                ToastUtils.showShort("您的账号已在其他手机登录，如非本人操作，请修改密码");
                                 JPushInterface.deleteAlias(H5EdittextActivity.this, Integer.parseInt(uid));
                                 sharedPreferencesHelper.clear();
                                 SPUtils.getInstance().clear();

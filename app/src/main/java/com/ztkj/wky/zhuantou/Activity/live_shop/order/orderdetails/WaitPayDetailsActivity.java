@@ -254,6 +254,7 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
                                 reViewGuess.setLayoutManager(new GridLayoutManager(WaitPayDetailsActivity.this, 2));
                                 reViewGuess.setAdapter(new GuessAdapter());
                             } else {
+                                ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                                 ToastUtils.showShort("解析失败");
                             }
                         }
@@ -346,9 +347,9 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
             viewHolder.item_tvOrderDetailsSku.setText(arr.get(i).getSog_sku_name());
             viewHolder.item_tvOrderDetailsBuyNum.setText(arr.get(i).getSog_number() + "件");
             viewHolder.tv_itemOrderDetailsPrice.setText(arr.get(i).getSog_total_price());
-            if (sso_state.equals("0")) {
-                viewHolder.item_tvClickRefund.setVisibility(View.GONE);
-            }
+//            if (sso_state.equals("0")) {
+            viewHolder.item_tvClickRefund.setVisibility(View.GONE);
+//            }
             //退款
             viewHolder.item_tvClickRefund.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -470,7 +471,7 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
-
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                             ToastUtils.showLong("已确认收货");
                         }
                     }
@@ -490,7 +491,7 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
-
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                             ToastUtils.showLong("订单删除成功");
                         }
                     }
@@ -510,7 +511,7 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
-
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                             ToastUtils.showLong("订单取消成功");
                         }
                     }

@@ -27,17 +27,21 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.live_shop.ConfirmOrderActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.invoice.ApplyInvoiceActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.invoice.InvoiceDetailsWaitActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.AlreadyPayDetailsActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.AlreadySendDetailsActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.orderdetails.WaitPayDetailsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.InvoiceTypeBean;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 import com.ztkj.wky.zhuantou.bean.ToastBean;
 
@@ -84,7 +88,7 @@ public class AllOrderFragment extends Fragment {
 
             @Override
             public void onResponse(String response) {
-                Log.e(TAG, "onResponse: " + response);
+                Log.e(TAG, "onResponse:全部订单 " + response);
                 OrderBean orderBean = GsonUtil.gsonToBean(response, OrderBean.class);
                 if (orderBean.getErrno().equals("200")) {
                     data = orderBean.getData();
@@ -121,21 +125,24 @@ public class AllOrderFragment extends Fragment {
             AdapterIn adapterIn = new AdapterIn(data.get(i), arr, data.get(i).getSso_state(), data.get(i).getSso_sub_order_number());
             viewHolder.item_reOrderOut.setAdapter(adapterIn);
             //设置店铺logo
-            if (data.get(i).getSs_logo()!=null) {
-                Glide.with(Objects.requireNonNull(getActivity())).load(data.get(i).getSs_logo()).into(viewHolder.item_imgOrderOutStoreHead);
+            if (data.get(i).getSs_logo() != null) {
+                RoundedCorners roundedCorners = new RoundedCorners(96);
+                RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
+                Glide.with(Objects.requireNonNull(getActivity())).load(data.get(i).getSs_logo())
+                        .apply(options).into(viewHolder.item_imgOrderOutStoreHead);
             }
             //设置店铺名称
-            if(data.get(i).getSs_name()!=null){
+            if (data.get(i).getSs_name() != null) {
                 viewHolder.item_tvOrderOutStoreName.setText(data.get(i).getSs_name());
             }
 
             //商品数量
-            if(data.get(i).getArr()!=null){
+            if (data.get(i).getArr() != null) {
                 viewHolder.item_tvOrderOutShopUnm.setText("共" + data.get(i).getArr().size() + "件商品");
             }
 
             float sum = 0;
-            if(data.get(i).getArr()!=null){
+            if (data.get(i).getArr() != null) {
                 for (int j = 0; j < data.get(i).getArr().size(); j++) {
                     float sog_total_price = Float.parseFloat(arr.get(j).getSog_total_price());
                     sum += sog_total_price;
@@ -208,6 +215,7 @@ public class AllOrderFragment extends Fragment {
             });
 
             //第二个按钮
+            float finalSum = sum;
             viewHolder.item_clickOrderButton2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -222,7 +230,31 @@ public class AllOrderFragment extends Fragment {
                             break;
                         case "3"://申请开票
                             if (getActivity() != null) {
-                                ApplyInvoiceActivity.start(getActivity());
+                                Log.e(TAG, "onClick: 店铺订单和id" + data.get(i).getSso_sub_order_number() + "+++" + data.get(i).getSs_id());
+                                OkHttpUtils.post().url(Contents.SHOPBASE + Contents.invoiceType)
+                                        .addParams("si_order_number", data.get(i).getSso_sub_order_number())
+                                        .addParams("si_store_id", data.get(i).getSs_id())
+                                        .addParams("si_user_id", SPUtils.getInstance().getString("uid"))
+                                        .build().execute(new StringCallback() {
+                                    @Override
+                                    public void onError(Request request, Exception e) {
+
+                                    }
+
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.e(TAG, "onResponse: 查看开票状态" + response);
+                                        InvoiceTypeBean invoiceTypeBean = GsonUtil.gsonToBean(response, InvoiceTypeBean.class);
+                                        if (invoiceTypeBean.getErrno().equals("201")) {
+                                            ApplyInvoiceActivity.start(getActivity(), finalSum + "", data.get(i).getSso_sub_order_number(), data.get(i).getSs_id());
+                                        } else if (invoiceTypeBean.getErrno().equals("200")) {
+                                            InvoiceTypeBean.DataBean data = invoiceTypeBean.getData();
+                                            InvoiceDetailsWaitActivity.start(getActivity(), data.getSi_enterprise_name(), data.getSi_enterprise_tax_number(),
+                                                    data.getSi_invoice_amount(), data.getSi_ticket_collection_box(), data.getSi_addtime());
+                                        }
+
+                                    }
+                                });
                             }
                             break;
                     }
@@ -305,7 +337,7 @@ public class AllOrderFragment extends Fragment {
             viewHolder.item_tvOrderInTitle.setText(arr.get(i).getSog_name());
             viewHolder.item_tvOrderInSku.setText(arr.get(i).getSog_sku_name());
             viewHolder.item_tvOrderInBuyNum.setText(arr.get(i).getSog_number() + "件");
-            viewHolder.tv_itemOrderInPrice.setText(arr.get(i).getSog_total_price());
+            viewHolder.tv_itemOrderInPrice.setText("￥" + arr.get(i).getSog_total_price());
             switch (arr.get(i).getSog_refund_type()) {
                 case "0":
                     viewHolder.item_tvOrderInIsRefund.setVisibility(View.GONE);
@@ -423,6 +455,7 @@ public class AllOrderFragment extends Fragment {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
                             requestData();
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                             ToastUtils.showLong("已确认收货");
                         }
                     }
@@ -443,6 +476,7 @@ public class AllOrderFragment extends Fragment {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
                             requestData();
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                             ToastUtils.showLong("订单删除成功");
                         }
                     }
@@ -463,6 +497,7 @@ public class AllOrderFragment extends Fragment {
                         ToastBean toastBean = GsonUtil.gsonToBean(response, ToastBean.class);
                         if (toastBean.getErrno().equals("200")) {
                             requestData();
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                             ToastUtils.showLong("订单取消成功");
                         }
                     }

@@ -412,5 +412,9 @@ public class Contents {
     public static final String confirmReceipt = "Order/confirmReceipt";
     //判断超时的订单
     public static final String judgementTime = "Order/judgementTime";
+    //开票接口
+    public static final String ApplyInvoice = "Index/invoice";
+    //查询开票状态
+    public static final String invoiceType = "Index/invoiceType";
 
 }

@@ -37,6 +37,7 @@ import com.addresspicker.huichao.addresspickerlibrary.address.City;
 import com.addresspicker.huichao.addresspickerlibrary.address.County;
 import com.addresspicker.huichao.addresspickerlibrary.address.Province;
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
@@ -345,7 +346,8 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
             @Override
             public void onClick(View v) {
                 if (editText.getText().length() < 2 || editText.getText().length() > 8) {
-                    Toast.makeText(GeRenActivity.this, "昵称在2到8位之间", Toast.LENGTH_SHORT).show();
+                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                    ToastUtils.showShort("昵称在2到8位之间");
                 } else {
                     gerent1.setText(editText.getText());
                     gi();
@@ -398,7 +400,8 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
                             SPUtils.getInstance().put("realname", gerent1.getText().toString());
                             Toast.makeText(GeRenActivity.this, "上传信息成功", Toast.LENGTH_SHORT).show();
                         } else if (zcBean.getErrno().equals("666666")) {
-                            Toast.makeText(GeRenActivity.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                            ToastUtils.showShort("您的账号已在其他手机登录，如非本人操作，请修改密码");
                             JPushInterface.deleteAlias(GeRenActivity.this, Integer.parseInt(uid));
                             sharedPreferencesHelper.clear();
                             SPUtils.getInstance().clear();
@@ -615,7 +618,8 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
         File file1 = saveBitmapFile(bitmap, imagePath);
         String name = file1.getName();
         if (!file1.exists()) {
-            Toast.makeText(GeRenActivity.this, "文件不存在，请修改文件路径", Toast.LENGTH_SHORT).show();
+            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+            ToastUtils.showShort("文件不存在，请修改文件路径");
 //            return;
         }
         if (imagePath != null) {
@@ -652,7 +656,8 @@ public class GeRenActivity extends AppCompatActivity implements InitAreaTask.onL
 
                                 Glide.with(GeRenActivity.this).load(headBean.getData().getUrl()).into(gerenHead);
                             } else if (headBean.getErrno().equals("666666")) {
-                                Toast.makeText(GeRenActivity.this, "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
+                                ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                                ToastUtils.showShort("您的账号已在其他手机登录，如非本人操作，请修改密码");
                                 JPushInterface.deleteAlias(GeRenActivity.this, Integer.parseInt(uid));
                                 sharedPreferencesHelper.clear();
                                 SPUtils.getInstance().clear();

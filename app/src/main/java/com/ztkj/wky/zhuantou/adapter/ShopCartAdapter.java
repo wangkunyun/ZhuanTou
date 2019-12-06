@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -219,6 +220,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
 
                     @Override
                     public void onResponse(String response) {
+                        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                         ToastUtils.showShort("删除成功");
                     }
                 });

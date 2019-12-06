@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -181,6 +181,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 if(shopCartAdapter.getData()>0){
                     CollectShopActivity.start(ShopCartActivity.this);
                 }else{
+                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                     ToastUtils.showShort("购物车暂无数据");
                 }
                 break;
