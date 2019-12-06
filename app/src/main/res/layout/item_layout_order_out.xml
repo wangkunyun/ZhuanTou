@@ -13,6 +13,7 @@
 
         <ImageView
             android:id="@+id/item_imgOrderOutStoreHead"
+            android:scaleType="fitXY"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_centerVertical="true"
@@ -91,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="18dp"
+            android:layout_marginRight="16dp"
             android:text="¥88,000"
             android:textColor="#ffe81717"
             android:textSize="18sp" />

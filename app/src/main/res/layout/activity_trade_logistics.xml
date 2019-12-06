@@ -36,7 +36,8 @@
                 android:layout_marginTop="15dp"
                 android:text="物流公司：顺丰快递"
                 android:textColor="#ff333333"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"

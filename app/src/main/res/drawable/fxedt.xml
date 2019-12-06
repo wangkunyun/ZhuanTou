@@ -6,7 +6,7 @@
     <corners android:radius="32dp"/>
     <!-- padding：Button里面的文字与Button边界的间隔 -->
     <padding
-        android:left="63dp"
+        android:left="47dp"
         android:top="3dp"
         android:right="25dp"
         android:bottom="3dp"/>

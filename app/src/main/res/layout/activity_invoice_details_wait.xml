@@ -45,7 +45,7 @@
                 android:textColor="#ff999999"
                 android:textSize="14sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_WaitInvoiceCompanyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,7 +152,7 @@
                 android:textColor="#ff999999"
                 android:textSize="14sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_WaitInvoiceEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -210,17 +210,6 @@
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/btnAmendApply"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:background="@drawable/yuanjiaobtn"
-        android:gravity="center"
-        android:text="修改申请"
-        android:textColor="@color/baise"
-        android:textSize="18sp" />
 
 
 </RelativeLayout>
