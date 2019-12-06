@@ -109,7 +109,7 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
             viewHolder1.shop_select.setVisibility(View.VISIBLE);
             viewHolder1.shop_select.setSelected(list.get(i).isSelect());
         } else {
-            viewHolder1.shop_select.setVisibility(View.INVISIBLE);
+            viewHolder1.shop_select.setVisibility(View.GONE);
             viewHolder1.shop_select.setSelected(list.get(i).isSelect());
         }
         Glide.with(context).load(list.get(i).getSc_img()).into(viewHolder1.ivCollect);
