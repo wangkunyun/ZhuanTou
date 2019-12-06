@@ -101,8 +101,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     TextView tv_origin_price;
     @BindView(R.id.more)
     ImageView more;
-    @BindView(R.id.tv_msg)
-    TextView tv_msg;
+
     @BindView(R.id.iv_shop)
     CircleImageView iv_shop;
 
@@ -238,7 +237,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         getShopSize();
         getShopParam();
         if (uid != null) {
-            tv_msg.setText(String.valueOf(Contents.numCart));
             recorderUser();
         }
     }
@@ -914,7 +912,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 if (sku_name != null && sku_price != null && ssc_sku_id != null) {
                     ssc_sku_id = shopDetailBean.getData().getSc_sku_id() + "," + ssc_sku_id;
                     Contents.numCart++;
-                    tv_msg.setText(String.valueOf(Contents.numCart));
                     addCart();
                 } else {
                     popuSize();
