@@ -1,5 +1,8 @@
 package com.ztkj.wky.zhuantou.base;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Contents {
     //后台域名
     public static final String BASE = "https://api.zhuantoukj.com/birck/index.php/Home/";
@@ -13,6 +16,9 @@ public class Contents {
     public static String strExit = "0";
     //日志小红点次数
     public static int reportReddotNum = 0;
+    public static Map<String,String> map = new HashMap<>();
+
+
     //打卡次数
     public static int num = 0;
     //购物车数量
@@ -428,4 +434,7 @@ public class Contents {
     public static final String getSelect = "Index/selectActivity";
     //活动专区列表
     public static final String getSelectList = "Index/selectActivityList";
+    //获取通知列表
+    public static final String selectNotice = "Index/selectNotice";
+
 }

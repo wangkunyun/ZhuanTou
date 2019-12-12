@@ -56,6 +56,8 @@ public class ShopStoreActivity extends AppCompatActivity implements StoreAllShop
         ButterKnife.bind(this);
 
         mDrawer = findViewById(R.id.mDrawer);
+        // 禁止手势滑动
+        mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 //        ImmersionBar.with(this)
 //                .init();
         reView.setLayoutManager(new LinearLayoutManager(this));

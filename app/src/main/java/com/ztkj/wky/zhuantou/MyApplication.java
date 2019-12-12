@@ -13,8 +13,11 @@ import com.hyphenate.push.EMPushType;
 import com.hyphenate.push.PushListener;
 import com.kongzue.baseokhttp.util.BaseOkHttp;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.ztkj.wky.zhuantou.MyUtils.BDLocationUtils;
+import com.ztkj.wky.zhuantou.bean.WxPayBean;
 import com.ztkj.wky.zhuantou.huanxin.DemoHelper;
 
 import java.io.BufferedReader;
@@ -31,6 +34,7 @@ public class MyApplication extends Application {
     // login user name
     public final String PREF_USERNAME = "username";
     public static BDLocationUtils bdLocationUtils;
+    public static WxPayBean AppwxPayBean;
 
     @Override
     public void onCreate() {
@@ -44,6 +48,10 @@ public class MyApplication extends Application {
         //打开log日志
         BaseOkHttp.DEBUGMODE = true;
         bugly();
+        UMConfigure.init(this, "5def28c80cafb2c5ce0002ad", "ZHUANTOU", UMConfigure.DEVICE_TYPE_PHONE, null);
+//        UMConfigure.setLogEnabled(true);
+        // 选用AUTO页面采集模式
+        MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.AUTO);
 //================================== 极光 =====================================
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);

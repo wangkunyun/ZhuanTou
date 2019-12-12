@@ -7,13 +7,23 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
+import com.ztkj.wky.zhuantou.bean.NoticeBean;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,14 +38,42 @@ public class NotificationActivity extends AppCompatActivity {
     @BindView(R.id.reView)
     RecyclerView reView;
 
+    private String TAG = "NotificationActivity";
+    private List<NoticeBean.DataBean> data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         ButterKnife.bind(this);
         layoutTitleTv.setText("通知");
-        reView.setLayoutManager(new LinearLayoutManager(this));
-        reView.setAdapter(new mAdapter());
+        request();
+
+    }
+
+    private void request() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.selectNotice)
+                .addParams("uid", SPUtils.getInstance().getString("uid"))
+                .addParams("page", "1")
+                .build().execute(new StringCallback() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "onResponse: " + response);
+                if (response != null) {
+                    NoticeBean noticeBean = GsonUtil.gsonToBean(response, NoticeBean.class);
+                    data = noticeBean.getData();
+                    if (data != null && data.size() > 0) {
+                        reView.setLayoutManager(new LinearLayoutManager(NotificationActivity.this));
+                        reView.setAdapter(new mAdapter());
+                    }
+                }
+            }
+        });
     }
 
     public static void start(Context context) {
@@ -59,18 +97,25 @@ public class NotificationActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+            Log.e(TAG, "onBindViewHolder: " + data.get(i).getSn_content());
+            viewHolder.tv_notificationTime.setText(data.get(i).getSn_time());
+            viewHolder.tv_notificationType.setText(data.get(i).getSn_name());
+            viewHolder.tv_notificationContent.setText(data.get(i).getSn_content());
         }
-
         @Override
         public int getItemCount() {
-            return 8;
+            return data.size();
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
+            private TextView tv_notificationTime, tv_notificationType, tv_notificationContent;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
+                tv_notificationTime = itemView.findViewById(R.id.tv_notificationTime);
+                tv_notificationType = itemView.findViewById(R.id.tv_notificationType);
+                tv_notificationContent = itemView.findViewById(R.id.tv_notificationContent);
+
             }
         }
     }

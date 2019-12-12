@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.R;
-import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
 import com.ztkj.wky.zhuantou.bean.ShopSearchBean;
 
 import java.util.List;

@@ -9,11 +9,14 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,16 +31,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-import com.ztkj.wky.zhuantou.Activity.live_shop.ConfirmOrderActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.RefundActivity;
 import com.ztkj.wky.zhuantou.MyUtils.GsonUtil;
+import com.ztkj.wky.zhuantou.MyUtils.PayResult;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.GuessLikeBean;
@@ -46,9 +53,11 @@ import com.ztkj.wky.zhuantou.bean.OrderBean;
 import com.ztkj.wky.zhuantou.bean.OrderDetailsBean;
 import com.ztkj.wky.zhuantou.bean.ShopKeyBean;
 import com.ztkj.wky.zhuantou.bean.ToastBean;
+import com.ztkj.wky.zhuantou.bean.WxPayBean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -111,6 +120,9 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
     private GuessLikeBean guessLikeBean;
     private List<GuessLikeBean.DataBean> GuessData;
     private String TAG = "WaitPayDetailsActivity";
+    PopupWindow window;
+    private int pay_default = 1;
+    private WxPayBean wxPayBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -324,7 +336,8 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
                 popuinit("是否确定取消订单吗？", "取消", "确认", data.getSso_sub_order_number(), "取消订单");
                 break;
             case R.id.tv_clickPay: //立即付款
-                ConfirmOrderActivity.startConfim(WaitPayDetailsActivity.this, dataBean);
+//                ConfirmOrderActivity.startConfim(WaitPayDetailsActivity.this, dataBean);
+                popuCoupon(dataBean);
                 break;
         }
     }
@@ -527,6 +540,191 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
             }
         });
         window.showAtLocation(rootview, Gravity.CENTER, 0, 0);
+    }
+
+    private void popuCoupon(OrderBean.DataBean dataBean) {
+        View contentView = LayoutInflater.from(WaitPayDetailsActivity.this).inflate(R.layout.pp_shop_pay, null);
+        //设置popuwindow是在父布局的哪个地方显示
+        backgroundAlpha(0.6f);
+        //下面是p里面的东西
+        RelativeLayout wx = contentView.findViewById(R.id.tv_pay_wx);
+        RelativeLayout zfb = contentView.findViewById(R.id.tv_pay_zfb);
+        Button pp1_btn = contentView.findViewById(R.id.pp1_btn);
+        ImageView wx_iv = contentView.findViewById(R.id.iv_pay_wx);
+        ImageView zfb_iv = contentView.findViewById(R.id.iv_pay_zfb);
+        TextView total_price = contentView.findViewById(R.id.total_price);
+        View rootview = LayoutInflater.from(WaitPayDetailsActivity.this).inflate(R.layout.activity_confirm_order, null);
+        setViewDow(contentView, rootview);
+        Double doublePeice = 0.0;
+        String totalPrice;
+
+        for (int i = 0; i < dataBean.getArr().size(); i++) {
+            if (dataBean.getArr().get(i).getSog_total_price() != null) {
+                doublePeice += Double.parseDouble(dataBean.getArr().get(i).getSog_total_price());
+            }
+        }
+        totalPrice = String.valueOf(doublePeice);
+        if (totalPrice != null) {
+            total_price.setText("¥" + totalPrice);
+        }
+        wx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pay_default = 1;
+                wx_iv.setVisibility(View.VISIBLE);
+                zfb_iv.setVisibility(View.INVISIBLE);
+            }
+        });
+        zfb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pay_default = 2;
+                wx_iv.setVisibility(View.INVISIBLE);
+                zfb_iv.setVisibility(View.VISIBLE);
+            }
+        });
+        pp1_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (pay_default) {
+                    case 1:
+                        getWxPay(dataBean);
+                        break;
+                    case 2:
+                        getZfbPay(dataBean);
+                        break;
+                }
+            }
+        });
+    }
+
+    private void getWxPay(OrderBean.DataBean dataBean) {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.wxpayOrder)
+                .addParams("order_id", dataBean.getSso_sub_order_number())
+                .addParams("uid", SPUtils.getInstance().getString("uid"))
+                .addParams("total", "0.01")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("wky", "onResponse: " + response);
+                        WxPayBean wxPayBean = new Gson().fromJson(response, WxPayBean.class);
+                        if (wxPayBean != null) {
+                            setWxPayBean(wxPayBean);
+                        }
+                    }
+                });
+    }
+
+    private void setWxPayBean(WxPayBean wxPay) {
+        if (wxPay.getErrno().equals("200")) {
+            //通过IWXAPI 获取到其对象  然后将自己的应用注册到微信
+            IWXAPI api = WXAPIFactory.createWXAPI(WaitPayDetailsActivity.this, wxPay.getData().getAppid(), true);
+            api.registerApp(wxPay.getData().getAppid());
+            //通过如下代码调起微信支付
+            PayReq request = new PayReq();
+            request.appId = wxPay.getData().getAppid();
+            request.partnerId = wxPay.getData().getPartnerid();
+            request.prepayId = wxPay.getData().getPrepayid();
+            request.packageValue = "Sign=WXPay";
+            request.nonceStr = wxPay.getData().getNoncestr();
+            request.timeStamp = String.valueOf(wxPay.getData().getTimestamp());
+            request.sign = wxPay.getData().getSign();
+            api.sendReq(request);
+        } else {
+            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+            ToastUtils.showShort(wxPay.getErrmsg());
+        }
+    }
+
+    //异步处理
+    private static final int SDK_ALI_PAY_FLAG = 1;
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SDK_ALI_PAY_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                    /**
+                     对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                     */
+                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    String resultStatus = payResult.getResultStatus();
+                    String result = "";
+                    // 判断resultStatus 为9000则代表支付成功
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        //支付成功
+                        result = "支付成功";
+//                        aliPaySuccess();
+                    } else if ("6001".equals(resultStatus)) {
+                        result = "您取消了支付";
+                    } else {
+                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        result = "支付失败";
+                    }
+//                    ToastUtils.showToast(mContext, result);
+                    Toast.makeText(WaitPayDetailsActivity.this, result, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+            }
+        }
+    };
+    Runnable payRunnable = new Runnable() {
+        @Override
+        public void run() {
+            PayTask alipay = new PayTask(WaitPayDetailsActivity.this);
+            Map<String, String> result = alipay.payV2(wxPayBean.getData().getResponse(), true);
+            Log.i("msp", result.toString());
+            Message msg = new Message();
+            msg.what = SDK_ALI_PAY_FLAG;
+            msg.obj = result;
+            mHandler.sendMessage(msg);
+        }
+    };
+    private void getZfbPay(OrderBean.DataBean dataBean) {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.zfbPayOrder)
+                .addParams("order_id", dataBean.getSso_sub_order_number())
+                .addParams("uid", SPUtils.getInstance().getString("uid"))//totalPrice
+                .addParams("total", "0.01")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        wxPayBean = new Gson().fromJson(response, WxPayBean.class);
+                        if (wxPayBean.getErrno().equals("200")) {
+                            // 必须异步调用
+                            Thread payThread = new Thread(payRunnable);
+                            payThread.start();
+                        } else {
+                            ToastUtils.showShort(wxPayBean.getErrmsg());
+                        }
+                    }
+                });
+
+    }
+    private void setViewDow(View view, View rootview) {
+        window = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+        window.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
+        window.setOutsideTouchable(true);
+        window.setTouchable(true);
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                backgroundAlpha(1f);
+                window.dismiss();
+            }
+        });
+        window.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
     }
 
     public void backgroundAlpha(float bgAlpha) {

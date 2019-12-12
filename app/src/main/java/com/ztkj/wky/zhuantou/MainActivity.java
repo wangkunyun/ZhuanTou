@@ -26,6 +26,8 @@ import com.gyf.immersionbar.ImmersionBar;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.utils.SharedPreferencesHelper;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.MPermissionUtils;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
@@ -86,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         sharedPreferencesHelper = new SharedPreferencesHelper(MainActivity.this, "anhua");
         phone = (String) sharedPreferencesHelper.getSharedPreference("phone", "");
         password = (String) sharedPreferencesHelper.getSharedPreference("password", "");
+        UMConfigure.init(this, "5def28c80cafb2c5ce0002ad", "ZHUANTOU", UMConfigure.DEVICE_TYPE_PHONE, null);
+
         //如果之前登录过，APP 长期在后台再进的时候也可能会导致加载到内存的群组和会话为空
         // ，可以在主页面的 oncreate 里也加上这两句代码，当然，更好的办法应该是放在程序的开屏页。
         Contents.localVersion = getLocalVersionName(this);
@@ -414,4 +418,15 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         return hex.toString();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 }

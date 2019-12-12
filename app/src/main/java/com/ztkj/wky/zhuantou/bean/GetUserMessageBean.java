@@ -6,7 +6,7 @@ public class GetUserMessageBean {
     /**
      * errno : 200
      * errmsg : success
-     * data : {"reach":"0","uid":"11","username":"大大云","phone":"15721695007","type":"0","name":"大大云","integral":"173","head":"https://api.zhuantoukj.com/birck/Public/heard/2019-09-05/5d70cef697b8e.png","sex":"0","area":"0","birthday":"","address":"","cname":"北京砖头智能科技有限公司","caddress":"北京 北京市 通州区 侨商中心园区 侨商 1号楼 A座 10层 1011室","balance":"0","real_name":"0"}
+     * data : {"reach":"0","shop_collection_count":"1","shop_footprint_count":"5","uid":"11","username":"王坤云","phone":"15721695007","type":"0","name":"大大云","integral":"1234577","head":"https://api.zhuantoukj.com/birck/Public/heard/2019-09-05/5d70cef697b8e.png","sex":"1","area":"0","birthday":"","address":"","cname":"北京砖头智能科技有限公司","caddress":"北京 北京市 通州区 侨商中心园区 侨商 1号楼 A座 10层 1011室","balance":"0.03","real_name":"1","automatic_payment":"0","license_plate_number":"晋MFF218"}
      */
 
     private String errno;
@@ -40,24 +40,30 @@ public class GetUserMessageBean {
     public static class DataBean {
         /**
          * reach : 0
+         * shop_collection_count : 1
+         * shop_footprint_count : 5
          * uid : 11
-         * username : 大大云
+         * username : 王坤云
          * phone : 15721695007
          * type : 0
          * name : 大大云
-         * integral : 173
+         * integral : 1234577
          * head : https://api.zhuantoukj.com/birck/Public/heard/2019-09-05/5d70cef697b8e.png
-         * sex : 0
+         * sex : 1
          * area : 0
          * birthday :
          * address :
          * cname : 北京砖头智能科技有限公司
          * caddress : 北京 北京市 通州区 侨商中心园区 侨商 1号楼 A座 10层 1011室
-         * balance : 0
-         * real_name : 0
+         * balance : 0.03
+         * real_name : 1
+         * automatic_payment : 0
+         * license_plate_number : 晋MFF218
          */
 
         private String reach;
+        private String shop_collection_count;
+        private String shop_footprint_count;
         private String uid;
         private String username;
         private String phone;
@@ -73,8 +79,16 @@ public class GetUserMessageBean {
         private String caddress;
         private String balance;
         private String real_name;
-        private String shop_collection_count;
-        private String shop_footprint_count;
+        private String automatic_payment;
+        private String license_plate_number;
+
+        public String getReach() {
+            return reach;
+        }
+
+        public void setReach(String reach) {
+            this.reach = reach;
+        }
 
         public String getShop_collection_count() {
             return shop_collection_count;
@@ -90,14 +104,6 @@ public class GetUserMessageBean {
 
         public void setShop_footprint_count(String shop_footprint_count) {
             this.shop_footprint_count = shop_footprint_count;
-        }
-
-        public String getReach() {
-            return reach;
-        }
-
-        public void setReach(String reach) {
-            this.reach = reach;
         }
 
         public String getUid() {
@@ -218,6 +224,22 @@ public class GetUserMessageBean {
 
         public void setReal_name(String real_name) {
             this.real_name = real_name;
+        }
+
+        public String getAutomatic_payment() {
+            return automatic_payment;
+        }
+
+        public void setAutomatic_payment(String automatic_payment) {
+            this.automatic_payment = automatic_payment;
+        }
+
+        public String getLicense_plate_number() {
+            return license_plate_number;
+        }
+
+        public void setLicense_plate_number(String license_plate_number) {
+            this.license_plate_number = license_plate_number;
         }
     }
 }
