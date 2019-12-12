@@ -79,25 +79,92 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.live_shop.RecorderActivity"></activity>
-        <activity android:name=".Activity.live_shop.order.orderdetails.AlreadySendDetailsActivity" />
-        <activity android:name=".Activity.live_shop.order.orderdetails.AlreadyPayDetailsActivity" />
-        <activity android:name=".Activity.live_shop.order.orderdetails.WaitPayDetailsActivity" />
-        <activity android:name=".Activity.mine.NotificationActivity" />
-        <activity android:name=".Activity.live_shop.order.RefundActivity" />
-        <activity android:name=".Activity.live_shop.CollectShopActivity" />
-        <activity android:name=".Activity.live_shop.EditAddressActivity" />
-        <activity android:name=".Activity.live_shop.CreateAddressActivity" />
-        <activity android:name=".Activity.live_shop.ShopCartActivity" />
-        <activity android:name=".Activity.live_shop.order.TradeLogisticsActivity" />
-        <activity android:name=".Activity.live_shop.invoice.InvoiceDetailsFinishActivity" />
-        <activity android:name=".Activity.live_shop.invoice.InvoiceDetailsWaitActivity" />
-        <activity android:name=".Activity.live_shop.invoice.ApplyInvoiceActivity" />
-        <activity android:name=".Activity.live_shop.ShopClassActivity" />
-        <activity android:name=".Activity.live_shop.order.OrderTabActivity" />
-        <activity android:name=".Activity.live_shop.store.ShopStoreActivity" />
-        <activity android:name=".landing.NewLoginActivity" />
-        <activity android:name=".Activity.oa.punch.StatisticalDetailsActivity" />
+        <activity android:name=".Activity.live_shop.SearchShopsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            />
+
+        <activity android:name=".Activity.live_shop.SearchShopActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.RecorderActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.order.orderdetails.AlreadySendDetailsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.order.orderdetails.AlreadyPayDetailsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.order.orderdetails.WaitPayDetailsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.mine.NotificationActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.order.RefundActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.CollectShopActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.EditAddressActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.CreateAddressActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.ShopCartActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.order.TradeLogisticsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.invoice.InvoiceDetailsFinishActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.invoice.InvoiceDetailsWaitActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.invoice.ApplyInvoiceActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.ShopClassActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.order.OrderTabActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".Activity.live_shop.store.ShopStoreActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            />
+        <activity android:name=".landing.NewLoginActivity"
+
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".Activity.oa.punch.StatisticalDetailsActivity"
+
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Activity.oa.punch.ApplyReissuePunchinActivity"
             android:screenOrientation="portrait"
