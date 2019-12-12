@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ShopStoreActivity extends AppCompatActivity {
+public class ShopStoreActivity extends AppCompatActivity implements StoreAllShopFragment.ShopOpenDrawerListen {
 
     @BindView(R.id.layout_back)
     ImageView layoutBack;
@@ -85,6 +86,13 @@ public class ShopStoreActivity extends AppCompatActivity {
                 break;
             case R.id.more:
                 break;
+        }
+    }
+
+    @Override
+    public void open() {
+        if (mDrawer != null) {
+            mDrawer.openDrawer(Gravity.END);
         }
     }
 

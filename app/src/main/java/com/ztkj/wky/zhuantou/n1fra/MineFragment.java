@@ -156,7 +156,6 @@ public class MineFragment extends Fragment {
         if (!StringUtils.isEmpty(uid)) {
             gi(token);
             initReorder();
-            initCollectData();
         } else {
             gi("");
         }
@@ -165,36 +164,7 @@ public class MineFragment extends Fragment {
 
     RecorderBean recorderBean;
     int page = 1;
-    CollecShopBean collecShopBean;
 
-    private void initCollectData() {
-        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.getCollectList)
-                .addParams("uid", uid)
-                .addParams("page", String.valueOf(page))
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        collecShopBean = new Gson().fromJson(response, CollecShopBean.class);
-                        if (collecShopBean != null) {
-                            if (collecShopBean.getErrno().equals("200")) {
-                                if (collecShopBean.getData() != null) {
-                                    int num = collecShopBean.getData().size();
-                                    tvMineCollect.setText(String.valueOf(num));
-                                } else {
-                                    tvMineCollect.setText("0");
-                                }
-
-                            }
-                        }
-                    }
-                });
-    }
 
     private void initReorder() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.trajectoryList)
@@ -211,17 +181,6 @@ public class MineFragment extends Fragment {
                     public void onResponse(String response) {
                         if (response != null) {
                             recorderBean = new Gson().fromJson(response, RecorderBean.class);
-                            if (recorderBean.getErrno().equals("200")) {
-                                if (recorderBean.getData() != null) {
-                                    int num = recorderBean.getData().size();
-                                    tvMineBrowsingHis.setText(String.valueOf(num));
-                                } else {
-                                    tvMineBrowsingHis.setText("0");
-                                }
-
-                            } else {
-                                ToastUtils.showShort(recorderBean.getErrmsg());
-                            }
                         }
                     }
                 });
@@ -257,6 +216,12 @@ public class MineFragment extends Fragment {
                             SPUtils.getInstance().put("isrenzheng", getUserMessageBean.getData().getReal_name());
                             SPUtils.getInstance().put("realname", getUserMessageBean.getData().getName());
                             SPUtils.getInstance().put("balance", getUserMessageBean.getData().getBalance());
+                            if(getUserMessageBean.getData().getShop_footprint_count()!=null){
+                                tvMineBrowsingHis.setText(getUserMessageBean.getData().getShop_footprint_count());
+                            }
+                            if(getUserMessageBean.getData().getShop_collection_count()!=null){
+                                tvMineCollect.setText(getUserMessageBean.getData().getShop_collection_count());
+                            }
                             if ("0".equals(getUserMessageBean.getData().getUsername())) {
                                 tvMinePersonName.setText("暂无昵称");
                             } else {

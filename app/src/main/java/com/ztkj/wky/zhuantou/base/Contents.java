@@ -416,5 +416,16 @@ public class Contents {
     public static final String ApplyInvoice = "Index/invoice";
     //查询开票状态
     public static final String invoiceType = "Index/invoiceType";
-
+    //商城分类接口
+    public static final String shopcataoty = "/Index/acquisitionClassification";
+    //商城列表接口
+    public static final String shopList = "Index/productList";
+    //获取关键字
+    public static final String getKeyWord = "Index/selectKeyWord";
+    //获取商城banner
+    public static final String getShopBanner = "Index/banner";
+    //h活动专区
+    public static final String getSelect = "Index/selectActivity";
+    //活动专区列表
+    public static final String getSelectList = "Index/selectActivityList";
 }

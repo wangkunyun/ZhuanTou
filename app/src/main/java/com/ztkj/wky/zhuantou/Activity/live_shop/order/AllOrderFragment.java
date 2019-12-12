@@ -377,7 +377,12 @@ public class AllOrderFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return arr.size();
+            if(arr!=null){
+                return arr.size();
+            }else{
+                return 0;
+            }
+
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {

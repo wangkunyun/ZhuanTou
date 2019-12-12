@@ -16,6 +16,15 @@ public class OrderBean implements Serializable {
     private String errmsg;
     private List<DataBean> data;
 
+    @Override
+    public String toString() {
+        return "OrderBean{" +
+                "errno='" + errno + '\'' +
+                ", errmsg='" + errmsg + '\'' +
+                ", data=" + data +
+                '}';
+    }
+
     public String getErrno() {
         return errno;
     }
@@ -57,6 +66,21 @@ public class OrderBean implements Serializable {
         private boolean isSelect;
         private String so_addtime;
         private String ss_id;
+
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "ss_name='" + ss_name + '\'' +
+                    ", ss_logo='" + ss_logo + '\'' +
+                    ", sso_state='" + sso_state + '\'' +
+                    ", sso_sub_order_number='" + sso_sub_order_number + '\'' +
+                    ", so_order_number='" + so_order_number + '\'' +
+                    ", isSelect=" + isSelect +
+                    ", so_addtime='" + so_addtime + '\'' +
+                    ", ss_id='" + ss_id + '\'' +
+                    ", arr=" + arr +
+                    '}';
+        }
 
         public DataBean(String ss_id) {
             this.ss_id = ss_id;
@@ -176,6 +200,33 @@ public class OrderBean implements Serializable {
             private String ssc_sku_name;
             private String ssc_store_id;
             private String ssc_sc_id;
+
+
+            @Override
+            public String toString() {
+                return "ArrBean{" +
+                        "sog_id='" + sog_id + '\'' +
+                        ", sog_sub_order_id='" + sog_sub_order_id + '\'' +
+                        ", sog_commodity_id='" + sog_commodity_id + '\'' +
+                        ", sog_name='" + sog_name + '\'' +
+                        ", sog_sku_id='" + sog_sku_id + '\'' +
+                        ", sog_sku_name='" + sog_sku_name + '\'' +
+                        ", sog_number='" + sog_number + '\'' +
+                        ", sog_unit_price='" + sog_unit_price + '\'' +
+                        ", sog_total_price='" + sog_total_price + '\'' +
+                        ", sc_img='" + sc_img + '\'' +
+                        ", sog_refund_type='" + sog_refund_type + '\'' +
+                        ", isSelect=" + isSelect +
+                        ", ssc_sku_id='" + ssc_sku_id + '\'' +
+                        ", ssc_id='" + ssc_id + '\'' +
+                        ", ssc_name='" + ssc_name + '\'' +
+                        ", ssc_number='" + ssc_number + '\'' +
+                        ", ssc_unit_price='" + ssc_unit_price + '\'' +
+                        ", ssc_sku_name='" + ssc_sku_name + '\'' +
+                        ", ssc_store_id='" + ssc_store_id + '\'' +
+                        ", ssc_sc_id='" + ssc_sc_id + '\'' +
+                        '}';
+            }
 
             public String getSsc_sku_id() {
                 return ssc_sku_id;

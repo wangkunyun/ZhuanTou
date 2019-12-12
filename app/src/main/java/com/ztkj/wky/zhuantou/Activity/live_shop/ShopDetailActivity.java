@@ -1,5 +1,4 @@
 package com.ztkj.wky.zhuantou.Activity.live_shop;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -15,32 +14,34 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.gyf.immersionbar.ImmersionBar;
 import com.squareup.okhttp.Request;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-import com.zhy.view.flowlayout.FlowLayout;
-import com.zhy.view.flowlayout.TagAdapter;
-import com.zhy.view.flowlayout.TagFlowLayout;
+import com.ztkj.wky.zhuantou.Activity.live_shop.store.ShopStoreActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.CouponAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopDetailAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopListAdapter;
+import com.ztkj.wky.zhuantou.adapter.ShopColorAdapter;
+import com.ztkj.wky.zhuantou.adapter.ShopMateralAdapter;
 import com.ztkj.wky.zhuantou.adapter.ShopParamAdapter;
+import com.ztkj.wky.zhuantou.adapter.ShopSizeAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.BaseStatusBean;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
@@ -50,14 +51,11 @@ import com.ztkj.wky.zhuantou.bean.ShopKeyBean;
 import com.ztkj.wky.zhuantou.bean.ShopParamBean;
 import com.ztkj.wky.zhuantou.bean.ShopSizeBean;
 import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
-
 import static com.ztkj.wky.zhuantou.base.Contents.addCart;
 import static com.ztkj.wky.zhuantou.base.Contents.getCoupon;
 import static com.ztkj.wky.zhuantou.base.Contents.getShopParam;
@@ -101,9 +99,10 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     TextView tv_origin_price;
     @BindView(R.id.more)
     ImageView more;
-
     @BindView(R.id.iv_shop)
     CircleImageView iv_shop;
+    @BindView(R.id.layout_tvSearch)
+    TextView layout_tvSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,9 +142,14 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         if (shopDetailId != null) {
             initDetailData();
         }
+        layout_tvSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SearchShopsActivity.start(ShopDetailActivity.this);
+            }
+        });
 
     }
-
 
     ShopDetailBean shopDetailBean;
 
@@ -331,7 +335,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     private void getShopPop(int postion) {
         if (skuBean.getData().getArr().size() != 0) {
             for (int i = 0; i < skuBean.getData().getArr().size(); i++) {
-                if(listColor.size()!=skuBean.getData().getArr().size()){
+                if (listColor.size() != skuBean.getData().getArr().size()) {
                     ShopBeanSize shopBeanSize = new ShopBeanSize();
                     shopBeanSize.setSk_id(skuBean.getData().getArr().get(i).getSk_id());
                     shopBeanSize.setSk_name(skuBean.getData().getArr().get(i).getSk_name());
@@ -339,7 +343,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                     shopBeanSize.setSk_price(skuBean.getData().getArr().get(i).getSk_price());
                     listColor.add(shopBeanSize);
                 }
-
                 if (postion == i) {
                     if (skuBean.getData().getArr().get(postion).getSk_arr().getArr().size() != 0) {
                         for (int j = 0; j < skuBean.getData().getArr().get(postion).getSk_arr().getArr().size(); j++) {
@@ -367,6 +370,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 }
 
             }
+
         }
     }
 
@@ -381,7 +385,15 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         private String sk_price;
         private String sk_name;
         private String sk_id;
+        private boolean isSelect;
 
+        public boolean isSelect() {
+            return isSelect;
+        }
+
+        public void setSelect(boolean select) {
+            isSelect = select;
+        }
 
         public String getSk_stock() {
             return sk_stock;
@@ -457,7 +469,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("wky", "onResponse: " + response);
                         if (response != null) {
                             guessLikeBean = new Gson().fromJson(response, ShopHomeBean.class);
                             if (guessLikeBean != null) {
@@ -479,8 +490,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         LiveShopAdapter liveShopAdapter = new LiveShopAdapter(ShopDetailActivity.this, listGuessBean);
         guess_like_list.setLayoutManager(new GridLayoutManager(ShopDetailActivity.this, 2));
         guess_like_list.setAdapter(liveShopAdapter);
-//        liveShopGuessAdapter.setGuess(listGuessBean);
-//        liveShopGuessAdapter.notifyDataSetChanged();
     }
 
     StringBuilder stringBuilder;
@@ -562,13 +571,14 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     PopupWindow window;
 
     private void setViewDow(View view, View rootview) {
+        setKey();
         window = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
         window.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
         window.setOutsideTouchable(true);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                if (tagAdapter != null) {
+                if (shopColorAdapter != null) {
                     closePopu();
                 }
                 windowDissMiss();
@@ -580,6 +590,9 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     TextView numTv;
     Button btnConfirm;
     TextView origin_price;
+    ShopMateralAdapter shopMateralAdapter;
+    ShopSizeAdapter shopSizeAdapter;
+    ShopColorAdapter shopColorAdapter;
 
     private void popuSize() {
         View contentView = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.pp_shop_size, null);
@@ -598,12 +611,58 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         RelativeLayout reduce_shop_cart = contentView.findViewById(R.id.reduce_shop_cart);
         RelativeLayout add_shop_cart = contentView.findViewById(R.id.add_shop_cart);
         numTv = contentView.findViewById(R.id.num);
+        shopColorAdapter = new ShopColorAdapter(ShopDetailActivity.this);
+        shopSizeAdapter = new ShopSizeAdapter(ShopDetailActivity.this);
+        shopMateralAdapter = new ShopMateralAdapter(ShopDetailActivity.this);
+        lvTagColor.setAdapter(shopColorAdapter);
+        lvTagMatarel.setAdapter(shopMateralAdapter);
+        lvTagSize.setAdapter(shopSizeAdapter);
         Glide.with(ShopDetailActivity.this).load(shopDetailBean.getData().getSc_img()).into(iv_cover);
         if (shopDetailBean.getData().getSc_present_price() != null) {
             tv_price.setText(Contents.moneyTag + shopDetailBean.getData().getSc_present_price());
             origin_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             origin_price.setText(Contents.moneyTag + shopDetailBean.getData().getSc_original_price());
         }
+        lvTagColor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                for (int g = 0; g < listColor.size(); g++) {
+                    listColor.get(g).setSelect(false);
+                }
+                listColor.get(i).setSelect(true);
+                shopColorAdapter.setData(listColor);
+                tagSelect = i;
+                notifyAfapter();
+                String sizeId = listColor.get(i).getSk_id();
+                getForSize(sizeId);
+            }
+        });
+        lvTagMatarel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                for (int g = 0; g < listMateral.size(); g++) {
+                    listMateral.get(g).setSelect(false);
+                }
+                listMateral.get(i).setSelect(true);
+                shopMateralAdapter.setData(listMateral);
+                tagSizeSelect = i;
+                String sizeId = listMateral.get(i).getSk_id();
+                getForSize(sizeId);
+            }
+        });
+        lvTagSize.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                for (int g = 0; g < listSize.size(); g++) {
+                    listSize.get(g).setSelect(false);
+                }
+                listSize.get(i).setSelect(true);
+                shopSizeAdapter.setData(listSize);
+                tagLastSelect = i;
+                String sizeId = listSize.get(i).getSk_id();
+                getForSize(sizeId);
+            }
+        });
         initColorAdater();
         initMateralAdater();
         initSizeAdater();
@@ -612,24 +671,32 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         reduce_shop_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                num = Integer.parseInt(numTv.getText().toString());
-                if (num > 1) {
-                    num--;
+                if (stock != null) {
+                    num = Integer.parseInt(numTv.getText().toString());
+                    if (num > 1) {
+                        num--;
+                    }
+                    numTv.setText(String.valueOf(num));
                 }
-                numTv.setText(String.valueOf(num));
+
             }
         });
         add_shop_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                num = Integer.parseInt(numTv.getText().toString());
-                num++;
-                if (num > Integer.parseInt(stock)) {
-                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
-                    ToastUtils.showShort("库存不足");
-                    return;
+                if (stock != null) {
+                    num = Integer.parseInt(numTv.getText().toString());
+                    num++;
+                    if (num > Integer.parseInt(stock)) {
+                        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                        ToastUtils.showShort("库存不足");
+                        return;
+                    }
+                    numTv.setText(String.valueOf(num));
+                } else {
+                    ToastUtils.showShort("请选择商品属性");
                 }
-                numTv.setText(String.valueOf(num));
+
             }
         });
         btnConfirm.setOnClickListener(new View.OnClickListener() {
@@ -668,67 +735,36 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     private void closePopu() {
         if (listColor != null && listColor.size() > 0) {
             listColor.clear();
-            if (tagAdapter != null) {
-                tagAdapter = null;
-            }
         }
-        tagSelect = -1;
+        tagSelect = 0;
         notifyAfapter();
         windowDissMiss();
+        setrestoreKey();
+    }
+
+    private void setrestoreKey() {
+        ImmersionBar.with(this)
+                .statusBarColor(R.color.lanse)     //状态栏颜色，不写默认透明色
+//                .hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
+                .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
+                .fullScreen(true)
+                .init();
     }
 
     int num;
     TextView tv_select_size, tv_price;
-    TagFlowLayout lvTagColor, lvTagMatarel, lvTagSize;
-    TagAdapter tagAdapter, tagMateralAdapter, tagSizeAdapter;
+    GridView lvTagColor, lvTagMatarel, lvTagSize;
     ImageView close;
 
     private void initColorAdater() {
-        if (tagAdapter != null) {
-            tagAdapter.setSelectedList(tagSelect);
-        } else {
-            tagAdapter = new TagAdapter<ShopBeanSize>(listColor) {
-                @Override
-                public View getView(FlowLayout parent, int position, ShopBeanSize shopBeanSize) {
-                    View view = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.item_conlust_layout, lvTagColor, false);
-                    TextView tv = view.findViewById(R.id.content);
-                    tv.setText(shopBeanSize.getSk_name());
-                    return tv;
-                }
-
-                @Override
-                public void onSelected(int position, View view) {
-                    super.onSelected(position, view);
-                    tagSelect = position;
-                    TextView tv = view.findViewById(R.id.content);
-                    tv.setTextColor(getResources().getColor(R.color.white));
-                    tv.setSelected(true);
-                    notifyAfapter();
-                    String sizeId = listColor.get(position).getSk_id();
-                    getForSize(sizeId);
-                }
-
-                @Override
-                public void unSelected(int position, View view) {
-                    super.unSelected(position, view);
-                    View views = view;
-                    TextView tv = views.findViewById(R.id.content);
-                    tv.setTextColor(getResources().getColor(R.color.t2));
-                    tv.setSelected(false);
-                }
-            };
-            lvTagColor.setAdapter(tagAdapter);
-            tagAdapter.setSelectedList(0);
-        }
-
-
+        listColor.get(0).setSelect(true);
+        shopColorAdapter.setData(listColor);
+        shopColorAdapter.notifyDataSetChanged();
     }
 
     private void notifyAfapter() {
         listMateral.clear();
         listSize.clear();
-        tagMateralAdapter = null;
-        tagSizeAdapter = null;
         if (tagSelect > -1) {
             tagLastSelect = 0;
             tagSizeSelect = 0;
@@ -746,71 +782,13 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initMateralAdater() {
-        tagMateralAdapter = new TagAdapter<ShopBeanSize>(listMateral) {
-            @Override
-            public View getView(FlowLayout parent, int position, ShopBeanSize shopBeanSize) {
-                View view = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.item_conlust_layout, lvTagColor, false);
-                TextView tv = view.findViewById(R.id.content);
-                tv.setText(shopBeanSize.getSk_name());
-                return tv;
-            }
-
-            @Override
-            public void onSelected(int position, View view) {
-                super.onSelected(position, view);
-
-                tagSizeSelect = position;
-                TextView tv = view.findViewById(R.id.content);
-                tv.setTextColor(getResources().getColor(R.color.white));
-                tv.setBackground(getResources().getDrawable(R.drawable.yuanjiaobtnfourseklect));
-                String sizeId = listMateral.get(position).getSk_id();
-                getForSize(sizeId);
-            }
-
-            @Override
-            public void unSelected(int position, View view) {
-                super.unSelected(position, view);
-                View views = view;
-                TextView tv = views.findViewById(R.id.content);
-                tv.setTextColor(getResources().getColor(R.color.t2));
-                tv.setBackground(getResources().getDrawable(R.drawable.yuanjiaobtnfours));
-            }
-        };
-        lvTagMatarel.setAdapter(tagMateralAdapter);
+        shopMateralAdapter.setData(listMateral);
+        lvTagMatarel.setAdapter(shopMateralAdapter);
     }
 
     private void initSizeAdater() {
-        tagSizeAdapter = new TagAdapter<ShopBeanSize>(listSize) {
-            @Override
-            public View getView(FlowLayout parent, int position, ShopBeanSize shopBeanSize) {
-                View view = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.item_conlust_layout, lvTagColor, false);
-                TextView tv = view.findViewById(R.id.content);
-                tv.setText(shopBeanSize.getSk_name());
-                return tv;
-            }
-
-            @Override
-            public void onSelected(int position, View view) {
-                super.onSelected(position, view);
-                tagLastSelect = position;
-                TextView tv = view.findViewById(R.id.content);
-                tv.setTextColor(getResources().getColor(R.color.white));
-                tv.setBackground(getResources().getDrawable(R.drawable.yuanjiaobtnfourseklect));
-                String sizeId = listSize.get(position).getSk_id();
-                getForSize(sizeId);
-
-            }
-
-            @Override
-            public void unSelected(int position, View view) {
-                super.unSelected(position, view);
-                View views = view;
-                TextView tv = views.findViewById(R.id.content);
-                tv.setTextColor(getResources().getColor(R.color.t2));
-                tv.setBackground(getResources().getDrawable(R.drawable.yuanjiaobtnfours));
-            }
-        };
-        lvTagSize.setAdapter(tagSizeAdapter);
+        shopSizeAdapter.setData(listSize);
+        lvTagSize.setAdapter(shopSizeAdapter);
     }
 
 
@@ -876,7 +854,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
             }
         }
-        if(stock!=null){
+        if (stock != null) {
             if (Integer.parseInt(stock) > 0) {
                 numTv.setText(String.valueOf(1));
                 btnConfirm.setEnabled(true);
@@ -954,6 +932,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.rela_selelct_param:
                 if (listParam != null && listParam.size() > 0) {
+
                     popuinit();
                 } else {
                     ToastUtils.setGravity(Gravity.CENTER, 0, 0);
@@ -990,12 +969,21 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 ShopCartActivity.start(ShopDetailActivity.this);
                 break;
             case R.id.shop:
-
+                ShopStoreActivity.start(ShopDetailActivity.this);
                 break;
             case R.id.more:
                 popuShare(view);
                 break;
         }
+    }
+
+    private void setKey() {
+        ImmersionBar.with(this)
+                .statusBarColor(R.color.lanse)     //状态栏颜色，不写默认透明色
+//                .hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
+//                .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
+                .fullScreen(true)
+                .init();
     }
 
 
@@ -1143,6 +1131,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 windowDissMiss();
+                setrestoreKey();
             }
         });
 

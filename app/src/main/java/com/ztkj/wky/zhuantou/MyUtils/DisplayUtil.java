@@ -7,6 +7,7 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -55,7 +56,11 @@ public class DisplayUtil {
     }
 
 
+    public static void showKeyboard(Context context) {
+        InputMethodManager imm = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 
+    }
 
 
 

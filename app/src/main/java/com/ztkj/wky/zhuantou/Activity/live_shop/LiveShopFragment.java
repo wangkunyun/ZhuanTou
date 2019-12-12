@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.LiveShopFragAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.BannerBean;
+import com.ztkj.wky.zhuantou.bean.ShopCatatoryBean;
 import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
 import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
@@ -46,7 +48,7 @@ public class LiveShopFragment extends Fragment {
     LiveShopFragAdapter liveShopFragAdapter;
     private String banner_url = StringUtils.jiekouqianzui + "Article/bannerShop";
     Intent intent;
-
+    List<ShopCatatoryBean.DataBean> listShopCatratiry;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class LiveShopFragment extends Fragment {
         recycle_shop_list.setAdapter(liveShopFragAdapter);
         Listdata();
         uid = SPUtils.getInstance().getString("uid");
+        initShopCatatory();
         if (uid != null) {
             initShopList(uid);
         } else {
@@ -79,6 +82,31 @@ public class LiveShopFragment extends Fragment {
 
         return view;
     }
+
+
+    ShopCatatoryBean shopCatatoryBean;
+
+    private void initShopCatatory() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.shopcataoty)
+                .addParams("", "")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        shopCatatoryBean = new Gson().fromJson(response, ShopCatatoryBean.class);
+                        if(shopCatatoryBean!=null){
+                            listShopCatratiry=shopCatatoryBean.getData();
+                            liveShopFragAdapter.setShopCatarory(listShopCatratiry);
+                        }
+                    }
+                });
+    }
+
 
     int pageNum = 1;
     String uid;
@@ -91,7 +119,7 @@ public class LiveShopFragment extends Fragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-                       ToastUtils.showShort(e.getMessage());
+                        ToastUtils.showShort(e.getMessage());
                     }
 
                     @Override
@@ -122,8 +150,8 @@ public class LiveShopFragment extends Fragment {
 
     private void Listdata() {
         OkHttpUtils.post()
-                .url(banner_url)
-                .addParams("token", "")
+                .url(Contents.SHOPBASE+Contents.getShopBanner)
+                .addParams("", "")
                 .build()
                 .execute(new StringCallback() {
                     @Override

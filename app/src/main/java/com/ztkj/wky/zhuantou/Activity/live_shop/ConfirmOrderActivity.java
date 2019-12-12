@@ -131,10 +131,13 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                 for (int i = 0; i < serInfos.size(); i++) {
                     if (serInfos.get(i).getArr() != null) {
                         for (int j = 0; j < serInfos.get(i).getArr().size(); j++) {
-                            if (j != 0) {
+//                            if (j != 0) {
+//                                stringBuilder.append(",");
+//                            }
+                            stringBuilder.append(serInfos.get(i).getArr().get(j).getSsc_id());
+                            if (j != serInfos.get(i).getArr().size() - 1) {
                                 stringBuilder.append(",");
                             }
-                            stringBuilder.append(serInfos.get(i).getArr().get(j).getSsc_id());
                         }
                     }
                 }
@@ -166,6 +169,11 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     OrderBean.DataBean orderDataBeans;
     String totalPrice;
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        serInfos=null;
+    }
 
     @Override
     public void onClick(View view) {
@@ -338,6 +346,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                             if (orderInfo != null && orderInfo.getData().getOrder_number() != null) {
                                 orderId = orderInfo.getData().getOrder_number();
                                 popuCoupon();
+//                                ssc_id=null;
                             }
                         } else {
                             ToastUtils.showShort(baseStatusBean.getErrmsg());

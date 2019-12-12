@@ -62,6 +62,15 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public List<OrderBean.DataBean> listData() {
+        if (list != null) {
+            return list;
+        } else {
+            return null;
+        }
+
+    }
+
 
     public ShopCartDentailDetailAdapter shopCartDentailDetailAdapter;
 
@@ -226,6 +235,9 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                 });
     }
 
+    List<OrderBean.DataBean.ArrBean> arrBeanList = new ArrayList<>();
+    List<OrderBean.DataBean> dataBeanList = new ArrayList<>();
+
     public List<OrderBean.DataBean> getSelectList() {
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
@@ -235,8 +247,18 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                 } else {
                     for (OrderBean.DataBean.ArrBean cartItemResultDtoList : list.get(i).getArr()) {
                         if (cartItemResultDtoList.isSelect()) {
-                            listSelect.get(i).getArr().add(cartItemResultDtoList);
+                            arrBeanList.add(cartItemResultDtoList);
                         }
+//                        list.get(i).setArr(arrBeanList);
+                        if(listSelect.size()==0){
+                            dataBeanList.add(list.get(i));
+                            dataBeanList.get(0).setArr(arrBeanList);
+                            listSelect=dataBeanList;
+                        }else{
+                            listSelect.get(0).setArr(arrBeanList);
+                        }
+
+                        Log.e("dfsfafa",""+listSelect.get(0).getArr().size());
                     }
                 }
             }

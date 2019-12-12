@@ -15,8 +15,10 @@ import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
+import com.ztkj.wky.zhuantou.Activity.live_shop.SearchShopActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.BannerBean;
+import com.ztkj.wky.zhuantou.bean.ShopCatatoryBean;
 import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
 import com.ztkj.wky.zhuantou.homepage.SearchActivity;
 
@@ -53,6 +55,13 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void setListShop(List<ShopHomeBean.DataBean> list) {
         this.listShop = list;
+        notifyDataSetChanged();
+    }
+
+    List<ShopCatatoryBean.DataBean> listShopCatratiry;
+
+    public void setShopCatarory(List<ShopCatatoryBean.DataBean> listShopCatratiry) {
+        this.listShopCatratiry = listShopCatratiry;
         notifyDataSetChanged();
     }
 
@@ -96,8 +105,14 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             shopCataoryViewHolder.tv_click3.setOnClickListener(this);
             shopCataoryViewHolder.tv_click4.setOnClickListener(this);
             shopCataoryViewHolder.tv_click5.setOnClickListener(this);
+            if (listShopCatratiry != null) {
+                ShopCataroryAdapter shopCataroryAdapter = new ShopCataroryAdapter(listShopCatratiry, mContext);
+                shopCataoryViewHolder.recycle.setLayoutManager(new GridLayoutManager(mContext, 5));
+                shopCataoryViewHolder.recycle.setAdapter(shopCataroryAdapter);
+            }
 
         } else {
+
 
         }
     }
@@ -118,6 +133,14 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             case R.id.tv_click4: //ins新品
                 break;
             case R.id.tv_click5: //数码
+                break;
+            case R.id.area_three:
+                break;
+            case R.id.area_two:
+
+                break;
+            case R.id.area_one:
+
                 break;
         }
     }
@@ -150,6 +173,7 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private TextView tv_click1, tv_click2, tv_click3, tv_click4, tv_click5;
         Banner n5_banner;
         private RelativeLayout live_search;
+        private RecyclerView recycle;
 
         public ShopCataoryViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -160,16 +184,22 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tv_click5 = itemView.findViewById(R.id.tv_click5);
             n5_banner = itemView.findViewById(R.id.n5_banner);
             live_search = itemView.findViewById(R.id.live_search);
-
+            recycle = itemView.findViewById(R.id.recycle);
         }
     }
 
     class ShopSpecialAreaViewHolder extends RecyclerView.ViewHolder {
         private TextView n5_tv_shop;
+        private ImageView area_one;
+        private ImageView area_two;
+        private ImageView area_three;
 
         public ShopSpecialAreaViewHolder(@NonNull View itemView) {
             super(itemView);
             n5_tv_shop = itemView.findViewById(R.id.n5_tv_shop);
+            area_one = itemView.findViewById(R.id.area_one);
+            area_two = itemView.findViewById(R.id.area_two);
+            area_three = itemView.findViewById(R.id.area_three);
         }
     }
 

@@ -181,8 +181,6 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                 }else{
                     ToastUtils.showShort("收藏夹暂无数据");
                 }
-
-
                 break;
             case R.id.delete_shop:
                 if (collectShopAdapter.getData() != null && collectShopAdapter.getData().size() > 0) {

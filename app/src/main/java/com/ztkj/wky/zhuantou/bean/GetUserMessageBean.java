@@ -73,6 +73,24 @@ public class GetUserMessageBean {
         private String caddress;
         private String balance;
         private String real_name;
+        private String shop_collection_count;
+        private String shop_footprint_count;
+
+        public String getShop_collection_count() {
+            return shop_collection_count;
+        }
+
+        public void setShop_collection_count(String shop_collection_count) {
+            this.shop_collection_count = shop_collection_count;
+        }
+
+        public String getShop_footprint_count() {
+            return shop_footprint_count;
+        }
+
+        public void setShop_footprint_count(String shop_footprint_count) {
+            this.shop_footprint_count = shop_footprint_count;
+        }
 
         public String getReach() {
             return reach;

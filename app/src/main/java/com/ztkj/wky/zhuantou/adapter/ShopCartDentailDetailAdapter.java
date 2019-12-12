@@ -71,7 +71,6 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
         viewHolder1.ivIsDetailSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//
                 if (list.get(i).isSelect()) {
                     list.get(i).setSelect(false);
                     viewHolder1.ivIsDetailSelect.setSelected(false);

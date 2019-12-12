@@ -6,49 +6,57 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ztkj.wky.zhuantou.Activity.live_shop.SearchShopActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.SearchShopsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.Colorstring;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.SearchBean;
+import com.ztkj.wky.zhuantou.bean.SearchResultBean;
+import com.ztkj.wky.zhuantou.bean.ShopSearchBean;
 import com.ztkj.wky.zhuantou.bean.StringDesignUtil;
 import com.ztkj.wky.zhuantou.homepage.AllServiceActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter6 extends RecyclerView.Adapter<MyAdapter6.ViewHolder>{
-    private List<SearchBean.DataBean.EnterpriseBean> mData;
-    private String searchtv;
+public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemAdapter.ViewHolder> {
+
+    private List<SearchResultBean.DataBean> mData=new ArrayList<>();
     private Context context;
 
 
-    public MyAdapter6(List<SearchBean.DataBean.EnterpriseBean>  mData, Context context,String searchtv) {
-        this.mData = mData;
+    public SearchItemAdapter(Context context) {
         this.context = context;
-        this.searchtv = searchtv;
+    }
+
+    public void setData(List<SearchResultBean.DataBean> mData){
+        this.mData=mData;
+        notifyDataSetChanged();
+    }
+    public void clearData(){
+        this.mData.clear();
+
     }
 
     @Override
-    public MyAdapter6.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SearchItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.search_item, parent, false);
-        MyAdapter6.ViewHolder viewHolder = new MyAdapter6.ViewHolder(v);
+        SearchItemAdapter.ViewHolder viewHolder = new SearchItemAdapter.ViewHolder(v);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final MyAdapter6.ViewHolder holder, final int position) {
-
-        holder.textView.setText(StringDesignUtil.getSpanned(mData.get(position).getEname(), searchtv, Colorstring.t3));
-        holder.textView2.setText("功能");
+    public void onBindViewHolder(final SearchItemAdapter.ViewHolder holder, final int position) {
+        holder.textView.setText(mData.get(position).getSkw_word());
+        holder.textView2.setText("商品");
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, AllServiceActivity.class);
-                intent.putExtra("eid",mData.get(position).getEid());
-                intent.putExtra("title",mData.get(position).getEname());
-                intent.putExtra("ase","0");
-                context.startActivity(intent);
+                SearchShopActivity.start(context, mData.get(position).getSkw_word());
             }
         });
 
@@ -60,7 +68,7 @@ public class MyAdapter6 extends RecyclerView.Adapter<MyAdapter6.ViewHolder>{
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textView,textView2;
+        private TextView textView, textView2;
         private RelativeLayout relativeLayout;
 
         public ViewHolder(View itemView) {
@@ -74,4 +82,3 @@ public class MyAdapter6 extends RecyclerView.Adapter<MyAdapter6.ViewHolder>{
         }
     }
 }
-

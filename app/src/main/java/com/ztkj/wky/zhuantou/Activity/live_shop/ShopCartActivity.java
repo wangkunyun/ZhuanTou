@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -142,10 +143,10 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void isHidden(boolean isHidden) {
-        if(isHidden){
+        if (isHidden) {
             shop_cart.setVisibility(View.GONE);
             relaEmpty.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             shop_cart.setVisibility(View.VISIBLE);
             relaEmpty.setVisibility(View.GONE);
         }
@@ -178,9 +179,11 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.add_collect:
-                if(shopCartAdapter.getData()>0){
-                    CollectShopActivity.start(ShopCartActivity.this);
-                }else{
+                if (shopCartAdapter.getData() > 0) {
+                    if (shopCartAdapter.listData() != null) {
+                        forCart();
+                    }
+                } else {
                     ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                     ToastUtils.showShort("购物车暂无数据");
                 }
@@ -189,7 +192,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.more:
-                if(shopCartAdapter.getData()>0){
+                if (shopCartAdapter.getData() > 0) {
                     if (more.getText().toString().equals("管理")) {
                         add_collect.setVisibility(View.VISIBLE);
                         uploadConfirm.setVisibility(View.INVISIBLE);
@@ -201,12 +204,12 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                         delete_shop.setVisibility(View.INVISIBLE);
                         more.setText("管理");
                     }
-                }else{
+                } else {
                     ToastUtils.showShort("购物车暂无数据");
                 }
                 break;
             case R.id.ll_is_all_selelct:
-                if(shopCartAdapter!=null&&shopCartAdapter.getData()>0){
+                if (shopCartAdapter != null && shopCartAdapter.getData() > 0) {
                     if (isSelectBuy.isSelected()) {
                         isSelectBuy.setSelected(false);
                         shopCartAdapter.setAllselect(false);
@@ -214,7 +217,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                         isSelectBuy.setSelected(true);
                         shopCartAdapter.setAllselect(true);
                     }
-                }else{
+                } else {
                     ToastUtils.showShort("购物车暂无数据");
                 }
                 break;
@@ -223,13 +226,13 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 ssc_id = shopCartAdapter.ssc_id;
                 if (uid != null) {
                     if (ssc_id != null) {
-                        if(shopCartAdapter.getData()>0){
+                        if (shopCartAdapter.getData() > 0) {
 
-                        }else{
+                        } else {
                             isHidden(true);
                             delete_shop.setVisibility(View.INVISIBLE);
                             add_collect.setVisibility(View.INVISIBLE);
-                            totalAmount.setText(Contents.moneyTag+"0");
+                            totalAmount.setText(Contents.moneyTag + "0");
                             isSelectBuy.setSelected(false);
                         }
 
@@ -239,19 +242,49 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.upload_confirm:
-                listSelect = shopCartAdapter.getSelectList();
+                    listSelect = shopCartAdapter.getSelectList();
                 if (listSelect != null && listSelect.size() > 0) {
                     ConfirmOrderActivity.start(ShopCartActivity.this, listSelect, totalprice, 2);
+                    listSelect.clear();
 //                    ConfirmOrderActivity.start(ShopCartActivity.this, listSelect);
                 } else {
                     ToastUtils.showShort("购物车暂无数据");
                 }
-
                 break;
         }
     }
 
-    List<OrderBean.DataBean> listSelect = new ArrayList<>();
+    private void forCart() {
+        for (int i = 0; i < shopCartAdapter.listData().size(); i++) {
+            if (shopCartAdapter.listData().get(i).getArr() != null) {
+                for (int j = 0; j < shopCartAdapter.listData().get(i).getArr().size(); j++) {
+                    collectShop(shopCartAdapter.listData().get(i).getArr().get(j).getSsc_sc_id());
+                }
+            }
+        }
+        CollectShopActivity.start(ShopCartActivity.this);
+    }
+
+    private void collectShop(String ssc_id) {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.collectShop)
+                .addParams("uid", uid)
+                .addParams("sc_commodity_id", ssc_id)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("Dfadaf", response);
+                    }
+                });
+
+    }
+
+    List<OrderBean.DataBean> listSelect=new ArrayList<>();
     String ssc_id;
 
 
