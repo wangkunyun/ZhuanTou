@@ -9,7 +9,7 @@
         android:id="@+id/rela_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/yuanjiaotop">
 
         <ImageView
@@ -36,12 +36,12 @@
         </TextView>
 
         <TextView
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="18dp"
-            android:layout_toRightOf="@+id/tv_price"
             android:id="@+id/origin_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="18dp"
+            android:layout_toRightOf="@+id/tv_price"
             android:text="¥98,000"
             android:textColor="#ff999999"
             android:textSize="14sp" />
@@ -68,8 +68,8 @@
             android:textColor="#ff333333"
             android:textSize="14sp" />
 
-
-        <com.zhy.view.flowlayout.TagFlowLayout
+        <GridView
+            android:horizontalSpacing="5dp"
             android:id="@+id/flowLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,9 +77,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="15dp"
-            zhy:max_select="1">
+            android:numColumns="4" />
 
-        </com.zhy.view.flowlayout.TagFlowLayout>
 
         <TextView
             android:id="@+id/matarel"
@@ -92,8 +91,8 @@
             android:textColor="#ff333333"
             android:textSize="14sp" />
 
-
-        <com.zhy.view.flowlayout.TagFlowLayout
+        <GridView
+            android:horizontalSpacing="5dp"
             android:id="@+id/flowLayout_matarel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,9 +100,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="15dp"
-            zhy:max_select="1">
+            android:numColumns="4" />
 
-        </com.zhy.view.flowlayout.TagFlowLayout>
 
         <TextView
             android:id="@+id/size"
@@ -116,8 +114,8 @@
             android:textColor="#ff333333"
             android:textSize="14sp" />
 
-
-        <com.zhy.view.flowlayout.TagFlowLayout
+        <GridView
+            android:horizontalSpacing="5dp"
             android:id="@+id/flowLayout_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,9 +123,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="15dp"
-            zhy:max_select="1">
+            android:numColumns="4" />
 
-        </com.zhy.view.flowlayout.TagFlowLayout>
+
 
         <TextView
             android:id="@+id/tv_num"

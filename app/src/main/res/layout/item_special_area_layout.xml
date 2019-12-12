@@ -28,17 +28,20 @@
             android:layout_marginEnd="16dp">
 
             <ImageView
+                android:id="@+id/area_one"
                 android:layout_width="145dp"
                 android:layout_height="230dp"
                 android:src="@mipmap/img_live_shop1" />
 
             <ImageView
+                android:id="@+id/area_two"
                 android:layout_width="186dp"
                 android:layout_height="111dp"
                 android:layout_alignParentEnd="true"
                 android:src="@mipmap/img_live_shop2" />
 
             <ImageView
+                android:id="@+id/area_three"
                 android:layout_width="186dp"
                 android:layout_height="111dp"
                 android:layout_alignParentEnd="true"

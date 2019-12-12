@@ -83,6 +83,7 @@
                     android:layout_height="20dp"
                     android:background="@drawable/yuanjiaobtnfour"
                     android:gravity="center"
+                    android:textColor="@color/e5"
                     android:text="-" />
             </RelativeLayout>
 
@@ -102,6 +103,7 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:textColor="@color/e5"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:background="@drawable/yuanjiaobtnfour"

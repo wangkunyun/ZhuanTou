@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/t6"
         android:textSize="16sp"
-        android:text="装修"
+        android:text=""
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/sea_item1_gn"
@@ -31,7 +31,7 @@
         android:textSize="14sp"
         android:textColor="@color/t1"
         android:layout_alignParentRight="true"
-        android:text="功能"/>
+        android:text=""/>
 
     <TextView
         android:layout_marginLeft="16dp"
