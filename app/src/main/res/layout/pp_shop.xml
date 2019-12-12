@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:gravity="center"
-    android:paddingLeft="16dp"
-    android:layout_height="wrap_content">
+    android:paddingLeft="16dp">
 
     <LinearLayout
-        android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/per_icon_add_most"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/per_icon_add_most2"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_marginTop="20dp"
-            android:padding="10dp"
-            android:orientation="horizontal"
             android:id="@+id/lin_pp3_btn1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           >
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@mipmap/shop_icon_home" />
 
             <TextView
-                android:layout_marginLeft="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
                 android:text="返回首页"
                 android:textColor="#ff333333"
                 android:textSize="16sp" />
@@ -40,11 +41,10 @@
             android:background="#F8F8F8" />
 
         <LinearLayout
-            android:padding="10dp"
             android:id="@+id/lin_pp3_btn2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           >
+            android:padding="10dp">
 
             <ImageView
                 android:layout_width="22dp"
