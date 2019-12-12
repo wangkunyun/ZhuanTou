@@ -8,6 +8,7 @@
     android:paddingEnd="16dp">
 
     <TextView
+        android:id="@+id/tv_notificationTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -27,6 +28,7 @@
         android:paddingBottom="16dp">
 
         <TextView
+            android:id="@+id/tv_notificationType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -35,6 +37,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tv_notificationContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
