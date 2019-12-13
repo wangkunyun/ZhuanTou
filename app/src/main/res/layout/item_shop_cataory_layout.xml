@@ -58,60 +58,6 @@
                     />
 
                 <LinearLayout
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/tv_click1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@mipmap/icon_live_lingshi"
-                        android:gravity="center_horizontal"
-                        android:text="零食" />
-
-                    <TextView
-                        android:id="@+id/tv_click2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@mipmap/icon_live_wenjv"
-                        android:gravity="center_horizontal"
-                        android:text="文具" />
-
-                    <TextView
-                        android:id="@+id/tv_click3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@mipmap/icon_live_books"
-                        android:gravity="center_horizontal"
-                        android:text="书籍" />
-
-                    <TextView
-                        android:id="@+id/tv_click4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@mipmap/icon_live_skin"
-                        android:gravity="center_horizontal"
-                        android:text="ins新品" />
-
-                    <TextView
-                        android:id="@+id/tv_click5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@mipmap/icon_live_shuma"
-                        android:gravity="center_horizontal"
-                        android:text="数码" />
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginLeft="19dp"
