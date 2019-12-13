@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.ShopCatatoryBean;
 
@@ -45,23 +46,40 @@ public class ShopCataroryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 break;
             case 1:
                 shopCataroryiewHolder.iv_shop.setImageDrawable(context.getResources().getDrawable(R.mipmap.icon_live_wenjv));
-
                 break;
             case 2:
                 shopCataroryiewHolder.iv_shop.setImageDrawable(context.getResources().getDrawable(R.mipmap.icon_live_books));
-
                 break;
             case 3:
                 shopCataroryiewHolder.iv_shop.setImageDrawable(context.getResources().getDrawable(R.mipmap.icon_live_shuma));
-
                 break;
             case 4:
                 shopCataroryiewHolder.iv_shop.setImageDrawable(context.getResources().getDrawable(R.mipmap.icon_live_skin));
-
                 break;
-
-
         }
+        shopCataroryiewHolder.iv_shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (i) {
+                    //零食
+                    case 0:
+                        break;
+                    //文具
+                    case 1:
+                        break;
+                    //手机
+                    case 2:
+                        break;
+                    //数码
+                    case 3:
+
+                        break;
+                     //ins
+                    case 4:
+                        break;
+                }
+            }
+        });
     }
 
     @Override
