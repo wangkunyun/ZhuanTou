@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 import com.ztkj.wky.zhuantou.Activity.live_shop.SearchShopActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.SearchShopsActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.store.ShopStoreActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.BannerBean;
@@ -51,31 +55,24 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
     }
-
     List<ShopHomeBean.DataBean> listShop;
-
     public void setListShop(List<ShopHomeBean.DataBean> list) {
         this.listShop = list;
         notifyDataSetChanged();
     }
-
     List<ShopCatatoryBean.DataBean> listShopCatratiry;
 
     public void setShopCatarory(List<ShopCatatoryBean.DataBean> listShopCatratiry) {
         this.listShopCatratiry = listShopCatratiry;
         notifyDataSetChanged();
     }
-
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         if (i == ITEM_TYPE_TOP) {
             return new ShopCataoryViewHolder(mLayoutInflater.inflate(R.layout.item_shop_cataory_layout, null));
-
         } else if (i == ITEM_TYPE_MIDDLE) {
             return new ShopSpecialAreaViewHolder(mLayoutInflater.inflate(R.layout.item_special_area_layout, null));
-
         } else {
             return new ShopRecommendViewHolder(mLayoutInflater.inflate(R.layout.item_recommend_list_layout, null));
         }
@@ -101,11 +98,6 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             shopCataoryViewHolder.n5_banner.setImages(listImgs);
             shopCataoryViewHolder.n5_banner.start();
             shopCataoryViewHolder.live_search.setOnClickListener(this);
-            shopCataoryViewHolder.tv_click1.setOnClickListener(this);
-            shopCataoryViewHolder.tv_click2.setOnClickListener(this);
-            shopCataoryViewHolder.tv_click3.setOnClickListener(this);
-            shopCataoryViewHolder.tv_click4.setOnClickListener(this);
-            shopCataoryViewHolder.tv_click5.setOnClickListener(this);
             if (listShopCatratiry != null) {
                 ShopCataroryAdapter shopCataroryAdapter = new ShopCataroryAdapter(listShopCatratiry, mContext);
                 shopCataoryViewHolder.recycle.setLayoutManager(new GridLayoutManager(mContext, 5));
@@ -122,20 +114,11 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.live_search:
-                SearchActivity.start(mContext);
+                SearchShopsActivity.start(mContext);
                 break;
-            case R.id.tv_click1: //零食
-                break;
-            case R.id.tv_click2: //文具
-                ShopStoreActivity.start(mContext);
-                break;
-            case R.id.tv_click3: //书籍
-                break;
-            case R.id.tv_click4: //ins新品
-                break;
-            case R.id.tv_click5: //数码
-                break;
+                //打折区域
             case R.id.area_three:
+
                 break;
             case R.id.area_two:
 
@@ -171,18 +154,12 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     class ShopCataoryViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv_click1, tv_click2, tv_click3, tv_click4, tv_click5;
         Banner n5_banner;
         private RelativeLayout live_search;
         private RecyclerView recycle;
 
         public ShopCataoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_click1 = itemView.findViewById(R.id.tv_click1);
-            tv_click2 = itemView.findViewById(R.id.tv_click2);
-            tv_click3 = itemView.findViewById(R.id.tv_click3);
-            tv_click4 = itemView.findViewById(R.id.tv_click4);
-            tv_click5 = itemView.findViewById(R.id.tv_click5);
             n5_banner = itemView.findViewById(R.id.n5_banner);
             live_search = itemView.findViewById(R.id.live_search);
             recycle = itemView.findViewById(R.id.recycle);
