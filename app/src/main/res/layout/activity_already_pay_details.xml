@@ -83,6 +83,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/baise">
 
                     <ImageView
@@ -91,6 +92,7 @@
                         android:layout_height="28dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
+                        android:scaleType="fitXY"
                         android:src="@mipmap/zhanweitu_shop" />
 
                     <TextView

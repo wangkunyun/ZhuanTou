@@ -93,8 +93,9 @@
                         android:id="@+id/tv_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="136dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="20dp"
+                        android:layout_toRightOf="@id/tv_name"
                         android:text=""
                         android:textColor="#ff999999"
                         android:textSize="14sp" />
@@ -113,6 +114,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/baise">
 
                     <ImageView
@@ -121,6 +123,7 @@
                         android:layout_height="28dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
+                        android:scaleType="fitXY"
                         android:src="@mipmap/zhanweitu_shop" />
 
                     <TextView

@@ -457,13 +457,20 @@
                 android:textColor="#ffffffff"
                 android:textSize="12sp" />
 
-            <ImageView
-                android:id="@+id/imgMinePersonHead"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_alignParentEnd="true"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:src="@mipmap/shophead" />
+                android:padding="2dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/bg_yuanjiao_head">
+                <ImageView
+                    android:id="@+id/imgMinePersonHead"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@mipmap/shophead" />
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
@@ -675,14 +682,14 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="31dp"
+                    android:layout_marginLeft="16dp"
                     android:src="@mipmap/icon_mine_wallet" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="43dp"
                     android:text="我的钱包"
                     android:textColor="@color/t6"
                     android:textSize="16sp" />
@@ -714,14 +721,14 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="31dp"
+                    android:layout_marginLeft="16dp"
                     android:src="@drawable/telephone_icon2" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="43dp"
                     android:text="客服热线"
                     android:textColor="@color/t6"
                     android:textSize="16sp" />
@@ -753,14 +760,14 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="31dp"
+                    android:layout_marginLeft="16dp"
                     android:src="@mipmap/icon_mine_face" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="43dp"
                     android:text="人脸录入"
                     android:textColor="@color/t6"
                     android:textSize="16sp" />
@@ -792,14 +799,14 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="31dp"
+                    android:layout_marginLeft="16dp"
                     android:src="@mipmap/icon_mine_parking" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="43dp"
                     android:text="停车缴费"
                     android:textColor="@color/t6"
                     android:textSize="16sp" />
@@ -831,14 +838,14 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="31dp"
+                    android:layout_marginLeft="16dp"
                     android:src="@drawable/icon_set" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="43dp"
                     android:text="设置"
                     android:textColor="@color/t6"
                     android:textSize="16sp" />
