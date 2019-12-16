@@ -42,6 +42,7 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.enterpriseService.ParkingNavigation;
 import com.ztkj.wky.zhuantou.Activity.enterpriseService.TakeOutCodeActivity;
 import com.ztkj.wky.zhuantou.MyUtils.Colorstring;
 import com.ztkj.wky.zhuantou.MyUtils.HeadRefreshView;
@@ -654,7 +655,7 @@ public class HomeFragment extends Fragment {
         getActivity().getWindow().setAttributes(lp);
     }
 
-    @OnClick({R.id.n1_search, R.id.jd_sy, R.id.jd_sy2, R.id.jd_sy3, R.id.n1_work_rl, R.id.click_scan, R.id.click_takeOutCode})
+    @OnClick({R.id.n1_search, R.id.jd_sy, R.id.jd_sy2, R.id.jd_sy3, R.id.n1_work_rl, R.id.click_scan, R.id.click_takeOutCode, R.id.click_Parking, R.id.click_ladderControl})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.n1_work_rl:
@@ -688,6 +689,14 @@ public class HomeFragment extends Fragment {
                 startActivityForResult(intent, REQUEST_CODE);
                 break;
             case R.id.click_takeOutCode:
+                intent = new Intent(getActivity(), TakeOutCodeActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.click_Parking:
+                intent = new Intent(getContext(), ParkingNavigation.class);
+                startActivity(intent);
+                break;
+            case R.id.click_ladderControl:
                 intent = new Intent(getActivity(), TakeOutCodeActivity.class);
                 startActivity(intent);
                 break;

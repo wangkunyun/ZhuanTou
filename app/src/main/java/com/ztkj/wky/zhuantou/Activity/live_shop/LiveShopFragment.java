@@ -6,20 +6,24 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
+import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
+import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
+import com.ztkj.wky.zhuantou.MyUtils.HeadRefreshView;
+import com.ztkj.wky.zhuantou.MyUtils.LoadMoreView;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.LiveShopFragAdapter;
@@ -46,15 +50,35 @@ public class LiveShopFragment extends Fragment {
     RecyclerView recycle_shop_list;
     Unbinder unbinder;
     LiveShopFragAdapter liveShopFragAdapter;
+    @BindView(R.id.n1_cf)
+    PullToRefreshLayout n1Cf;
+    @BindView(R.id.refreshLayout)
+    LinearLayout refreshLayout;
     private String banner_url = StringUtils.jiekouqianzui + "Article/bannerShop";
     Intent intent;
     List<ShopCatatoryBean.DataBean> listShopCatratiry;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_live_shop, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        n1Cf.setHeaderView(new HeadRefreshView(getContext()));
+        n1Cf.setFooterView(new LoadMoreView(getContext()));
+        n1Cf.setRefreshListener(new BaseRefreshListener() {
+            @Override
+            public void refresh() {
+                n1Cf.finishRefresh();
+            }
+
+            @Override
+            public void loadMore() {
+                n1Cf.finishLoadMore();
+            }
+        });
+
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 4);
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -97,8 +121,8 @@ public class LiveShopFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         shopCatatoryBean = new Gson().fromJson(response, ShopCatatoryBean.class);
-                        if(shopCatatoryBean!=null){
-                            listShopCatratiry=shopCatatoryBean.getData();
+                        if (shopCatatoryBean != null) {
+                            listShopCatratiry = shopCatatoryBean.getData();
                             liveShopFragAdapter.setShopCatarory(listShopCatratiry);
                         }
                     }
@@ -148,7 +172,7 @@ public class LiveShopFragment extends Fragment {
 
     private void Listdata() {
         OkHttpUtils.post()
-                .url(Contents.SHOPBASE+Contents.getShopBanner)
+                .url(Contents.SHOPBASE + Contents.getShopBanner)
                 .addParams("", "")
                 .build()
                 .execute(new StringCallback() {

@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -35,11 +34,11 @@ import com.ztkj.wky.zhuantou.Activity.live_shop.RecorderActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.order.OrderTabActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.MyWallet;
 import com.ztkj.wky.zhuantou.Activity.mine.NotificationActivity;
+import com.ztkj.wky.zhuantou.Activity.mine.ParkActivity;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
-import com.ztkj.wky.zhuantou.bean.CollecShopBean;
 import com.ztkj.wky.zhuantou.bean.GetUserMessageBean;
 import com.ztkj.wky.zhuantou.bean.RecorderBean;
 import com.ztkj.wky.zhuantou.isMy.GeRenActivity;
@@ -216,10 +215,10 @@ public class MineFragment extends Fragment {
                             SPUtils.getInstance().put("isrenzheng", getUserMessageBean.getData().getReal_name());
                             SPUtils.getInstance().put("realname", getUserMessageBean.getData().getName());
                             SPUtils.getInstance().put("balance", getUserMessageBean.getData().getBalance());
-                            if(getUserMessageBean.getData().getShop_footprint_count()!=null){
+                            if (getUserMessageBean.getData().getShop_footprint_count() != null) {
                                 tvMineBrowsingHis.setText(getUserMessageBean.getData().getShop_footprint_count());
                             }
-                            if(getUserMessageBean.getData().getShop_collection_count()!=null){
+                            if (getUserMessageBean.getData().getShop_collection_count() != null) {
                                 tvMineCollect.setText(getUserMessageBean.getData().getShop_collection_count());
                             }
                             if ("0".equals(getUserMessageBean.getData().getUsername())) {
@@ -356,15 +355,15 @@ public class MineFragment extends Fragment {
                 Toast.makeText(getActivity(), "敬请期待", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.click_mine_parking:
-                // if (StringUtils.isEmpty(uid)) {
-//                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-//                    intent = new Intent(getActivity(), NewLoginActivity.class);
-//                    startActivity(intent);
-//                    return;
-//                }
-//                intent = new Intent(getContext(), ParkActivity.class);
-//                getActivity().startActivity(intent);
-                Toast.makeText(getActivity(), "敬请期待！！！", Toast.LENGTH_SHORT).show();
+                if (StringUtils.isEmpty(uid)) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(getActivity(), NewLoginActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                intent = new Intent(getContext(), ParkActivity.class);
+                getActivity().startActivity(intent);
+//                Toast.makeText(getActivity(), "敬请期待！！！", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.n3_tab2:
                 if (StringUtils.isEmpty(uid)) {

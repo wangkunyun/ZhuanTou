@@ -24,6 +24,7 @@ import com.maning.updatelibrary.InstallUtils;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.EditAddressActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.ForgetPayWordActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.NameRenZhengActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.PayWord3Activity;
@@ -58,8 +59,6 @@ public class SzActivity extends AppCompatActivity {
     LinearLayout gerenbg;
     @BindView(R.id.sz_tcdl)
     Button szTcdl;
-    @BindView(R.id.tv_progress)
-    TextView tvProgress;
     @BindView(R.id.amendPayPassWord)
     RelativeLayout amendPayPassWord;
     @BindView(R.id.forgetPayPassWord)
@@ -392,9 +391,12 @@ public class SzActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.sz_goback, R.id.sz_tab1, R.id.sz_tab3, R.id.sz_tcdl, R.id.amendPayPassWord, R.id.forgetPayPassWord})
+    @OnClick({R.id.sz_goback, R.id.sz_tab1, R.id.sz_tab3, R.id.sz_tcdl, R.id.amendPayPassWord, R.id.forgetPayPassWord, R.id.click_address})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.click_address:
+                EditAddressActivity.start(SzActivity.this);
+                break;
             case R.id.sz_goback:
                 finish();
                 break;

@@ -27,6 +27,8 @@ import android.widget.Toast;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -140,7 +142,10 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
                     tvAddress.setText(data.getSra_address());
                     tvStoreName.setText(data.getSs_name());
                     if (!data.getSs_logo().equals("0")) {
-                        Glide.with(AlreadySendDetailsActivity.this).load(data.getSs_logo()).into(imgStoreHead);
+                        RoundedCorners roundedCorners = new RoundedCorners(96);
+                        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
+                        Glide.with(AlreadySendDetailsActivity.this).load(data.getSs_logo())
+                                .apply(options).into(imgStoreHead);
                     }
                     tvOrderNum.setText("订单编号: " + data.getSso_sub_order_number());
                     tvAddOrderTime.setText("下单时间: " + data.getSo_addtime());
@@ -294,7 +299,7 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
             viewHolder.item_tvOrderDetailsTitle.setText(arr.get(i).getSog_name());
             viewHolder.item_tvOrderDetailsSku.setText(arr.get(i).getSog_sku_name());
             viewHolder.item_tvOrderDetailsBuyNum.setText(arr.get(i).getSog_number() + "件");
-            viewHolder.tv_itemOrderDetailsPrice.setText(arr.get(i).getSog_total_price());
+            viewHolder.tv_itemOrderDetailsPrice.setText("￥" + arr.get(i).getSog_total_price());
             if (sso_state.equals("0")) {
                 viewHolder.item_tvClickRefund.setVisibility(View.GONE);
             }
@@ -401,7 +406,6 @@ public class AlreadySendDetailsActivity extends AppCompatActivity {
                         requestDelOrder();
                         break;
                 }
-
                 window.dismiss();
             }
 

@@ -142,7 +142,7 @@ public class WaitReceiveFragment extends Fragment {
                 float sog_total_price = Float.parseFloat(arr.get(j).getSog_total_price());
                 sum += sog_total_price;
             }
-            viewHolder.itemOrderOutPrice.setText(sum + "");
+            viewHolder.itemOrderOutPrice.setText("￥" + sum + "");
 
 
             //设置订单状态
@@ -234,7 +234,7 @@ public class WaitReceiveFragment extends Fragment {
             viewHolder.item_tvOrderInTitle.setText(arr.get(i).getSog_name());
             viewHolder.item_tvOrderInSku.setText(arr.get(i).getSog_sku_name());
             viewHolder.item_tvOrderInBuyNum.setText(arr.get(i).getSog_number() + "件");
-            viewHolder.tv_itemOrderInPrice.setText(arr.get(i).getSog_total_price());
+            viewHolder.tv_itemOrderInPrice.setText("￥" + arr.get(i).getSog_total_price());
             switch (arr.get(i).getSog_refund_type()) {
                 case "0":
                     viewHolder.item_tvOrderInIsRefund.setVisibility(View.GONE);

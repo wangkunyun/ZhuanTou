@@ -35,6 +35,8 @@ import com.alipay.sdk.app.PayTask;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -196,7 +198,11 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
                     tvAddress.setText(data.getSra_address());
                     tvStoreName.setText(data.getSs_name());
                     if (!data.getSs_logo().equals("0")) {
-                        Glide.with(WaitPayDetailsActivity.this).load(data.getSs_logo()).into(imgStoreHead);
+                        RoundedCorners roundedCorners = new RoundedCorners(96);
+                        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
+                        Glide.with(WaitPayDetailsActivity.this).load(data.getSs_logo())
+                                .apply(options)
+                                .into(imgStoreHead);
                     }
                     tvOrderNum.setText("订单编号: " + data.getSso_sub_order_number());
                     tvAddOrderTime.setText("下单时间: " + data.getSo_addtime());
@@ -219,6 +225,7 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
 
 
     private void getKeys() {
+        Log.e(TAG, "getKeys: " + dataBean.getArr().get(0).getSog_name());
         OkHttpUtils.post().url(Contents.getKey)
                 .addParams("goods_name", dataBean.getArr().get(0).getSog_name())
                 .addParams("goods_details", dataBean.getArr().get(0).getSog_name())
@@ -359,7 +366,7 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
             viewHolder.item_tvOrderDetailsTitle.setText(arr.get(i).getSog_name());
             viewHolder.item_tvOrderDetailsSku.setText(arr.get(i).getSog_sku_name());
             viewHolder.item_tvOrderDetailsBuyNum.setText(arr.get(i).getSog_number() + "件");
-            viewHolder.tv_itemOrderDetailsPrice.setText(arr.get(i).getSog_total_price());
+            viewHolder.tv_itemOrderDetailsPrice.setText("￥" + arr.get(i).getSog_total_price());
 //            if (sso_state.equals("0")) {
             viewHolder.item_tvClickRefund.setVisibility(View.GONE);
 //            }
@@ -687,6 +694,7 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
             mHandler.sendMessage(msg);
         }
     };
+
     private void getZfbPay(OrderBean.DataBean dataBean) {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.zfbPayOrder)
                 .addParams("order_id", dataBean.getSso_sub_order_number())
@@ -712,6 +720,7 @@ public class WaitPayDetailsActivity extends AppCompatActivity {
                 });
 
     }
+
     private void setViewDow(View view, View rootview) {
         window = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
         window.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));

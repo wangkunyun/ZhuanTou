@@ -168,7 +168,7 @@ public class AllOrderFragment extends Fragment {
                     float sog_total_price = Float.parseFloat(arr.get(j).getSog_total_price());
                     sum += sog_total_price;
                 }
-                viewHolder.itemOrderOutPrice.setText(sum + "");
+                viewHolder.itemOrderOutPrice.setText("￥" + sum + "");
             }
             //设置订单状态
             switch (data.get(i).getSso_state()) {
@@ -615,8 +615,8 @@ public class AllOrderFragment extends Fragment {
                         Log.e("wky", "onResponse: " + response);
                         WxPayBean wxPayBean = new Gson().fromJson(response, WxPayBean.class);
 
-                            if (MyApplication.AppwxPayBean==null) {
-                                MyApplication.AppwxPayBean = wxPayBean;
+                        if (MyApplication.AppwxPayBean == null) {
+                            MyApplication.AppwxPayBean = wxPayBean;
 //                            Contents.map.put()
                             setWxPayBean(MyApplication.AppwxPayBean, dataBean);
                         }

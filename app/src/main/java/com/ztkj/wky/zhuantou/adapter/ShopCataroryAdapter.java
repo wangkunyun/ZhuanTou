@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.ToastUtils;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ShopClassActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.ShopCatatoryBean;
 
@@ -63,19 +63,23 @@ public class ShopCataroryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 switch (i) {
                     //零食
                     case 0:
+                        ShopClassActivity.start(context);
                         break;
                     //文具
                     case 1:
+                        ShopClassActivity.start(context);
                         break;
                     //手机
                     case 2:
+                        ShopClassActivity.start(context);
                         break;
                     //数码
                     case 3:
-
+                        ShopClassActivity.start(context);
                         break;
                      //ins
                     case 4:
+                        ShopClassActivity.start(context);
                         break;
                 }
             }
