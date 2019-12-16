@@ -32,7 +32,6 @@ android {
         ]
     }
     applicationVariants.all {
-
         variant ->
             variant.outputs.all {
                 if (buildType.name == 'release') {
@@ -80,6 +79,7 @@ dependencies {
     /*友盟统计需要的最新版本组件化基础库和统计SDK*/
     implementation 'com.umeng.umsdk:analytics:8.0.0'
     implementation 'com.umeng.umsdk:common:2.0.0'
+
 //    implementation  'com.umeng.umsdk:utdid:1.1.5.3'
     //design包
     implementation 'com.android.support:design:28.0.0'
@@ -94,7 +94,7 @@ dependencies {
 
     //    implementation 'com.zhy:autolayout:1.4.5'
 
-    //状态栏 基础依赖包，必须要依赖  https://www.jianshu.com/p/2a884e211a62
+//    状态栏 基础依赖包，必须要依赖
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
     // 状态栏 fragment快速实现（可选）
     implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
