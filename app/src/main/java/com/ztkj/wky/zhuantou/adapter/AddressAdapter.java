@@ -40,8 +40,11 @@ public class AddressAdapter extends RecyclerView.Adapter {
     }
 
     public void clearData() {
-        this.list.clear();
-        notifyDataSetChanged();
+        if(this.list!=null){
+            this.list.clear();
+            notifyDataSetChanged();
+        }
+
     }
 
     @NonNull

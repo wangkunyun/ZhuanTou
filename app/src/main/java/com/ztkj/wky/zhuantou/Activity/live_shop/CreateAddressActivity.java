@@ -65,9 +65,6 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
         recycler_address.setLayoutManager(new LinearLayoutManager(this));
         addressAdapter = new AddressAdapter(CreateAddressActivity.this);
         recycler_address.setAdapter(addressAdapter);
-        if (uid != null) {
-            initData();
-        }
 
     }
 
@@ -88,6 +85,9 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
                         if (response != null) {
                             addressListBean = new Gson().fromJson(response, AddressListBean.class);
                             list = addressListBean.getData();
+                            if (addressAdapter != null) {
+                                addressAdapter.clearData();
+                            }
                             addressAdapter.setData(list);
                             addressAdapter.notifyDataSetChanged();
                         }
@@ -151,7 +151,14 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
                 EditAddressActivity.start(CreateAddressActivity.this);
                 break;
         }
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (uid != null) {
+            initData();
+        }
 
     }
 }

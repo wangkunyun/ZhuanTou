@@ -436,5 +436,9 @@ public class Contents {
     public static final String getSelectList = "Index/selectActivityList";
     //获取通知列表
     public static final String selectNotice = "Index/selectNotice";
+    //删除收获地址
+    public static final String deleteAddress = "Order/deleteAddress";
+    //保存修改地址
+    public  static final String saveAddress="Order/updateAddress";
 
 }

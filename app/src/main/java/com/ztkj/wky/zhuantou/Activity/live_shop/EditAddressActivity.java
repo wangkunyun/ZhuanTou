@@ -10,7 +10,6 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -28,6 +27,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
+import com.tencent.mm.opensdk.utils.Log;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.MyUtils.FileSave;
@@ -70,6 +70,7 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
     AdressUpdateBean adressUpdateBean;
     @BindView(R.id.more)
     TextView more;
+
     public static void start(Context context) {
         Intent starter = new Intent(context, EditAddressActivity.class);
         context.startActivity(starter);
@@ -88,13 +89,15 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
         btnSaveAddress.setOnClickListener(this);
         rela_select_address.setOnClickListener(this);
         layoutTitleTv.setText("编辑收获地址");
+        more.setOnClickListener(this);
         initJsonData();
-        adressUpdateBean= (AdressUpdateBean) FileSave.read(EditAddressActivity.this,"localUser");
-        if(adressUpdateBean!=null){
+        adressUpdateBean = (AdressUpdateBean) FileSave.read(EditAddressActivity.this, "localUser");
+        if (adressUpdateBean != null) {
             more.setText("删除");
             edi_name.setText(adressUpdateBean.getUsername());
             edi_phone.setText(adressUpdateBean.getUserphone());
-            tv_address.setText(adressUpdateBean.getUseraddress());
+            String address=adressUpdateBean.getUseraddress().substring(0,3);
+            tv_address.setText(address);
             address_detial.setText(adressUpdateBean.getUseraddress());
         }
 
@@ -277,7 +280,12 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
                         return;
                     }
                     allAddress = addreUser + addressDetailUser;
-                    SaveAddress();
+                    if(adressUpdateBean!=null){
+                        setUpdateAddress();
+                    }else{
+                        SaveAddress();
+                    }
+
                 }
                 break;
             case R.id.rela_select_address:
@@ -286,7 +294,52 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
                 }
                 showPickerView();
                 break;
+            case R.id.more:
+                if (adressUpdateBean != null) {
+                    deleteAdress();
+                }
+                break;
         }
+    }
+
+    private void setUpdateAddress() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.saveAddress)
+                .addParams("sra_username", nameUser)
+                .addParams("sra_address", allAddress)
+                .addParams("sra_phone", phoneUser)
+                .addParams("sra_id", adressUpdateBean.getAddressId())
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        ToastUtils.showShort(e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            finish();
+                        }
+
+                    }
+                });
+    }
+
+    private void deleteAdress() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleteAddress)
+                .addParams("sra_id", adressUpdateBean.getAddressId())
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        ToastUtils.showShort(e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                       finish();
+                    }
+                });
     }
 
     String allAddress;
@@ -314,6 +367,7 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
         //选取screenHeight*2/3进行判断
         return screenHeight * 2 / 3 > rect.bottom;
     }
+
 
 
     private void SaveAddress() {
