@@ -56,6 +56,7 @@ public class AddressAdapter extends RecyclerView.Adapter {
         viewHolder1.cofirmUserName.setText(list.get(i).getSra_username());
         viewHolder1.confirmUserPhone.setText(list.get(i).getSra_phone());
         viewHolder1.tc_address.setText(list.get(i).getSra_address());
+        viewHolder1.n3HeadImg.setText(list.get(i).getSra_username());
         viewHolder1.relaAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +80,7 @@ public class AddressAdapter extends RecyclerView.Adapter {
     class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.n3_headImg)
-        CircleImageView n3HeadImg;
+        TextView n3HeadImg;
         @BindView(R.id.go_back)
         ImageView goBack;
         @BindView(R.id.cofirm_user_name)

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 
 import org.greenrobot.eventbus.EventBus;
@@ -45,11 +46,6 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public void clearData() {
-        this.list.clear();
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -61,7 +57,7 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
         ViewHolder viewHolder1 = (ViewHolder) viewHolder;
         Glide.with(context).load(list.get(i).getSc_img()).into(((ViewHolder) viewHolder).orderPic);
         viewHolder1.ivIsDetailSelect.setOnCheckedChangeListener(null);
-        viewHolder1.orderPrice.setText(list.get(i).getSsc_unit_price());
+        viewHolder1.orderPrice.setText(Contents.moneyTag  +list.get(i).getSsc_unit_price());
         final OrderBean.DataBean.ArrBean cartBean = list.get(i);
         //读取实体内存储的选中状态
         viewHolder1.tvOrderName.setText(cartBean.getSsc_name());
@@ -145,16 +141,19 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
     public interface SmallShopListen {
         void selectSmallShop(boolean select);
     }
+
     SmallShopListen smallListes;
-    public void setSmallListen(SmallShopListen smallListen){
-        this.smallListes=smallListen;
+
+    public void setSmallListen(SmallShopListen smallListen) {
+        this.smallListes = smallListen;
     }
 
-    SmallShopListen smallShopListen;
 
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv_is_detail_select)
         CheckBox ivIsDetailSelect;
+        @BindView(R.id.relaiv_is_detail_select)
+        RelativeLayout relaiv_is_detail_select;
         @BindView(R.id.order_pic)
         ImageView orderPic;
         @BindView(R.id.tv_order_name)

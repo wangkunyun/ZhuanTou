@@ -16,7 +16,7 @@ public class Contents {
     public static String strExit = "0";
     //日志小红点次数
     public static int reportReddotNum = 0;
-    public static Map<String,String> map = new HashMap<>();
+    public static Map<String, String> map = new HashMap<>();
 
 
     //打卡次数

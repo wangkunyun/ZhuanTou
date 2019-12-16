@@ -189,14 +189,13 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
                 .addParams("sr_reason", infoReson)
                 .addParams("sr_explain", infodetail)
                 .addParams("sog_id", sog_id)
+                .addParams("sr_store_id",oreder.getSs_id())
                 .addParams("sr_order_id", sr_order_id)
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-
                     }
-
                     @Override
                     public void onResponse(String response) {
                         BaseStatusBean statusBean = new Gson().fromJson(response, BaseStatusBean.class);

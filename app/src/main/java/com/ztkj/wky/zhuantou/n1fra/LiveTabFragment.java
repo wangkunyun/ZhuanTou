@@ -80,6 +80,8 @@ public class LiveTabFragment extends Fragment {
     private SharedPreferencesHelper sharedPreferencesHelper;
     private String first = "1";
     String uid;
+    @BindView(R.id.tv_msg_num)
+    TextView tv_msg_num;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,6 +103,49 @@ public class LiveTabFragment extends Fragment {
         return view;
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!uid.equals("")) {
+            getCart();
+        }
+
+    }
+
+    OrderBean OrderBean;
+
+    private void getCart() {
+        OkHttpUtils.post().url(Contents.SHOPBASE + Contents.cartList)
+                .addParams("page", "1")
+                .addParams("user_id", uid)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        ToastUtils.showShort(e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (response != null) {
+                            OrderBean = new Gson().fromJson(response, OrderBean.class);
+                            if (OrderBean.getData() != null && OrderBean.getData().size() > 0 && OrderBean.getData().get(0) != null) {
+                                if (OrderBean.getData().get(0).getArr() != null) {
+                                    tv_msg_num.setVisibility(View.VISIBLE);
+                                    Contents.numCart=OrderBean.getData().get(0).getArr().size();
+                                    tv_msg_num.setText(String.valueOf(Contents.numCart));
+                                }else{
+                                    tv_msg_num.setVisibility(View.GONE);
+                                }
+
+                            }else{
+                                tv_msg_num.setVisibility(View.GONE);
+                            }
+                        }
+                    }
+                });
+    }
 
     @Override
     public void onDestroyView() {
@@ -183,7 +228,6 @@ public class LiveTabFragment extends Fragment {
                 intent = new Intent(getContext(), SearchNearActivity.class);
                 intent.putExtra("first", first);
                 startActivity(intent);
-
                 break;
 
             case R.id.click_live_chat:
@@ -195,9 +239,6 @@ public class LiveTabFragment extends Fragment {
                 break;
         }
     }
-
-
-
 
 
     @OnClick()

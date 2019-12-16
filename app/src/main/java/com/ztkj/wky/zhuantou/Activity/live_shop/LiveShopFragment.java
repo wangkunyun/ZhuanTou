@@ -93,9 +93,7 @@ public class LiveShopFragment extends Fragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-
                     }
-
                     @Override
                     public void onResponse(String response) {
                         shopCatatoryBean = new Gson().fromJson(response, ShopCatatoryBean.class);

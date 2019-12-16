@@ -7,12 +7,14 @@ import android.text.TextUtils;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.blankj.utilcode.util.AppUtils;
+import com.gyf.immersionbar.ImmersionBar;
 import com.hyphenate.easeui.EaseUI;
 import com.hyphenate.push.EMPushHelper;
 import com.hyphenate.push.EMPushType;
 import com.hyphenate.push.PushListener;
 import com.kongzue.baseokhttp.util.BaseOkHttp;
 import com.tencent.bugly.crashreport.CrashReport;
+
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
@@ -63,6 +65,7 @@ public class MyApplication extends Application {
         bdLocationUtils.doLocation();//开启定位
 //================================== 百度地图 =====================================
         huanxin();
+
     }
 
     /**

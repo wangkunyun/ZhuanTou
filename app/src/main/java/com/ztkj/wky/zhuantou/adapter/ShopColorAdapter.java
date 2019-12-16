@@ -62,8 +62,10 @@ public class ShopColorAdapter extends BaseAdapter {
         }
         viewHolder.content.setText(list.get(i).getSk_name());
         if (list.get(i).isSelect()) {
+            viewHolder.content.setTextColor(context.getResources().getColor(R.color.white));
             viewHolder.content.setBackground(context.getResources().getDrawable(R.drawable.yuanjiaobtnfourseklect));
         } else {
+            viewHolder.content.setTextColor(context.getResources().getColor(R.color.t2));
             viewHolder.content.setBackground(context.getResources().getDrawable(R.drawable.yuanjiaobtnfours));
         }
         return view;

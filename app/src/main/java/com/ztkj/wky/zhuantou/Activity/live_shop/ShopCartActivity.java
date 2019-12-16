@@ -17,11 +17,16 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
+import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
+import com.kongzue.dialog.util.BaseDialog;
+import com.kongzue.dialog.v3.MessageDialog;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.oa.punch.BaiduMapActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.ShopCartAdapter;
+import com.ztkj.wky.zhuantou.adapter.ShopCartDentailDetailAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 
@@ -234,15 +239,15 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                             add_collect.setVisibility(View.INVISIBLE);
                             totalAmount.setText(Contents.moneyTag + "0");
                             isSelectBuy.setSelected(false);
-                        }
 
+                        }
                     } else {
                         ToastUtils.showShort("请选择删除的商品");
                     }
                 }
                 break;
             case R.id.upload_confirm:
-                    listSelect = shopCartAdapter.getSelectList();
+                listSelect = shopCartAdapter.getSelectList();
                 if (listSelect != null && listSelect.size() > 0) {
                     ConfirmOrderActivity.start(ShopCartActivity.this, listSelect, totalprice, 2);
                     listSelect.clear();
@@ -253,6 +258,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
 
     private void forCart() {
         for (int i = 0; i < shopCartAdapter.listData().size(); i++) {
@@ -284,7 +290,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    List<OrderBean.DataBean> listSelect=new ArrayList<>();
+    List<OrderBean.DataBean> listSelect = new ArrayList<>();
     String ssc_id;
 
 

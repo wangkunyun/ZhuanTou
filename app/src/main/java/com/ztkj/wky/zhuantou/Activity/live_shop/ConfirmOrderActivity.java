@@ -28,12 +28,17 @@ import com.alipay.sdk.app.PayTask;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
+import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
+import com.kongzue.dialog.util.BaseDialog;
+import com.kongzue.dialog.v3.MessageDialog;
 import com.squareup.okhttp.Request;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.order.OrderTabActivity;
+import com.ztkj.wky.zhuantou.MyUtils.FileSave;
 import com.ztkj.wky.zhuantou.MyUtils.PayResult;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.ConfimOrderAdapter;
@@ -43,6 +48,7 @@ import com.ztkj.wky.zhuantou.bean.BaseStatusBean;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 import com.ztkj.wky.zhuantou.bean.OrderInfo;
 import com.ztkj.wky.zhuantou.bean.WxPayBean;
+import com.ztkj.wky.zhuantou.wxapi.WXPayEntryActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -75,11 +81,14 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     String uid;
     @BindView(R.id.cofirm_avatar_user_name)
     TextView cofirm_avatar_user_name;
+    public static int payStauts;
+    public static ConfirmOrderActivity confirmOrderActivity = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_order);
+        confirmOrderActivity = this;
         type = getIntent().getIntExtra("type", 0);
         uid = SPUtils.getInstance().getString("uid");
         totalPrice = getIntent().getStringExtra("totalPrice");
@@ -97,6 +106,8 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         rela_address.setOnClickListener(this);
         uploadConfirm.setOnClickListener(this);
         selct_address.setOnClickListener(this);
+        adressUpdateBean= (AdressUpdateBean) FileSave.read(ConfirmOrderActivity.this,"localUser");
+
         if (orderDataBeans == null && serInfos != null && serInfos.size() > 0) {
             if (totalPrice != null) {
                 price_total.setText("¥ " + totalPrice);
@@ -104,20 +115,25 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             initData();
             confimOrderAdapter.setData(serInfos, 1);
         } else {
-            type = 3;
-            for (int i = 0; i < orderDataBeans.getArr().size(); i++) {
-                if (orderDataBeans.getArr().get(i).getSog_total_price() != null) {
-                    doublePeice += Double.parseDouble(orderDataBeans.getArr().get(i).getSog_total_price());
+            if(orderDataBeans.getArr()!=null){
+                type = 3;
+                for (int i = 0; i < orderDataBeans.getArr().size(); i++) {
+                    if (orderDataBeans.getArr().get(i).getSog_total_price() != null) {
+                        doublePeice += Double.parseDouble(orderDataBeans.getArr().get(i).getSog_total_price());
+                    }
                 }
+                totalPrice = String.valueOf(doublePeice);
+                serInfos = new ArrayList<>();
+                serInfos.add(orderDataBeans);
+                confimOrderAdapter.setData(serInfos, 2);
             }
-            totalPrice = String.valueOf(doublePeice);
-            serInfos = new ArrayList<>();
-            serInfos.add(orderDataBeans);
-            confimOrderAdapter.setData(serInfos, 2);
         }
         confimOrderAdapter.notifyDataSetChanged();
         selct_address.setVisibility(View.VISIBLE);
         rela_address.setVisibility(View.GONE);
+        if(adressUpdateBean!=null){
+            setUserAddress(adressUpdateBean);
+        }
     }
 
     Double doublePeice = 0.0;
@@ -147,6 +163,35 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (payStauts == 3) {
+            initMsg();
+        }
+    }
+
+    private void initMsg() {
+        MessageDialog.build(ConfirmOrderActivity.this)
+                .setTitle("提示")
+                .setMessage("是否放弃支付")
+                .setOkButton("确定", new OnDialogButtonClickListener() {
+                    @Override
+                    public boolean onClick(BaseDialog baseDialog, View v) {
+                        payStauts = 0;
+                        OrderTabActivity.start(ConfirmOrderActivity.this, 0);
+                        finish();
+                        return false;
+                    }
+                })
+                .setCancelButton("取消", new OnDialogButtonClickListener() {
+                    @Override
+                    public boolean onClick(BaseDialog baseDialog, View v) {
+                        return false;
+                    }
+                })
+                .show();
+    }
 
     List<OrderBean.DataBean> serInfos;
 
@@ -172,7 +217,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        serInfos=null;
+        serInfos = null;
     }
 
     @Override
@@ -392,6 +437,8 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         pp1_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                backgroundAlpha(1f);
+//                window.dismiss();
                 if (orderDataBeans == null) {
                     switch (pay_default) {
                         case 1:
@@ -437,11 +484,20 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                     if (TextUtils.equals(resultStatus, "9000")) {
                         //支付成功
                         result = "支付成功";
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                PaySucessfulActivity.start(ConfirmOrderActivity.this);
+                                finish();
+                            }
+                        }, 1000);
 //                        aliPaySuccess();
                     } else if ("6001".equals(resultStatus)) {
+                        payStauts = 3;
                         result = "您取消了支付";
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        payStauts = 3;
                         result = "支付失败";
                     }
 //                    ToastUtils.showToast(mContext, result);
@@ -536,6 +592,8 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             public void onDismiss() {
                 backgroundAlpha(1f);
                 window.dismiss();
+                OrderTabActivity.start(ConfirmOrderActivity.this, 0);
+                finish();
             }
         });
         window.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
@@ -557,14 +615,8 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         if (adressUpdateBean == null) {
             selct_address.setVisibility(View.VISIBLE);
             rela_address.setVisibility(View.GONE);
-
         } else {
-            selct_address.setVisibility(View.GONE);
-            rela_address.setVisibility(View.VISIBLE);
-            confirm_user_phone.setText(adressUpdateBean.getUserphone());
-            tc_address.setText(adressUpdateBean.getUseraddress());
-            cofirm_user_name.setText(adressUpdateBean.getUsername());
-            cofirm_avatar_user_name.setText(adressUpdateBean.getUsername());
+            setUserAddress(adressUpdateBean);
         }
 //        switch (resultCode) {
 //            case 1:
@@ -577,6 +629,15 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 //
 //
 //        }
+    }
+
+    private void setUserAddress(AdressUpdateBean address) {
+        selct_address.setVisibility(View.GONE);
+        rela_address.setVisibility(View.VISIBLE);
+        confirm_user_phone.setText(address.getUserphone());
+        tc_address.setText(address.getUseraddress());
+        cofirm_user_name.setText(address.getUsername());
+        cofirm_avatar_user_name.setText(address.getUsername());
     }
 
     private void setDataUser(Intent data) {

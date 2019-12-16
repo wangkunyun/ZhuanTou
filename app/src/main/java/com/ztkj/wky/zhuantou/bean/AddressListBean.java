@@ -40,7 +40,7 @@ public class AddressListBean implements Serializable {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * sra_id : 2
          * sra_username : 海荣

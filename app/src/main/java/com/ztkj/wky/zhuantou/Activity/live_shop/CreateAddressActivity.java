@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.MyUtils.FileSave;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.AddressAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
@@ -119,6 +120,10 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
 
     AdressUpdateBean updateBean;
 
+    protected void WriteUser(AdressUpdateBean baseUser) {
+        FileSave.write(CreateAddressActivity.this, baseUser, "localUser");
+    }
+
     @Override
     public void setDataBean(AddressListBean.DataBean dataBean) {
         updateBean = new AdressUpdateBean();
@@ -126,6 +131,7 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
         updateBean.setUserphone(dataBean.getSra_phone());
         updateBean.setUsername(dataBean.getSra_username());
         updateBean.setUseraddress(dataBean.getSra_address());
+        WriteUser(updateBean);
         Intent intent = new Intent();
         intent.putExtra("user", updateBean);
         setResult(2, intent);
