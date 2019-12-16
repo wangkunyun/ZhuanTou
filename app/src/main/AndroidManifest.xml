@@ -79,12 +79,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activity.live_shop.PaySucessfulActivity"></activity>
         <activity
             android:name=".Activity.live_shop.SearchShopsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize"
             tools:ignore="InnerclassSeparator" />
-
         <activity
             android:name=".Activity.live_shop.SearchShopActivity"
             android:screenOrientation="portrait"
@@ -159,12 +159,10 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".landing.NewLoginActivity"
-
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Activity.oa.punch.StatisticalDetailsActivity"
-
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator" />
         <activity
