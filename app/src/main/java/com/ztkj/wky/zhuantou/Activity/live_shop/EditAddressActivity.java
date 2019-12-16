@@ -30,6 +30,7 @@ import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.MyUtils.FileSave;
 import com.ztkj.wky.zhuantou.MyUtils.GetJsonDataUtil;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
@@ -66,7 +67,9 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
     TextView tv_address;
     private static boolean isLoaded = false;
     int type;
-
+    AdressUpdateBean adressUpdateBean;
+    @BindView(R.id.more)
+    TextView more;
     public static void start(Context context) {
         Intent starter = new Intent(context, EditAddressActivity.class);
         context.startActivity(starter);
@@ -86,6 +89,14 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
         rela_select_address.setOnClickListener(this);
         layoutTitleTv.setText("编辑收获地址");
         initJsonData();
+        adressUpdateBean= (AdressUpdateBean) FileSave.read(EditAddressActivity.this,"localUser");
+        if(adressUpdateBean!=null){
+            more.setText("删除");
+            edi_name.setText(adressUpdateBean.getUsername());
+            edi_phone.setText(adressUpdateBean.getUserphone());
+            tv_address.setText(adressUpdateBean.getUseraddress());
+            address_detial.setText(adressUpdateBean.getUseraddress());
+        }
 
     }
 
@@ -268,8 +279,6 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
                     allAddress = addreUser + addressDetailUser;
                     SaveAddress();
                 }
-
-
                 break;
             case R.id.rela_select_address:
                 if (isSoftShowing()) {

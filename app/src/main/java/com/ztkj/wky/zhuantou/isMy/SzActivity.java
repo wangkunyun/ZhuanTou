@@ -24,6 +24,8 @@ import com.maning.updatelibrary.InstallUtils;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ConfirmOrderActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.CreateAddressActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.EditAddressActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.ForgetPayWordActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.NameRenZhengActivity;
@@ -395,7 +397,7 @@ public class SzActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.click_address:
-                EditAddressActivity.start(SzActivity.this);
+                CreateAddressActivity.start(SzActivity.this ,2);
                 break;
             case R.id.sz_goback:
                 finish();

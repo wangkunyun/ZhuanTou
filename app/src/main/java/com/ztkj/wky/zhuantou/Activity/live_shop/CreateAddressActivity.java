@@ -42,8 +42,15 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
     AddressAdapter addressAdapter;
     @BindView(R.id.btn_add_address)
     Button btn_add_address;
-
     String uid;
+    int type;
+
+    //type 1为商品页 2为设置页面
+    public static void start(Context context, int type) {
+        Intent starter = new Intent(context, CreateAddressActivity.class);
+        starter.putExtra("type", type);
+        context.startActivity(starter);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +58,7 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_create_address);
         ButterKnife.bind(this);
         uid = SPUtils.getInstance().getString("uid");
+        type = getIntent().getIntExtra("type", 0);
         layoutBack.setOnClickListener(this);
         btn_add_address.setOnClickListener(this);
         layoutTitleTv.setText("收获地址");
@@ -132,10 +140,18 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
         updateBean.setUsername(dataBean.getSra_username());
         updateBean.setUseraddress(dataBean.getSra_address());
         WriteUser(updateBean);
-        Intent intent = new Intent();
-        intent.putExtra("user", updateBean);
-        setResult(2, intent);
-        finish();
+        switch (type) {
+            case 1:
+                Intent intent = new Intent();
+                intent.putExtra("user", updateBean);
+                setResult(2, intent);
+                finish();
+                break;
+            case 2:
+                EditAddressActivity.start(CreateAddressActivity.this);
+                break;
+        }
+
 
     }
 }

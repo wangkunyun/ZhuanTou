@@ -107,7 +107,6 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         uploadConfirm.setOnClickListener(this);
         selct_address.setOnClickListener(this);
         adressUpdateBean= (AdressUpdateBean) FileSave.read(ConfirmOrderActivity.this,"localUser");
-
         if (orderDataBeans == null && serInfos != null && serInfos.size() > 0) {
             if (totalPrice != null) {
                 price_total.setText("¥ " + totalPrice);
@@ -257,6 +256,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
 
     private void setIntent() {
         Intent intent = new Intent(ConfirmOrderActivity.this, CreateAddressActivity.class);
+        intent.putExtra("type", 1);
         startActivityForResult(intent, 2);
     }
 
