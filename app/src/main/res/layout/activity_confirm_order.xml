@@ -91,9 +91,10 @@
                     android:text="共1件商品"
                     android:textColor="@color/t4"
                     android:textSize="12sp"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
 
                 <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -109,7 +110,7 @@
                         android:id="@+id/price_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="￥2999"
+                        android:text=""
                         android:textColor="@color/ffe8"
                         android:textSize="18sp" />
                 </LinearLayout>

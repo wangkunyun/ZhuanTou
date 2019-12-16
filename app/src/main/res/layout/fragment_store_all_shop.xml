@@ -44,6 +44,7 @@
             android:textSize="16sp" />
 
         <TextView
+            android:visibility="invisible"
             android:layout_width="1dp"
             android:layout_height="26dp"
             android:layout_alignParentEnd="true"
@@ -52,6 +53,7 @@
             android:background="#E5E5E5" />
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/clickFiltrate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -9,7 +9,7 @@
     tools:context=".Activity.live_shop.ShopDetailActivity">
 
 
-    <include layout="@layout/layout_toolbar_search" />
+    <include layout="@layout/layout_toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -315,7 +315,7 @@
                     android:id="@+id/guess_like_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="5dp">
 
                 </android.support.v7.widget.RecyclerView>
 
@@ -375,50 +375,63 @@
                 android:textSize="10sp"
                 android:visibility="visible" />
 
-            <TextView
-                android:layout_toRightOf="@+id/collect_shop"
-                android:id="@+id/cart_shop"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="6dp"
-                android:drawableTop="@mipmap/bar_icon_shing"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="购物车"
-                android:textColor="@color/t4"
-                android:textSize="10sp"
-                android:visibility="visible" />
+                android:layout_toRightOf="@+id/collect_shop">
+
+                <TextView
+                    android:id="@+id/cart_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@mipmap/bar_icon_shing"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="购物车"
+                    android:textColor="@color/t4"
+                    android:textSize="10sp"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:visibility="invisible"
+                    android:id="@+id/tv_msg_num"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/bg_yuanjiao_kongxin_red"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/ffe8"
+                    android:textSize="10sp" />
+
+            </RelativeLayout>
+
 
             <TextView
                 android:id="@+id/add_shopping_cart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="88dp"
+                android:layout_height="38dp"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
                 android:layout_toLeftOf="@+id/at_once_buy"
                 android:background="@drawable/yuanjiaobtn_19_empty"
                 android:gravity="center"
-                android:paddingLeft="12dp"
-                android:paddingTop="10dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="10dp"
                 android:text="加入购物车"
                 android:textColor="@color/lanse"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/at_once_buy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="88dp"
+                android:layout_height="38dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/yuanjiaobtn_19dp"
                 android:gravity="center"
-                android:paddingLeft="18dp"
-                android:paddingTop="10dp"
-                android:paddingRight="18dp"
-                android:paddingBottom="10dp"
                 android:text="立即购买"
                 android:textColor="@color/white"
                 android:textSize="14sp" />

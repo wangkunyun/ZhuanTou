@@ -40,10 +40,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="16dp"
-                android:text="更多"
+                android:text=""
                 android:textColor="@color/baise"
                 android:textSize="16sp"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>

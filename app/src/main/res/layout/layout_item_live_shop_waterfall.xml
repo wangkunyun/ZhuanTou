@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_shop"
     android:layout_width="168dp"
-    android:layout_height="260dp"
+    android:layout_height="270dp"
     android:layout_margin="3dp"
     android:orientation="vertical"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -39,7 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/yang"

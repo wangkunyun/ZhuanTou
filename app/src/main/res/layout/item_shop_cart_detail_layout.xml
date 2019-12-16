@@ -8,22 +8,29 @@
     android:paddingTop="16dp"
     android:paddingRight="16dp">
 
-    <CheckBox
-        android:id="@+id/iv_is_detail_select"
-        android:visibility="visible"
+    <RelativeLayout
+        android:id="@+id/relaiv_is_detail_select"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="16dp"
-        android:button="@drawable/select" />
+        android:layout_height="80dp">
+
+        <CheckBox
+            android:id="@+id/iv_is_detail_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:button="@drawable/select"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+            android:visibility="visible" />
+    </RelativeLayout>
+
 
     <ImageView
         android:id="@+id/order_pic"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_toRightOf="@+id/iv_is_detail_select"
+        android:layout_toRightOf="@+id/relaiv_is_detail_select"
         android:src="@mipmap/icon_clock" />
 
     <TextView
@@ -83,8 +90,8 @@
                     android:layout_height="20dp"
                     android:background="@drawable/yuanjiaobtnfour"
                     android:gravity="center"
-                    android:textColor="@color/e5"
-                    android:text="-" />
+                    android:text="-"
+                    android:textColor="@color/e5" />
             </RelativeLayout>
 
             <TextView
@@ -103,12 +110,12 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:textColor="@color/e5"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:background="@drawable/yuanjiaobtnfour"
                     android:gravity="center"
-                    android:text="+" />
+                    android:text="+"
+                    android:textColor="@color/e5" />
             </RelativeLayout>
         </LinearLayout>
 

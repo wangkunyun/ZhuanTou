@@ -18,11 +18,16 @@
             android:id="@+id/rela_avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
+
+            <TextView
+                android:singleLine="true"
+                android:gravity="center"
                 android:id="@+id/n3_headImg"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@mipmap/zhanweitu_shop" />
+                android:text=""
+                android:textColor="@color/white"
+                android:background="@mipmap/zhanweitu_shop" />
 
             <TextView
                 android:paddingLeft="5dp"

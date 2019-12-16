@@ -83,7 +83,7 @@
                 android:layout_marginRight="16dp"
                 android:visibility="visible"
                 app:cardCornerRadius="8dp"
-                app:cardUseCompatPadding="true">
+                >
 
                 <com.youth.banner.Banner
                     android:id="@+id/n5_banner"

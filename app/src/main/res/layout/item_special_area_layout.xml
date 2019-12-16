@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <!--活动专区-->
         <TextView
             android:id="@+id/n5_tv_shop"
@@ -24,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp">
 
             <ImageView
