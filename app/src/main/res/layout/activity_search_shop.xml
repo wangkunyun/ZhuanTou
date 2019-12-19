@@ -175,6 +175,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/pinpai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_price"
@@ -184,12 +185,33 @@
                 android:textSize="14sp" />
 
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-<!--                -->
-<!--            </LinearLayout>-->
+            <LinearLayout
+                android:id="@+id/type_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pinpai"
+                android:layout_marginLeft="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="83dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/yuanjiaobtn_8dp_grey"
+                    android:gravity="center"
+                    android:text="华为"
+                    android:textColor="#999999"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="83dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/yuanjiaobtn_8dp_grey"
+                    android:gravity="center"
+                    android:text="苹果"
+                    android:textColor="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/reView"
@@ -198,6 +220,33 @@
                 android:layout_marginTop="170dp"
                 android:visibility="gone" />
 
+            <LinearLayout
+               android:layout_margin="16dp"
+                android:layout_below="@+id/type_pin"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/clear"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="清空"
+                    android:background="@drawable/yuanjiaobtn_grey19dp"
+                    android:gravity="center" />
+
+
+                <TextView
+                    android:background="@drawable/yuanjiaobtn"
+                    android:id="@+id/confirm"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="确定"
+                    android:gravity="center" />
+            </LinearLayout>
         </RelativeLayout>
 
     </ScrollView>

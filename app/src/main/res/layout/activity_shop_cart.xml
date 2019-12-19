@@ -81,7 +81,7 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:singleLine="true"
-                    android:text="¥0"
+                    android:text=""
                     android:textColor="@color/ffe8"
                     android:textSize="18sp" />
             </LinearLayout>

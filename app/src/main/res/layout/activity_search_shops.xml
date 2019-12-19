@@ -44,7 +44,7 @@
                     android:layout_height="32dp"
                     android:layout_weight="1.2"
                     android:background="@drawable/fxedt"
-                    android:hint="搜索"
+                    android:hint=""
                     android:singleLine="true"
                     android:textColor="@color/baise"
                     android:textColorHint="#CCFBFF"

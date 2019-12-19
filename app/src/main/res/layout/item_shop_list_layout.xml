@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingBottom="16dp"
+    android:id="@+id/item_shop"
     android:background="@color/white"
     android:orientation="vertical">
 

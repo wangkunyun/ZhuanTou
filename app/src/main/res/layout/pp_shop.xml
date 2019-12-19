@@ -6,10 +6,10 @@
     android:paddingLeft="16dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="126dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
-        android:background="@mipmap/per_icon_add_most2"
+        android:background="@mipmap/per_icon_add_most"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -36,11 +36,13 @@
         </LinearLayout>
 
         <TextView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#F8F8F8" />
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/lin_pp3_btn2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

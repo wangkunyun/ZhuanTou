@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refreshLayout"
@@ -21,4 +21,17 @@
             android:layout_height="wrap_content" />
     </com.jwenfeng.library.pulltorefresh.PullToRefreshLayout>
 
-</LinearLayout>
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/iv_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        android:src="@mipmap/detail_icon_top" />
+
+</RelativeLayout>

@@ -78,19 +78,20 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/cardview_banner"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="100dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:visibility="visible"
                 app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
                 >
 
                 <com.youth.banner.Banner
                     android:id="@+id/n5_banner"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
-                    app:indicator_drawable_selected="@drawable/rectangle2"
-                    app:indicator_drawable_unselected="@drawable/rectangle2copy"
+                    app:indicator_drawable_selected="@mipmap/rect_banner"
+                    app:indicator_drawable_unselected="@mipmap/banner_unselect"
                     app:indicator_height="3dp"
                     app:indicator_margin="8dp"
                     app:indicator_width="18dp" />

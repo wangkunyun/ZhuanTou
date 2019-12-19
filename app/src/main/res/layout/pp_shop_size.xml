@@ -193,25 +193,58 @@
 
     </ImageView>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rela_top"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="horizontal">
 
         <TextView
+            android:visibility="gone"
+            android:id="@+id/add_pop_shopping_cart"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/yuanjiaobtn44dp"
             android:gravity="center"
+            android:text="加入购物车"
+            android:textColor="@color/lanse"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/btn_at_once"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="44dp"
+            android:background="@drawable/yuanjiaobtn"
+            android:gravity="center"
+            android:text="立即购买"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            />
+        <TextView
+            android:visibility="gone"
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
+            android:layout_weight="1"
             android:background="@drawable/yuanjiaobtn"
+            android:gravity="center"
             android:text="确定"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>
