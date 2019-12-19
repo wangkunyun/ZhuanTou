@@ -79,7 +79,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.live_shop.PaySucessfulActivity"></activity>
+        <activity android:name=".Activity.live_shop.ActivityList"></activity>
+        <activity android:name=".Activity.live_shop.PaySucessfulActivity" />
         <activity
             android:name=".Activity.live_shop.SearchShopsActivity"
             android:screenOrientation="portrait"
