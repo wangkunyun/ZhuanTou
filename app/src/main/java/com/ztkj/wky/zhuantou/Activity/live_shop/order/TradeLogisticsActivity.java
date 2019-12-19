@@ -111,7 +111,7 @@ public class TradeLogisticsActivity extends AppCompatActivity {
                             Log.e(TAG, "run: " + height);
                             ViewGroup.LayoutParams layoutParams = underColor.getLayoutParams();
                             Log.e(TAG, "onCreate: " + height);
-                            layoutParams.height = height - 72;
+                            layoutParams.height = height - 85;
                             underColor.setLayoutParams(layoutParams);
                         }
                     });

@@ -73,6 +73,8 @@ public class AllOrderFragment extends Fragment {
     @BindView(R.id.reView)
     RecyclerView reView;
     Unbinder unbinder;
+    @BindView(R.id.img_allOrderEmpty)
+    ImageView imgAllOrderEmpty;
     private String TAG = "AllOrderFragment";
     private List<OrderBean.DataBean> data;
     PopupWindow window;
@@ -113,9 +115,15 @@ public class AllOrderFragment extends Fragment {
                 OrderBean orderBean = GsonUtil.gsonToBean(response, OrderBean.class);
                 if (orderBean.getErrno().equals("200")) {
                     data = orderBean.getData();
-                    AdapterOut adapterOut = new AdapterOut();
-                    reView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    reView.setAdapter(adapterOut);
+                    if (data.size() == 0) {
+                        imgAllOrderEmpty.setVisibility(View.VISIBLE);
+                    } else {
+                        imgAllOrderEmpty.setVisibility(View.GONE);
+                        AdapterOut adapterOut = new AdapterOut();
+                        reView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        reView.setAdapter(adapterOut);
+                    }
+
                 }
             }
         });
@@ -391,7 +399,6 @@ public class AllOrderFragment extends Fragment {
                             WaitPayDetailsActivity.start(getActivity(), state, num, dataBean);
                             break;
                     }
-
                 }
             });
         }

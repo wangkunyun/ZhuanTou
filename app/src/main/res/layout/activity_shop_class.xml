@@ -18,6 +18,60 @@
 
         <include layout="@layout/layout_toolbar_search" />
 
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="44dp"-->
+        <!--android:background="@color/baise">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/clickSynthesize"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginStart="24dp"-->
+        <!--android:text="综合"-->
+        <!--android:textColor="#ff333333"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/clickSales"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginStart="98dp"-->
+        <!--android:text="销量"-->
+        <!--android:textColor="#ff999999"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/clickPrice"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginStart="172dp"-->
+        <!--android:text="价格"-->
+        <!--android:textColor="#ff999999"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="26dp"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginEnd="72dp"-->
+        <!--android:background="#E5E5E5" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/clickFiltrate"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginRight="24dp"-->
+        <!--android:text="筛选"-->
+        <!--android:textColor="#ff999999"-->
+        <!--android:textSize="16sp" />-->
+        <!--</RelativeLayout>-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="44dp"
@@ -49,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="172dp"
+                android:drawableRight="@mipmap/icon_sort_up"
                 android:text="价格"
                 android:textColor="#ff999999"
                 android:textSize="16sp" />
@@ -59,21 +114,23 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="72dp"
-                android:background="#E5E5E5" />
+                android:background="#E5E5E5"
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/clickFiltrate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="24dp"
+                android:gravity="center"
+                android:paddingEnd="24dp"
                 android:text="筛选"
                 android:textColor="#ff999999"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="invisible" />
         </RelativeLayout>
 
-        <!--轮播图-->
         <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/shopBanner"
             android:layout_width="match_parent"
@@ -95,13 +152,31 @@
                 app:indicator_width="18dp" />
         </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/reView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="16dp" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="24dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/reView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                />
+
+            <include layout="@layout/item_empty_layout" />
+
+        </RelativeLayout>
+        <!--轮播图-->
+
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/reView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginTop="24dp"-->
+        <!--android:layout_marginRight="16dp" />-->
 
     </LinearLayout>
 

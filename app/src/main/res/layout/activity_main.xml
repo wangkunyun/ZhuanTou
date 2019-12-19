@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,25 +13,25 @@
         android:layout_above="@+id/rg_tab">
 
     </FrameLayout>
-    
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_above="@+id/rg_tab"
-        android:background="#F8F8F8"/>
-    
+        android:background="#F8F8F8" />
+
     <RadioGroup
         android:id="@+id/rg_tab"
         android:layout_width="match_parent"
         android:layout_height="47dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
         android:orientation="horizontal"
-        android:paddingBottom="1px"
         android:paddingLeft="1px"
         android:paddingRight="1px"
+        android:paddingBottom="1px"
         android:weightSum="3">
 
         <RelativeLayout
@@ -40,49 +39,48 @@
             android:layout_height="match_parent">
 
             <RadioButton
-                android:layout_centerVertical="true"
                 android:id="@+id/rb_1"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"
                 android:background="@drawable/tab_icon_zhuye_default"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:button="@null"/>
+                android:button="@null" />
 
             <RadioButton
-                android:layout_centerVertical="true"
                 android:id="@+id/rb_4"
-                android:layout_toRightOf="@+id/rb_1"
-                android:layout_marginLeft="24dp"
-                android:background="@drawable/tabqifu1"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:button="@null"/>
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:layout_toRightOf="@+id/rb_1"
+                android:background="@drawable/tabqifu1"
+                android:button="@null" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center">
-            </LinearLayout>
+                android:gravity="center"></LinearLayout>
 
             <RadioButton
-                android:layout_centerVertical="true"
                 android:id="@+id/rb_5"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="24dp"
                 android:layout_toLeftOf="@+id/rb_3"
                 android:background="@drawable/tabfujin1"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:button="@null"/>
+                android:button="@null" />
 
             <RadioButton
                 android:id="@+id/rb_3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/tab_icon_me_default"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
                 android:button="@null" />
         </RelativeLayout>
     </RadioGroup>

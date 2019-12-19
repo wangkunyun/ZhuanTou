@@ -11,4 +11,12 @@
         android:id="@+id/reView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/img_allOrderEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_shop_order_empty"
+        android:layout_marginTop="90dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

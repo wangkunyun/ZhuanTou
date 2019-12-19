@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
+import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
 import com.squareup.okhttp.Request;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -28,6 +30,8 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.enterpriseService.ParkingNavigation;
 import com.ztkj.wky.zhuantou.H5.FDReadActivity;
 import com.ztkj.wky.zhuantou.MyUtils.Colorstring;
+import com.ztkj.wky.zhuantou.MyUtils.HeadRefreshView;
+import com.ztkj.wky.zhuantou.MyUtils.LoadMoreView;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
@@ -68,8 +72,6 @@ public class LiveFragment extends Fragment {
     @BindView(R.id.near_rv)
     RecyclerView nearRv;
     Unbinder unbinder;
-    //    @BindView(R.id.n5_cf)
-//    PullToRefreshLayout n5Cf;
     private Intent intent, intent2;
     private String co_id, co_address;
     private SharedPreferencesHelper sharedPreferencesHelper;
@@ -79,6 +81,7 @@ public class LiveFragment extends Fragment {
     private String first = "1";
     private List<String> imgs = new ArrayList<>();
     private List<String> strs = new ArrayList<>();
+    private PullToRefreshLayout n1Cf;
 
     private String order_by; //根据id或者name排序
     private String order_type; //正序或者倒叙排序 正旭：ASC  倒叙： DESC
@@ -94,12 +97,27 @@ public class LiveFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_n5, container, false);
         unbinder = ButterKnife.bind(this, view);
+        n1Cf = view.findViewById(R.id.n1_cf);
         sharedPreferencesHelper = new SharedPreferencesHelper(getContext(), "anhua");
         uid = (String) sharedPreferencesHelper.getSharedPreference("uid", "");
         token = (String) sharedPreferencesHelper.getSharedPreference("token", "");
 
         nearRv.setHasFixedSize(true);
         nearRv.setNestedScrollingEnabled(false);
+
+        n1Cf.setHeaderView(new HeadRefreshView(getContext()));
+        n1Cf.setFooterView(new LoadMoreView(getContext()));
+        n1Cf.setRefreshListener(new BaseRefreshListener() {
+            @Override
+            public void refresh() {
+                n1Cf.finishRefresh();
+            }
+
+            @Override
+            public void loadMore() {
+                n1Cf.finishLoadMore();
+            }
+        });
 
         //设置默认排序方式
         order_by = "bu_id";

@@ -8,7 +8,9 @@
     android:orientation="vertical"
     tools:context=".Activity.live_shop.order.OrderTabActivity">
 
-    <include layout="@layout/layout_toolbar_search" />
+    <include
+        layout="@layout/layout_toolbar_search"
+        android:visibility="gone" />
 
     <com.androidkun.xtablayout.XTabLayout
         android:id="@+id/xTablayout"
