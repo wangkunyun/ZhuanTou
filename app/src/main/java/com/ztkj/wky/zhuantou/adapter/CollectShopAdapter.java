@@ -11,7 +11,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.CollecShopBean;
 
 import java.util.ArrayList;
@@ -84,15 +86,14 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
 
     }
 
-    public void cancelSelectAll() {
+    public void cancelSelectAll(boolean isExpands) {
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 list.get(i).setSelect(false);
             }
-            isExpand = false;
+            isExpand = isExpands;
             notifyDataSetChanged();
         }
-
     }
 
     @NonNull
@@ -114,8 +115,8 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
         }
         Glide.with(context).load(list.get(i).getSc_img()).into(viewHolder1.ivCollect);
         viewHolder1.tvCollectName.setText(list.get(i).getSc_name());
-        viewHolder1.tvShopPrice.setText(list.get(i).getSc_present_price());
-        viewHolder1.rela_collect.setOnClickListener(new View.OnClickListener() {
+        viewHolder1.tvShopPrice.setText(Contents.moneyTag+list.get(i).getSc_present_price());
+        viewHolder1.shop_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 for (int i = 0; i < list.size(); i++) {
@@ -141,6 +142,12 @@ public class CollectShopAdapter extends RecyclerView.Adapter {
                     collectDelete.collectDelete(true, null);
                 }
                 notifyDataSetChanged();
+            }
+        });
+        viewHolder1.rela_collect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShopDetailActivity.start(context,list.get(i).getSc_id());
             }
         });
     }

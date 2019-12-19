@@ -41,6 +41,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.ztkj.wky.zhuantou.base.Contents.deleteShop;
+
 public class ShopCartActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.layout_back)
@@ -186,7 +188,10 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
             case R.id.add_collect:
                 if (shopCartAdapter.getData() > 0) {
                     if (shopCartAdapter.listData() != null) {
-                        forCart();
+                        List<OrderBean.DataBean> list=shopCartAdapter.listData();
+                        forCart(list);
+                        DeleteShop();
+                        ToastUtils.showShort("收藏成功");
                     }
                 } else {
                     ToastUtils.setGravity(Gravity.CENTER, 0, 0);
@@ -208,6 +213,10 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                         uploadConfirm.setVisibility(View.VISIBLE);
                         delete_shop.setVisibility(View.INVISIBLE);
                         more.setText("管理");
+                        if (isSelectBuy.isSelected()) {
+                            isSelectBuy.setSelected(false);
+                            shopCartAdapter.setAllselect(false);
+                        }
                     }
                 } else {
                     ToastUtils.showShort("购物车暂无数据");
@@ -227,24 +236,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.delete_shop:
-                shopCartAdapter.getSelect();
-                ssc_id = shopCartAdapter.ssc_id;
-                if (uid != null) {
-                    if (ssc_id != null) {
-                        if (shopCartAdapter.getData() > 0) {
-
-                        } else {
-                            isHidden(true);
-                            delete_shop.setVisibility(View.INVISIBLE);
-                            add_collect.setVisibility(View.INVISIBLE);
-                            totalAmount.setText(Contents.moneyTag + "0");
-                            isSelectBuy.setSelected(false);
-
-                        }
-                    } else {
-                        ToastUtils.showShort("请选择删除的商品");
-                    }
-                }
+                DeleteShop();
                 break;
             case R.id.upload_confirm:
                 listSelect = shopCartAdapter.getSelectList();
@@ -259,16 +251,37 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    private void DeleteShop() {
+        shopCartAdapter.getSelect();
+        ssc_id = shopCartAdapter.ssc_id;
+        if (!uid .equals("")) {
+            if (ssc_id != null) {
+                if (shopCartAdapter.getData() > 0) {
+                } else {
+                    isHidden(true);
+                    delete_shop.setVisibility(View.INVISIBLE);
+                    add_collect.setVisibility(View.INVISIBLE);
+                    totalAmount.setText(Contents.moneyTag + "0");
+                    isSelectBuy.setSelected(false);
+                }
+            } else {
+                ToastUtils.showShort("请选择删除的商品");
+            }
+        }
+    }
 
-    private void forCart() {
-        for (int i = 0; i < shopCartAdapter.listData().size(); i++) {
-            if (shopCartAdapter.listData().get(i).getArr() != null) {
-                for (int j = 0; j < shopCartAdapter.listData().get(i).getArr().size(); j++) {
-                    collectShop(shopCartAdapter.listData().get(i).getArr().get(j).getSsc_sc_id());
+    private void forCart(List<OrderBean.DataBean> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getArr() != null) {
+                for (int j = 0; j < list.get(i).getArr().size(); j++) {
+                    if(list.get(i).getArr().get(j).isSelect()){
+                        collectShop(list.get(i).getArr().get(j).getSsc_sc_id());
+                    }
                 }
             }
         }
-        CollectShopActivity.start(ShopCartActivity.this);
+
+//        CollectShopActivity.start(ShopCartActivity.this);
     }
 
     private void collectShop(String ssc_id) {
@@ -284,7 +297,7 @@ public class ShopCartActivity extends AppCompatActivity implements View.OnClickL
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e("Dfadaf", response);
+                        Log.e("Dfadaf", ssc_id);
                     }
                 });
 

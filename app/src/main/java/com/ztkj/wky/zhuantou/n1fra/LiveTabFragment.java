@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,7 +98,6 @@ public class LiveTabFragment extends Fragment {
         }
         co_address = (String) sharedPreferencesHelper.getSharedPreference("co_address", "");
         nearTitle.setText(co_address);
-
         position = 0;
         setTabSelection(position);
         return view;
@@ -110,8 +110,8 @@ public class LiveTabFragment extends Fragment {
         if (!uid.equals("")) {
             getCart();
         }
-
     }
+
 
     OrderBean OrderBean;
 

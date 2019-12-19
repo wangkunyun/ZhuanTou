@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.CollecShopBean;
 import com.ztkj.wky.zhuantou.bean.RecorderBean;
@@ -52,7 +53,12 @@ public class RecorderDetailAdapter extends RecyclerView.Adapter {
         Glide.with(context).load(list.get(i).getSf_trade_img()).into(viewHolder1.ivCollect);
         viewHolder1.tvCollectName.setText(list.get(i).getSf_trade_name());
         viewHolder1.tvShopPrice.setText(list.get(i).getSf_trade_price());
-
+        viewHolder1.rela_collect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShopDetailActivity.start(context,list.get(i).getSf_commodity_id());
+            }
+        });
     }
 
     @Override

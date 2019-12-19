@@ -139,6 +139,8 @@ public class CreateAddressActivity extends AppCompatActivity implements View.OnC
         updateBean.setUserphone(dataBean.getSra_phone());
         updateBean.setUsername(dataBean.getSra_username());
         updateBean.setUseraddress(dataBean.getSra_address());
+        updateBean.setSra_pca_address(dataBean.getSra_pca_address());
+        updateBean.setSra_province_city_area(dataBean.getSra_province_city_area());
         WriteUser(updateBean);
         switch (type) {
             case 1:

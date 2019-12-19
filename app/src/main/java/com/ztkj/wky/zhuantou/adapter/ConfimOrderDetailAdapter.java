@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ztkj.wky.zhuantou.R;
+import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
 
 import java.util.ArrayList;
@@ -52,13 +53,13 @@ public class ConfimOrderDetailAdapter extends RecyclerView.Adapter {
                 viewHolder1.tv_order_name.setText(list.get(i).getSsc_name());
                 viewHolder1.tv_order_size.setText(list.get(i).getSsc_sku_name());
                 viewHolder1.num_shop.setText(list.get(i).getSsc_number()+"件");
-                viewHolder1.price.setText(list.get(i).getSsc_unit_price());
+                viewHolder1.price.setText(Contents.moneyTag+list.get(i).getSsc_unit_price());
                 break;
             case 1:
                 viewHolder1.tv_order_name.setText(list.get(i).getSog_name());
                 viewHolder1.tv_order_size.setText(list.get(i).getSog_sku_name());
                 viewHolder1.num_shop.setText(list.get(i).getSog_number()+"件");
-                viewHolder1.price.setText(list.get(i).getSog_total_price());
+                viewHolder1.price.setText(Contents.moneyTag+list.get(i).getSog_total_price());
                 break;
         }
     }

@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.JsonBean;
@@ -26,8 +28,8 @@ public class LiveShopListAdapter extends RecyclerView.Adapter<LiveShopListAdapte
         this.context = context;
     }
 
-    public void setData(List<ShopDetailBean.DataBean.StoreBean> lists){
-        this.list=lists;
+    public void setData(List<ShopDetailBean.DataBean.StoreBean> lists) {
+        this.list = lists;
         notifyDataSetChanged();
     }
 
@@ -45,27 +47,35 @@ public class LiveShopListAdapter extends RecyclerView.Adapter<LiveShopListAdapte
             viewHolder.tv_store_name.setText(list.get(i).getSc_name());
         }
         if (list.get(i).getSc_present_price() != null) {
-            viewHolder.tv_store_price.setText(Contents.moneyTag +list.get(i).getSc_present_price());
+            viewHolder.tv_store_price.setText(Contents.moneyTag + list.get(i).getSc_present_price());
         }
         if (list.get(i).getSc_img() != null) {
             Glide.with(context).load(list.get(i).getSc_img()).into(viewHolder.iv_store);
         }
+        viewHolder.item_shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShopDetailActivity.start(context,list.get(i).getSc_id());
+            }
+        });
+
     }
+
 
     @Override
     public int getItemCount() {
-        if(list!=null){
+        if (list != null) {
             return list.size();
-        }else{
+        } else {
             return 0;
         }
-
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView iv_store;
         private TextView tv_store_name;
         private TextView tv_store_price;
+        private LinearLayout item_shop;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -73,6 +83,7 @@ public class LiveShopListAdapter extends RecyclerView.Adapter<LiveShopListAdapte
             iv_store = itemView.findViewById(R.id.iv_store);
             tv_store_name = itemView.findViewById(R.id.tv_store_name);
             tv_store_price = itemView.findViewById(R.id.tv_store_price);
+            item_shop = itemView.findViewById(R.id.item_shop);
         }
     }
 }

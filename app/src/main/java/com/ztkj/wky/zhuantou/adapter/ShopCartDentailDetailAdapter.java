@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
@@ -57,7 +58,7 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
         ViewHolder viewHolder1 = (ViewHolder) viewHolder;
         Glide.with(context).load(list.get(i).getSc_img()).into(((ViewHolder) viewHolder).orderPic);
         viewHolder1.ivIsDetailSelect.setOnCheckedChangeListener(null);
-        viewHolder1.orderPrice.setText(Contents.moneyTag  +list.get(i).getSsc_unit_price());
+        viewHolder1.orderPrice.setText(Contents.moneyTag + list.get(i).getSsc_unit_price());
         final OrderBean.DataBean.ArrBean cartBean = list.get(i);
         //读取实体内存储的选中状态
         viewHolder1.tvOrderName.setText(cartBean.getSsc_name());
@@ -128,6 +129,12 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
 
             }
         });
+        viewHolder1.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShopDetailActivity.start(context,list.get(i).getSsc_sc_id());
+            }
+        });
     }
 
     @Override
@@ -168,6 +175,8 @@ public class ShopCartDentailDetailAdapter extends RecyclerView.Adapter {
         TextView num;
         @BindView(R.id.add_shop_cart)
         RelativeLayout addShopCart;
+        @BindView(R.id.item)
+        RelativeLayout item;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

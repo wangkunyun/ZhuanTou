@@ -3,14 +3,18 @@ package com.ztkj.wky.zhuantou.Activity.live_shop;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
@@ -32,6 +36,10 @@ import com.ztkj.wky.zhuantou.bean.BannerBean;
 import com.ztkj.wky.zhuantou.bean.ShopCatatoryBean;
 import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
 import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
+import com.ztkj.wky.zhuantou.messagefra2.Blank1Fragment;
+import com.ztkj.wky.zhuantou.messagefra2.Blank2Fragment;
+import com.ztkj.wky.zhuantou.messagefra2.Blank3Fragment;
+import com.ztkj.wky.zhuantou.messagefra2.Blank4Fragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +51,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LiveShopFragment extends Fragment {
+public class LiveShopFragment extends Fragment implements BaseRefreshListener {
 
 
     @BindView(R.id.recycle_shop_list)
@@ -53,10 +61,12 @@ public class LiveShopFragment extends Fragment {
     @BindView(R.id.n1_cf)
     PullToRefreshLayout n1Cf;
     @BindView(R.id.refreshLayout)
-    LinearLayout refreshLayout;
+    RelativeLayout refreshLayout;
     private String banner_url = StringUtils.jiekouqianzui + "Article/bannerShop";
     Intent intent;
     List<ShopCatatoryBean.DataBean> listShopCatratiry;
+    @BindView(R.id.iv_top)
+    ImageView iv_top;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,21 +74,9 @@ public class LiveShopFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_live_shop, container, false);
         unbinder = ButterKnife.bind(this, view);
-
         n1Cf.setHeaderView(new HeadRefreshView(getContext()));
         n1Cf.setFooterView(new LoadMoreView(getContext()));
-        n1Cf.setRefreshListener(new BaseRefreshListener() {
-            @Override
-            public void refresh() {
-                n1Cf.finishRefresh();
-            }
-
-            @Override
-            public void loadMore() {
-                n1Cf.finishLoadMore();
-            }
-        });
-
+        n1Cf.setRefreshListener(this);
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 4);
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -103,7 +101,31 @@ public class LiveShopFragment extends Fragment {
         } else {
             initShopList(null);
         }
+        iv_top.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recycle_shop_list.smoothScrollToPosition(0);
+                iv_top.setVisibility(View.INVISIBLE);
+            }
+        });
+        recycle_shop_list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
 
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy>110){
+                    iv_top.setVisibility(View.VISIBLE);
+                }else{
+                    if(dy<0||dy==0){
+                        iv_top.setVisibility(View.INVISIBLE);
+                    }
+                }
+            }
+        });
         return view;
     }
 
@@ -118,6 +140,7 @@ public class LiveShopFragment extends Fragment {
                     @Override
                     public void onError(Request request, Exception e) {
                     }
+
                     @Override
                     public void onResponse(String response) {
                         shopCatatoryBean = new Gson().fromJson(response, ShopCatatoryBean.class);
@@ -210,4 +233,14 @@ public class LiveShopFragment extends Fragment {
     }
 
 
+    @Override
+    public void refresh() {
+        n1Cf.finishRefresh();
+    }
+
+    @Override
+    public void loadMore() {
+        n1Cf.finishLoadMore();
+
+    }
 }

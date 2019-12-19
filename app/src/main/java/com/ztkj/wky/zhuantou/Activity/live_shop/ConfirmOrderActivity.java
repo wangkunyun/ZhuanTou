@@ -28,6 +28,7 @@ import com.alipay.sdk.app.PayTask;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
+import com.gyf.immersionbar.ImmersionBar;
 import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
 import com.kongzue.dialog.util.BaseDialog;
 import com.kongzue.dialog.v3.MessageDialog;
@@ -95,6 +96,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         orderDataBeans = (OrderBean.DataBean) getIntent().getSerializableExtra("order");
         serInfos = (List<OrderBean.DataBean>) getIntent().getSerializableExtra("listobj");
         ButterKnife.bind(this);
+//        setrestoreKey();
         layoutTitleTv.setText("确认订单");
         view_divider.setVisibility(View.GONE);
         layoutBack.setOnClickListener(this);
@@ -135,6 +137,14 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    private void setrestoreKey() {
+        ImmersionBar.with(this)
+                .statusBarColor(R.color.lanse)     //状态栏颜色，不写默认透明色
+//                .hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
+//                .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
+                .fullScreen(true)
+                .init();
+    }
     Double doublePeice = 0.0;
     String ssc_id;
     StringBuilder stringBuilder;
@@ -162,14 +172,6 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (payStauts == 3) {
-            initMsg();
-        }
-    }
-
     private void initMsg() {
         MessageDialog.build(ConfirmOrderActivity.this)
                 .setTitle("提示")
@@ -177,7 +179,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                 .setOkButton("确定", new OnDialogButtonClickListener() {
                     @Override
                     public boolean onClick(BaseDialog baseDialog, View v) {
-                        payStauts = 0;
+
                         OrderTabActivity.start(ConfirmOrderActivity.this, 0);
                         finish();
                         return false;
@@ -186,6 +188,7 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
                 .setCancelButton("取消", new OnDialogButtonClickListener() {
                     @Override
                     public boolean onClick(BaseDialog baseDialog, View v) {
+                        popuCoupon();
                         return false;
                     }
                 })
@@ -592,8 +595,9 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
             public void onDismiss() {
                 backgroundAlpha(1f);
                 window.dismiss();
-                OrderTabActivity.start(ConfirmOrderActivity.this, 0);
-                finish();
+                initMsg();
+//                OrderTabActivity.start(ConfirmOrderActivity.this, 0);
+//                finish();
             }
         });
         window.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);

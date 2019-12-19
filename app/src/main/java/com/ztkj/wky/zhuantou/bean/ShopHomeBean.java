@@ -54,6 +54,15 @@ public class ShopHomeBean implements Serializable {
         private String sc_img;
         private String sc_original_price;
         private String sc_present_price;
+        private String sc_stock;
+
+        public String getSc_stock() {
+            return sc_stock;
+        }
+
+        public void setSc_stock(String sc_stock) {
+            this.sc_stock = sc_stock;
+        }
 
         public String getSc_id() {
             return sc_id;

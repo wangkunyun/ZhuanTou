@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.bumptech.glide.Glide;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -68,7 +70,6 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         } else {
             return null;
         }
-
     }
 
 
@@ -84,6 +85,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder holder = (ViewHolder) viewHolder;
         cartBean = list.get(i);
+        Glide.with(mContext).load(cartBean.getSs_logo()).into(holder.n3HeadImg);
         holder.ivIsSelectCart.setOnCheckedChangeListener(null);
         //读取实体内存储的选中状态
         holder.tvShopName.setText(cartBean.getSs_name());
@@ -142,7 +144,9 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
             };
             holder.recycleShopDetail.setLayoutManager(linearLayoutManager);
         }
+
     }
+
 
     List<OrderBean.DataBean> listSelectIS = new ArrayList<>();
     SetAllShopListen setAllShopListens;
@@ -211,7 +215,6 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         if (ssc_id != null) {
             deleteCart();
         }
-
         notifyDataSetChanged();
         EventBus.getDefault().post(getAllPrice());
     }
@@ -229,8 +232,8 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
 
                     @Override
                     public void onResponse(String response) {
-                        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
-                        ToastUtils.showShort("删除成功");
+//                        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+//                        ToastUtils.showShort("删除成功");
                     }
                 });
     }
@@ -250,15 +253,14 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
                             arrBeanList.add(cartItemResultDtoList);
                         }
 //                        list.get(i).setArr(arrBeanList);
-                        if(listSelect.size()==0){
+                        if (listSelect.size() == 0) {
                             dataBeanList.add(list.get(i));
                             dataBeanList.get(0).setArr(arrBeanList);
-                            listSelect=dataBeanList;
-                        }else{
+                            listSelect = dataBeanList;
+                        } else {
                             listSelect.get(0).setArr(arrBeanList);
                         }
-
-                        Log.e("dfsfafa",""+listSelect.get(0).getArr().size());
+                        Log.e("dfsfafa", "" + listSelect.get(0).getArr().size());
                     }
                 }
             }
@@ -310,6 +312,8 @@ public class ShopCartAdapter extends RecyclerView.Adapter {
         RecyclerView recycleShopDetail;
         @BindView(R.id.item_big_shop)
         LinearLayout item_big_shop;
+        @BindView(R.id.item_enter_shop)
+        RelativeLayout item_enter_shop;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private int position = 0;
     private SharedPreferencesHelper sharedPreferencesHelper;
 
+
     //打开你的消息界面
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,11 +156,25 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 
+    public static void start(Context context, int tagFragment) {
+        Intent starter = new Intent(context, MainActivity.class);
+        starter.putExtra("tagFragment", tagFragment);
+        context.startActivity(starter);
+    }
+
+    int TagFragment;
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        setIntent(intent);
-        position = 0;
+        TagFragment = getIntent().getIntExtra("tagFragment", -1);
+        if (TagFragment != -1) {
+            setTabSelection(TagFragment);
+        } else {
+            setIntent(intent);
+            position = 0;
+        }
+
     }
 
     @Override

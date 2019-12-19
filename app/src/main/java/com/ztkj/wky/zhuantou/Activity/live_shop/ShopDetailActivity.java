@@ -3,11 +3,15 @@ package com.ztkj.wky.zhuantou.Activity.live_shop;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
@@ -26,6 +31,8 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.gyf.immersionbar.ImmersionBar;
+import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
+import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
 import com.squareup.okhttp.Request;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -33,6 +40,10 @@ import com.youth.banner.loader.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.live_shop.store.ShopStoreActivity;
+import com.ztkj.wky.zhuantou.MainActivity;
+import com.ztkj.wky.zhuantou.MyUtils.HeadRefreshView;
+import com.ztkj.wky.zhuantou.MyUtils.LoadMoreView;
+import com.ztkj.wky.zhuantou.MyUtils.ObservableScrollView;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.CouponAdapter;
 import com.ztkj.wky.zhuantou.adapter.LiveShopAdapter;
@@ -45,6 +56,7 @@ import com.ztkj.wky.zhuantou.adapter.ShopSizeAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.BaseStatusBean;
 import com.ztkj.wky.zhuantou.bean.OrderBean;
+import com.ztkj.wky.zhuantou.bean.PunchInBean;
 import com.ztkj.wky.zhuantou.bean.ShopDetailBean;
 import com.ztkj.wky.zhuantou.bean.ShopHomeBean;
 import com.ztkj.wky.zhuantou.bean.ShopKeyBean;
@@ -65,7 +77,7 @@ import static com.ztkj.wky.zhuantou.base.Contents.getShopParam;
 import static com.ztkj.wky.zhuantou.base.Contents.recorderUser;
 
 
-public class ShopDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class ShopDetailActivity extends AppCompatActivity implements View.OnClickListener, BaseRefreshListener, ObservableScrollView.ScrollViewListener {
 
     @BindView(R.id.guess_like_list)
     RecyclerView guess_like_list;
@@ -108,7 +120,14 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     TextView layout_title_tv;
     @BindView(R.id.tv_msg_num)
     TextView tv_msg_num;
+    @BindView(R.id.iv_top)
+    ImageView iv_top;
+    @BindView(R.id.scrollview)
+    ObservableScrollView scrollview;
+    @BindView(R.id.n1_cf)
+    PullToRefreshLayout n1Cf;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,6 +149,11 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         cart_shop.setOnClickListener(this);
         shop.setOnClickListener(this);
         more.setOnClickListener(this);
+        iv_top.setOnClickListener(this);
+        n1Cf.setHeaderView(new HeadRefreshView(ShopDetailActivity.this));
+        n1Cf.setFooterView(new LoadMoreView(ShopDetailActivity.this));
+        n1Cf.setRefreshListener(ShopDetailActivity.this);
+        scrollview.setScrollViewListener(this);
     }
 
     int pageNum = 1;
@@ -190,6 +214,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     ImageView iv_cover;
     @BindView(R.id.tv_shop_name)
     TextView tv_shop_name;
+    List<ShopDetailBean.DataBean.StoreBean> storeBeanList;
 
     private void setView() {
         if (shopDetailBean.getData().getSs_logo() != null) {
@@ -217,7 +242,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             liveShopDetailAdapter.setData(listShopDetail);
         }
         if (shopDetailBean.getData().getStore() != null && shopDetailBean.getData().getStore().size() > 0) {
-            liveShopListAdapter.setData(shopDetailBean.getData().getStore());
+            storeBeanList = shopDetailBean.getData().getStore();
+            liveShopListAdapter.setData(storeBeanList);
             liveShopListAdapter.notifyDataSetChanged();
         }
         if (goodsName != null && goodsDetail != null) {
@@ -319,6 +345,30 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         shopdetail_banner.setImages(listImages);
         shopdetail_banner.start();
     }
+
+    @Override
+    public void refresh() {
+        n1Cf.finishRefresh();
+    }
+
+    @Override
+    public void loadMore() {
+        n1Cf.finishLoadMore();
+    }
+
+    @Override
+    public void onScrollChanged(ObservableScrollView observableScrollView, int x, int y, int oldx, int oldy) {
+        Log.e("sdfa",y+"");
+        if (y > 500) {
+            iv_top.setVisibility(View.VISIBLE);
+        }else{
+            if(y<0||y==0){
+                iv_top.setVisibility(View.INVISIBLE);
+            }
+        }
+
+    }
+
 
     private class GlideImageLoader extends ImageLoader {
         @Override
@@ -496,7 +546,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                         }
                     }
                 });
-
     }
 
     private void getGussLike() {
@@ -614,16 +663,16 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     PopupWindow window;
 
     private void setViewDow(View view, View rootview) {
-        setKey();
         window = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
         window.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
         window.setOutsideTouchable(true);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                if (shopColorAdapter != null) {
-                    closePopu();
-                }
+                typeWay = 0;
+//                if (shopColorAdapter != null) {
+//                    closePopu();
+//                }
                 windowDissMiss();
             }
         });
@@ -631,18 +680,20 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     }
 
     TextView numTv;
-    TextView btnConfirm;
+    TextView btnConfirm, add_pop_shopping_cart, btn_at_once;
     TextView origin_price;
     ShopMateralAdapter shopMateralAdapter;
     ShopSizeAdapter shopSizeAdapter;
     ShopColorAdapter shopColorAdapter;
-    String topName;
+    int typeWay;
 
     private void popuSize() {
         View contentView = LayoutInflater.from(ShopDetailActivity.this).inflate(R.layout.pp_shop_size, null);
         //设置popuwindow是在父布局的哪个地方显示
         backgroundAlpha(0.6f);
         //下面是p里面的东西
+        btn_at_once = contentView.findViewById(R.id.btn_at_once);
+        add_pop_shopping_cart = contentView.findViewById(R.id.add_pop_shopping_cart);
         close = contentView.findViewById(R.id.close);
         tv_select_size = contentView.findViewById(R.id.tv_select_size);
         lvTagColor = contentView.findViewById(R.id.flowLayout);
@@ -661,11 +712,23 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         lvTagColor.setAdapter(shopColorAdapter);
         lvTagMatarel.setAdapter(shopMateralAdapter);
         lvTagSize.setAdapter(shopSizeAdapter);
+        if (typeWay == 0) {
+            add_pop_shopping_cart.setVisibility(View.VISIBLE);
+            btn_at_once.setVisibility(View.VISIBLE);
+            btnConfirm.setVisibility(View.GONE);
+        } else {
+            add_pop_shopping_cart.setVisibility(View.GONE);
+            btn_at_once.setVisibility(View.GONE);
+            btnConfirm.setVisibility(View.VISIBLE);
+        }
         Glide.with(ShopDetailActivity.this).load(shopDetailBean.getData().getSc_img()).into(iv_cover);
         if (shopDetailBean.getData().getSc_present_price() != null) {
             tv_price.setText(Contents.moneyTag + shopDetailBean.getData().getSc_present_price());
             origin_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             origin_price.setText(Contents.moneyTag + shopDetailBean.getData().getSc_original_price());
+        }
+        if (sku_name != null) {
+            tv_select_size.setText(alreadySelect + sku_name);
         }
         lvTagColor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -742,11 +805,11 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 }
             }
         });
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
+        add_pop_shopping_cart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 num = Integer.parseInt(numTv.getText().toString());
-                if (ssc_sku_id == null||skuMiddlename==null||skuLast==null||sku_name==null) {
+                if (ssc_sku_id == null || skuMiddlename == null || skuLast == null || sku_name == null) {
                     ToastUtils.setGravity(Gravity.CENTER, 0, 0);
                     ToastUtils.showShort("请选择商品属性");
                     return;
@@ -761,27 +824,71 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                             select_special_size.setText(tv_select_size.getText().toString());
                         }
                     }
-                    closePopu();
                 }
-                switch (typePay) {
+                addCart();
+                windowDissMiss();
+            }
+        });
+        btn_at_once.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                num = Integer.parseInt(numTv.getText().toString());
+                if (ssc_sku_id == null || skuMiddlename == null || skuLast == null || sku_name == null) {
+                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                    ToastUtils.showShort("请选择商品属性");
+                    return;
+                } else {
+                    if (stock != null) {
+                        if (num > Integer.parseInt(stock)) {
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                            ToastUtils.showShort("库存不足");
+                            return;
+                        }
+                        if (tv_select_size.getText().toString() != null) {
+                            select_special_size.setText(tv_select_size.getText().toString());
+                        }
+                    }
+                }
+                setIntentConfim();
+                windowDissMiss();
+            }
+        });
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                num = Integer.parseInt(numTv.getText().toString());
+                if (ssc_sku_id == null || skuMiddlename == null || skuLast == null || sku_name == null) {
+                    ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                    ToastUtils.showShort("请选择商品属性");
+                    return;
+                } else {
+                    if (stock != null) {
+                        if (num > Integer.parseInt(stock)) {
+                            ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                            ToastUtils.showShort("库存不足");
+                            return;
+                        }
+                        if (tv_select_size.getText().toString() != null) {
+                            select_special_size.setText(tv_select_size.getText().toString());
+                        }
+                    }
+                }
+                switch (typeWay) {
                     case 1:
-                        ssc_sku_id = shopDetailBean.getData().getSc_sku_id() + "," + ssc_sku_id;
                         addCart();
                         break;
                     case 2:
                         setIntentConfim();
                         break;
-                    default:
-                        setIntentConfim();
-                        break;
                 }
-                closePopu();
                 windowDissMiss();
+
             }
         });
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                closePopu();
                 windowDissMiss();
             }
         });
@@ -789,7 +896,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
     private void setIntentConfim() {
         if (sku_name != null && sku_price != null && ssc_sku_id != null) {
-            ssc_sku_id = shopDetailBean.getData().getSc_sku_id() + "," + ssc_sku_id;
+//            ssc_sku_id = shopDetailBean.getData().getSc_sku_id() + "," + ssc_sku_id;
+//            ssc_sku_id =ssc_sku_id;
             OrderBean.DataBean shopCart = new OrderBean.DataBean();
             shopCart.setSs_logo(shopDetailBean.getData().getSc_img());
             shopCart.setSs_name(shopDetailBean.getData().getSs_name());
@@ -817,6 +925,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             listShopCart.clear();
             select_special_size.setText("尺码 颜色等");
         }
+        closePopu();
     }
 
     @BindView(R.id.select_special_size)
@@ -891,9 +1000,9 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                             String skuId = skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_arr().getArr().get(tagLastSelect).getSk_id();
                             ssc_sku_id = skuBean.getData().getArr().get(tagSelect).getSk_id() + "," + skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_id() + "," + skuId;
                             tv_price.setText(Contents.moneyTag + shopDetailBean.getData().getSc_present_price());
-                            sku_name=skuBean.getData().getArr().get(i).getSk_name() + empryTrim +  skuMiddlename + empryTrim + skuLast;
+                            sku_name = skuBean.getData().getArr().get(i).getSk_name() + empryTrim + skuMiddlename + empryTrim + skuLast;
                             tv_select_size.setText(alreadySelect + sku_name);
-                        }else{
+                        } else {
                             tv_price.setText(Contents.moneyTag + shopDetailBean.getData().getSc_present_price());
                             tv_select_size.setText(alreadySelect + skuBean.getData().getArr().get(i).getSk_name());
                         }
@@ -907,7 +1016,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                                 stock = skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_stock();
                                 if (stock != null) {
                                     tv_price.setText(Contents.moneyTag + skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_price());
-                                    tv_select_size.setText(alreadySelect + skuLastName + empryTrim+ skuMiddlename );
+                                    tv_select_size.setText(alreadySelect + skuLastName + empryTrim + skuMiddlename);
                                 }
                             } else {
                                 stock = skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_arr().getArr().get(tagLastSelect).getSk_stock();
@@ -916,7 +1025,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                                     ssc_sku_id = skuBean.getData().getArr().get(tagSelect).getSk_id() + "," + skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_id() + "," + skuId;
                                     sku_price = skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_arr().getArr().get(tagLastSelect).getSk_price();
                                     tv_price.setText(Contents.moneyTag + sku_price);
-                                    sku_name = skuLastName +empryTrim + skuMiddlename + empryTrim + skuLast;
+                                    sku_name = skuLastName + empryTrim + skuMiddlename + empryTrim + skuLast;
                                     tv_select_size.setText(alreadySelect + empryTrim + sku_name);
                                 }
                             }
@@ -925,7 +1034,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                         if (skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_arr().getArr().size() != 0) {
                             for (int g = 0; g < skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_arr().getArr().size(); g++) {
                                 if (skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_arr().getArr().get(g).getSk_id().equals(sizeId)) {
-                                    tagLastSelect=g;
+                                    tagLastSelect = g;
                                     String skuLastLastName = skuBean.getData().getArr().get(tagSelect).getSk_name();
                                     if (skuMiddlename != null) {
                                         String skuLastName = skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_name();
@@ -935,7 +1044,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                                         stock = skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_arr().getArr().get(g).getSk_stock();
                                         sku_price = skuBean.getData().getArr().get(tagSelect).getSk_arr().getArr().get(tagSizeSelect).getSk_arr().getArr().get(g).getSk_price();
                                         tv_price.setText(Contents.moneyTag + sku_price);
-                                        sku_name = skuLastLastName +empryTrim + skuLastName + empryTrim + skuLast;
+                                        sku_name = skuLastLastName + empryTrim + skuLastName + empryTrim + skuLast;
                                         tv_select_size.setText(alreadySelect + sku_name);
                                     } else {
                                         skuLast = skuBean.getData().getArr().get(i).getSk_arr().getArr().get(j).getSk_arr().getArr().get(g).getSk_name();
@@ -958,7 +1067,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             if (Integer.parseInt(stock) > 0) {
                 numTv.setText(String.valueOf(1));
                 btnConfirm.setEnabled(true);
-                btnConfirm.setText("确定");
+                btnConfirm.setText("立即购买");
             }
         }
     }
@@ -978,7 +1087,6 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
     List<OrderBean.DataBean> listShopCart = new ArrayList<>();
     List<OrderBean.DataBean.ArrBean> arrBeanList = new ArrayList<>();
-    int typePay;
 
     @Override
     public void onClick(View view) {
@@ -988,27 +1096,19 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.add_shopping_cart:
                 if (!uid.equals("")) {
-                    typePay = 1;
+                    typeWay = 1;
                     popuSize();
-//                    if (sku_name != null && sku_price != null && ssc_sku_id != null) {
-//                        ssc_sku_id = shopDetailBean.getData().getSc_sku_id() + "," + ssc_sku_id;
-//                        addCart();
-//                    } else {
-//
-//                    }
                 } else {
                     NewLoginActivity.start(ShopDetailActivity.this);
                 }
-
                 break;
             case R.id.at_once_buy:
                 if (!uid.equals("")) {
-                    typePay = 2;
+                    typeWay = 2;
                     popuSize();
                 } else {
                     NewLoginActivity.start(ShopDetailActivity.this);
                 }
-
                 break;
             case R.id.rela_selelct_param:
                 if (listParam != null && listParam.size() > 0) {
@@ -1038,9 +1138,13 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             case R.id.collect_shop:
                 if (!uid.equals("")) {
                     if (collect_shop.isSelected()) {
+                        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                        ToastUtils.showShort("取消收藏");
                         collect_shop.setSelected(false);
                         deleteShop();
                     } else {
+                        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+                        ToastUtils.showShort("收藏成功");
                         collect_shop.setSelected(true);
                         collectShop();
                     }
@@ -1061,18 +1165,13 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             case R.id.more:
                 popuShare(view);
                 break;
+            case R.id.iv_top:
+                iv_top.setVisibility(View.INVISIBLE);
+                scrollview.fullScroll(ScrollView.FOCUS_UP);
+
+                break;
         }
     }
-
-    private void setKey() {
-        ImmersionBar.with(this)
-                .statusBarColor(R.color.lanse)     //状态栏颜色，不写默认透明色
-//                .hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
-//                .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
-                .fullScreen(true)
-                .init();
-    }
-
 
     private void popuShare(View v) {
         View contentView = LayoutInflater.from(this).inflate(R.layout.pp_shop, null);
@@ -1089,6 +1188,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View v) {
                 backgroundAlpha(1f);
                 window.dismiss();
+                MainActivity.start(ShopDetailActivity.this, 4);
                 finish();
 
             }

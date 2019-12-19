@@ -52,6 +52,24 @@ public class AddressListBean implements Serializable {
         private String sra_username;
         private String sra_phone;
         private String sra_address;
+        private String sra_province_city_area;
+        private String sra_pca_address;
+
+        public String getSra_province_city_area() {
+            return sra_province_city_area;
+        }
+
+        public void setSra_province_city_area(String sra_province_city_area) {
+            this.sra_province_city_area = sra_province_city_area;
+        }
+
+        public String getSra_pca_address() {
+            return sra_pca_address;
+        }
+
+        public void setSra_pca_address(String sra_pca_address) {
+            this.sra_pca_address = sra_pca_address;
+        }
 
         public String getSra_id() {
             return sra_id;

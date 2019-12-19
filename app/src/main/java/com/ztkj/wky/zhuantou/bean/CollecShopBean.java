@@ -54,6 +54,16 @@ public class CollecShopBean implements Serializable {
         private String sc_original_price;
         private String sc_present_price;
         private String sc_img;
+        private String delete_id;
+
+        public String getDelete_id() {
+            return delete_id;
+        }
+
+        public void setDelete_id(String delete_id) {
+            this.delete_id = delete_id;
+        }
+
         private boolean isSelect;
 
         public boolean isSelect() {

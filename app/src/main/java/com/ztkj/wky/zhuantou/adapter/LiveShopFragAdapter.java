@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ActivityList;
 import com.ztkj.wky.zhuantou.Activity.live_shop.SearchShopActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.SearchShopsActivity;
 import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
@@ -105,7 +106,10 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
         } else {
-
+            ShopSpecialAreaViewHolder specialAreaViewHolder= (ShopSpecialAreaViewHolder) viewHolder;
+            specialAreaViewHolder.area_one.setOnClickListener(this);
+            specialAreaViewHolder.area_two.setOnClickListener(this);
+            specialAreaViewHolder.area_three.setOnClickListener(this);
 
         }
     }
@@ -118,13 +122,13 @@ public class LiveShopFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 break;
                 //打折区域
             case R.id.area_three:
-
+                ActivityList.start(mContext,1);
                 break;
             case R.id.area_two:
-
+                ActivityList.start(mContext,2);
                 break;
             case R.id.area_one:
-
+                ActivityList.start(mContext,3);
                 break;
         }
     }

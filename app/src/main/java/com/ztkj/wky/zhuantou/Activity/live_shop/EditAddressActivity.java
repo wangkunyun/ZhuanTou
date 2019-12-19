@@ -96,9 +96,13 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
             more.setText("删除");
             edi_name.setText(adressUpdateBean.getUsername());
             edi_phone.setText(adressUpdateBean.getUserphone());
-            String address=adressUpdateBean.getUseraddress().substring(0,3);
-            tv_address.setText(address);
-            address_detial.setText(adressUpdateBean.getUseraddress());
+            if(!adressUpdateBean.getSra_province_city_area().equals("0")){
+                tv_address.setText(adressUpdateBean.getSra_province_city_area());
+            }
+            if(!adressUpdateBean.getSra_pca_address().equals("0")){
+                address_detial.setText(adressUpdateBean.getSra_pca_address());
+            }
+
         }
 
     }
@@ -308,6 +312,8 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
                 .addParams("sra_address", allAddress)
                 .addParams("sra_phone", phoneUser)
                 .addParams("sra_id", adressUpdateBean.getAddressId())
+                .addParams("sra_province_city_area",addreUser)
+                .addParams("sra_pca_address",addressDetailUser)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -376,6 +382,8 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
                 .addParams("sra_address", allAddress)
                 .addParams("sra_phone", phoneUser)
                 .addParams("sra_user_id", uid)
+                .addParams("sra_province_city_area",addreUser)
+                .addParams("sra_pca_address",addressDetailUser)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -395,7 +403,6 @@ public class EditAddressActivity extends AppCompatActivity implements View.OnCli
                             setResult(1, intent);
                             finish();
                         }
-
                     }
                 });
 

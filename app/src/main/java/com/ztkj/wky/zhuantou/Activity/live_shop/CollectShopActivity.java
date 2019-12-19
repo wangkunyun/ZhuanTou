@@ -16,9 +16,13 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
+import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
+import com.kongzue.dialog.util.BaseDialog;
+import com.kongzue.dialog.v3.MessageDialog;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.live_shop.order.OrderTabActivity;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.adapter.CollectShopAdapter;
 import com.ztkj.wky.zhuantou.base.Contents;
@@ -89,10 +93,9 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                     is_select_buy.setSelected(true);
                 } else {
                     if (postion != null) {
-                        deleteSingleShop = list.get(Integer.parseInt(postion)).getSc_id();
+                        deleteSingleShop = list.get(Integer.parseInt(postion)).getDelete_id();
                     }
                     is_select_buy.setSelected(false);
-
                 }
             }
         });
@@ -157,7 +160,9 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                     if (more.getText().toString().equals("管理")) {
                         rela_confirm_shop.setVisibility(View.VISIBLE);
                         more.setText("取消");
+                        collectShopAdapter.cancelSelectAll(true);
                     } else {
+                        collectShopAdapter.cancelSelectAll(false);
                         more.setText("管理");
                         rela_confirm_shop.setVisibility(View.GONE);
                     }
@@ -171,7 +176,7 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                         isAll = false;
                         isAllDelete = false;
                         is_select_buy.setSelected(false);
-                        collectShopAdapter.cancelSelectAll();
+                        collectShopAdapter.cancelSelectAll(false);
                     } else {
                         isAll = true;
                         isAllDelete = true;
@@ -184,20 +189,42 @@ public class CollectShopActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.delete_shop:
                 if (collectShopAdapter.getData() != null && collectShopAdapter.getData().size() > 0) {
-                    collectShopAdapter.getSelectData();
-                    if (isAll && isAllDelete) {
-                        rela_confirm_shop.setVisibility(View.GONE);
-                        deleteShop();
-                        isHidden(true);
-                    } else {
-                        delete_SinleShop();
-                    }
+
+                   initMsg();
                 }else{
                     ToastUtils.showShort("收藏夹暂无数据");
                 }
 
                 break;
         }
+    }
+
+
+    private void initMsg() {
+        MessageDialog.build(CollectShopActivity.this)
+                .setTitle("提示")
+                .setMessage("是否删除选中收藏商品")
+                .setOkButton("确定", new OnDialogButtonClickListener() {
+                    @Override
+                    public boolean onClick(BaseDialog baseDialog, View v) {
+                        collectShopAdapter.getSelectData();
+                        if (isAll && isAllDelete) {
+                            rela_confirm_shop.setVisibility(View.GONE);
+                            deleteShop();
+                            isHidden(true);
+                        } else {
+                            delete_SinleShop();
+                        }
+                        return false;
+                    }
+                })
+                .setCancelButton("取消", new OnDialogButtonClickListener() {
+                    @Override
+                    public boolean onClick(BaseDialog baseDialog, View v) {
+                        return false;
+                    }
+                })
+                .show();
     }
 
     private void delete_SinleShop() {

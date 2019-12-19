@@ -15,6 +15,9 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
+import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
+import com.kongzue.dialog.util.BaseDialog;
+import com.kongzue.dialog.v3.MessageDialog;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -105,13 +108,35 @@ public class RecorderActivity extends AppCompatActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.more:
-                recorderAdapter.clearData();
-                deleteRecorder();
-                isHidden(true);
+                initMsg();
+
                 break;
         }
     }
 
+
+
+    private void initMsg() {
+        MessageDialog.build(RecorderActivity.this)
+                .setTitle("提示")
+                .setMessage("是否清空浏览记录")
+                .setOkButton("确定", new OnDialogButtonClickListener() {
+                    @Override
+                    public boolean onClick(BaseDialog baseDialog, View v) {
+                        recorderAdapter.clearData();
+                        deleteRecorder();
+                        isHidden(true);
+                        return false;
+                    }
+                })
+                .setCancelButton("取消", new OnDialogButtonClickListener() {
+                    @Override
+                    public boolean onClick(BaseDialog baseDialog, View v) {
+                        return false;
+                    }
+                })
+                .show();
+    }
     private void deleteRecorder() {
         OkHttpUtils.post().url(Contents.SHOPBASE + Contents.deleteRecoder)
                 .addParams("sf_user_id", uid)

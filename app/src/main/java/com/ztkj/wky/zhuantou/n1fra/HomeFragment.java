@@ -180,7 +180,6 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void loadMore() {
-
                 switch (position) {
                     case 0:
                         articleclass(0, Blank1Fragment.blank1Rv);
@@ -195,8 +194,6 @@ public class HomeFragment extends Fragment {
                         articleclass(3, Blank4Fragment.blank4Rv);
                         break;
                 }
-
-
                 n1Cf.finishLoadMore();
             }
 
