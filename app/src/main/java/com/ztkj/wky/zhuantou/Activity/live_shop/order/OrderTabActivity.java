@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.androidkun.xtablayout.XTabLayout;
@@ -29,15 +29,17 @@ public class OrderTabActivity extends AppCompatActivity {
     XTabLayout xTablayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    List<Fragment> fragments = new ArrayList<>();
     @BindView(R.id.layout_back)
     ImageView layoutBack;
-    @BindView(R.id.layout_tvSearch)
-    TextView layoutTvSearch;
-    @BindView(R.id.bigsearch_edt)
-    RelativeLayout bigsearchEdt;
+    @BindView(R.id.layout_title_tv)
+    TextView layoutTitleTv;
     @BindView(R.id.more)
-    ImageView more;
-    List<Fragment> fragments = new ArrayList<>();
+    TextView more;
+    @BindView(R.id.sz_toolbar)
+    Toolbar szToolbar;
+    @BindView(R.id.toolbar)
+    LinearLayout toolbar;
     private String TAG = "OrderTabActivity";
     private int i;
 
@@ -46,8 +48,7 @@ public class OrderTabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_tab);
         ButterKnife.bind(this);
-        layoutTvSearch.setText("搜索订单");
-        more.setVisibility(View.GONE);
+        layoutTitleTv.setText("订单");
         List<String> titles = new ArrayList<>();
         titles.add("全部");
         titles.add("待付款");
@@ -99,16 +100,9 @@ public class OrderTabActivity extends AppCompatActivity {
         context.startActivity(starter);
     }
 
-    @OnClick({R.id.layout_back, R.id.bigsearch_edt, R.id.more})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.layout_back:
-                finish();
-                break;
-            case R.id.bigsearch_edt:
-                break;
-            case R.id.more:
-                break;
-        }
+
+    @OnClick(R.id.layout_back)
+    public void onViewClicked() {
+        finish();
     }
 }

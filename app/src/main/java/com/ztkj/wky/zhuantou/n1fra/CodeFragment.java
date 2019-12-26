@@ -55,7 +55,6 @@ import com.ztkj.wky.zhuantou.bean.ADBean;
 import com.ztkj.wky.zhuantou.bean.EwmBean;
 import com.ztkj.wky.zhuantou.isMy.EwmApplyActivity;
 import com.ztkj.wky.zhuantou.isMy.FangKeActivity;
-import com.ztkj.wky.zhuantou.isMy.JiLuActivity;
 import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
 import java.io.File;
@@ -80,20 +79,12 @@ public class CodeFragment extends Fragment {
 
     @BindView(R.id.n2_sysm)
     TextView n2Sysm;
-    @BindView(R.id.n2_most)
-    ImageView n2Most;
     @BindView(R.id.n2_ts)
     TextView n2Ts;
     @BindView(R.id.n2_ewm)
     ImageView n2Ewm;
     @BindView(R.id.n2_bg1)
     RelativeLayout n2Bg1;
-    @BindView(R.id.n2_tv1)
-    TextView n2Tv1;
-    @BindView(R.id.n2_tv2)
-    TextView n2Tv2;
-    @BindView(R.id.n2_bg2)
-    RelativeLayout n2Bg2;
     Unbinder unbinder;
     @BindView(R.id.n2_tvts)
     TextView n2Tvts;
@@ -175,7 +166,6 @@ public class CodeFragment extends Fragment {
                             n2Ewm.setImageBitmap(mBitmap);
                             n2Ewm.setAlpha(1f);
                             n2Ts.setText("");
-                            n2Tv2.setText(ewmBean.getData().getDuration());
                             n2Tips.setText(ewmBean.getData().getTips());
 
                             //长连接请求广告
@@ -615,7 +605,7 @@ public class CodeFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.n2_sysm, R.id.n2_most, R.id.n2_bg2, R.id.n2_refresh, R.id.n2_fangke, R.id.click_emergencyPhone})
+    @OnClick({R.id.n2_sysm, R.id.n2_refresh, R.id.n2_fangke, R.id.click_emergencyPhone})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.n2_sysm:
@@ -624,19 +614,6 @@ public class CodeFragment extends Fragment {
                 intent.putExtra("urlmsg", "https://api.zhuantoukj.com/image/shuoming.html");
                 intent.putExtra("title", "使用说明");
                 startActivity(intent);
-                break;
-            case R.id.n2_bg2:
-                if (StringUtils.isEmpty(uid)) {
-                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getActivity(), NewLoginActivity.class);
-                    startActivity(intent);
-                    return;
-                }
-                intent = new Intent(getContext(), JiLuActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.n2_most:
-//                popuinit(view);
                 break;
             case R.id.n2_refresh:
                 if (StringUtils.isEmpty(uid)) {

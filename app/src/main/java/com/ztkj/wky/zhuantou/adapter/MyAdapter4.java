@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.ztkj.wky.zhuantou.Activity.mine.jf.ConversionShopDetails;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.bean.MyZtBean;
 
 import java.util.List;
 
-public class MyAdapter4 extends RecyclerView.Adapter<MyAdapter4.ViewHolder>{
+public class MyAdapter4 extends RecyclerView.Adapter<MyAdapter4.ViewHolder> {
     private List<MyZtBean.DataBean.CommodityListBean> mData;
 
     private Context context;
@@ -43,7 +43,8 @@ public class MyAdapter4 extends RecyclerView.Adapter<MyAdapter4.ViewHolder>{
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"暂未开通此服务",Toast.LENGTH_SHORT).show();
+                //跳转至积分兑换
+                ConversionShopDetails.start(context);
             }
         });
 
@@ -56,14 +57,14 @@ public class MyAdapter4 extends RecyclerView.Adapter<MyAdapter4.ViewHolder>{
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textView,textView2;
+        private TextView textView, textView2;
         private ImageView img;
         private RelativeLayout relativeLayout;
 
         public ViewHolder(View itemView) {
 
             super(itemView);
-            img  = itemView.findViewById(R.id.myztitem_img1);
+            img = itemView.findViewById(R.id.myztitem_img1);
             textView = itemView.findViewById(R.id.myztitem_tv1);
             textView2 = itemView.findViewById(R.id.myztitem_tv2);
             relativeLayout = itemView.findViewById(R.id.myztitem_rl);

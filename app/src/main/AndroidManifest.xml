@@ -79,7 +79,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.live_shop.ActivityList"></activity>
+        <activity android:name=".Activity.mine.jf.JfTab"></activity>
+        <activity android:name=".Activity.mine.jf.ConversionDetails" />
+        <activity android:name=".Activity.mine.jf.ConversionShopDetails" />
+        <activity android:name=".Activity.live_shop.ActivityList" />
         <activity android:name=".Activity.live_shop.PaySucessfulActivity" />
         <activity
             android:name=".Activity.live_shop.SearchShopsActivity"

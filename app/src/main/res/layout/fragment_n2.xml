@@ -1,240 +1,282 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/t3"
+    android:orientation="vertical"
     tools:context=".n1fra.CodeFragment">
 
-    <TextView
-        android:id="@+id/n2_sysm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="34dp"
-        android:includeFontPadding="false"
-        android:lineSpacingMultiplier="0.9"
-        android:text="使用说明"
-        android:textColor="@color/baise"
-        android:textSize="14sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
-        android:includeFontPadding="false"
-        android:lineSpacingMultiplier="0.9"
-        android:text="通行二维码"
-        android:textColor="@color/baise"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/click_emergencyPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="34dp"
-        android:includeFontPadding="false"
-        android:lineSpacingMultiplier="0.9"
-        android:text="紧急电话"
-        android:textColor="@color/baise"
-        android:textSize="14sp" />
-
-
-    <!--//先Gone掉  已无用-->
-    <ImageView
-        android:id="@+id/n2_most"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="31dp"
-        android:layout_marginRight="16dp"
-        android:padding="6dp"
-        android:src="@drawable/nav_most_icon_default"
-        android:visibility="gone" />
-
     <RelativeLayout
-        android:id="@+id/n2_bg1"
         android:layout_width="match_parent"
-        android:layout_height="347dp"
-        android:layout_below="@id/n2_sysm"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/bg_up">
+        android:layout_height="44dp">
 
         <TextView
-            android:id="@+id/n2_tvts"
+            android:id="@+id/n2_sysm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
             android:includeFontPadding="false"
             android:lineSpacingMultiplier="0.9"
-            android:text="将下方二维码对准速通门屏幕进站"
-            android:textColor="@color/t6"
+            android:text="使用说明"
+            android:textColor="@color/baise"
             android:textSize="14sp" />
 
-        <!--刷新-->
-        <ImageView
-            android:id="@+id/n2_refresh"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="14dp"
-            android:layout_marginRight="14dp"
-            android:src="@drawable/most_icon_update" />
-
-
-        <!--android:text="对不起，您暂时没有该权限。-->
-        <!--请前往所属公司或物业置办。"-->
         <TextView
-            android:id="@+id/n2_ts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="130dp" />
+            android:includeFontPadding="false"
+            android:lineSpacingMultiplier="0.9"
+            android:text="通行二维码"
+            android:textColor="@color/baise"
+            android:textSize="18sp" />
 
-        <!--二维码-->
-        <ImageView
-            android:id="@+id/n2_ewm"
-            android:layout_width="210dp"
-            android:layout_height="210dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="64dp" />
-        
-        <LinearLayout
-            android:id="@+id/lin_wait_erweima_apply"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/click_emergencyPhone"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="82dp"
-            android:visibility="gone">
-            <ImageView
-                android:layout_width="116dp"
-                android:layout_height="91dp"
-                android:src="@mipmap/wait_erweima_apply"
-                android:layout_gravity="center_horizontal"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="您的信息正在等待审核.."
-                android:textColor="#ff65c9d2"
-                android:textSize="18sp"
-                android:layout_gravity="center_horizontal"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="如长时间未通过，请联系企业pc负责人进行审批"
-                android:textColor="#ff999999"
-                android:textSize="12sp"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
-
-
-        <!--&lt;!&ndash;访客授权&ndash;&gt;-->
-        <!--<android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
-        <!--android:id="@+id/cardview_banner"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/n1_work_rl"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="36px"-->
-        <!--app:cardElevation="44px">-->
-
-        <!--<Button-->
-        <!--android:id="@+id/n2_fangke"-->
-        <!--style="?android:attr/borderlessButtonStyle"-->
-        <!--android:layout_width="224px"-->
-        <!--android:layout_height="72px"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:background="@drawable/yuanjiaobtn"-->
-        <!--android:text="访客授权"-->
-        <!--android:textColor="#FFFFFF"-->
-        <!--android:textSize="32px" />-->
-        <!--</android.support.v7.widget.CardView>-->
-
-        <!--访客授权-->
-        <Button
-            android:id="@+id/n2_fangke"
-            android:layout_width="120dp"
-            android:layout_height="36dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="18dp"
-            android:background="@drawable/yuanjiaobtn"
-            android:elevation="5dp"
-            android:text="访客授权"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:includeFontPadding="false"
+            android:lineSpacingMultiplier="0.9"
+            android:text="紧急电话"
+            android:textColor="@color/baise"
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/n2_bg2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_below="@+id/n2_bg1"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/bg_down">
-
-        <ImageView
-            android:layout_width="312dp"
-            android:layout_height="69dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="28dp"
-            android:src="@drawable/img_punch" />
+        android:layout_height="457dp"
+        android:layout_below="@id/n2_sysm"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:background="@mipmap/img_bg_code_up"
+            android:paddingTop="22dp">
 
             <TextView
-                android:id="@+id/n2_tv1"
-                android:layout_width="wrap_content"
+                android:id="@+id/click_takeOutCode"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="今日工作时长已超过"
-                android:textColor="@color/baise"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/icon_take_out_code"
+                android:drawablePadding="8dp"
+                android:gravity="center_horizontal"
+                android:text="取外卖码"
+                android:textColor="#666666"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/n2_tv2"
-                android:layout_width="wrap_content"
+                android:id="@+id/click_Parking"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/baise"
-                android:textSize="20sp" />
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/icon_parking_n1"
+                android:drawablePadding="8dp"
+                android:gravity="center_horizontal"
+                android:text="停车导航"
+                android:textColor="#666666"
+                android:textSize="14sp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/click_ladderControl"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="%的人"
-                android:textColor="@color/baise"
-                android:textSize="14dp" />
-
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/icon_the_ladder_control"
+                android:drawablePadding="8dp"
+                android:gravity="center_horizontal"
+                android:text="梯控指引"
+                android:textColor="#666666"
+                android:textSize="14sp" />
         </LinearLayout>
 
+        <RelativeLayout
+            android:id="@+id/n2_bg1"
+            android:layout_width="match_parent"
+            android:layout_height="347dp"
+            android:background="@mipmap/img_bg_code_down">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/n2_tvts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:includeFontPadding="false"
+                android:lineSpacingMultiplier="0.9"
+                android:text="将下方二维码对准速通门屏幕进站"
+                android:textColor="@color/t6"
+                android:textSize="14sp" />
+
+            <!--刷新-->
+            <ImageView
+                android:id="@+id/n2_refresh"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="14dp"
+                android:src="@drawable/most_icon_update" />
+
+
+            <TextView
+                android:id="@+id/n2_ts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="130dp" />
+
+            <!--二维码-->
+            <ImageView
+                android:id="@+id/n2_ewm"
+                android:layout_width="210dp"
+                android:layout_height="210dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="64dp" />
+
+            <LinearLayout
+                android:id="@+id/lin_wait_erweima_apply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="82dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="116dp"
+                    android:layout_height="91dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/wait_erweima_apply" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="您的信息正在等待审核.."
+                    android:textColor="#ff65c9d2"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="如长时间未通过，请联系企业pc负责人进行审批"
+                    android:textColor="#ff999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <!--&lt;!&ndash;访客授权&ndash;&gt;-->
+            <!--<android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+            <!--android:id="@+id/cardview_banner"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/n1_work_rl"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginBottom="36px"-->
+            <!--app:cardElevation="44px">-->
+
+            <!--<Button-->
+            <!--android:id="@+id/n2_fangke"-->
+            <!--style="?android:attr/borderlessButtonStyle"-->
+            <!--android:layout_width="224px"-->
+            <!--android:layout_height="72px"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:background="@drawable/yuanjiaobtn"-->
+            <!--android:text="访客授权"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:textSize="32px" />-->
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--访客授权-->
+            <Button
+                android:id="@+id/n2_fangke"
+                android:layout_width="120dp"
+                android:layout_height="36dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/yuanjiaobtn"
+                android:elevation="5dp"
+                android:text="访客授权"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/n2_bg2"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="110dp"-->
+    <!--android:layout_below="@+id/n2_bg1"-->
+    <!--android:layout_marginLeft="16dp"-->
+    <!--android:layout_marginRight="16dp"-->
+    <!--android:background="@drawable/bg_down">-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="312dp"-->
+    <!--android:layout_height="69dp"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="28dp"-->
+    <!--android:src="@drawable/img_punch" />-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginBottom="30dp"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/n2_tv1"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="今日工作时长已超过"-->
+    <!--android:textColor="@color/baise"-->
+    <!--android:textSize="14sp" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/n2_tv2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="0"-->
+    <!--android:textColor="@color/baise"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="%的人"-->
+    <!--android:textColor="@color/baise"-->
+    <!--android:textSize="14dp" />-->
+
+    <!--</LinearLayout>-->
+
+
+    <!--</RelativeLayout>-->
 
     <TextView
         android:id="@+id/n2_tips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="提示：在首页阅读文章可以获得积分哦"
-        android:layout_below="@id/n2_bg2"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
+        android:text="提示：在首页阅读文章可以获得积分哦"
         android:textColor="#FFE8E8E8"
         android:textSize="14sp" />
 
-</RelativeLayout>
+</LinearLayout>

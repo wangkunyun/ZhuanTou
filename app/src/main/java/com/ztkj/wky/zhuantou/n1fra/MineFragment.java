@@ -35,6 +35,7 @@ import com.ztkj.wky.zhuantou.Activity.live_shop.order.OrderTabActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.MyWallet;
 import com.ztkj.wky.zhuantou.Activity.mine.NotificationActivity;
 import com.ztkj.wky.zhuantou.Activity.mine.ParkActivity;
+import com.ztkj.wky.zhuantou.Activity.mine.jf.JfTab;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
@@ -42,7 +43,6 @@ import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.GetUserMessageBean;
 import com.ztkj.wky.zhuantou.bean.RecorderBean;
 import com.ztkj.wky.zhuantou.isMy.GeRenActivity;
-import com.ztkj.wky.zhuantou.isMy.JiFenActivity;
 import com.ztkj.wky.zhuantou.isMy.SzActivity;
 import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
@@ -280,7 +280,7 @@ public class MineFragment extends Fragment {
                     startActivity(intent);
                     return;
                 }
-                intent = new Intent(getContext(), JiFenActivity.class);
+                intent = new Intent(getContext(), JfTab.class);
                 getActivity().startActivity(intent);
                 break;
             case R.id.clickCollect: //收藏
@@ -317,7 +317,7 @@ public class MineFragment extends Fragment {
                     startActivity(intent);
                     return;
                 }
-                intent = new Intent(getContext(), JiFenActivity.class);
+                intent = new Intent(getContext(), JfTab.class);
                 getActivity().startActivity(intent);
                 break;
             case R.id.clickAllOrder:

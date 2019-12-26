@@ -10,29 +10,31 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:background="@color/lanse">
+        android:background="#31ACB3">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingLeft="24dp">
+            android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/n4_companyLogo"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:id="@+id/img_n4_chat"
+                android:layout_width="54dp"
+                android:layout_height="22dp"
+
                 android:layout_gravity="center_vertical"
-                android:src="@mipmap/icon_sun"
-                android:visibility="gone" />
+                android:src="@mipmap/icon_n4_chat" />
+
             <!--创建团队-->
             <TextView
                 android:id="@+id/n4_create_team"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="4"
                 android:ellipsize="end"
+                android:gravity="center"
                 android:includeFontPadding="false"
                 android:lineSpacingMultiplier="0.9"
                 android:maxEms="15"
@@ -41,23 +43,13 @@
                 android:textSize="18sp" />
 
 
-            <!--<ImageView-->
-            <!--android:id="@+id/img_n4_address_book"-->
-            <!--android:layout_width="22dp"-->
-            <!--android:layout_height="22dp"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_marginRight="62dp"-->
-            <!--android:src="@mipmap/icon_n4_address_book" />-->
+            <ImageView
+                android:id="@+id/img_n4_address_book"
+                android:layout_width="54dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/icon_n4_address_book" />
 
-            <!--<ImageView-->
-            <!--android:id="@+id/img_n4_chat"-->
-            <!--android:layout_width="22dp"-->
-            <!--android:layout_height="22dp"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_marginRight="20dp"-->
-            <!--android:src="@mipmap/icon_n4_chat" />-->
 
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
@@ -79,116 +71,167 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="134dp"
+                android:layout_height="140dp"
                 android:background="#FFF2F6F9"
                 android:paddingBottom="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="104dp"
-                    android:background="#65C9D2">
+                    android:layout_height="99dp"
+                    android:background="#31ACB3" />
 
-                    <LinearLayout
-                        android:id="@+id/lin_click_tongzhi"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@drawable/yuanjiaobtn_tongzhi"
-                        android:gravity="center_vertical">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_marginLeft="8dp"
-                            android:src="@mipmap/icon_oa_laba" />
-
-                        <TextView
-                            android:id="@+id/tv_tongzhi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="通知：在这里设置要传达的重要信息吧！"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="163dp"
-                    android:layout_height="64dp"
-                    android:layout_alignParentBottom="true"
+                <!--轮播图-->
+                <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/cardview_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
                     android:layout_marginLeft="16dp"
-                    android:background="@drawable/yuanjiaobtn_8dp">
-
-                    <LinearLayout
-                        android:id="@+id/img_n4_address_book"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical">
-
-                        <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:layout_marginLeft="16dp"
-                            android:src="@mipmap/icon_oa_address" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:text="通讯录"
-                            android:textColor="#ff666666"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="163dp"
-                    android:layout_height="64dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="16dp"
-                    android:background="@drawable/yuanjiaobtn_8dp">
-
-
-                    <LinearLayout
-                        android:id="@+id/img_n4_chat"
+                    app:cardCornerRadius="8dp">
+                    <!--app:cardElevation="10dp"-->
+                    <com.youth.banner.Banner
+                        android:id="@+id/banner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical">
+                        app:indicator_drawable_selected="@drawable/rectangle2"
+                        app:indicator_drawable_unselected="@drawable/rectangle2copy"
+                        app:indicator_height="3dp"
+                        app:indicator_width="18dp" />
+                </android.support.v7.widget.CardView>
+                <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="104dp"-->
+                <!--android:background="#31ACB3">-->
 
-                        <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:layout_marginLeft="16dp"
-                            android:src="@mipmap/icon_oa_message" />
+                <!--<LinearLayout-->
+                <!--android:id="@+id/lin_click_tongzhi"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--android:background="@drawable/yuanjiaobtn_tongzhi"-->
+                <!--android:gravity="center_vertical">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:text="消息"
-                            android:textColor="#ff666666"
-                            android:textSize="16sp" />
+                <!--<ImageView-->
+                <!--android:layout_width="24dp"-->
+                <!--android:layout_height="24dp"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:src="@mipmap/icon_oa_laba" />-->
 
-                        <TextView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="13dp"
-                            android:background="@drawable/yuanjiaobtnmeaage"
-                            android:gravity="center"
-                            android:text="99"
-                            android:textColor="#fff"
-                            android:textSize="14sp"
-                            android:visibility="invisible" />
-                    </LinearLayout>
+                <!--<TextView-->
+                <!--android:id="@+id/tv_tongzhi"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="通知：在这里设置要传达的重要信息吧！"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:textSize="14sp" />-->
 
-                </LinearLayout>
+                <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="163dp"-->
+                <!--android:layout_height="64dp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:background="@drawable/yuanjiaobtn_8dp">-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/img_n4_address_book"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center_vertical">-->
+
+                <!--<ImageView-->
+                <!--android:layout_width="36dp"-->
+                <!--android:layout_height="36dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:src="@mipmap/icon_oa_address" />-->
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:text="通讯录"-->
+                <!--android:textColor="#ff666666"-->
+                <!--android:textSize="16sp" />-->
+                <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="163dp"-->
+                <!--android:layout_height="64dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--android:background="@drawable/yuanjiaobtn_8dp">-->
+
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/img_n4_chat"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center_vertical">-->
+
+                <!--<ImageView-->
+                <!--android:layout_width="36dp"-->
+                <!--android:layout_height="36dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:src="@mipmap/icon_oa_message" />-->
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:text="消息"-->
+                <!--android:textColor="#ff666666"-->
+                <!--android:textSize="16sp" />-->
+
+                <!--<TextView-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:layout_marginLeft="13dp"-->
+                <!--android:background="@drawable/yuanjiaobtnmeaage"-->
+                <!--android:gravity="center"-->
+                <!--android:text="99"-->
+                <!--android:textColor="#fff"-->
+                <!--android:textSize="14sp"-->
+                <!--android:visibility="invisible" />-->
+                <!--</LinearLayout>-->
+
+                <!--</LinearLayout>-->
 
 
             </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_click_tongzhi"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@mipmap/img_bg_tongzhi">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="17dp"
+                    android:src="@mipmap/icon_oa_laba" />
+
+                <TextView
+                    android:id="@+id/tv_tongzhi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="13dp"
+                    android:text="通知：在这里设置要传达的重要信息吧！"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
 
             <TextView
@@ -198,8 +241,9 @@
                 android:layout_marginLeft="18dp"
                 android:layout_marginTop="23dp"
                 android:text="办公人事"
-                android:textColor="@color/t5"
-                android:textSize="16sp" />
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <!--打卡 申请 日志 审批-->
             <LinearLayout
@@ -344,7 +388,8 @@
                     android:layout_centerVertical="true"
                     android:text="企业服务"
                     android:textColor="@color/t5"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -354,7 +399,8 @@
                     android:layout_marginEnd="16dp"
                     android:text="更多服务"
                     android:textColor="#999999"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
@@ -574,13 +620,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
                 android:layout_marginTop="52dp"
                 android:layout_marginBottom="16dp"
                 android:text="日程"
                 android:textColor="@color/t5"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
 
             <!--月日历-->

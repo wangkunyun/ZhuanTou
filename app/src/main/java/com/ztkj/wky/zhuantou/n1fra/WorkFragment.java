@@ -2,6 +2,7 @@ package com.ztkj.wky.zhuantou.n1fra;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,19 +14,19 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.necer.calendar.MonthCalendar;
 import com.necer.painter.InnerPainter;
 import com.squareup.okhttp.Request;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.loader.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.chat.AddressTab;
@@ -45,6 +46,7 @@ import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.R;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.AllApplyBean;
+import com.ztkj.wky.zhuantou.bean.BannerBean;
 import com.ztkj.wky.zhuantou.bean.GetCompanyAnnBean;
 import com.ztkj.wky.zhuantou.bean.ReportRedDot;
 import com.ztkj.wky.zhuantou.bean.ScheduleListBean;
@@ -70,16 +72,10 @@ import butterknife.Unbinder;
 public class WorkFragment extends Fragment {
     @BindView(R.id.n4_create_team)
     TextView n4CreateTeam;
-    @BindView(R.id.img_n4_address_book)
-    LinearLayout imgN4AddressBook;
-    @BindView(R.id.img_n4_chat)
-    LinearLayout imgN4Chat;
     @BindView(R.id.tv_n4_celebrated_dictum)
     TextView tvN4CelebratedDictum;
     @BindView(R.id.tv_n4_author)
     TextView tvN4Author;
-    @BindView(R.id.img_n4_daka)
-    ImageView imgN4Daka;
     @BindView(R.id.tv_n4_daka)
     TextView tvN4Daka;
     @BindView(R.id.n4_daka)
@@ -128,15 +124,10 @@ public class WorkFragment extends Fragment {
     TextView tvN4Examine1;
     @BindView(R.id.n4_examine1)
     RelativeLayout n4Examine1;
-    Unbinder unbinder;
-    @BindView(R.id.n4_companyLogo)
-    ImageView n4CompanyLogo;
     @BindView(R.id.calender)
     MonthCalendar calender;
     @BindView(R.id.tv_tongzhi)
     TextView tvTongzhi;
-    @BindView(R.id.lin_click_tongzhi)
-    LinearLayout linClickTongzhi;
     @BindView(R.id.tv_addDaySchedule)
     TextView tvAddDaySchedule;
     @BindView(R.id.img_click_lase)
@@ -173,18 +164,24 @@ public class WorkFragment extends Fragment {
     TextView ExamineRedDot;
     @BindView(R.id.ReportRedDot)
     TextView ReportRedDot;
-
+    Unbinder unbinder;
+    @BindView(R.id.banner)
+    Banner banner;
     private SharedPreferencesHelper sp_apply;
     private SharedPreferencesHelper sharedPreferencesHelper;
     private SharedPreferencesHelper sp_create_team;
-    private String uid, token, team_name, companyLogo, cid;
+    private String uid, token, team_name, cid;
     private boolean isFirst = true;
     private Intent intent;
     private String url = StringUtils.jiekouqianzui + "Article/enterpriseService";
+    private String bannerUrl = StringUtils.jiekouqianzui + "Article/banner";
+
     private String TAG = "WorkFragment";
     private View view;
     private ArrayList<String> days;
     private List<ServersListBean.DataBean> data;
+    private List<String> imgs = new ArrayList<>();
+    private List<String> strs = new ArrayList<>();
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     @Override
@@ -205,7 +202,6 @@ public class WorkFragment extends Fragment {
         cid = (String) sp_create_team.getSharedPreference("Create_team_cid", "");
 
         team_name = (String) sp_create_team.getSharedPreference("Create_team_name", "");
-        companyLogo = (String) sp_create_team.getSharedPreference("Create_team_logo", "");
 
 
         intent = new Intent();
@@ -214,18 +210,7 @@ public class WorkFragment extends Fragment {
 
         //如果团队名称为空则显示创建团队，不为空则显示团队名称
         if (!team_name.equals("0")) {
-            n4CompanyLogo.setVisibility(View.GONE);
             n4CreateTeam.setText(team_name);
-        }
-        //如果有团队logo就显示
-        if (!companyLogo.equals("0")) {
-            n4CompanyLogo.setVisibility(View.VISIBLE);
-            //设置图片圆角角度
-            RoundedCorners roundedCorners = new RoundedCorners(96);
-            RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
-            Glide.with(getActivity()).load(companyLogo)
-                    .apply(options)
-                    .into(n4CompanyLogo);
         }
 
         //==========================日历============================
@@ -265,13 +250,58 @@ public class WorkFragment extends Fragment {
             SchedulerInnerPainter();
         }
 
-
+        gi();
         //==========================请求企业服务列表========================
         requestFuwu();
         //==========================请求企业服务列表========================
 
 
         return view;
+    }
+
+    private void gi() {
+
+        OkHttpUtils.post()
+                .url(bannerUrl)
+                .addParams("", "")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Gson gson = new Gson();
+                        Log.d("repres", response);
+                        BannerBean bannerBean = gson.fromJson(response, BannerBean.class);
+
+                        if (bannerBean.getErrno().equals("200")) {
+                            List<BannerBean.DataBean> data = bannerBean.getData();
+                            for (int i = 0; i < data.size(); i++) {
+                                imgs.add(data.get(i).getBanner());
+                                strs.add(data.get(i).getHref());
+                            }
+
+                            banner.setIndicatorGravity(BannerConfig.CENTER);
+                            banner.setDelayTime(5000);
+                            banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+                            banner.setImageLoader(new GlideImageLoader());
+                            banner.setImages(imgs);
+                            banner.start();
+                        } else {
+
+                        }
+                    }
+                });
+
+    }
+
+    private class GlideImageLoader extends ImageLoader {
+        @Override
+        public void displayImage(Context context, Object path, ImageView imageView) {
+            Glide.with(context).load(path).into(imageView);
+        }
     }
 
     private void requestRedDot() {
@@ -440,7 +470,6 @@ public class WorkFragment extends Fragment {
         //如果团队名称为空则显示创建团队，不为空则显示团队名称
         sp_create_team = new SharedPreferencesHelper(getContext(), "Create_team");
         team_name = (String) sp_create_team.getSharedPreference("Create_team_name", "");
-        companyLogo = (String) sp_create_team.getSharedPreference("Create_team_logo", "");
 //        Log.e(TAG, "onResume: +" + team_name + "===");
         if (!team_name.equals("0")) {
             n4CreateTeam.setText(team_name);

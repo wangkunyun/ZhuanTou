@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.mine.jf.ConversionShopDetails">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_toolbar" />
+
+        <ImageView
+            android:id="@+id/img_conversionPic"
+            android:layout_width="match_parent"
+            android:layout_height="236dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_live_shop_zhanwei" />
+
+        <TextView
+            android:id="@+id/tv_conversionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="16dp"
+            android:text="steelseries赛睿鼠标垫"
+            android:textColor="#ff333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_conversionPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="100砖头"
+            android:textColor="#fff86312"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:background="#E5E5E5" />
+
+        <TextView
+            android:id="@+id/tv_conversionIntroduce"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:ellipsize="end"
+            android:maxLength="150"
+            android:text="赛睿QCK MASS游戏鼠标垫看起来虽然没有什么特点，不过在使用过程中会给你带来最舒适的体验，编织密度更高的优质布料，给鼠标提供更加精准的定位，更加出色的编织手法保证鼠标上下左右不同方向的随意移动都能保持相同的使用手感，这对于一般的布垫来说很难做到。"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_conversion"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:background="@drawable/yuanjiaobtn"
+        android:text="立即兑换"
+        android:textColor="@color/baise"
+        android:textSize="18sp" />
+
+</RelativeLayout>

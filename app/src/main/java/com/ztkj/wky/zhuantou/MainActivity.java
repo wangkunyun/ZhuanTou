@@ -33,6 +33,7 @@ import com.ztkj.wky.zhuantou.MyUtils.MPermissionUtils;
 import com.ztkj.wky.zhuantou.MyUtils.StringUtils;
 import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.n1fra.CodeFragment;
+import com.ztkj.wky.zhuantou.n1fra.CommissionFragment;
 import com.ztkj.wky.zhuantou.n1fra.HomeFragment;
 import com.ztkj.wky.zhuantou.n1fra.LiveFragment;
 import com.ztkj.wky.zhuantou.n1fra.LiveTabFragment;
@@ -67,11 +68,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     @BindView(R.id.rb_5)
     RadioButton rb5;
     private String phone, password;
-    private HomeFragment n1Fragment;
-    private CodeFragment n2Fragment;
-    private MineFragment n3Fragment;
-    private WorkFragment n4Fragment;
-    private LiveFragment n5Fragment;
+    private HomeFragment homeFragment;
+    private CodeFragment codeFragment;
+    private MineFragment mineFragment;
+    private WorkFragment workFragment;
+    private LiveFragment liveFragment;
+    private CommissionFragment commissionFragment;
     private LiveTabFragment liveTabFragment;
     private int position = 0;
     private SharedPreferencesHelper sharedPreferencesHelper;
@@ -201,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         switch (position) {
             case 0:
                 ImmersionBar.with(this)
-                        .statusBarColor(R.color.lanse)     //状态栏颜色，不写默认透明色
+                        .statusBarColor("#31ACB3")     //状态栏颜色，不写默认透明色
                         .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
                         .fitsSystemWindows(true)//解决状态栏和布局重叠问题
                         .statusBarDarkFont(false)//状态栏字体是深色，不写默认为亮色
@@ -211,14 +213,14 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 rb4.setBackgroundResource(R.drawable.tabqifu2);
                 rb5.setBackgroundResource(R.drawable.tabfujin2);
                 setWindowBrightness(WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE);
-                Contents.strExit = "1";
+//                Contents.strExit = "1";
 
                 rb1.setChecked(true);
-                if (n1Fragment == null) {
-                    n1Fragment = new HomeFragment();
-                    transaction.add(R.id.content_frag, n1Fragment);
+                if (workFragment == null) {
+                    workFragment = new WorkFragment();
+                    transaction.add(R.id.content_frag, workFragment);
                 } else {
-                    transaction.show(n1Fragment);
+                    transaction.show(workFragment);
                 }
                 break;
             case 1:
@@ -236,11 +238,11 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 Contents.strExit = "1";
 
 //                rb2.setChecked(true);
-//                if (n2Fragment == null) {
-                n2Fragment = new CodeFragment();
-                transaction.add(R.id.content_frag, n2Fragment);
+//                if (codeFragment == null) {
+                codeFragment = new CodeFragment();
+                transaction.add(R.id.content_frag, codeFragment);
 //                } else {
-//                    transaction.show(n2Fragment);
+//                    transaction.show(codeFragment);
 //                }
                 break;
             case 2:
@@ -257,17 +259,17 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 setWindowBrightness(WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE);
                 Contents.strExit = "0";
                 rb3.setChecked(true);
-                if (n3Fragment == null) {
-                    n3Fragment = new MineFragment();
-                    transaction.add(R.id.content_frag, n3Fragment);
+                if (mineFragment == null) {
+                    mineFragment = new MineFragment();
+                    transaction.add(R.id.content_frag, mineFragment);
                 } else {
-                    transaction.show(n3Fragment);
+                    transaction.show(mineFragment);
                 }
                 break;
 
             case 3:
                 ImmersionBar.with(this)
-                        .statusBarColor(R.color.lanse)     //状态栏颜色，不写默认透明色
+                        .statusBarColor("#31ACB3")     //状态栏颜色，不写默认透明色
                         .navigationBarColor(R.color.baise) //导航栏颜色，不写默认黑色
                         .fitsSystemWindows(true)//解决状态栏和布局重叠问题
                         .statusBarDarkFont(false)//状态栏字体是深色，不写默认为亮色
@@ -280,11 +282,11 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 Contents.strExit = "1";
 
                 rb4.setChecked(true);
-                if (n4Fragment == null) {
-                    n4Fragment = new WorkFragment();
-                    transaction.add(R.id.content_frag, n4Fragment);
+                if (commissionFragment == null) {
+                    commissionFragment = new CommissionFragment();
+                    transaction.add(R.id.content_frag, commissionFragment);
                 } else {
-                    transaction.show(n4Fragment);
+                    transaction.show(commissionFragment);
                 }
                 break;
 
@@ -323,14 +325,14 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
     private void hideFragments(FragmentTransaction transaction) {
-        if (n1Fragment != null)
-            transaction.hide(n1Fragment);
-        if (n2Fragment != null)
-            transaction.hide(n2Fragment);
-        if (n3Fragment != null)
-            transaction.hide(n3Fragment);
-        if (n4Fragment != null)
-            transaction.hide(n4Fragment);
+        if (commissionFragment != null)
+            transaction.hide(commissionFragment);
+        if (codeFragment != null)
+            transaction.hide(codeFragment);
+        if (mineFragment != null)
+            transaction.hide(mineFragment);
+        if (workFragment != null)
+            transaction.hide(workFragment);
         if (liveTabFragment != null)
             transaction.hide(liveTabFragment);
         transaction.commit();

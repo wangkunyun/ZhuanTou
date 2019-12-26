@@ -4,31 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/baise"
+    android:background="#31ACB3"
     android:orientation="vertical"
-    tools:context=".Activity.live_shop.order.OrderTabActivity">
-
-    <include
-        layout="@layout/layout_toolbar"/>
+    tools:context=".n1fra.CommissionFragment">
 
     <com.androidkun.xtablayout.XTabLayout
         android:id="@+id/xTablayout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginEnd="100dp"
-        app:xTabBackgroundColor="#FFFFFF"
-        app:xTabDisplayNum="5"
+        android:layout_height="44dp"
+        app:xTabBackgroundColor="#31ACB3"
+        app:xTabDisplayNum="4"
         app:xTabDividerWidthWidthText="true"
-        app:xTabIndicatorColor="@color/lanse"
+        app:xTabIndicatorColor="#FFFFFF"
         app:xTabMode="fixed"
-        app:xTabSelectedTextColor="@color/lanse"
-        app:xTabSelectedTextSize="14sp"
-        app:xTabTextColor="#FF999999"
-        app:xTabTextSize="14sp" />
+        app:xTabSelectedTextColor="#FFFFFF"
+        app:xTabSelectedTextSize="20sp"
+        app:xTabTextColor="#FFFFFF"
+        app:xTabTextSize="16sp" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/xTablayout" />
+        android:background="#F8F8F8" />
+
+
 </LinearLayout>

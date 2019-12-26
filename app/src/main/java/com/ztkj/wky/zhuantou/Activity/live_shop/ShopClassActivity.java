@@ -69,6 +69,7 @@ public class ShopClassActivity extends AppCompatActivity {
     RelativeLayout relaEmpty;
     private List<String> imgs = new ArrayList<>();
     private List<String> strs = new ArrayList<>();
+    private String TAG = "ShopClassActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +89,8 @@ public class ShopClassActivity extends AppCompatActivity {
 
     private void Banner_gi() {
         OkHttpUtils.post()
-                .addParams("token", "")
-                .url(Contents.getShopBanner)
+                .url(Contents.SHOPBASE + Contents.getShopBanner)
+                .addParams("", "")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -99,7 +100,7 @@ public class ShopClassActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Gson gson = new Gson();
-                        Log.d("repres", response);
+                        Log.e(TAG, "onResponse: " + response);
                         BannerBean bannerBean = gson.fromJson(response, BannerBean.class);
 
                         if (bannerBean.getErrno().equals("200")) {
