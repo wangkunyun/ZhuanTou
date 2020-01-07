@@ -439,6 +439,12 @@ public class Contents {
     //删除收获地址
     public static final String deleteAddress = "Order/deleteAddress";
     //保存修改地址
-    public  static final String saveAddress="Order/updateAddress";
+    public static final String saveAddress = "Order/updateAddress";
+
+    /**
+     * 积分
+     */
+    //积分商品详情
+    public static final String commodityInfo = BASE + "Commodity/commodityInfo";
 
 }

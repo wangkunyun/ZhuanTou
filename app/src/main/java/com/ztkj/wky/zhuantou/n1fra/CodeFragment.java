@@ -43,6 +43,8 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.ztkj.wky.zhuantou.Activity.enterpriseService.ParkingNavigation;
+import com.ztkj.wky.zhuantou.Activity.enterpriseService.TakeOutCodeActivity;
 import com.ztkj.wky.zhuantou.H5.UserInstructionsActivity;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.Config;
@@ -605,7 +607,7 @@ public class CodeFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.n2_sysm, R.id.n2_refresh, R.id.n2_fangke, R.id.click_emergencyPhone})
+    @OnClick({R.id.n2_sysm, R.id.n2_refresh, R.id.n2_fangke, R.id.click_emergencyPhone, R.id.click_takeOutCode, R.id.click_Parking, R.id.click_ladderControl})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.n2_sysm:
@@ -646,6 +648,18 @@ public class CodeFragment extends Fragment {
                     return;
                 }
                 popuinit2("是否遇到紧急突发事件需拨打物业联系电话", "取消 ", "确定");
+                break;
+            case R.id.click_takeOutCode:
+                intent = new Intent(getActivity(), TakeOutCodeActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.click_Parking:
+                intent = new Intent(getContext(), ParkingNavigation.class);
+                startActivity(intent);
+                break;
+            case R.id.click_ladderControl:
+                intent = new Intent(getActivity(), TakeOutCodeActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -696,5 +710,4 @@ public class CodeFragment extends Fragment {
         });
         window.showAtLocation(rootview, Gravity.CENTER, 0, 0);
     }
-
 }

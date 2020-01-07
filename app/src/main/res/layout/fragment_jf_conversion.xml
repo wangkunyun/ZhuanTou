@@ -53,93 +53,104 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:overScrollMode="never"
         android:scrollbars="none">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#F8F8F8"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="120dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="110dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/bg_img_jf"/>
-
-                <TextView
-                    android:id="@+id/jifen_ztsl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="24dp"
-                    android:includeFontPadding="false"
-                    android:lineSpacingMultiplier="0.9"
-                    android:text="244"
-                    android:textColor="@color/baise"
-                    android:textSize="56sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/jifen_ztsl"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toRightOf="@+id/jifen_ztsl"
-                    android:text="砖头"
-                    android:textColor="@color/baise"
-                    android:textSize="13sp" />
-
-                <Button
-                    android:id="@+id/jifen_qiandao"
-                    android:layout_width="88dp"
-                    android:layout_height="28dp"
-                    android:layout_below="@+id/jifen_ztsl"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/btn_sign"
-                    android:text="签到领积分"
-                    android:textColor="@color/baise"
-                    android:textSize="12sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/jifen_tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="商品兑换"
-                    android:textColor="@color/t5"
-                    android:textSize="16sp" />
-
-            </RelativeLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/jifen_rv"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginRight="16dp"
-                android:background="#F8F8F8">
+                android:background="#F8F8F8"
+                android:orientation="vertical">
 
-            </android.support.v7.widget.RecyclerView>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/bg_img_jf" />
+
+                    <TextView
+                        android:id="@+id/jifen_ztsl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="24dp"
+                        android:includeFontPadding="false"
+                        android:lineSpacingMultiplier="0.9"
+                        android:text="244"
+                        android:textColor="@color/baise"
+                        android:textSize="56sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/jifen_ztsl"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_toRightOf="@+id/jifen_ztsl"
+                        android:text="砖头"
+                        android:textColor="@color/baise"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/jifen_qiandao"
+                        android:layout_width="88dp"
+                        android:layout_height="28dp"
+                        android:layout_below="@+id/jifen_ztsl"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/btn_sign"
+                        android:text="签到领积分"
+                        android:textColor="@color/baise"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/jifen_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="商品兑换"
+                        android:textColor="#65C9D2"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="#E5E5E5"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/jifen_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="#F8F8F8" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
     </ScrollView>
 
 </LinearLayout>

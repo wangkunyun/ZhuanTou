@@ -68,7 +68,8 @@ public class JfConversionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_jf_conversion, container, false);
         unbinder = ButterKnife.bind(this, view);
-
+        jifenRv.setHasFixedSize(true);
+        jifenRv.setNestedScrollingEnabled(false);
         ActivityManager.getInstance().addActivity(getActivity());
         sharedPreferencesHelper = new SharedPreferencesHelper(getActivity(), "anhua");
         reach = (String) sharedPreferencesHelper.getSharedPreference("reach", "");

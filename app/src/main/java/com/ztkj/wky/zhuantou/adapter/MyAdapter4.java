@@ -38,13 +38,14 @@ public class MyAdapter4 extends RecyclerView.Adapter<MyAdapter4.ViewHolder> {
 
         Glide.with(context).load(mData.get(position).getCom_cover()).into(holder.img);
         holder.textView.setText(mData.get(position).getCom_name());
-        holder.textView2.setText(mData.get(position).getCom_integral());
+        holder.textView2.setText(mData.get(position).getCom_integral() + "砖头");
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //跳转至积分兑换
-                ConversionShopDetails.start(context);
+                ConversionShopDetails.start(context, mData.get(position).getCom_id());
+
             }
         });
 
