@@ -108,6 +108,8 @@ public class WriteReportFragment extends Fragment {
                 if (submitReportBean.getErrno().equals("200")) {
                     data = submitReportBean.getData();
                     if (!data.isEmpty()) {
+                        recently.setVisibility(View.VISIBLE);
+                        tvReal.setVisibility(View.VISIBLE);
                         type = data.get(0).getType();
                         String addtime = data.get(0).getAddtime();
                         recentlylTime.setText(addtime);
@@ -131,6 +133,7 @@ public class WriteReportFragment extends Fragment {
                         }
                     } else {
                         recently.setVisibility(View.GONE);
+                        tvReal.setVisibility(View.GONE);
                     }
 
 

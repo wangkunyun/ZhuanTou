@@ -169,11 +169,8 @@ public class CodeFragment extends Fragment {
                             n2Ewm.setAlpha(1f);
                             n2Ts.setText("");
                             n2Tips.setText(ewmBean.getData().getTips());
-
                             //长连接请求广告
                             requestAD();
-
-
                         } else if (errno.equals("222") || errno.equals("202")) { //没有权限请审核
                             n2Tvts.setText("");
                             n2Ts.setText("对不起，您暂时没有该权限；请点击\n" +

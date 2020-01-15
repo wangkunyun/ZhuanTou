@@ -22,7 +22,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="3dp"
                 android:src="@drawable/goback" />
 
             <TextView
@@ -64,7 +64,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="16dp"
-                    android:paddingLeft="16dp"
+                    android:paddingLeft="6dp"
                     android:paddingBottom="22dp">
 
                     <ImageView
@@ -202,9 +202,10 @@
                     android:paddingRight="16dp">
                     <!--用车开始时间-->
                     <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="22dp"
+                        android:layout_marginTop="10dp"
                         android:text="时长"
                         android:textColor="#FF333333"
                         android:textSize="16sp" />
@@ -226,8 +227,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/details_relative"
-                    android:layout_marginTop="25dp"
-                    android:background="@drawable/circle_report_linear"
+                    android:layout_marginTop="15dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -248,7 +248,7 @@
                             android:layout_width="36dp"
                             android:layout_height="36dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="20dp"
                             android:src="@drawable/head_portrait" />
 
                         <TextView
@@ -269,7 +269,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/details_relative"
-                    android:layout_marginTop="25dp"
                     android:background="@drawable/circle_report_linear"
                     android:orientation="vertical">
 

@@ -7,9 +7,10 @@
     tools:context=".Activity.live_shop.store.StoreHomePageFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <WebView
+        android:id="@+id/webHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="首页" />
+         />
 
 </FrameLayout>

@@ -6,7 +6,6 @@
     android:background="@color/f8"
     android:orientation="vertical"
     tools:context=".Activity.live_shop.store.StoreAllShopFragment">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="44dp"
@@ -38,12 +37,13 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="172dp"
-            android:drawableRight="@mipmap/icon_sort_up"
             android:text="价格"
+            android:drawableRight="@mipmap/price_defal"
             android:textColor="#ff999999"
             android:textSize="16sp" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="1dp"
             android:layout_height="26dp"
             android:layout_alignParentEnd="true"
@@ -52,6 +52,7 @@
             android:background="#E5E5E5" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/clickFiltrate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

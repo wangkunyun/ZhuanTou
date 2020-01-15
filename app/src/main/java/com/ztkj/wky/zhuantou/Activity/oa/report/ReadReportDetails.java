@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -79,6 +80,7 @@ public class ReadReportDetails extends AppCompatActivity {
     private String cid;
     private String report_type, report_name, report_head, report_id;
     private ArrayList<String> Arr_approver = new ArrayList<>();//审批人
+    private ArrayList<String> Arr_approver_name = new ArrayList<>();//审批人
 
 
     private Intent intent;
@@ -170,19 +172,27 @@ public class ReadReportDetails extends AppCompatActivity {
                     List<ReadReportDetailsBean.DataBean.ReaderBean> reader = data.getReader();
                     for (int i = 0; i < reader.size(); i++) {
                         Arr_approver.add(reader.get(i).getHead());
+                        Arr_approver_name.add(reader.get(i).getName());
                     }
-
-                    //适配器
-                    ShowAdpoverAdapter showAdpoverAdapter = new ShowAdpoverAdapter(ReadReportDetails.this, Arr_approver);
+                    if (Arr_approver != null && Arr_approver.size() > 0) {
+                        //适配器
+                        ShowAdpoverAdapter showAdpoverAdapter = new ShowAdpoverAdapter(ReadReportDetails.this, Arr_approver);
 
 //        ShowPictureAdapter showPictureAdapter = new ShowPictureAdapter(WorkSummary.this, Arr_approver);
-                    showAdpoverAdapter.notifyDataSetChanged();
-                    //布局管理器对象 参数1.上下文 2.规定一行显示几列的参数常量
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(ReadReportDetails.this, 5);
-                    //设置RecycleView显示的方向是水平还是垂直 GridLayout.HORIZONTAL水平  GridLayout.VERTICAL默认垂直
-                    gridLayoutManager.setOrientation(GridLayout.VERTICAL);
-                    reDetailsApprover.setLayoutManager(gridLayoutManager);
-                    reDetailsApprover.setAdapter(showAdpoverAdapter);
+                        showAdpoverAdapter.notifyDataSetChanged();
+                        //布局管理器对象 参数1.上下文 2.规定一行显示几列的参数常量
+                        LinearLayoutManager gridLayoutManager = new LinearLayoutManager(ReadReportDetails.this);
+                        //设置RecycleView显示的方向是水平还是垂直 GridLayout.HORIZONTAL水平  GridLayout.VERTICAL默认垂直
+//                        gridLayoutManager.setOrientation(GridLayout.VERTICAL);
+                        reDetailsApprover.setLayoutManager(gridLayoutManager);
+                        reDetailsApprover.setAdapter(showAdpoverAdapter);
+                        detailsReportRead.setVisibility(View.VISIBLE);
+                        reDetailsApprover.setVisibility(View.VISIBLE);
+
+                    } else {
+                        detailsReportRead.setVisibility(View.GONE);
+                        reDetailsApprover.setVisibility(View.GONE);
+                    }
 
 
                 } else if (readReportDetailsBean.getErrno().equals("666666")) {

@@ -234,6 +234,7 @@
                     android:paddingRight="16dp">
 
                     <RelativeLayout
+                        android:id="@+id/rela_enter_shop"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center_vertical">
@@ -277,7 +278,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
                     android:background="@color/white"
                     android:orientation="vertical"
@@ -290,18 +291,17 @@
                         android:textColor="@color/f33"
                         android:textSize="14sp" />
 
-                    <android.support.v7.widget.RecyclerView
+                    <WebView
                         android:id="@+id/shop_detail_img"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="15dp">
 
-                    </android.support.v7.widget.RecyclerView>
+                    </WebView>
 
                 </LinearLayout>
 
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/coordinator"

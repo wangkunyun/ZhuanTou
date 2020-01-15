@@ -154,9 +154,7 @@ public class JfConversionFragment extends Fragment {
                     public void onResponse(String response) {
                         Log.d("jifenll", response);
                         Gson gson = new Gson();
-
                         JiFenBean zcBean = gson.fromJson(response, JiFenBean.class);
-
                         if ("200".equals(zcBean.getErrno())) {
                             jifenQiandao.setEnabled(false);
                             jifenQiandao.setText("已签到");

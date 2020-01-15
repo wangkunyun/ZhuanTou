@@ -22,7 +22,6 @@ public class JfTab extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jf_tab);
         ButterKnife.bind(this);
-
         bottomTabBar.init(getSupportFragmentManager())
                 .setImgSize(80, 80)
                 .setFontSize(10)

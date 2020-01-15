@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="5dp"
+        android:id="@+id/circle_real"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/zhanweitu_shop" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/circle_real"
+        android:text="王大云"
+        android:textColor="#ff333333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_invite"
+        android:gravity="center"
+        android:layout_width="52dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/yuanjiaobtn_lanse_16dp"
+        android:text="邀请"
+        android:textColor="#ffffffff"
+        android:textSize="14sp"
+
+        />
+</RelativeLayout>

@@ -38,13 +38,12 @@ public class AppoverAdapter extends RecyclerView.Adapter<AppoverAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.item_tv.setText(appovername.get(i));
-        //设置图片圆角角度
-        RoundedCorners roundedCorners = new RoundedCorners(96);
-        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
-
-        if (!appovername.equals("0")) {
+        if (!appoverhead.get(i).equals("0")) {
+            //设置图片圆角角度
+            RoundedCorners roundedCorners = new RoundedCorners(96);
+            RequestOptions options = RequestOptions.bitmapTransform(roundedCorners);
             Glide.with(context).load(appoverhead.get(i)).apply(options).into(viewHolder.item_img);
-        }else if (appovername.equals("0")){
+        } else {
             viewHolder.item_img.setImageResource(R.drawable.head_portrait);
         }
     }

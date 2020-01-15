@@ -79,7 +79,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.mine.jf.JfTab"></activity>
+        <activity android:name=".Form.AddLimitActivity"></activity>
+        <activity android:name=".Form.AddChildManagerActivity" />
+        <activity android:name=".Form.AddOriginActivity" />
+        <activity android:name=".Form.OriginMemberActivity" />
+        <activity android:name=".Activity.mine.jf.JfSuceesDetailActivity" />
+        <activity android:name=".Activity.mine.jf.JfTab" />
         <activity android:name=".Activity.mine.jf.ConversionDetails" />
         <activity android:name=".Activity.mine.jf.ConversionShopDetails" />
         <activity android:name=".Activity.live_shop.ActivityList" />
@@ -624,6 +629,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".H5.H5EdittextActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Form.FormActivvity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Form.SearchOriginsActivity"
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator" />
         <activity

@@ -1,6 +1,7 @@
 package com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove;
 
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -98,12 +99,15 @@ public class ReadApplyForFragment extends Fragment {
                 if (!type) {
                     linChooseType.setVisibility(View.VISIBLE);
                     type = true;
+                    setDrawable(true);
                 } else {
                     linChooseType.setVisibility(View.GONE);
                     type = false;
                 }
                 break;
             case R.id.type_all:
+                setDrawable(false);
+                applyChooseType.setText("全部");
                 sp_apply.put("sp_apply_type", "0");
                 type = false;
                 fragments.get(0).onResume();
@@ -112,6 +116,8 @@ public class ReadApplyForFragment extends Fragment {
                 linChooseType.setVisibility(View.GONE);
                 break;
             case R.id.type_car:
+                setDrawable(false);
+                applyChooseType.setText("用车");
                 sp_apply.put("sp_apply_type", "1");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
                 type = false;
@@ -122,8 +128,9 @@ public class ReadApplyForFragment extends Fragment {
 
                 break;
             case R.id.type_seal:
+                setDrawable(false);
                 sp_apply.put("sp_apply_type", "2");
-
+                applyChooseType.setText("用印");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
@@ -131,9 +138,10 @@ public class ReadApplyForFragment extends Fragment {
                 linChooseType.setVisibility(View.GONE);
                 break;
             case R.id.type_baoxiao:
+                setDrawable(false);
                 sp_apply.put("sp_apply_type", "3");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("报销");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
@@ -141,8 +149,9 @@ public class ReadApplyForFragment extends Fragment {
                 linChooseType.setVisibility(View.GONE);
                 break;
             case R.id.type_over_time:
+                setDrawable(false);
                 sp_apply.put("sp_apply_type", "4");
-
+                applyChooseType.setText("加班");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
@@ -150,9 +159,10 @@ public class ReadApplyForFragment extends Fragment {
                 linChooseType.setVisibility(View.GONE);
                 break;
             case R.id.type_leave:
+                setDrawable(false);
                 sp_apply.put("sp_apply_type", "5");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("请假");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
@@ -160,8 +170,9 @@ public class ReadApplyForFragment extends Fragment {
                 linChooseType.setVisibility(View.GONE);
                 break;
             case R.id.type_go_out:
+                setDrawable(false);
                 sp_apply.put("sp_apply_type", "6");
-
+                applyChooseType.setText("外出");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
@@ -169,9 +180,10 @@ public class ReadApplyForFragment extends Fragment {
                 linChooseType.setVisibility(View.GONE);
                 break;
             case R.id.type_out_work:
+                setDrawable(false);
                 sp_apply.put("sp_apply_type", "7");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("外勤");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
@@ -179,8 +191,9 @@ public class ReadApplyForFragment extends Fragment {
                 linChooseType.setVisibility(View.GONE);
                 break;
             case R.id.type_chuchai:
+                setDrawable(false);
                 sp_apply.put("sp_apply_type", "8");
-
+                applyChooseType.setText("出差");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
@@ -188,9 +201,10 @@ public class ReadApplyForFragment extends Fragment {
                 linChooseType.setVisibility(View.GONE);
                 break;
             case R.id.type_pay:
+                setDrawable(false);
+                applyChooseType.setText("付款");
                 sp_apply.put("sp_apply_type", "9");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
@@ -198,6 +212,20 @@ public class ReadApplyForFragment extends Fragment {
                 linChooseType.setVisibility(View.GONE);
                 break;
         }
+    }
+
+    public void setDrawable(boolean isTop) {
+        Drawable drawable;
+        if (isTop) {
+            drawable = getResources().getDrawable(R.mipmap.apply_type_up);
+        } else {
+            drawable = getResources().getDrawable(R.mipmap.apply_type_down);
+        }
+        /// 这一步必须要做,否则不会显示.
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        //设置text 左边图片
+        applyChooseType.setCompoundDrawables(null, null, drawable, null);
+
     }
 
     @Override

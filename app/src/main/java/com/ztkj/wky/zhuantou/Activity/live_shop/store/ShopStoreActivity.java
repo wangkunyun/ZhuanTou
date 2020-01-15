@@ -20,15 +20,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.hjm.bottomtabbar.BottomTabBar;
+import com.ztkj.wky.zhuantou.Activity.live_shop.SearchShopsActivity;
+import com.ztkj.wky.zhuantou.Activity.live_shop.ShopDetailActivity;
 import com.ztkj.wky.zhuantou.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ShopStoreActivity extends AppCompatActivity implements StoreAllShopFragment.ShopOpenDrawerListen {
 
@@ -39,7 +45,7 @@ public class ShopStoreActivity extends AppCompatActivity implements StoreAllShop
     @BindView(R.id.more)
     ImageView more;
     @BindView(R.id.img_StoreHead)
-    ImageView imgStoreHead;
+    CircleImageView imgStoreHead;
     @BindView(R.id.tv_StoreName)
     TextView tvStoreName;
     @BindView(R.id.bottom_tab_bar)
@@ -49,15 +55,23 @@ public class ShopStoreActivity extends AppCompatActivity implements StoreAllShop
     @BindView(R.id.reView)
     RecyclerView reView;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_store);
         ButterKnife.bind(this);
-
+        storeHeadUrl = getIntent().getStringExtra("storeHeadUrl");
+        storeName = getIntent().getStringExtra("storeName");
         mDrawer = findViewById(R.id.mDrawer);
         // 禁止手势滑动
         mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        if (storeHeadUrl != null && storeName != null) {
+            Glide.with(ShopStoreActivity.this).load(storeHeadUrl).into(imgStoreHead);
+            tvStoreName.setText(storeName);
+        }
 //        ImmersionBar.with(this)
 //                .init();
         reView.setLayoutManager(new LinearLayoutManager(this));
@@ -72,8 +86,12 @@ public class ShopStoreActivity extends AppCompatActivity implements StoreAllShop
                 .isShowDivider(true);
     }
 
-    public static void start(Context context) {
+    String storeHeadUrl, storeName;
+
+    public static void start(Context context, String storeHeadUrl, String storeName) {
         Intent starter = new Intent(context, ShopStoreActivity.class);
+        starter.putExtra("storeHeadUrl", storeHeadUrl);
+        starter.putExtra("storeName", storeName);
         context.startActivity(starter);
     }
 
@@ -84,10 +102,13 @@ public class ShopStoreActivity extends AppCompatActivity implements StoreAllShop
                 finish();
                 break;
             case R.id.bigsearch_edt:
-
+                SearchShopsActivity.start(ShopStoreActivity.this);
                 break;
             case R.id.more:
+
                 break;
+
+
         }
     }
 

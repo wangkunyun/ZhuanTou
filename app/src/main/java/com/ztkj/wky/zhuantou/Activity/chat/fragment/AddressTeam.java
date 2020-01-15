@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.ztkj.wky.zhuantou.Activity.oa.ManageCompany;
+import com.ztkj.wky.zhuantou.Form.FormActivvity;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.R;
@@ -54,7 +56,14 @@ public class AddressTeam extends Fragment {
     @BindView(R.id.re)
     RecyclerView re;
     Unbinder unbinder;
-
+    @BindView(R.id.ll_zuzhi)
+    LinearLayout ll_zuzhi;
+    @BindView(R.id.xy_1)
+    RelativeLayout xy1;
+    @BindView(R.id.tv_line)
+    TextView tvLine;
+    @BindView(R.id.tv_zuzhi)
+    TextView tvZuzhi;
     private SharedPreferencesHelper sharedPreferencesHelper, sp_create_team;
     private String uid, token, cid, team_name, jurisdiction, phone;
     private Intent intent;
@@ -205,5 +214,18 @@ public class AddressTeam extends Fragment {
     public void onViewClicked() {
         intent = new Intent(getContext(), ManageCompany.class);
         startActivity(intent);
+    }
+
+    @OnClick({R.id.btn_manage_company, R.id.ll_zuzhi})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_manage_company:
+
+
+                break;
+            case R.id.ll_zuzhi:
+                FormActivvity.start(getActivity(),cid);
+                break;
+        }
     }
 }

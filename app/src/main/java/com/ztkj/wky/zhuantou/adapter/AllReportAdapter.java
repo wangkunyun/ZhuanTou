@@ -54,7 +54,6 @@ public class AllReportAdapter extends RecyclerView.Adapter<AllReportAdapter.View
         Glide.with(context).load(data.get(i).getHead())
                 .apply(options)
                 .into(viewHolder.item_report_img_head);
-
         viewHolder.item_report_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

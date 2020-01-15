@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@color/white">
+
+
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/zhanweitu_shop" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/avatar"
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="aj1886"
+            android:textColor="#ff333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_super_name"
+            android:layout_toRightOf="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="总管理"
+            android:textColor="#ff65c9d2"
+            android:textSize="10sp"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</RelativeLayout>

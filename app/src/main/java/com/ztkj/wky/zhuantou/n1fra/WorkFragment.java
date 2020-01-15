@@ -200,19 +200,13 @@ public class WorkFragment extends Fragment {
 
         sp_create_team = new SharedPreferencesHelper(getContext(), "Create_team");
         cid = (String) sp_create_team.getSharedPreference("Create_team_cid", "");
-
         team_name = (String) sp_create_team.getSharedPreference("Create_team_name", "");
-
-
         intent = new Intent();
-
         Log.e(TAG, "onCreateView: +=====team_name=====" + team_name + "===");
-
         //如果团队名称为空则显示创建团队，不为空则显示团队名称
         if (!team_name.equals("0")) {
             n4CreateTeam.setText(team_name);
         }
-
         //==========================日历============================
 //        calender.post(() -> calender.setSelectedMode(SelectedModel.SINGLE_UNSELECTED));
 
@@ -349,13 +343,16 @@ public class WorkFragment extends Fragment {
             public void onResponse(String response) {
                 ReportRedDot reportRedDot = GsonUtil.gsonToBean(response, ReportRedDot.class);
                 if (reportRedDot.getErrno().equals("200")) {
-                    int num = reportRedDot.getData().getNum();
-                    Contents.reportReddotNum = num;
-                    if (num != 0) {
-                        ReportRedDot.setVisibility(View.VISIBLE);
-                    } else {
-                        ReportRedDot.setVisibility(View.GONE);
+                    if(reportRedDot.getData().getNum()!=null){
+                        int num = Integer.parseInt(reportRedDot.getData().getNum());
+                        Contents.reportReddotNum = num;
+                        if (num != 0) {
+                            ReportRedDot.setVisibility(View.VISIBLE);
+                        } else {
+                            ReportRedDot.setVisibility(View.GONE);
+                        }
                     }
+
                 }
             }
         });
@@ -386,8 +383,6 @@ public class WorkFragment extends Fragment {
                 showList(imgN4Apply2, tvN4Apply2, data.get(5).getElogo(), data.get(5).getEname());
                 showList(imgN4Log3, tvN4Log3, data.get(6).getElogo(), data.get(6).getEname());
                 showList(imgN4Examine4, tvN4Examine4, data.get(7).getElogo(), data.get(7).getEname());
-
-
             }
 
             private void showList(ImageView img, TextView tv, String elogo, String ename) {

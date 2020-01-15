@@ -622,17 +622,6 @@ public class ConfirmOrderActivity extends AppCompatActivity implements View.OnCl
         } else {
             setUserAddress(adressUpdateBean);
         }
-//        switch (resultCode) {
-//            case 1:
-//
-//                setDataUser(data);
-//                break;
-//            case 2:
-//                setDataUser(data);
-//                break;
-//
-//
-//        }
     }
 
     private void setUserAddress(AdressUpdateBean address) {

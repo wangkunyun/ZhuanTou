@@ -141,6 +141,7 @@ public class AllApplyAdapter extends RecyclerView.Adapter<AllApplyAdapter.ViewHo
 
         if (data.get(i).getStatus().equals("0")) {
             viewHolder.state.setText("待审批");
+            viewHolder.state.setTextColor(Color.parseColor("#EC754D"));
         } else if (data.get(i).getStatus().equals("1")) {
             viewHolder.state.setText("已通过");
             viewHolder.state.setTextColor(Color.parseColor("#65C9D2"));

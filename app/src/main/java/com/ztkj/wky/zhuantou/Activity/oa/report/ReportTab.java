@@ -69,12 +69,18 @@ public class ReportTab extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 ReportRedDot reportRedDot = GsonUtil.gsonToBean(response, com.ztkj.wky.zhuantou.bean.ReportRedDot.class);
-                Contents.reportReddotNum = reportRedDot.getData().getNum();
-                if (reportRedDot.getData().getNum() != 0) {
-                    ReportRedDot.setVisibility(View.VISIBLE);
-                } else {
-                    ReportRedDot.setVisibility(View.GONE);
+                if (reportRedDot.getErrno().equals("200")) {
+                    if(reportRedDot.getData().getNum()!=null){
+                        Contents.reportReddotNum = Integer.parseInt(reportRedDot.getData().getNum());
+                        if (Contents.reportReddotNum != 0) {
+                            ReportRedDot.setVisibility(View.VISIBLE);
+                        } else {
+                            ReportRedDot.setVisibility(View.GONE);
+                        }
+                    }
                 }
+
+
             }
         });
     }

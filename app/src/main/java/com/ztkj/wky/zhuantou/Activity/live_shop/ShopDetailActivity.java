@@ -16,6 +16,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebStorage;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -85,7 +88,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     RecyclerView shop_list;
     LiveShopListAdapter liveShopListAdapter;
     @BindView(R.id.shop_detail_img)
-    RecyclerView shop_detail_img;
+    WebView webView;
     LiveShopDetailAdapter liveShopDetailAdapter;
     @BindView(R.id.layout_back)
     ImageView layout_back;
@@ -126,6 +129,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     ObservableScrollView scrollview;
     @BindView(R.id.n1_cf)
     PullToRefreshLayout n1Cf;
+    @BindView(R.id.rela_enter_shop)
+    RelativeLayout rela_enter_shop;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -138,6 +143,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         uid = SPUtils.getInstance().getString("uid");
         layout_title_tv.setText("商品详情");
         more.setBackground(getResources().getDrawable(R.mipmap.icon_person_sangedian));
+        initWebview();
         initData();
         layout_back.setOnClickListener(this);
         add_shopping_cart.setOnClickListener(this);
@@ -150,10 +156,22 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         shop.setOnClickListener(this);
         more.setOnClickListener(this);
         iv_top.setOnClickListener(this);
+        rela_enter_shop.setOnClickListener(this);
         n1Cf.setHeaderView(new HeadRefreshView(ShopDetailActivity.this));
         n1Cf.setFooterView(new LoadMoreView(ShopDetailActivity.this));
         n1Cf.setRefreshListener(ShopDetailActivity.this);
         scrollview.setScrollViewListener(this);
+
+    }
+
+    private void initWebview() {
+        WebSettings wetSettings = webView.getSettings();
+        wetSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        wetSettings.setJavaScriptEnabled(true);
+        wetSettings.setDomStorageEnabled(true);
+        webView.setDrawingCacheEnabled(true);
+        webView.clearCache(true);
+        WebStorage.getInstance().deleteAllData();
     }
 
     int pageNum = 1;
@@ -162,13 +180,13 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         shop_list.setLayoutManager(new GridLayoutManager(ShopDetailActivity.this, 3));
         liveShopListAdapter = new LiveShopListAdapter(ShopDetailActivity.this);
         shop_list.setAdapter(liveShopListAdapter);
-        shop_detail_img.setLayoutManager(new LinearLayoutManager(ShopDetailActivity.this));
-        liveShopDetailAdapter = new LiveShopDetailAdapter(ShopDetailActivity.this);
-        shop_detail_img.setAdapter(liveShopDetailAdapter);
-        shop_detail_img.setNestedScrollingEnabled(false);
+//        shop_detail_img.setLayoutManager(new LinearLayoutManager(ShopDetailActivity.this));
+//        liveShopDetailAdapter = new LiveShopDetailAdapter(ShopDetailActivity.this);
+//        shop_detail_img.setAdapter(liveShopDetailAdapter);
+//        shop_detail_img.setNestedScrollingEnabled(false);
         shop_list.setNestedScrollingEnabled(false);
         shop_list.setHasFixedSize(true);
-        shop_detail_img.setHasFixedSize(true);
+//        shop_detail_img.setHasFixedSize(true);
         guess_like_list.setHasFixedSize(true);
         guess_like_list.setNestedScrollingEnabled(false);
         if (shopDetailId != null) {
@@ -237,10 +255,10 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             tv_origin_price.setText(Contents.moneyTag + shopDetailBean.getData().getSc_original_price());
         }
 
-        if (shopDetailBean.getData().getSc_img() != null) {
-            listShopDetail.add(shopDetailBean.getData().getSc_img());
-            liveShopDetailAdapter.setData(listShopDetail);
-        }
+//  getSc_original_price      if (shopDetailBean.getData().getSc_img() != null) {
+//            listShopDetail.add(shopDetailBean.getData().getSc_img());
+//            liveShopDetailAdapter.setData(listShopDetail);
+//        }
         if (shopDetailBean.getData().getStore() != null && shopDetailBean.getData().getStore().size() > 0) {
             storeBeanList = shopDetailBean.getData().getStore();
             liveShopListAdapter.setData(storeBeanList);
@@ -265,10 +283,14 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         }
         getShopSize();
         getShopParam();
-        if (uid != null) {
+        if (!uid.equals("")) {
+            h5Store = Contents.shopDetailH5 + "?uid=" + uid + "&sc_id=" + shopDetailBean.getData().getSc_id();
+            webView.loadUrl(h5Store);
             recorderUser();
         }
     }
+
+    String h5Store;
 
     @Override
     public void onResume() {
@@ -358,11 +380,11 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onScrollChanged(ObservableScrollView observableScrollView, int x, int y, int oldx, int oldy) {
-        Log.e("sdfa",y+"");
+        Log.e("sdfa", y + "");
         if (y > 500) {
             iv_top.setVisibility(View.VISIBLE);
-        }else{
-            if(y<0||y==0){
+        } else {
+            if (y < 0 || y == 0) {
                 iv_top.setVisibility(View.INVISIBLE);
             }
         }
@@ -1160,7 +1182,8 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.shop:
-                ShopStoreActivity.start(ShopDetailActivity.this);
+                SPUtils.getInstance().put("storeId", shopDetailBean.getData().getSc_store_id());
+                ShopStoreActivity.start(ShopDetailActivity.this, shopDetailBean.getData().getSs_logo(), shopDetailBean.getData().getSs_name());
                 break;
             case R.id.more:
                 popuShare(view);
@@ -1168,7 +1191,10 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
             case R.id.iv_top:
                 iv_top.setVisibility(View.INVISIBLE);
                 scrollview.fullScroll(ScrollView.FOCUS_UP);
-
+                break;
+            case R.id.rela_enter_shop:
+                SPUtils.getInstance().put("storeId", shopDetailBean.getData().getSc_store_id());
+                ShopStoreActivity.start(ShopDetailActivity.this, shopDetailBean.getData().getSs_logo(), shopDetailBean.getData().getSs_name());
                 break;
         }
     }

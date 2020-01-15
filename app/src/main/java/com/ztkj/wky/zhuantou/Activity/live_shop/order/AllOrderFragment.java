@@ -141,7 +141,6 @@ public class AllOrderFragment extends Fragment {
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.item_layout_order_out, viewGroup, false);
-
             return new ViewHolder(view);
         }
 

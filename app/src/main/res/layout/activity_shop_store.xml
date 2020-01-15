@@ -33,7 +33,7 @@
                 android:background="@mipmap/img_bg_shop_store"
                 android:scaleType="fitXY" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_StoreHead"
                 android:layout_width="42dp"
                 android:layout_height="42dp"

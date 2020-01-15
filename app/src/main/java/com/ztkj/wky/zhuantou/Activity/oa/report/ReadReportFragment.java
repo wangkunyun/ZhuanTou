@@ -62,12 +62,9 @@ public class ReadReportFragment extends Fragment {
         viewPager.setAdapter(xtablayoutAdapter);
         viewPager.setOffscreenPageLimit(3);
         //将TabLayout和ViewPager关联起来。
-
         xTablayout.setupWithViewPager(viewPager);
         //给TabLayout设置适配器
         xTablayout.setupWithViewPager(viewPager);
-
-
         return view;
     }
 
@@ -95,12 +92,18 @@ public class ReadReportFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 ReportRedDot reportRedDot = GsonUtil.gsonToBean(response, com.ztkj.wky.zhuantou.bean.ReportRedDot.class);
-                Contents.reportReddotNum = reportRedDot.getData().getNum();
-                if (reportRedDot.getData().getNum() != 0) {
-                    ReportRedDot.setVisibility(View.VISIBLE);
-                } else {
-                    ReportRedDot.setVisibility(View.GONE);
+                if (reportRedDot.getErrno().equals("200")) {
+                    if( reportRedDot.getData().getNum()!=null){
+                        Contents.reportReddotNum = Integer.parseInt(reportRedDot.getData().getNum());
+                        if (Contents.reportReddotNum != 0) {
+                            ReportRedDot.setVisibility(View.VISIBLE);
+                        } else {
+                            ReportRedDot.setVisibility(View.GONE);
+                        }
+                    }
                 }
+
+
             }
         });
     }

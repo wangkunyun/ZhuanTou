@@ -125,12 +125,14 @@ public class HaveApply extends Fragment {
 
                 } else if (allApplyBean.getErrno().equals("666666")) {
                     Toast.makeText(getActivity(), "您的账号已在其他手机登录，如非本人操作，请修改密码", Toast.LENGTH_LONG).show();
-                    JPushInterface.deleteAlias(getActivity(), Integer.parseInt(uid));
-                    sharedPreferencesHelper.clear();
-                    SPUtils.getInstance().clear();
-                    ActivityManager.getInstance().exit();
-                    intent = new Intent(getActivity(), NewLoginActivity.class);
-                    startActivity(intent);
+                    if(!uid.equals("")){
+                        JPushInterface.deleteAlias(getActivity(), Integer.parseInt(uid));
+                        sharedPreferencesHelper.clear();
+                        SPUtils.getInstance().clear();
+                        ActivityManager.getInstance().exit();
+                        intent = new Intent(getActivity(), NewLoginActivity.class);
+                        startActivity(intent);
+                    }
                 } else {
 
                 }

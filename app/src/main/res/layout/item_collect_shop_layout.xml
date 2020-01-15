@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/rela_collect"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/f8">
 
@@ -20,15 +20,13 @@
         android:layout_marginRight="16dp"
         android:background="@drawable/yuanjiaobtn_8dp"
         android:orientation="horizontal"
-        android:paddingRight="8dp"
-
-        >
+        android:paddingRight="8dp">
 
         <ImageView
-            android:paddingLeft="10dp"
             android:id="@+id/shop_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
             android:paddingTop="35dp"
             android:paddingBottom="35dp"
             android:src="@drawable/select"
@@ -38,29 +36,27 @@
             android:id="@+id/rela_shop_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/shop_select"
-            android:orientation="horizontal">
+            android:layout_toRightOf="@+id/shop_select">
 
             <ImageView
-                android:padding="1dp"
-                android:background="@color/f8"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"
                 android:id="@+id/iv_collect"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="8dp"
-                 />
+                android:adjustViewBounds="true"
+                android:background="@color/f8"
+                android:padding="1dp"
+                android:scaleType="fitXY" />
 
             <TextView
-                android:layout_marginTop="15dp"
                 android:id="@+id/tv_collect_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_toRightOf="@+id/iv_collect"
-                android:paddingLeft="8dp"
-                android:maxLines="2"
                 android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingLeft="8dp"
                 android:text="Rolex劳力士绿水鬼手表潜116610LV黑水鬼机械表男表"
                 android:textColor="#ff333333"
                 android:textSize="14sp" />
@@ -74,7 +70,6 @@
                 android:layout_toRightOf="@+id/iv_collect"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp">
-
 
                 <TextView
                     android:id="@+id/tv_shop_price"
@@ -90,10 +85,10 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="3dp"
                     android:background="@drawable/yuanjiaobtn_grey9dp"
-                    android:paddingLeft="11dp"
-                    android:paddingTop="1dp"
-                    android:paddingRight="11dp"
-                    android:paddingBottom="1dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="0.5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="0.5dp"
                     android:text="找相似"
                     android:textColor="#ffffffff"
                     android:textSize="14sp" />

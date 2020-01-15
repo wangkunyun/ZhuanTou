@@ -1,5 +1,6 @@
 package com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.apply;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -106,6 +107,7 @@ public class Examine extends AppCompatActivity {
                 if (!type) {
                     linChooseType.setVisibility(View.VISIBLE);
                     type = true;
+                    setDrawable(true);
                 } else {
                     linChooseType.setVisibility(View.GONE);
                     type = false;
@@ -119,6 +121,8 @@ public class Examine extends AppCompatActivity {
                 fragments.get(1).onResume();
                 fragments.get(2).onResume();
                 linChooseType.setVisibility(View.GONE);
+                applyChooseType.setText("全部");
+                setDrawable(false);
                 break;
             case R.id.type_car:
                 sp_apply.put("sp_apply_type", "1");
@@ -128,92 +132,115 @@ public class Examine extends AppCompatActivity {
                 fragments.get(1).onResume();
                 fragments.get(2).onResume();
                 linChooseType.setVisibility(View.GONE);
-
+                applyChooseType.setText("用车");
+                setDrawable(false);
                 break;
             case R.id.type_seal:
                 sp_apply.put("sp_apply_type", "2");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("用印");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
                 fragments.get(2).onResume();
                 linChooseType.setVisibility(View.GONE);
+                setDrawable(false);
                 break;
             case R.id.type_baoxiao:
                 sp_apply.put("sp_apply_type", "3");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("报销");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
                 fragments.get(2).onResume();
                 linChooseType.setVisibility(View.GONE);
+                setDrawable(false);
                 break;
             case R.id.type_over_time:
                 sp_apply.put("sp_apply_type", "4");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("加班");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
                 fragments.get(2).onResume();
                 linChooseType.setVisibility(View.GONE);
+                setDrawable(false);
                 break;
             case R.id.type_leave:
                 sp_apply.put("sp_apply_type", "5");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("请假");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
                 fragments.get(2).onResume();
                 linChooseType.setVisibility(View.GONE);
+                setDrawable(false);
                 break;
             case R.id.type_go_out:
                 sp_apply.put("sp_apply_type", "6");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("外出");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
                 fragments.get(2).onResume();
                 linChooseType.setVisibility(View.GONE);
+                setDrawable(false);
                 break;
             case R.id.type_out_work:
                 sp_apply.put("sp_apply_type", "7");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("外勤");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
                 fragments.get(2).onResume();
                 linChooseType.setVisibility(View.GONE);
+                setDrawable(false);
                 break;
             case R.id.type_chuchai:
                 sp_apply.put("sp_apply_type", "8");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("出差");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
                 fragments.get(2).onResume();
                 linChooseType.setVisibility(View.GONE);
+                setDrawable(false);
                 break;
             case R.id.type_pay:
                 sp_apply.put("sp_apply_type", "9");
                 Log.e("AllReport", "onViewClicked: " + sp_apply.getSharedPreference("sp_apply_type", ""));
-
+                applyChooseType.setText("付款");
                 type = false;
                 fragments.get(0).onResume();
                 fragments.get(1).onResume();
                 fragments.get(2).onResume();
                 linChooseType.setVisibility(View.GONE);
+                setDrawable(false);
                 break;
         }
     }
 
-    @Override
+
+
+    public void setDrawable(boolean isTop) {
+        Drawable drawable;
+        if (isTop) {
+            drawable = getResources().getDrawable(R.mipmap.apply_type_up);
+        } else {
+            drawable = getResources().getDrawable(R.mipmap.apply_type_down);
+        }
+        /// 这一步必须要做,否则不会显示.
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        //设置text 左边图片
+        applyChooseType.setCompoundDrawables(null, null, drawable, null);
+
+    }@Override
     protected void onDestroy() {
         super.onDestroy();
         sp_apply.clear();

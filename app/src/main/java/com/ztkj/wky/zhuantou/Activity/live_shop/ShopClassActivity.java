@@ -96,13 +96,11 @@ public class ShopClassActivity extends AppCompatActivity {
                     @Override
                     public void onError(Request request, Exception e) {
                     }
-
                     @Override
                     public void onResponse(String response) {
                         Gson gson = new Gson();
                         Log.e(TAG, "onResponse: " + response);
                         BannerBean bannerBean = gson.fromJson(response, BannerBean.class);
-
                         if (bannerBean.getErrno().equals("200")) {
                             List<BannerBean.DataBean> data = bannerBean.getData();
                             for (int i = 0; i < data.size(); i++) {
@@ -126,7 +124,6 @@ public class ShopClassActivity extends AppCompatActivity {
             Glide.with(context).load(path).into(imageView);
         }
     }
-
     public static void start(Context context) {
         Intent starter = new Intent(context, ShopClassActivity.class);
 //        starter.putExtra();
@@ -141,6 +138,7 @@ public class ShopClassActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.bigsearch_edt:
+                SearchShopsActivity.start(ShopClassActivity.this);
                 break;
             case R.id.more:
                 break;

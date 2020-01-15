@@ -162,11 +162,7 @@ public class HomeFragment extends Fragment {
         sp_create_team = new SharedPreferencesHelper(getActivity(), "Create_team");
         uid = (String) sharedPreferencesHelper.getSharedPreference("uid", "");
         token = (String) sharedPreferencesHelper.getSharedPreference("token", "");
-
-
         updateApk();
-
-
         gi();
         n1Cf.setHeaderView(new HeadRefreshView(getContext()));
         n1Cf.setFooterView(new LoadMoreView(getContext()));

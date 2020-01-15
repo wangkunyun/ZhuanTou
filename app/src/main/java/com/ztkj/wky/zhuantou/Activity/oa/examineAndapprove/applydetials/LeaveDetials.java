@@ -153,7 +153,6 @@ public class LeaveDetials extends AppCompatActivity {
                 Glide.with(LeaveDetials.this).load(data.getApprover().getHead())
                         .apply(options).into(detailsImgAppover);
                 detailsTvAppover.setText(data.getApprover().getName());
-
                 List<LeaveDetailsBean.DataBean.CopierBean> copier = data.getCopier();
                 appovername = new ArrayList<>();
                 appoverhead = new ArrayList<>();

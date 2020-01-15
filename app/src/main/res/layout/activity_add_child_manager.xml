@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Form.AddChildManagerActivity">
+
+    <include layout="@layout/layout_toolbar"/>
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:id="@+id/ll_manager_form"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        >
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="38dp"
+            android:layout_centerVertical="true"
+            android:layout_height="38dp"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/zhanweitu_shop"
+            />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/avatar"
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="aj1886"
+            android:textColor="#ff333333"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_name"
+            android:id="@+id/tv_super_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="总管理"
+            android:visibility="visible"
+            android:textColor="#ff65c9d2"
+            android:textSize="10sp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_enter"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_oa_enter"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/add_child_origin"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="添加"
+        android:background="@drawable/yuanjiaobtn_lanse_16dp"
+        android:layout_marginBottom="100dp"
+        android:layout_width="160dp"
+        android:layout_height="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="16sp"
+        />
+
+</android.support.constraint.ConstraintLayout>

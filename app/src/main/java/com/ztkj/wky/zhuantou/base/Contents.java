@@ -7,6 +7,7 @@ public class Contents {
     //后台域名
     public static final String BASE = "https://api.zhuantoukj.com/birck/index.php/Home/";
     public static final String SHOPBASE = "http://xzshop.zhuantoukj.com/index.php/Home/";
+    public static final String shopStore = "http://shopadmin.zhuantoukj.com/index.php/Home/";
     //当前版本
     public static String localVersion = " ";
     //支付宝业务
@@ -23,13 +24,6 @@ public class Contents {
     public static int num = 0;
     //购物车数量
     public static int numCart = 0;
-    //json2
-    public static final String Json2 = "{\"data\":[\n" +
-            "{\"title\":\"男性服装\",\"class\":[{\"shop\":\"卫衣\"},{\"shop\":\"羽绒服\"},{\"shop\":\"紧身裤\"},{\"shop\":\"豆豆鞋\"}]},\n" +
-            "{\"title\":\"男性饰品\",\"class\":[{\"shop\":\"手表\"},{\"shop\":\"腰带\"},{\"shop\":\"钱包\"},{\"shop\":\"皮甲\"}]},\n" +
-            "{\"title\":\"女性饰品\",\"class\":[{\"shop\":\"卫衣\"},{\"shop\":\"卫衣\"},{\"shop\":\"卫衣\"},{\"shop\":\"卫衣\"}]},\n" +
-            "{\"title\":\"女性服装\",\"class\":[{\"shop\":\"卫衣\"},{\"shop\":\"卫衣\"},{\"shop\":\"女性服装\"}]},\n" +
-            "{\"title\":\"衣服\",\"class\":[]}]}";
     public static final String moneyTag = "¥";
     /**
      * 百度地图
@@ -440,11 +434,31 @@ public class Contents {
     public static final String deleteAddress = "Order/deleteAddress";
     //保存修改地址
     public static final String saveAddress = "Order/updateAddress";
-
     /**
      * 积分
      */
     //积分商品详情
     public static final String commodityInfo = BASE + "Commodity/commodityInfo";
-
+    //店铺首页
+    public static final String homeStoreH5 = "http://shoph5.zhuantoukj.com/dist-H5/#/";
+    //商品详情H5
+    public static final String shopDetailH5 = "http://banbentishi.zhuantoukj.com/Commodity_details.html";
+    //店铺分类
+    public static final String shopCatarory = "api/getcate";
+    //店铺接口
+    public static final String shopStoreShop = "api/storeproduct";
+    //兑换列表
+    public static final String jifenList = "Commodity/exchangeList";
+    //兑换详情
+    public static final String jinfenDetail = "Commodity/exchangeDetails";
+    //部门列表
+    public static final String originalLis = "Department/departmentList";
+    //未关联的部门
+    public static final String unConnectOrigin = "Department/noDepartment";
+    //获取超级管理员
+    public static final String getSuperMember = "Department/getAdministrator";
+    //部门邀请 搜索列表
+    public static final String originSearch = "Department/searchUser";
+    //邀请人员进入公司
+    public static final String inviteMember = "Department/inviteToCompany";
 }

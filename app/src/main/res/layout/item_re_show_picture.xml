@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="53dp"
-    android:layout_height="50dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_marginRight="12dp"
     android:layout_marginBottom="19dp">
 
-    <ImageView
-        android:id="@+id/item_img_showPicture"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/head_portrait" />
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_img_showPicture"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/head_portrait" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小坤坤"
+            android:textColor="#ff333333"
+            android:textSize="16sp"
+            />
+    </LinearLayout>
+
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/item_del_picture"
         android:layout_width="20dp"
         android:layout_height="20dp"

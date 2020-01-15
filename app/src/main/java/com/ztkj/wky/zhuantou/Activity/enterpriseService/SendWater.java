@@ -65,7 +65,6 @@ public class SendWater extends AppCompatActivity {
     LinearLayout clickLinShopPop;
     @BindView(R.id.layout_sendWater)
     RelativeLayout layoutSendWater;
-
     private String TAG = "SendWater";
     private ArrayList<String> typeList, waterList;
     private SharedPreferencesHelper sharedPreferencesHelper;
@@ -77,7 +76,6 @@ public class SendWater extends AppCompatActivity {
     private ArrayList<GouWuCheBean> gouWuCheList;
     private Intent intent;
     private String eid;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,9 +85,6 @@ public class SendWater extends AppCompatActivity {
         eid = intent.getStringExtra("eid");
         initView();
         initEven();
-
-
-
     }
 
     private void initEven() {
@@ -145,7 +140,6 @@ public class SendWater extends AppCompatActivity {
                             (LinearLayoutManager) reShop.getLayoutManager();
                     mLayoutManager.scrollToPositionWithOffset(position, 0);
                 }
-
             }
         });
 
@@ -189,11 +183,9 @@ public class SendWater extends AppCompatActivity {
         sendWaterShopListAdapter = new SendWaterShopListAdapter(this);
         reShopList.setLayoutManager(new LinearLayoutManager(this));
         reShopList.setAdapter(sendWaterShopListAdapter);
-
         sendWaterShopAdapter = new SendWaterShopAdapter(this);
         reShop.setLayoutManager(new LinearLayoutManager(this));
         reShop.setAdapter(sendWaterShopAdapter);
-
     }
 
     private void requestData() {
@@ -205,15 +197,12 @@ public class SendWater extends AppCompatActivity {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Request request, Exception e) {
-
             }
-
             @Override
             public void onResponse(String response) {
                 Log.e(TAG, "onResponse: ========企业服务商城商品=======" + response);
                 SendWaterBean sendWaterBean = new Gson().fromJson(response, SendWaterBean.class);
                 SendWaterBean.DataBean data = sendWaterBean.getData();
-
                 List<SendWaterBean.DataBean.ShopGoodsBean> shopGoods = data.getShopGoods();
 
                 List<SendWaterBean.DataBean.ShopGoodsBean.GoodsBean> goods = new ArrayList<>();

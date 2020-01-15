@@ -1,6 +1,7 @@
 package com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,6 +32,7 @@ import com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.apply.ApplyPayFor;
 import com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.apply.ApplyReimbursement;
 import com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.apply.ApplySeal;
 import com.ztkj.wky.zhuantou.Activity.oa.examineAndapprove.apply.ApplyUseCar;
+import com.ztkj.wky.zhuantou.Activity.oa.punch.ApplyReissuePunchinActivity;
 import com.ztkj.wky.zhuantou.MyUtils.ActivityManager;
 import com.ztkj.wky.zhuantou.MyUtils.SharedPreferencesHelper;
 import com.ztkj.wky.zhuantou.R;
@@ -39,7 +41,9 @@ import com.ztkj.wky.zhuantou.base.Contents;
 import com.ztkj.wky.zhuantou.bean.AllApplyBean;
 import com.ztkj.wky.zhuantou.landing.NewLoginActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -76,6 +80,8 @@ public class WriteApplyForFragment extends Fragment {
     LinearLayout clickApplyReimbursement;
     @BindView(R.id.click_apply_usercar)
     RelativeLayout clickApplyUsercar;
+    @BindView(R.id.add_buka)
+    TextView add_buka;
     private String TAG = "WriteApplyForFragment";
     private SharedPreferencesHelper sharedPreferencesHelper, sp_create_team, sp_apply;
     private String uid;
@@ -83,7 +89,8 @@ public class WriteApplyForFragment extends Fragment {
     private String cid;
     private ArrayList<String> recently;
     private int SizeAdapter;
-
+    @BindView(R.id.tv_recently)
+    TextView tv_recently;
 
     Unbinder unbinder;
 
@@ -131,7 +138,6 @@ public class WriteApplyForFragment extends Fragment {
                     if (!(allApplyBean.getData().size() == 0)) {
                         List<AllApplyBean.DataBean> data = allApplyBean.getData();
                         recently = new ArrayList<>();
-
                         for (int i = 0; i < data.size(); i++) {
                             if (!recently.contains(data.get(i).getType())) {
                                 recently.add(data.get(i).getType());
@@ -150,6 +156,11 @@ public class WriteApplyForFragment extends Fragment {
                         gridLayoutManager.setOrientation(GridLayout.VERTICAL);
                         ReRecently.setLayoutManager(gridLayoutManager);
                         ReRecently.setAdapter(applyRecenlyAdapter);
+                        ReRecently.setVisibility(View.VISIBLE);
+                        tv_recently.setVisibility(View.VISIBLE);
+                    } else {
+                        ReRecently.setVisibility(View.GONE);
+                        tv_recently.setVisibility(View.GONE);
                     }
 
                 } else if (allApplyBean.getErrno().equals("666666")) {
@@ -173,8 +184,9 @@ public class WriteApplyForFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
-    @OnClick({R.id.layout_back, R.id.click_apply_leave, R.id.click_apply_overtime, R.id.click_apply_evection, R.id.click_apply_outworker, R.id.click_apply_goout, R.id.click_apply_payfor, R.id.click_apply_reimbursement, R.id.click_apply_usercar, R.id.click_apply_seal})
+    @SuppressLint("SimpleDateFormat")
+    private SimpleDateFormat simDay = new SimpleDateFormat("yyyy-MM-dd");
+    @OnClick({R.id.layout_back, R.id.click_apply_leave, R.id.click_apply_overtime, R.id.click_apply_evection, R.id.click_apply_outworker, R.id.click_apply_goout, R.id.click_apply_payfor, R.id.click_apply_reimbursement, R.id.click_apply_usercar, R.id.click_apply_seal, R.id.add_buka})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back: //返回
@@ -214,6 +226,13 @@ public class WriteApplyForFragment extends Fragment {
                 break;
             case R.id.click_apply_seal://用印申请
                 intent.setClass(getContext(), ApplySeal.class);
+                startActivity(intent);
+                break;
+            case R.id.add_buka://添加补卡
+                intent = new Intent(getActivity(), ApplyReissuePunchinActivity.class);
+                String format = simDay.format(new Date().getTime());
+                intent.putExtra("time", format);
+                intent.putExtra("type", "1");
                 startActivity(intent);
                 break;
         }

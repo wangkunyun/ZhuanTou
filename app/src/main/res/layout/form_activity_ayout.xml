@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f269"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+
+    <TextView
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/tv_add_member"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:drawableRight="@mipmap/icon_oa_enter"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="添加成员"
+        android:textColor="#ff333333"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:layout_below="@+id/tv_add_member"
+        android:id="@+id/tv_bumen"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="bottom"
+        android:paddingLeft="16dp"
+        android:paddingBottom="8dp"
+        android:text="部门"
+        android:textColor="#ff999999"
+        android:textSize="16sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/tv_bumen"
+        android:id="@+id/recycle_list_bumen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/recycle_list_bumen"
+        android:layout_above="@+id/lll"
+        android:id="@+id/recycle_list_unconect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:id="@+id/lll"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/tv_super"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="bottom"
+            android:paddingLeft="16dp"
+            android:paddingBottom="8dp"
+            android:text="超级管理员"
+            android:textColor="#ff999999"
+            android:textSize="16sp" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_manager_form"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            >
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginLeft="16dp"
+                android:src="@mipmap/zhanweitu_shop"
+                />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="aj1886"
+                android:textColor="#ff333333"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_super_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="总管理"
+                android:visibility="visible"
+                android:textColor="#ff65c9d2"
+                android:textSize="10sp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/add_child_origin"
+        android:visibility="invisible"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="添加子部门"
+        android:background="@drawable/yuanjiaobtn_lanse_16dp"
+        android:layout_marginBottom="100dp"
+        android:layout_width="160dp"
+        android:layout_height="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="16sp"
+        />
+
+</RelativeLayout>

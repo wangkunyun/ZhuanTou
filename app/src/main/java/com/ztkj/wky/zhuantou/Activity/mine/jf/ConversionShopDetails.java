@@ -120,6 +120,7 @@ public class ConversionShopDetails extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
+                finish();
                 break;
             case R.id.btn_conversion:
                 popuChoose();
@@ -142,7 +143,6 @@ public class ConversionShopDetails extends AppCompatActivity {
         } else {
             tv_chooseAddress.setVisibility(View.VISIBLE);
         }
-
         receive_name = contentView.findViewById(R.id.receive_name);
         receive_phone = contentView.findViewById(R.id.receive_phone);
         receive_address = contentView.findViewById(R.id.receive_address);

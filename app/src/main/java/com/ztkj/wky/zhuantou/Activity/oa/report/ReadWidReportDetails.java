@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -80,6 +81,7 @@ public class ReadWidReportDetails extends AppCompatActivity {
     private String report_type, report_name, report_head, report_id;
     private ArrayList<String> Arr_approver = new ArrayList<>();//审批人
 
+    private ArrayList<String> Arr_approver_name = new ArrayList<>();//审批人
 
     private Intent intent;
     private String TAG = "ReadReportDetails";
@@ -157,6 +159,7 @@ public class ReadWidReportDetails extends AppCompatActivity {
                     List<WidDetailsBean.DataBean.ReaderBean> reader = data.getReader();
                     for (int i = 0; i < reader.size(); i++) {
                         Arr_approver.add(reader.get(i).getHead());
+                        Arr_approver_name.add(reader.get(i).getName());
                     }
 
                     //适配器
@@ -165,11 +168,12 @@ public class ReadWidReportDetails extends AppCompatActivity {
 //        ShowPictureAdapter showPictureAdapter = new ShowPictureAdapter(WorkSummary.this, Arr_approver);
                     showAdpoverAdapter.notifyDataSetChanged();
                     //布局管理器对象 参数1.上下文 2.规定一行显示几列的参数常量
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(ReadWidReportDetails.this, 5);
+//                     gridLayoutManager = new GridLayoutManager(ReadWidReportDetails.this, 2);
                     //设置RecycleView显示的方向是水平还是垂直 GridLayout.HORIZONTAL水平  GridLayout.VERTICAL默认垂直
-                    gridLayoutManager.setOrientation(GridLayout.VERTICAL);
-                    reDetailsApprover.setLayoutManager(gridLayoutManager);
+//                    gridLayoutManager.setOrientation(GridLayout.VERTICAL);
+                    reDetailsApprover.setLayoutManager(new LinearLayoutManager(ReadWidReportDetails.this));
                     reDetailsApprover.setAdapter(showAdpoverAdapter);
+showAdpoverAdapter.setData(Arr_approver_name);
 
 
 

@@ -65,13 +65,39 @@
                 android:visibility="gone" />
         </LinearLayout>
 
+        <LinearLayout
+            android:background="@color/white"
+            android:id="@+id/ll_zuzhi"
+            android:layout_below="@+id/manage_company"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:background="#FFF8F8F8"
+                android:id="@+id/tv_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                android:gravity="center_vertical"
+                android:text="组织架构"
+                android:textColor="#ff333333"
+                android:textSize="18sp"
+                android:drawableRight="@mipmap/icon_oa_enter"
+                android:id="@+id/tv_zuzhi"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"/>
+        </LinearLayout>
+
 
         <!--团队成员-->
         <RelativeLayout
             android:id="@+id/xy_2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/manage_company"
+            android:layout_below="@id/ll_zuzhi"
             android:background="#FFF2F6F9">
 
             <TextView
